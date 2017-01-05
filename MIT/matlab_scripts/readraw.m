@@ -13,6 +13,6 @@ end
 x = fread(fid,inf,'short');
 fclose(fid);
 %
-% return as row vector, +/- 1 max.
+% return as row vector, +/- 1 git max.
 %
 x = x' / 32768;
