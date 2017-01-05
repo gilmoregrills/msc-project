@@ -19,8 +19,8 @@ function [x] = readhrtf(elev,azim,select)
 % Root directory for Macintosh or UNIX. Put your own in here.
 %
 if (length(getenv('MACHTYPE')) == 0)
-	root = 'Pokey:hrtf';
-	dir_ch = ':';
+	root = 'gilmoregrills/hrtf-tests/hrtf_databases_and_docs/MIT';
+	dir_ch = '/';
 else
 	root = '/ti/u/billg/hrtf';
 	dir_ch = '/';
