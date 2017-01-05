@@ -1,4 +1,4 @@
-function [s] = hrtfpath(root,dir_ch,subdir,select,ext,elev,azim)
+    function [s] = hrtfpath(root,dir_ch,subdir,select,ext,elev,azim)
 %
 % function [s] = hrtfpath(root,dir_ch,subdir,select,ext,elev,azim)
 % Return pathanme for HRTF data file:

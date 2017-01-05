@@ -25,19 +25,19 @@ def readhrtf(elev, azim, select):
     ext = '.dat'
 
     if (select == 'L')
-        pathname = hrtfpath(root,'/','full',select,ext,elev,azim);
+        pathname = hrtfpath(root,'full',select,ext,elev,azim);
 #pathname has been set, so I think we print readraw which is 
 #another script, passing pathname to THAT
         print(readraw(pathname))
-        pathname = hrtfpath(root,'/','full',select,ext,elev,flipazim)
+        pathname = hrtfpath(root,'full',select,ext,elev,flipazim)
         print(readraw(pathname))
     else if (select == 'R')
-        pathname = hrtfpath(root,'/','full',select,ext,elev,flipazim)
+        pathname = hrtfpath(root,'full',select,ext,elev,flipazim)
         print(readraw(pathname))
-        pathname = hrtfpath(root,'/','full',select,ext,elev,azim)
+        pathname = hrtfpath(root,'full',select,ext,elev,azim)
         print(readraw(pathname))      
     else if (select == 'H')
-        pathname = hrtfpath(root,'/','compact',select,ext,elev,azim)
+        pathname = hrtfpath(root,'compact',select,ext,elev,azim)
         tmp = readraw(pathname);
         print("this one actually doesn't work")
     else
