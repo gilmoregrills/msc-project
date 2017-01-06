@@ -1,3 +1,5 @@
+import numpy as np
+
 def readraw(pathname)
 #again, original matlab script stolen from Bill Gardner
 #and the MIT Media Lab
@@ -5,22 +7,18 @@ def readraw(pathname)
 #should be read-only
 #the matlab script is able to specify the machine format
 #numpy has functions for reading binaries
-    file = functionToOpenBinaries(pathname, specify IEEE float w/ big-endian ordering)
-    if (file == "")
-        print("error message")
-    functionToReadBinaries(file, size=infinity(numpy?), precision=short)
-
+    file = numpy.fromfile(pathname, float, -1, "")#float OR short I'm not sure yet
+    return(file) #this returns an array of float-length numbers/binary chunks
+    #so we're passing back an array? 
     funtionToCloseBinaries(file)
-
-    #return as row vetor, +/- max
-    #from matlab it ends with:
+    
+    #this is in the original file:
+    #return as row vector, +/- max
     x = x' / 32768
-    #so in python it's 
-    return(x / 32768) 
-    #i think in the original it's doing like:
-    #return(functionToReadBinaries etc)
-    #return(return / 32768) 
-    #or
-    #x = fucntionToReadBinaries
-    #return(x / 32768)
-    #what happens if I just return the read of the binary
+    #this is because!! the readf function in matlab returns the float-length binary
+    #chunks as elements of a single-column vector! This line of code
+    #transforms the single column vector into a single ROW vector, which is
+    #functionally identical to an ARRAY!!! 
+    
+    #I now have all I need to actually finish this file
+    
