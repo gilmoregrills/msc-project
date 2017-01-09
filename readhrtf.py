@@ -1,6 +1,6 @@
 import numpy as np
-
-
+np.set_printoptions(threshold=np.inf) 
+#the above line allows you to print >100 lines to term
 
 def readhrtf(elev, azim, select):
 #elev = elevation, from 0 to 90 degrees
@@ -29,13 +29,16 @@ def readhrtf(elev, azim, select):
      
     ext = '.dat'
 
-#the problem is happening between reading the file and the final output
-#so it's either here...
+#decides what file to access/what information to pull depending
+#on the L/R parameters passed, then stores the information in
+#a 2:512 array and prints the array
     if (select == 'L'):
         pathname = hrtfpath(root,'full',select,ext,elev,azim)
-        print(readraw(pathname))
+        larray = readraw(pathname)
         pathname = hrtfpath(root,'full',select,ext,elev,flipazim)
-        print(readraw(pathname))
+        rarray = readraw(pathname)
+        outputarray = np.vstack((larray, rarray))
+        print(outputarray)
     elif (select == 'R'):
         pathname = hrtfpath(root,'full',select,ext,elev,flipazim)
         print(readraw(pathname))
@@ -48,14 +51,18 @@ def readhrtf(elev, azim, select):
     else:
         print("something went wrong")
 
-#OR it's here? Gotta compare to matlab scripts more
+#sets datatype to big-endian-16-bit-integer
+#then accesses the file based on the output
+#of pathname, returns array of 512 indexes
 dt = np.dtype('>i2')
 def readraw(pathname):
     file = np.fromfile(pathname, dt, -1, "")
-    #file = np.divide(file, 32768)
+    #file = np.divide(file, 32768) matlab script has similar line
+    #to this one, but it seemed to give insanely small decimals
+    #not the integers described in hrtfdoc.txt
     return(file) 
 
-#this function is complete, nbd here
+#sets the file path to the .dat file containing the hrtf data
 def hrtfpath(root, subdir, select, ext, elev, azim):
     x = '/'
     return(root+x+subdir+x+"elev"+str(elev)+x+select+str(elev)+"e"+str(azim)+"a"+ext)
