@@ -1,4 +1,5 @@
 import numpy as np
+import os.path
 np.set_printoptions(threshold=np.inf) 
 #the above line allows you to print >100 lines to term
 
@@ -38,11 +39,13 @@ def readhrtf(elev, azim, select):
         pathname = hrtfpath(root,'full',select,ext,elev,flipazim)
         rarray = readraw(pathname)
         outputarray = np.vstack((larray, rarray))
-        print(outputarray)
+        return(outputarray)
     elif (select == 'R'):
         pathname = hrtfpath(root,'full',select,ext,elev,flipazim)
+        print(pathname)
         print(readraw(pathname))
         pathname = hrtfpath(root,'full',select,ext,elev,azim)
+        print(pathname)
         print(readraw(pathname))      
     elif (select == 'H'):
         pathname = hrtfpath(root,'compact',select,ext,elev,azim)
@@ -67,5 +70,18 @@ def hrtfpath(root, subdir, select, ext, elev, azim):
     x = '/'
     return(root+x+subdir+x+"elev"+str(elev)+x+select+str(elev)+"e"+str(azim)+"a"+ext)
 
+def writeraw(hrtfarray, filename):
+    i = 0
+    pathname = "/home/gilmoregrills/hrtf-tests/modified/"+filename
+    while os.path.isfile(pathname):
+        while os.path.isfile(pathname+str(i)):
+            i + 1
+        pathname = pathname+str(i)
+
+    hrtfarray.tofile(pathname)
+
 #hardcoded function call for testing purposes
-readhrtf(40, 109, "L")
+hrtf = readhrtf(40, 109, "L")
+print(hrtf)
+print(readraw("/home/gilmoregrills/hrtf-tests/modified/test.dat"))
+##writeraw(hrtf, "test.dat") - either problem w/ write format or I need to split two arrays before writing
