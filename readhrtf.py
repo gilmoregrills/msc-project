@@ -26,7 +26,7 @@ def readhrtf(elev, azim, select):
     flipazim = 360 - azim
     if (flipazim == 360):
         flipazim = 0
-    print flipazim #sanity check 
+     
     ext = '.dat'
 
 #the problem is happening between reading the file and the final output
@@ -49,8 +49,10 @@ def readhrtf(elev, azim, select):
         print("something went wrong")
 
 #OR it's here? Gotta compare to matlab scripts more
+dt = np.dtype('>i2')
 def readraw(pathname):
-    file = np.fromfile(pathname, np.int16, -1, "")#matlab short is 16bit so np.int16 replaces it
+    file = np.fromfile(pathname, dt, -1, "")
+    #file = np.divide(file, 32768)
     return(file) 
 
 #this function is complete, nbd here
