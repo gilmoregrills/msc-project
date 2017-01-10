@@ -3,7 +3,9 @@ import os.path
 np.set_printoptions(threshold=np.inf) 
 #the above line allows you to print >100 lines to term
 
-def readhrtf(elev, azim, select):
+
+
+#NOTES
 #elev = elevation, from 0 to 90 degrees
 #azim = azimuth from 0 to 180 degrees
 #select can be either: 
@@ -13,6 +15,7 @@ def readhrtf(elev, azim, select):
 #
 #original script stolen from Bill Gardner, all props to him
 #and the MIT Media Lab
+
 
 #takes the args and uses them to find the correct 
 #hrtf from the MIT lib, then sorts it into a 2D
@@ -66,8 +69,7 @@ def writeraw(hrtfarray, elev, azim, select):
     writepath = hrtfpath(root, subdir, select, ".dat", elev, azim)
     hrtfarray.tofile(writepath)
 
-#hardcoded function call for testing purposes
-hrtf = readhrtf(40, 109, "L")
+#TESTING
+hrtf = readraw(40, 109, "L")
 print(hrtf)
-print(readraw("/home/gilmoregrills/hrtf-tests/modified/test.dat"))
 ##writeraw(hrtf, "test.dat") - either problem w/ write format or I need to split two arrays before writing
