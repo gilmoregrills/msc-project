@@ -16,6 +16,13 @@ np.set_printoptions(threshold=np.inf)
 #original script stolen from Bill Gardner, all props to him
 #and the MIT Media Lab
 
+#TO-DO
+#create class hrtf and give it all the below functions:
+#give class hrtf input and output root folder attributes (w/ gets/sets/)
+#make the root folders hardcoded to class for now
+#all functions/attrs should be public for now
+#make constructor that takes args to pass onto readraw at run
+#on instantiation an hrtf object should have an array, I/O paths
 
 #takes the args and uses them to find the correct 
 #hrtf from the MIT lib, then sorts it into a 2D
