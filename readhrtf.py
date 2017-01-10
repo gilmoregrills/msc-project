@@ -13,72 +13,58 @@ def readhrtf(elev, azim, select):
 #
 #original script stolen from Bill Gardner, all props to him
 #and the MIT Media Lab
-    
-#home directory/path to the folder where 'full' is kept
+
+#takes the args and uses them to find the correct 
+#hrtf from the MIT lib, then sorts it into a 2D
+#array where row1 is always L and row2 is always R
+def readraw(elev, azim, select):
     root = '/home/gilmoregrills/hrtf-tests/MIT'
-    print root
-#checks that the args passed at run are a-okay
+    dt = np.dtype('>i2')
+
     if (azim < 0) or (azim > 180):
         print('azimuth must be between 0 and 180 degrees')
     elif (elev < -40) or (elev > 90):
         print('azimuth must be between 0 and 180 degrees')
-
-#formats the filename
-    flipazim = 360 - azim
-    if (flipazim == 360):
-        flipazim = 0
-     
-    ext = '.dat'
-
-#decides what file to access/what information to pull depending
-#on the L/R parameters passed, then stores the information in
-#a 2:512 array and prints the array
+	
     if (select == 'L'):
         pathname = hrtfpath(root,'full',select,ext,elev,azim)
-        larray = readraw(pathname)
+        larray = np.fromfile(pathname, dt, -1, "")
         pathname = hrtfpath(root,'full',select,ext,elev,flipazim)
-        rarray = readraw(pathname)
+        rarray = np.fromfile(pathname, dt, -1, "")
         outputarray = np.vstack((larray, rarray))
         return(outputarray)
     elif (select == 'R'):
         pathname = hrtfpath(root,'full',select,ext,elev,flipazim)
-        print(pathname)
-        print(readraw(pathname))
+        larray = np.fromfile(pathname, dt, -1, "")
         pathname = hrtfpath(root,'full',select,ext,elev,azim)
-        print(pathname)
-        print(readraw(pathname))      
+        rarray = np.fromfile(pathname, dt, -1, "")
+        outputarray = np.vstack((larray, rarray))
     elif (select == 'H'):
-        pathname = hrtfpath(root,'compact',select,ext,elev,azim)
-        tmp = readraw(pathname);
-        print("this one actually doesn't work")
+        #nothing here yet
+	print("this isn't a thing yet")
     else:
         print("something went wrong")
 
-#sets datatype to big-endian-16-bit-integer
-#then accesses the file based on the output
-#of pathname, returns array of 512 indexes
-dt = np.dtype('>i2')
-def readraw(pathname):
-    file = np.fromfile(pathname, dt, -1, "")
-    #file = np.divide(file, 32768) matlab script has similar line
-    #to this one, but it seemed to give insanely small decimals
-    #not the integers described in hrtfdoc.txt
-    return(file) 
+    flipazim = 360 - azim
+    if (flipazim == 360):
+        flipazim = 0
+
+    return(outputarray) 
 
 #sets the file path to the .dat file containing the hrtf data
+#setting root(and subdir??) in readraw and writeraw keeps
+#the originals and modified versions separate
 def hrtfpath(root, subdir, select, ext, elev, azim):
     x = '/'
     return(root+x+subdir+x+"elev"+str(elev)+x+select+str(elev)+"e"+str(azim)+"a"+ext)
 
-def writeraw(hrtfarray, filename):
-    i = 0
-    pathname = "/home/gilmoregrills/hrtf-tests/modified/"+filename
-    while os.path.isfile(pathname):
-        while os.path.isfile(pathname+str(i)):
-            i + 1
-        pathname = pathname+str(i)
-
-    hrtfarray.tofile(pathname)
+#writes a modified version of the output array returned by 
+#readraw to a new binary file in the modified directory
+def writeraw(hrtfarray, elev, azim, select):
+    subdir = "full"
+    root = "/home/gilmoregrills/hrtf-tests/modified"
+    writepath = hrtfpath(root, subdir, select, ".dat", elev, azim)
+    hrtfarray.tofile(writepath)
 
 #hardcoded function call for testing purposes
 hrtf = readhrtf(40, 109, "L")
