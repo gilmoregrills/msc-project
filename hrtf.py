@@ -2,7 +2,7 @@ import numpy as np
 import os.path
 
 #to do: 
-#add method to print hrtf data in a useful way
+#add method to print hrtf data in a useful way - similar to matlab
 #add method to return hrtf data as graph/visualised usefully
 #add get/set methods to inputroot and outputroot
 #fix writeraw method to correctly write files
