@@ -9,6 +9,7 @@ import os.path
 #add edit method to access specific array index and change value
 #ensure all this is usable through jupyter notebooks
 #set root paths in constructor
+#set up rounding up/down for the input elev/azim
 
 np.set_printoptions(threshold=np.inf)
 #line above allows you to print all lines of hrf to the terminal
