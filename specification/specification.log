@@ -1,19 +1,126 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.1.30)  30 JAN 2017 12:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.30)  31 JAN 2017 22:23
 entering extended mode
- restricted \write18 enabled.
- %&-line parsing enabled.
-**specification.tex
-(./specification.tex
-LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 3 language(s) loaded.
+**./specification.tex
+(specification.tex
+LaTeX2e <2016/03/31> patch level 3
+Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\scrartcl.cls"
+Document Class: scrartcl 2016/06/14 v3.21 KOMA-Script document class (article)
+("C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\scrkbase.sty"
+Package: scrkbase 2016/06/14 v3.21 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
 
-! LaTeX Error: File `scrartcl.cls' not found.
+("C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\scrbase.sty"
+Package: scrbase 2016/06/14 v3.21 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: cls)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\scrlfile.sty"
+Package: scrlfile 2016/06/14 v3.21 KOMA-Script package (loading files)
 
-Enter file name: 
-(./specification.aux)
+Package scrlfile, 2016/06/14 v3.21 KOMA-Script package (loading files)
+                  Copyright (C) Markus Kohm
+
+))) ("C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\tocbasic.sty"
+Package: tocbasic 2016/06/14 v3.21 KOMA-Script package (handling toc-files)
+\scr@dte@tocline@numberwidth=\skip41
+\scr@dte@tocline@numbox=\box26
+)
+Package tocbasic Info: omitting babel extension for `toc'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `toc' on input line 130.
+Package tocbasic Info: omitting babel extension for `lof'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lof' on input line 131.
+Package tocbasic Info: omitting babel extension for `lot'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lot' on input line 132.
+Package scrartcl Info: You've used standard option `10pt'.
+(scrartcl)             This is correct!
+(scrartcl)             Internally I'm using `fontsize=10pt'.
+(scrartcl)             If you'd like to set the option with \KOMAoptions,
+(scrartcl)             you'd have to use `fontsize=10pt' there
+(scrartcl)             instead of `10pt', too.
+Class scrartcl Info: You've used standard option `oneside'.
+(scrartcl)           This is correct!
+(scrartcl)           Internally I'm using `twoside=false'.
+(scrartcl)           If you'd like to set the option with \KOMAoptions,
+(scrartcl)           you'd have to use `twoside=false' there
+(scrartcl)           instead of `oneside', too.
+Class scrartcl Info: File `scrsize10pt.clo' used to setup font sizes on input l
+ine 2052.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\scrsize10pt.clo"
+File: scrsize10pt.clo 2016/06/14 v3.21 KOMA-Script font size class option (10pt
+)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\typearea.sty"
+Package: typearea 2016/06/14 v3.21 KOMA-Script package (type area)
+
+Package typearea, 2016/06/14 v3.21 KOMA-Script package (type area)
+                  Copyright (C) Frank Neukam, 1992-1994
+                  Copyright (C) Markus Kohm, 1994-
+
+\ta@bcor=\skip42
+\ta@div=\count79
+Package typearea Info: You've used standard option `oneside'.
+(typearea)             This is correct!
+(typearea)             Internally I'm using `twoside=false'.
+(typearea)             If you'd like to set the option with \KOMAoptions,
+(typearea)             you'd have to use `twoside=false' there
+(typearea)             instead of `oneside', too.
+Package typearea Info: You've used standard option `a4paper'.
+(typearea)             This is correct!
+(typearea)             Internally I'm using `paper=a4'.
+(typearea)             If you'd like to set the option with \KOMAoptions,
+(typearea)             you'd have to use `paper=a4' there
+(typearea)             instead of `a4paper', too.
+\ta@hblk=\skip43
+\ta@vblk=\skip44
+\ta@temp=\skip45
+\footheight=\skip46
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 8
+(typearea)             BCOR = 0.0pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 373.44246pt
+(typearea)              DIV departure   = -4%
+(typearea)              \evensidemargin = 39.76274pt
+(typearea)              \oddsidemargin  = 39.76274pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 538.0pt
+(typearea)              \topmargin      = 0.36087pt
+(typearea)              \headheight     = 15.0pt
+(typearea)              \headsep        = 18.0pt
+(typearea)              \topskip        = 10.0pt
+(typearea)              \footskip       = 42.0pt
+(typearea)              \baselineskip   = 12.0pt
+(typearea)              on input line 1529.
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\scr@dte@part@maxnumwidth=\skip47
+\scr@dte@section@maxnumwidth=\skip48
+\scr@dte@subsection@maxnumwidth=\skip49
+\scr@dte@subsubsection@maxnumwidth=\skip50
+\scr@dte@paragraph@maxnumwidth=\skip51
+\scr@dte@subparagraph@maxnumwidth=\skip52
+LaTeX Info: Redefining \textsubscript on input line 4036.
+\abovecaptionskip=\skip53
+\belowcaptionskip=\skip54
+\c@pti@nb@sid@b@x=\box27
+\c@figure=\count86
+\c@table=\count87
+Class scrartcl Info: Redefining `\numberline' on input line 5049.
+\bibindent=\dimen102
+) (specification.aux)
 \openout1 = `specification.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
@@ -29,39 +136,11 @@ LaTeX Font Info:    ... okay on input line 8.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
 
-
-! LaTeX Error: The font size command \normalsize is not defined:
-               there is probably something wrong with the class file.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.8 \begin{document}
-                    
-? 
 No file specification.bbl.
-! Undefined control sequence.
-l.11 \subtitle
-              {Specification}
-? 
-Missing character: There is no S in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no f in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-! Undefined control sequence.
-l.14 \maketitle
-               
-? 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 15.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 15.
 
 ! LaTeX Error: \abtractname undefined.
 
@@ -72,141 +151,44 @@ Type  H <return>  for immediate help.
 l.16 \renewcommand{\abtractname}
                                 {Introduction} %maybs change to blank
 ? 
-
-! LaTeX Error: Environment abstract undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.17 \begin {abstract}
-                      
-? 
-Missing character: There is no C in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no u in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no - in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no [ in font nullfont!
 ! Undefined control sequence.
-<write> ...: Citation `\@citeb ' on page \thepage 
-                                                  \space undefined\on@line .
-l.18 Computer-mediated reality \cite{S.Mann1994}
-                                                
+l.18 Virtual reality\ignore
+                           {Computer-mediated reality \cite{S.Mann199}} has ...
+
 ? 
 
-LaTeX Warning: Citation `S.Mann1994' on page  undefined on input line 18.
+LaTeX Warning: Citation `S.Mann199' on page 1 undefined on input line 18.
 
-Missing character: There is no ] in font nullfont!
 
-! LaTeX Error: \begin{document} ended by \end{abstract}.
+LaTeX Warning: Citation `Algazi2001' on page 1 undefined on input line 18.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.19 \end {abstract}
-                    
-? 
-! Undefined control sequence.
-l.21 \section
-             *{}
-? 
-Missing character: There is no * in font nullfont!
-Missing character: There is no S in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no 1 in font nullfont!
-! Undefined control sequence.
-l.24 \section
-             *{}
-? 
-Missing character: There is no * in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no 2 in font nullfont!
-! Undefined control sequence.
-l.27 \section
-             *{}
-? 
-Missing character: There is no * in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no 3 in font nullfont!
 
-! LaTeX Error: The font size command \normalsize is not defined:
-               there is probably something wrong with the class file.
+LaTeX Warning: Citation `Gardner1994' on page 1 undefined on input line 18.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.30 \end{document}
-                   
-? 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./specification.aux)
+[1
+
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3]
+(specification.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 24 strings out of 494953
- 389 string characters out of 6180977
- 45171 words of memory out of 5000000
- 3399 multiletter control sequences out of 15000+600000
- 3948 words of font info for 15 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 20i,4n,26p,96b,109s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
-Output written on specification.pdf (1 page, 9925 bytes).
+ 2013 strings out of 493333
+ 38300 string characters out of 3139194
+ 183659 words of memory out of 3000000
+ 5602 multiletter control sequences out of 15000+200000
+ 6342 words of font info for 23 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 43i,7n,54p,8826b,209s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
+Output written on specification.pdf (3 pages, 62267 bytes).
 PDF statistics:
- 12 PDF objects out of 1000 (max. 8388607)
- 7 compressed objects within 1 object stream
+ 28 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
