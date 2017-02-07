@@ -27,21 +27,17 @@ Previous efforts to produce individualized HRTFs through either modification of 
 
 More recent studies have involved applying Principal Component Analysis (PCA) to HRTF data \cite{Holzl2012a}, in order to identify the spectral features that have the greatest effect upon the incoming sound signal. Once identified, these Principal Components (PCs) can potentially be adjusted in order to produce a more individualised HRTF \cite{Fink2012,Holzl2014a}. Typically upwards of ninety percent of the information in a given HRTF is based on between 5 and 10 PCs, so through the adjustment of Principal Component Weights (PCWs) it should be possible to individualise HRTFs with a reasonably high degree of accuracy. The combined efficacy and efficiency of this method makes it well-suited to my proposed implementation, and as such this will be the model I will be using to perform the individualisation. 
 
-Once they have been identified, I will need data from the user on which to base any adjustment of PCWs. Because on my stated goal of producing an intuitive simple method, I will be performing the individualisation based on the user's own errors in localisation. This method will require me to identify, where possible, points of correlation between PCs and localisation, and as such this will be one of my primary research foci going forward. In order to gather this data from the user it is most practical to derive it from their own localisation errors in a virtual environment. This helps to create an intuitive user experience, while providing precise data. In order to have the experience be enjoyable as well as intuitive, rather than having the user stand in an empty space playing the user's audio cues from sources positioned around them and having them point a reticle at where they think it is blah blah blah
+Once they have been identified, I will need data from the user on which to base any adjustment of PCWs. Because on my stated goal of producing an intuitive simple method, I will be performing the individualisation based on the user's own errors in localisation. This method will require me to identify, where possible, points of correlation between PCs and localisation, and as such this will be one of my primary research foci going forward. In order to gather this data from the user it is most practical to derive it from their own localisation errors in a virtual environment. Ideally, it will involve placing the user in virtual space, and asking them to identify the source of the audio cues that will be played to them. This helps to create an intuitive user experience, and giving the user a reticle to point at the perceived source gives precise data upon which to make adjustments. As an additional stretch goal of sorts, building a virtual environment that makes the calibration process more engaging than simply dropping the user into an empty void and blasting them with sound cues. 
 
-notes:
+Based on these decisions, the finished application will be comprised of three parts: The database/files containing the source HRTF data and individualised copies, a frontend interface to be viewed through a head-mounted display, and a module that takes localisation data from the frontend and makes adjustments based on it to the HRTF data. 
 
-hrtf individualisation and synthesis methods through the ages? structural model, other weirder ones? Why are they bad?? Most recently PCA/PCW, this is what I will use, why? why adjust not synthesise? 
+notes: 
 
-on what basis will we make our adjustments? It will be done on the basis of localisation errors from the user. Depending on the nature of the error, we will adjust PCWs and re-test. 
-
-how do we record the nature of their localisation errors? We do it in-VR of course. Give the user a reticle and ask them to point it at the position in space that they think a given sound source eminated from. Use that data to adjust HRTFs and feed it back in! Play another sound, note error, adjust again, rinse and repeat. Informed guessing possibly on the basis of the structural model? Not totally blind. Float the idea of incorporating ML in future build. 
-
-How do we make this fun/enjoyable? Build it in an interesting 3D space, room of shelves all covered in alarm clocks? locate the clock that's beeping? 
-
-End product will be: A summary. 3 pieces, the hrtf databases, the processing module, and the VR frontend! 
+Might still want to mention the incorporation of search algorithms/ML of a sort in deciding what PCWs to adjust
 
 \section*{p2}
+
+
 what technologies will I use and why?
 
 Building the core hrtf-modifying module in Python and SciPy, that should be all that needs. Would like this module to have a nice sort-of API, to demonstrate the ease with which it could be incorporated into another product and to make it easier for me to build stuff on top of it.   
