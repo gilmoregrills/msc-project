@@ -18,7 +18,7 @@
 Virtual reality\ignore{Computer-mediated reality \cite{S.Mann199}} has come to represent the dominant prediction for the near future of human-computer interaction. If this prediction is to come to pass, then it is necessary that sufficient consideration is given toward the fidelity of both the visual and the auditory aspects of VR and AR technology. Currently, most implementations of spatial audio in VR and AR applications are based around the use of HRTFs. Mostof these implementations use one of a few publically available datasets, derived from measurements performed on either human subjects or a model such a the KEMAR\cite{Algazi2001}\cite{Gardner1994}. For the use of VR/AR to become commonplace the experience must be universal. Because spatial audio relies on complex measurements of real-world subjects (be they flesh and blood or not) applications tend to use average or neutral HRTFs, ones that should work for the largest number of people. Of course, by dint of being average there are many people for whom these do not work. In order to achieve a universal experience, then, it is necessary to find a process for  simple individualization of spatial audio that is sufficiently simple, and can be performed by the end user as a part of the standardsetup of any VR/AR device or application.
 \end {abstract}
 
-\section*{p1}
+\section*{Goals & Research}
 The goal of this project is to produce a working prototype of an application that takes as input a neutral set of HRTF measurements, and returns an individualised set. For a process like this to achieve widespread use it must be simple enough that it can be performed by any given user with nothing more than a head-mounted display, and intuitive enough that it requires no in-depth knowledge of spatial audio. The output HRTF set should also provide a noticeable improvement in the ability of the user to locate sound sources in a virtual 3D environment.
 
 Previous efforts to produce individualized HRTFs through either modification of an existing neutral set or total synthesis have focused primarily on a few different techniques. The most common method is based on a structural HRTF model \cite{PhillipBrown1998, Raykar2003}, in which different characteristics of the HRTF are linked to physical characteristics of the pinna, torso, and head. Implementations based on this model have been varied \cite{Tashev2014, Xu2007, DmitryN.ZotkinJaneHwangRamaniDuraiswami2003}, but the model's reliance on even limited sets of precise anthropometric measurements makes it impractical for my purposes - despite having the potential to be much more efficient than traditional HRIR measurement. 
@@ -35,11 +35,14 @@ notes:
 
 Might still want to mention the incorporation of search algorithms/ML of a sort in deciding what PCWs to adjust
 
-\section*{p2}
+\section*{Technologies}
 
 what technologies will I use and why?
 
 The bulk of the implementation will be written in Python, particularly the core HRTF-adjusting module. Speed isn't too much of an issue the amount of processing to be done at one time will likely not exceed the capabilities of any device sufficiently powerful to run an HMD, and the access to the SciPy libraries\cite{scipy website???} will make reading, visualising, and editing the files containing the HRTF data much simpler. The other option was to use MATLAB, which would require me to learn a whole new language for very little benefit - it would allow me to skip one step in in processing the files, as most of the publicly-available HRTF datasets are stored in .mat files.
+
+It will be necessary to ascertain as part of my ongoing research whether accessing the HRTF data from .mat files is efficient enough. Based on the likely simplicity of the frontend environment and limited amount of processing taking place I am inclined to think that it won't prove to be a problem, but it is something I will need to take into account going forward. 
+
 
 
 
