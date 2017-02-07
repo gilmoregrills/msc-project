@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.30)  31 JAN 2017 22:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.30)  7 FEB 2017 22:38
 entering extended mode
 **./specification.tex
 (specification.tex
@@ -136,28 +136,37 @@ LaTeX Font Info:    ... okay on input line 8.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
 LaTeX Font Info:    ... okay on input line 8.
 
+! Undefined control sequence.
+<write> \string \bibdata {C:\Users 
+                                   \robin \Documents \library .bib}
+l.9 ...raphy{C:\Users\robin\Documents\library.bib}
+                                                  
+? 
+! Undefined control sequence.
+<write> \string \bibdata {C:\Users \robin 
+                                          \Documents \library .bib}
+l.9 ...raphy{C:\Users\robin\Documents\library.bib}
+                                                  
+? 
+! Undefined control sequence.
+<write> ...g \bibdata {C:\Users \robin \Documents 
+                                                  \library .bib}
+l.9 ...raphy{C:\Users\robin\Documents\library.bib}
+                                                  
+? 
+! Undefined control sequence.
+<write> ...a {C:\Users \robin \Documents \library 
+                                                  .bib}
+l.9 ...raphy{C:\Users\robin\Documents\library.bib}
+                                                  
+? 
 No file specification.bbl.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line 15.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 15.
 
-! LaTeX Error: \abtractname undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.16 \renewcommand{\abtractname}
-                                {Introduction} %maybs change to blank
-? 
-! Undefined control sequence.
-l.18 Virtual reality\ignore
-                           {Computer-mediated reality \cite{S.Mann199}} has ...
-
-? 
-
-LaTeX Warning: Citation `S.Mann199' on page 1 undefined on input line 18.
+LaTeX Warning: Citation `source??' on page 1 undefined on input line 18.
 
 
 LaTeX Warning: Citation `Algazi2001' on page 1 undefined on input line 18.
@@ -168,17 +177,60 @@ LaTeX Warning: Citation `Gardner1994' on page 1 undefined on input line 18.
 [1
 
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3]
-(specification.aux)
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+
+LaTeX Warning: Citation `PhillipBrown1998' on page 2 undefined on input line 24
+.
+
+
+LaTeX Warning: Citation `Raykar2003' on page 2 undefined on input line 24.
+
+
+LaTeX Warning: Citation `Tashev2014' on page 2 undefined on input line 24.
+
+
+LaTeX Warning: Citation `Xu2007' on page 2 undefined on input line 24.
+
+
+LaTeX Warning: Citation `DmitryN.ZotkinJaneHwangRamaniDuraiswami2003' on page 2
+ undefined on input line 24.
+
+
+LaTeX Warning: Citation `Holzl2012a' on page 2 undefined on input line 26.
+
+
+LaTeX Warning: Citation `Fink2012' on page 2 undefined on input line 26.
+
+
+LaTeX Warning: Citation `Holzl2014a' on page 2 undefined on input line 26.
+
+
+LaTeX Warning: Citation `???' on page 2 undefined on input line 26.
+
+
+LaTeX Warning: Citation `scipy website???' on page 2 undefined on input line 40
+.
+
+[2]
+
+LaTeX Warning: Citation `unity??' on page 3 undefined on input line 44.
+
+
+LaTeX Warning: Citation `OpenGL??' on page 3 undefined on input line 44.
+
+
+LaTeX Warning: Citation `Holzl2014a' on page 3 undefined on input line 63.
+
+[3] [4] [5] (specification.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 2013 strings out of 493333
- 38300 string characters out of 3139194
- 183659 words of memory out of 3000000
- 5602 multiletter control sequences out of 15000+200000
+ 2028 strings out of 493333
+ 38485 string characters out of 3139194
+ 184659 words of memory out of 3000000
+ 5617 multiletter control sequences out of 15000+200000
  6342 words of font info for 23 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,7n,54p,8826b,209s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -186,9 +238,9 @@ Here is how much of TeX's memory you used:
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
-Output written on specification.pdf (3 pages, 62267 bytes).
+Output written on specification.pdf (5 pages, 71421 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
+ 34 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
