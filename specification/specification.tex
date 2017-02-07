@@ -37,8 +37,11 @@ Might still want to mention the incorporation of search algorithms/ML of a sort 
 
 \section*{p2}
 
-
 what technologies will I use and why?
+
+The bulk of the implementation will be written in Python, particularly the core HRTF-adjusting module. Speed isn't too much of an issue the amount of processing to be done at one time will likely not exceed the capabilities of any device sufficiently powerful to run an HMD, and the access to the SciPy libraries\cite{scipy website???} will make reading, visualising, and editing the files containing the HRTF data much simpler. The other option was to use MATLAB, which would require me to learn a whole new language for very little benefit - it would allow me to skip one step in in processing the files, as most of the publicly-available HRTF datasets are stored in .mat files.
+
+
 
 Building the core hrtf-modifying module in Python and SciPy, that should be all that needs. Would like this module to have a nice sort-of API, to demonstrate the ease with which it could be incorporated into another product and to make it easier for me to build stuff on top of it.   
 
