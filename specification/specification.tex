@@ -43,19 +43,11 @@ The bulk of the implementation will be written in Python, particularly the core 
 
 It will be necessary to ascertain as part of my ongoing research whether accessing the HRTF data from .mat files is efficient enough. Based on the likely simplicity of the frontend environment and limited amount of processing taking place I am inclined to think that it won't prove to be a problem, but it is something I will need to take into account going forward. 
 
-For the frontend UI component it is most likely that I will be building it using Unity for quick prototyping and iteration, 
+For the frontend UI component it is most likely that I will be building it using Unity\cite{unity??} for quick prototyping and iteration. Other options, like other game engines and frameworks like OpenGL\cite{OpenGL??}, would only make the process slower and offer no additional benefits aside from efficiency in the case of OpenGL It's very simple to build a small virtual space around a binocular camera object, adding a component to pass the required data back to the processing module as required. Using a game engine like Unity gives me more options, too, when it comes to processing whatever samples I choose to play to the user. Depending on my needs, I can either rely just on a plugin for Unity, or something using a dedicated piece of middleware such as FMod or Wwise. Being able to avoid processing the audio myself cuts down significantly on the workload, and potentially means that the final product, or one like it, could very easily be applied to any VR/AR application, provided the API I provide is comprehensive enough. 
 
+THIS BIT ABOUT THE DATASET I WILL USE
 
-Building the core hrtf-modifying module in Python and SciPy, that should be all that needs. Would like this module to have a nice sort-of API, to demonstrate the ease with which it could be incorporated into another product and to make it easier for me to build stuff on top of it.   
-
-The database used looks like it will likely be the CIPIC KEMAR set, because it's more well-documented than the other newer databases, and of a higher resolution? Also looks like the AIR and IRCAM ones don't have a mannequin head version and using a human dataset seems like a bad starting point?  
-
-The UI/frontend I'm still not 100percent on, I know Unity and it would be a weekend's build time, but I'm not sure I can necessarily get the data I need from it out to my python module and I don't know if building it as a Unity plugin is an option? Either that or I learn me some simple OpenGL. 
-
-When it comes to processing the audio in the scene itself I think I'll just use something simple like fmod because simpler with a spatial audio/convolution plugin because I don't *think* I want to fuck with real DSP. ITD/ILD/filtering is all contained in the hrtf so the audio approach doesn't need to be complex. 
-
-For rudimentary testing I'll record a few sample angles/elevations with the binaural microphones on myself and then test them against the individualised hrtfs for the same directions. After that I can test it purely based on the error rate of the users in the final product. 
-
+When it comes to testing, the best metric for measuring success is built into the program. The error rates of the user will be recorded in order to make modifications to the PCWs. If stored, this data should be all that is needed to ascertain the overall success or failure of the project. If the error rate gets significantly lower over time, then the algorithm can be considered a success. If there is little change or worse, an increase in localisation errors, then the algorithm is flawed. As part of the early investigation into PCA I may also generate a small number of HRIR-derived HRTFs covering a limited number of angles based on measurements of my own head. Though they would not be produced under as rigorous conditions as the neutral set, and would likely not be precise enough to use as proof of success or failure, they may be sufficient enough to serve as a comparison during earlier stages of development. 
 \section*{}
 Work plan, timeframes, etc
 
