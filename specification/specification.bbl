@@ -1,0 +1,95 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Algazi et~al.(2001)Algazi, Duda, Morrison, and Thompson]{Algazi2001}
+V~Ralph Algazi, Richard~O Duda, Reed~P Morrison, and Dennis~M Thompson.
+\newblock {Structural composition and decomposition of HRTFs}.
+\newblock In \emph{IEEE Workshop on the Applications of Signal Processing to
+  Audio and Acoustics}, pages 103--106, 2001.
+\newblock ISBN 0-7803-7126-7.
+\newblock \doi{10.1109/ASPAA.2001.969553}.
+
+\bibitem[{Dmitry N. Zotkin, Jane Hwang, Ramani
+  Duraiswami}(2003)]{DmitryN.ZotkinJaneHwangRamaniDuraiswami2003}
+Larry S.~Davis {Dmitry N. Zotkin, Jane Hwang, Ramani Duraiswami}.
+\newblock {HRTF PERSONALIZATION USING ANTHROPOMETRIC MEASUREMENTS.pdf}.
+\newblock In \emph{IEEE Workshop on Applications of Signal Processing to Audio
+  and Acoustics}, 2003.
+
+\bibitem[Fink and Ray(2012)]{Fink2012}
+Kimberly~J. Fink and Laura Ray.
+\newblock {Tuning principal component weights to individualize HRTFs}.
+\newblock In \emph{ICASSP, IEEE International Conference on Acoustics, Speech
+  and Signal Processing}, pages 389--392, Kyoto, 2012.
+\newblock ISBN 9781467300469.
+\newblock \doi{10.1109/ICASSP.2012.6287898}.
+\newblock URL
+  \url{http://ieeexplore.ieee.org/stamp/stamp.jsp?tp={\&}arnumber=6287898{\&}isnumber=6287775}.
+
+\bibitem[Gardner and Martin(1994)]{Gardner1994}
+B~Gardner and K~Martin.
+\newblock {HRFT Measurements of a KEMAR Dummy-head Microphone}.
+\newblock 1994.
+\newblock URL \url{http://alumni.media.mit.edu/{~}kdm/hrtfdoc/hrtfdoc.html}.
+
+\bibitem[H{\"{o}}lzl(2012)]{Holzl2012a}
+Josef H{\"{o}}lzl.
+\newblock \emph{{An initial Investigation into HRTF Adaptation using PCA IEM
+  Project Thesis}}.
+\newblock PhD thesis, Graz University of Technology, 2012.
+\newblock URL \url{https://github.com/jhoelzl/HRTF-Individualization}.
+
+\bibitem[H{\"{o}}lzl(2014)]{Holzl2014a}
+Josef H{\"{o}}lzl.
+\newblock \emph{{A Global Model for HRTF Individualization by Adjustment of
+  Principal Component Weights}}.
+\newblock PhD thesis, Graz University of Technology, 2014.
+\newblock URL \url{https://github.com/jhoelzl/HRTF-Individualization}.
+
+\bibitem[Jones et~al.()Jones, Oliphant, Peterson, et~al.]{Jones1}
+Eric Jones, Travis Oliphant, Pearu Peterson, et~al.
+\newblock {SciPy}: Open source scientific tools for {Python}.
+\newblock URL \url{http://www.scipy.org/}.
+\newblock [Online; accessed 2017-02-22].
+
+\bibitem[{Phillip Brown} and Duda(1998)]{PhillipBrown1998}
+C.~{Phillip Brown} and Richard~O. Duda.
+\newblock {A structural model for binaural sound synthesis}.
+\newblock \emph{IEEE Transactions on Speech and Audio Processing}, 6\penalty0
+  (5):\penalty0 476--488, 1998.
+\newblock ISSN 10636676.
+\newblock \doi{10.1109/89.709673}.
+
+\bibitem[Raykar and Duraiswami(2003)]{Raykar2003}
+V~C Raykar and R~Duraiswami.
+\newblock {Extracting significant features from the HRTF}.
+\newblock In \emph{Proceedings of The International Conference on Auditory
+  Display}, pages 115--118, 2003.
+\newblock URL \url{http://icad.org/Proceedings/2003/RaykarDuraiswami2003.pdf}.
+
+\bibitem[Tashev(2014)]{Tashev2014}
+Ivan Tashev.
+\newblock {HRTF PHASE SYNTHESIS VIA SPARSE REPRESENTATION OF ANTHROPOMETRIC
+  FEATURES}.
+\newblock \emph{2014 Information Theory and Applications Workshop (ITA)}, pages
+  1--5, 2014.
+\newblock \doi{10.1109}.
+\newblock URL
+  \url{http://ieeexplore.ieee.org/stamp/stamp.jsp?tp={\&}arnumber=6804239{\&}isnumber=6804199}.
+
+\bibitem[Xu et~al.(2007)Xu, Li, and Zeng]{Xu2007}
+Song Xu, Zhizhong Li, and L~Zeng.
+\newblock {A study of morphological influence on head-related transfer
+  functions}.
+\newblock In \emph{IEEE International Conference on Industrial Engineering and
+  Engineering Management}, pages 472--476, Singapore, 2007.
+\newblock ISBN 1424415292.
+\newblock \doi{10.1109/IEEM.2007.4419234}.
+\newblock URL
+  \url{http://ieeexplore.ieee.org/xpls/abs{\_}all.jsp?arnumber=4419234{\%}5Cnpapers3://publication/uuid/8C1CB9AC-9961-48AE-A7D1-51270E5E753D}.
+
+\end{thebibliography}
