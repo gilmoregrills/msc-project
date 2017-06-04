@@ -4,62 +4,100 @@
 % MSc Project Specification
 
 \documentclass[10pt, oneside, a4paper, draft]{scrartcl}
+\usepackage[round]{natbib}
+\usepackage{url}
+\usepackage{breakurl} 
+\usepackage[breaklinks]{hyperref}
 
 \begin{document}
-\bibliography{/home/gilmoregrills/Documents/library.bib}
-\title{HRTF Individualisation Based on Localization Errors in 3D Space}
-\subtitle{Specification}
+\title{Specification}
+\subtitle{Automated HRTF Individualisation Based on Localization Errors in 3D Space}
 \author{Robin Yonge}
 \date{Febuary 2017}
 \maketitle
 
-\renewcommand{\abtractname}{Introduction} %maybs change to blank
-\begin {abstract}
-Virtual reality\ignore{Computer-mediated reality \cite{S.Mann199}} has come to represent the dominant prediction for the near future of human-computer interaction. If this prediction is to come to pass, then it is necessary that sufficient consideration is given toward the fidelity of both the visual and the auditory aspects of VR and AR technology. Currently, most implementations of spatial audio in VR and AR applications are based around the use of HRTFs. Mostof these implementations use one of a few publically available datasets, derived from measurements performed on either human subjects or a model such a the KEMAR\cite{Algazi2001}\cite{Gardner1994}. For the use of VR/AR to become commonplace the experience must be universal. Because spatial audio relies on complex measurements of real-world subjects (be they flesh and blood or not) applications tend to use average or neutral HRTFs, ones that should work for the largest number of people. Of course, by dint of being average there are many people for whom these do not work. In order to achieve a universal experience, then, it is necessary to find a process for  simple individualization of spatial audio that is sufficiently simple, and can be performed by the end user as a part of the standardsetup of any VR/AR device or application.
-\end {abstract}
 
-\section*{p1}
-The goal of this project is to produce a working prototype of an application that takes as input a neutral set of HRTF measurements, and returns an individualised set. For a process like this to achieve widespread use it must be simple enough that it can be performed by any given user with nothing more than a head-mounted display, and intuitive enough that it requires no in-depth knowledge of spatial audio. The output HRTF set should also provide a noticeable improvement in the ability of the user to locate sound sources in a virtual 3D environment.
-
-Previous efforts to produce individualized HRTFs through either modification of an existing neutral set or total synthesis have focused primarily on a few different techniques. The most common method is based on a structural HRTF model \cite{PhillipBrown1998, Raykar2003}, in which different characteristics of the HRTF are linked to physical characteristics of the pinna, torso, and head. Implementations based on this model have been varied \cite{Tashev2014, Xu2007, DmitryN.ZotkinJaneHwangRamaniDuraiswami2003}, but the model's reliance on even limited sets of precise anthropometric measurements makes it impractical for my purposes - despite having the potential to be much more efficient than traditional HRIR measurement. 
-
->>include other methods???
-
-More recent studies have involved applying Principal Component Analysis (PCA) to HRTF data \cite{Holzl2012a}, in order to identify the spectral features that have the greatest effect upon the incoming sound signal. Once identified, these Principal Components (PCs) can potentially be adjusted in order to produce a more individualised HRTF \cite{Fink2012,Holzl2014a}. Typically upwards of ninety percent of the information in a given HRTF is based on between 5 and 10 PCs, so through the adjustment of Principal Component Weights (PCWs) it should be possible to individualise HRTFs with a reasonably high degree of accuracy. The combined efficacy and efficiency of this method makes it well-suited to my proposed implementation, and as such this will be the model I will be using to perform the individualisation. 
-
-Once they have been identified, I will need data from the user on which to base any adjustment of PCWs. Because on my stated goal of producing an intuitive simple method, I will be performing the individualisation based on the user's own errors in localisation. This method will require me to identify, where possible, points of correlation between PCs and localisation, and as such this will be one of my primary research foci going forward. In order to gather this data from the user it is most practical to derive it from their own localisation errors in a virtual environment. Ideally, it will involve placing the user in virtual space, and asking them to identify the source of the audio cues that will be played to them. This helps to create an intuitive user experience, and giving the user a reticle to point at the perceived source gives precise data upon which to make adjustments. As an additional stretch goal of sorts, building a virtual environment that makes the calibration process more engaging than simply dropping the user into an empty void and blasting them with sound cues. 
-
-Based on these decisions, the finished application will be comprised of three parts: The database/files containing the source HRTF data and individualised copies, a frontend interface to be viewed through a head-mounted display, and a module that takes localisation data from the frontend and makes adjustments based on it to the HRTF data. 
-
-notes: 
-
-Might still want to mention the incorporation of search algorithms/ML of a sort in deciding what PCWs to adjust
-
-\section*{p2}
+\section*{Overview}
+Virtual reality has come to represent the dominant prediction for the near future of human-computer interaction. If this future is to come to pass, then it is necessary that sufficient consideration is given toward the fidelity of both the visual and the auditory aspects of VR and AR technology. Currently, most implementations of spatial audio in VR and AR applications are based around the use of HRTFs. Most of these implementations use one of a few publicly available datasets, derived from measurements performed on either human subjects or a model such a KEMAR\citep{Algazi2001}\citep{Gardner1994}. For the use of VR/AR to become commonplace the experience must be universal. Because spatial audio relies on complex measurements of real-world subjects (whether or not they are human) applications tend to use average or neutral HRTFs, ones that should work for the largest number of people. Of course, by dint of being average there are many people for whom these do not work. In order to achieve a universal experience, then, it is necessary to find a process for  simple individualization of spatial audio that, can be performed by the end user as a part of the standard set-up/calibration process of any VR/AR device or application.
 
 
-what technologies will I use and why?
+\section*{Goals and Research}
+The goal of this project is to produce a working prototype of an application that takes as input a set of HRTF measurements recorded with a mannequin, and returns an individualised set. For a process like this to achieve widespread implementation it must be simple enough that it can be performed by any given user with nothing more than a head-mounted display, and intuitive enough that it requires of the user no in-depth knowledge of spatial audio. The output HRTF set should also provide a noticeable improvement in the ability of the user to locate sound sources in a virtual 3D environment.
 
-Building the core hrtf-modifying module in Python and SciPy, that should be all that needs. Would like this module to have a nice sort-of API, to demonstrate the ease with which it could be incorporated into another product and to make it easier for me to build stuff on top of it.   
+Previous efforts to produce individualized HRTFs through either modification of an existing neutral set or total synthesis have focused primarily on a few different techniques. The most common method is based on a structural HRTF model \citep{PhillipBrown1998, Raykar2003}, in which different characteristics of the HRTF are linked to physical characteristics of the pinna, torso, and head. Implementations based on this model have been varied \citep{Tashev2014, Xu2007, DmitryN.ZotkinJaneHwangRamaniDuraiswami2003}, but at their core most involve taking measurements of the subjects and attempts to optimise that process. However, the model's reliance on even limited sets of precise anthropometric measurements makes it impractical for my purposes - despite having the potential to be much more efficient than traditional HRIR measurement. 
 
-The database used looks like it will likely be the CIPIC KEMAR set, because it's more well-documented than the other newer databases, and of a higher resolution? Also looks like the AIR and IRCAM ones don't have a mannequin head version and using a human dataset seems like a bad starting point?  
+More recent studies have involved applying Principal Component Analysis (PCA) to HRTF data \citep{Holzl2012a}, in order to identify the spectral features that have the greatest effect upon the incoming sound signal. Once identified, these Principal Components (PCs) can potentially be adjusted in order to produce a more individualised HRTF \citep{Fink2012,Holzl2014a}. Typically upwards of ninety percent of the information in a given HRTF is based on between 5 and 10 PCs, so through the adjustment of Principal Component Weights (PCWs) it should be possible to individualise HRTFs with a reasonably high degree of accuracy. The combined efficacy and efficiency of this method makes it well-suited to my proposed implementation, and as such this is the method that I will be basing my work upon. 
 
-The UI/frontend I'm still not 100percent on, I know Unity and it would be a weekend's build time, but I'm not sure I can necessarily get the data I need from it out to my python module and I don't know if building it as a Unity plugin is an option? Either that or I learn me some simple OpenGL. 
+Once they have been identified, I will need data from the user on which to base any adjustment of PCWs. Because of my stated goal of producing an intuitive simple method, I will be performing the individualisation based on a user's attempts to localise sound sources. This method will require me to identify, where possible, points of correlation between PCs and localisation, and as such this will be one of my primary research foci going forward. In order to gather this data from the user it is most practical to derive it from their own localisation errors in a virtual environment, placing the user in virtual space, and asking them to identify the source of the audio cues that will be played to them. This helps to create an intuitive user experience, and giving the user a reticle to point at the perceived source will give precise data upon which to make adjustments. 
 
-When it comes to processing the audio in the scene itself I think I'll just use something simple like fmod because simpler with a spatial audio/convolution plugin because I don't *think* I want to fuck with real DSP. ITD/ILD/filtering is all contained in the hrtf so the audio approach doesn't need to be complex. 
+Based on these decisions, the finished application will be comprised of three parts: The database/files containing the source HRTF data and individualised copies, a front-end interface to be viewed through a head-mounted display, and a module that takes localisation data from the front-end and makes adjustments based on it to the HRTF data. 
 
-For rudimentary testing I'll record a few sample angles/elevations with the binaural microphones on myself and then test them against the individualised hrtfs for the same directions. After that I can test it purely based on the error rate of the users in the final product. 
+\section*{Technologies}
 
-\section*{}
-Work plan, timeframes, etc
+The bulk of the implementation will be written in Python, particularly the core HRTF-adjusting module. Speed isn't too much of an issue as the amount of processing to be done at one time will likely not exceed the capabilities of any device sufficiently powerful to run an HMD, and the access to the SciPy libraries\citep{Jones1} will make reading, visualising, and editing the files containing the HRTF data much simpler. The only minor downside to this approach is that it adds an extra step, processing the initial data, as most of the publicly-available HRTF datasets are stored in .mat files.
 
-Minimum Viable Product: 
-Python hrtf-editing module, with a blank void VR frontend that's full of sound sources. 
+%It will be necessary to ascertain as part of my ongoing research whether accessing the HRTF data from .mat files is efficient enough. Based on the likely simplicity of the frontend environment and limited amount of processing taking place I am inclined to think that it won't prove to be a problem, but it is something I will need to take into account going forward. 
 
-Ideal:
-Python hrtf-editing module with visualisations, nice fancy VR frontend that turns it into a game of locate-the-object.
+For the front-end UI component it is most likely that I will be building it using Unity to allow for quick prototyping and iteration. Other options, be they game engines or frameworks like OpenGL, would only make the process slower and offer no additional benefits - aside from potential efficiency in the case of OpenGL. It's very simple to build a small virtual space around a binocular camera object, adding a component to pass the required data back to the processing module as required. Using a game engine like Unity gives me more options, too, when it comes to processing whatever samples I choose to play to the user. Depending on my needs, I can either rely just on a plugin for Unity, or opt for a dedicated piece of middleware such as FMod or Wwise. Being able to avoid processing the audio myself cuts down significantly on the workload, and potentially means that the final product, or one like it, could very easily be applied to any VR/AR application, provided a comprehensive enough API.
+
+When it comes to testing, the best metric for measuring success is built into the program. The error rates of the user will be recorded in order to make modifications to the PCWs. If stored, this data should be all that is needed to ascertain the overall success or failure of the project. The exact evaluation process has yet to be designed, but a decrease in error rates over time could provide a strong indication toward the efficacy of the algorithm. Through the manipulation of other factors it may be possible rely on this metric with more confidence - for example through the introduction of some degree of chance into the source location or changing room size. If there is little change - or worse, an increase in localisation errors - then the algorithm is flawed. As part of the early investigation into PCA I may also generate a small number of HRIR-derived HRTFs covering a limited number of angles based on measurements of my own head. Though they would not be produced under as rigorous conditions as the neutral set, and would likely not be precise enough to use as proof of success or failure, they may be sufficient enough to serve as a comparison during earlier stages of development. 
+
+\section*{Timeline}
 
 
+
+\subsection*{Development Milestones}
+
+For the purpose of tracking progress on the implementation side of the project, I think it's helpful to define a set of development milestones. 
+
+
+\subsubsection*{Basic Functionality:}
+
+A set of classes and functions to parse the .mat files that contain the HRTF data and edit raw values as needed, storing the edited version in a copy. 
+
+\subsubsection*{Manual PCW-Adjustment:}
+
+Should produce a tool that, based on the functionality implemented already, allows me to manually adjust the weights of specific PCWs. This is essentially what was produced alongside the papers by Josef Holzl\citep{Holzl2014a}, and should not be too difficult to develop based upon research by him and others. 
+
+\subsubsection*{Algorithm-Complete:}
+
+This stage requires me to have at least a preliminary version of the algorithm that I will be trying to use to automate this processing theoretically complete. At this stage I should be able to pass as input an HRTF from a particular angle, along with a vector describing the difference in position between the actual sound source and its perceived location, and receive as output an HRTF that has been modified to take that vector difference into account.
+
+\subsubsection*{Minimum Viable Product:}
+
+The minimum that I could consider as fulfilment of my primary goals; the only difference between this and the complete version of the project is the UI. Requires all of the above features, along with the most basic possible front-end, likely a camera viewer floating in a void with a wire-frame sphere around it to give some visual context. 
+
+\subsubsection*{Finished Product:}
+
+The fulfilment of all my stated goals to the best of my ability. As mentioned, the UI difference between this and the above version would purely be the addition of an actual environment, turning the calibration process into almost a minigame. While this isn't strictly necessary to prove that the process is sound, it's important in the context of the project's role as a proof-of-concept, and insofar as I have given placed a degree of importance on the user experience aspects of the project. 
+
+\subsubsection*{Evaluation:}
+
+Precise details of the evaluation process have yet to be finalised, but as it will likely involve multiple participants, the use of a controlled environment, and a reasonable amount of analysis after the fact it would be wise to pad the time required somewhat. I should also aim to apply for ethical approval sooner than necessary, so as to avoid any problems on that front. 
+
+\subsubsection*{Submission:}
+
+A report should be assembled, covering the project aims, implementation and evaluation process. This report should also detail whether or not the project was a success, based no the data from the evaluation stage. This should be submitted along with supporting materials in the form of the finished product, and the presentation slides that I will be using for the viva. 
+
+\subsection*{Research Questions} %don't know if this section is necessary
+
+Research requirements that should be completed prior to beginning implementation work. 
+
+\subsubsection*{Principal Component Analysis:}
+
+Review research on Principal Component Analysis, to equip myself with the knowledge required to fully understand how this technique can be applied to my project. As part of this, I should identify the number of PCs that will need to be involved in order to get the best results, and identify correlation between PCWs and localisation errors. 
+
+\subsubsection*{Search Algorithms:} 
+
+There is a chance existing search algorithms may be helpful in deciding which PCWs to adjust, especially given that in the proposed implementation the individualisation process iterates over multiple steps. Whether or not this is a valuable avenue of research needs to be decided relatively quickly, so as to avoid wasting time. 
+
+\subsubsection*{HRTFs:}
+
+More research is needed into the structure of the HRTF data, ways in which the chosen dataset can be modified, and the best ways to visualise it so as to track changes during the development process.
+
+\section*{} 
+\bibliography{library}
+\bibliographystyle{plainnat}
 
 \end{document}
 
