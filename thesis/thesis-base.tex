@@ -1,15 +1,28 @@
 \documentclass[10pt, a4paper, titlepage, draft]{report}
-
+\usepackage{titlesec}% http://ctan.org/pkg/titlesec
+\titleformat{\section}%
+  [hang]% <shape>
+  {\normalfont\bfseries\Large}% <format>
+  {}% <label>
+  {0pt}% <sep>
+  {}% <before code>
+\renewcommand{\thesection}{}% Remove section references...
+\renewcommand{\thesubsection}{\arabic{subsection}}%... from subsections
 \begin{document}
 
-%\input{/1-background/background.tex}
+\section*{Background}
+\input{1-background/background.tex}
 
-%\input{/2-literature_review/literature_review.tex}
+\section*{Literature Review}
+\input{2-literature_review/literature_review.tex}
 
-%\input{/3-methodology_and_process/method.tex}
+\section*{Method}
+\input{3-methodology_and_process/method.tex}
 
-%\input{/4-analysis_and_results/analysis.tex}
+\section*{Analysis}
+\input{4-analysis_and_results/analysis.tex}
 
-%\input{/5-discussion/discussion.tex}
+\section*{Discussion}
+\input{5-discussion/discussion.tex}
 
 \end{document}
