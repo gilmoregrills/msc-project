@@ -1,6 +1,5 @@
 \documentclass[10pt, a4paper, titlepage, draft]{report}
 \usepackage{titlesec}% http://ctan.org/pkg/titlesec
-
 \setcounter{secnumdepth}{5}
 \titleformat{\section}%
 	[hang]% <shape>
@@ -15,8 +14,6 @@
     {\thesubsection}
     {1em}
     {}
-\titlespacing*{\subsection}
-	{5pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 	
 \titleformat{\subsubsection}
 	[hang]
@@ -24,8 +21,6 @@
     {\thesubsection}
     {1em}
     {}
-\titlespacing*{\subsubsection}
-	{10pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 	
 \titleformat{\paragraph}
 	[hang]
@@ -33,10 +28,15 @@
 	{\theparagraph}
 	{1em}
 	{}
-\titlespacing*{\paragraph}
-	{15pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-	
+\usepackage[round]{natbib}
+\usepackage{url}
+\usepackage{breakurl} 
+\usepackage[breaklinks]{hyperref}
 \begin{document}
+\title{Automated HRTF Individualisation Based on Localization Errors in 3D Space}
+\author{Robin Yonge}
+\date{August 2017}
+\maketitle
 
 \section*{Background}
 \input{1-background/background.tex}
@@ -53,6 +53,6 @@
 \section*{Discussion}
 \input{5-discussion/discussion.tex}
 
+\bibliography{bibliography/library}
+\bibliographystyle{plainnat}
 \end{document}
-
-\bibliography{bibliography/library.bib}
