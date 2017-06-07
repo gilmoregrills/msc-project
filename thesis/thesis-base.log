@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  6 JUN 2017 21:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  7 JUN 2017 15:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -227,7 +227,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(./1-background/background.tex) (./2-literature_review/literature_review.tex
+(./1-background/background.tex
+
+Package natbib Warning: Citation `•' on page 1 undefined on input line 1.
+
+
+Package natbib Warning: Citation `•' on page 1 undefined on input line 3.
+
+) (./2-literature_review/literature_review.tex
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
 (Font)              size <12> substituted on input line 1.
@@ -238,14 +245,17 @@ LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <13> not available
 
 ) (./3-methodology_and_process/method.tex)
 (./4-analysis_and_results/analysis.tex) (./5-discussion/discussion.tex)
-(./thesis-base.bbl [1]
+(./thesis-base.bbl [1] [2]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 13.
 )
+
+Package natbib Warning: There were undefined citations.
+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
- [2
+[3
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
@@ -260,13 +270,13 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 5086 strings out of 494910
- 75113 string characters out of 6179836
- 154103 words of memory out of 5000000
- 8357 multiletter control sequences out of 15000+600000
+ 5087 strings out of 494910
+ 75115 string characters out of 6179836
+ 156103 words of memory out of 5000000
+ 8358 multiletter control sequences out of 15000+600000
  8717 words of font info for 31 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 30i,6n,34p,219b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,6n,34p,824b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
@@ -274,10 +284,10 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on thesis-base.pdf (3 pages, 92922 bytes).
+Output written on thesis-base.pdf (4 pages, 99859 bytes).
 PDF statistics:
- 42 PDF objects out of 1000 (max. 8388607)
- 29 compressed objects within 1 object stream
+ 45 PDF objects out of 1000 (max. 8388607)
+ 31 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
