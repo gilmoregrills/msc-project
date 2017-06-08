@@ -4,16 +4,23 @@ This idea of generating individualised sets of HRTFs without having to perform t
 \subsection{Methods}
 Investigations into HRTF individualisation have been done using a range methodologies, some involving just simple selection tasks and others complex tuning - adjusting multiple parameters against listening tests. Often these methods hinge on a specific model that is used to decompose the HRTF into individual parameters that can be manipulated independently in order to achieve meaningful control over the customisation process. In some cases these models also seek to make clear the relationship between the features of the HRTF and the features of the user - the morphological properties of the measuree being the primary determinant of generated HRIR this seems a logical approach. In these next few sections I will cover the main of the approaches that have been investigated to date, as well as their efficacy and why they are or are not well suited to this project. We will see that there is a definite overlap between these methods, leading to the idea that perhaps in a more comprehensive but laborious model for HRTF individualisation, a combination of these techniques might be used \citep{Hoene2017}.
 
-\subsubsection{Clustering}
-Fahn and Lo proposed using HRTF measurements at greater spatial intervals - cutting down the 72 samples around the azimuth fown to just 12 for example - and interpolating between them
-\citep{Fahn2003}
-\citep{}
-\citep{shimada1994a}
-
 \subsubsection{Database Matching}
 Database matching is often incorporated into other models for HRTF individualisation, and is somewhat self-explanatory. It is based on the predicate that within a database of a given size, there must be a set of HRTF measurements that have been taken from a participant with similar anthropometric features as a given user. This technique has been used in a range of studies on spatial audio, both as part of a wider study on binaural audio and localisation, \citep{Zotkin2002} and as the sole focus of the study \citep{Zotkin}. As in both of these papers from Zotkin et al, many attempts to match participants with closely matching HRTF sets use measurements of the user's anthropometry, which they will then try to match to the anthropometric measurements taken in the process of assembling the database. 
 
-This can work reasonably well, assuming the database used contains measurements from a great enough range of people. The CIPIC database contains anthropometric measurements for all 45 of its participants \citep{•}, while the ARI database comes with measurements for 50 of its participants \citep{ARI site docs}. Problems  with this method can of course arise when the database does not include measurements from a participant with a morphology that does not closely match those of the user. The second problem with this method is more of an issue when considering this method in terms of what this project hopes to achieve. Given the my requirements for the customisation method I intend to design, a method that requires precise measurements that would be difficult to perform at home is not ideal. A method that requires precise measurements to be taken has two problems, both in the difficulty of performing the measurements, and the effort that such an act involves, does not satisfy any of my self-imposed standards for user experience. 
+This can work reasonably well, assuming the database used contains measurements from a great enough range of people. The CIPIC database contains anthropometric measurements for all 45 of its participants \citep{•}, while the ARI database comes with measurements for 50 of its participants \citep{ARI site docs}. Problems  with this method can of course arise when the database does not include measurements from a participant with a morphology that does not closely match those of the user. The second problem with this method is more of an issue when considering this method in terms of what this project hopes to achieve. Given the my requirements for the customisation method I intend to design, a method that requires precise measurements that would be difficult to perform at home is not ideal. A method that requires precise measurements to be taken has two problems, both in the difficulty of performing the measurements, and the effort that such an act involves, does not satisfy any of my self-imposed standards for user experience.
+
+An alternative method for matching users to their closest-matching HRTF set could be based on subjective listening tests. Playing a user a sample, filtered using an HRTF taken from a database, and asking them to indicate where they believed the sound came from. This process can be repeated for as many examples as are contained in the database, and the one that results in the least incorrect localisation attempts chosen. The problems with this method are again clear, in that the labour required to search all the entries in a database is more than anyone but the most die-hard users are likely to pursue [citation for some human-computer interaction junk about how much effort people will put in?]. Improvements are made on these kinds of subjective listening tests, however, in attempts to match users to more appropriate HRTFs through the clustering of similar sets. 
+
+\subsubsection{Clustering}
+
+
+\cite{xie2013a} used 7 clusters, and then matched the users with their clusters based on subjective listening tests 
+
+Fahn and Lo proposed using HRTF measurements at greater spatial intervals - cutting down the 72 samples around the azimuth fown to just 12 for example - and interpolating between them
+\citep{Fahn2003}
+\citep{doi:10.1080/00140131003675117}
+\citep{shimada1994a}
+
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  8 JUN 2017 17:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  8 JUN 2017 17:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -289,29 +289,37 @@ e us-ing a range method-|
  []
 
 
-Package natbib Warning: Citation `Fahn2003' on page 3 undefined on input line 9
-.
-
-
-Package natbib Warning: Citation `shimada1994a' on page 3 undefined on input li
-ne 11.
-
-
 Package natbib Warning: Citation `Zotkin2002' on page 3 undefined on input line
- 14.
+ 8.
 
 
-Package natbib Warning: Citation `Zotkin' on page 3 undefined on input line 14.
+Package natbib Warning: Citation `Zotkin' on page 3 undefined on input line 8.
 
 
-
-Package natbib Warning: Citation `•' on page 3 undefined on input line 16.
+Package natbib Warning: Citation `•' on page 3 undefined on input line 10.
 
 
 Package natbib Warning: Citation `ARI site docs' on page 3 undefined on input l
-ine 16.
+ine 10.
 
-[3]) (./3-methodology_and_process/method.tex)
+[3]
+
+Package natbib Warning: Citation `xie2013a' on page 4 undefined on input line 1
+7.
+
+
+Package natbib Warning: Citation `Fahn2003' on page 4 undefined on input line 2
+0.
+
+
+Package natbib Warning: Citation `doi:10.1080/00140131003675117' on page 4 unde
+fined on input line 21.
+
+
+Package natbib Warning: Citation `shimada1994a' on page 4 undefined on input li
+ne 22.
+
+) (./3-methodology_and_process/method.tex)
 (./4-analysis_and_results/analysis.tex) (./5-discussion/discussion.tex)
 (./thesis-base.bbl [4]
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -338,10 +346,10 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 5101 strings out of 494910
- 75323 string characters out of 6179836
- 158103 words of memory out of 5000000
- 8372 multiletter control sequences out of 15000+600000
+ 5103 strings out of 494910
+ 75364 string characters out of 6179836
+ 157103 words of memory out of 5000000
+ 8374 multiletter control sequences out of 15000+600000
  8717 words of font info for 31 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  30i,6n,34p,1290b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -352,7 +360,7 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on thesis-base.pdf (6 pages, 112868 bytes).
+Output written on thesis-base.pdf (6 pages, 113670 bytes).
 PDF statistics:
  51 PDF objects out of 1000 (max. 8388607)
  35 compressed objects within 1 object stream
