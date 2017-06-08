@@ -2,6 +2,8 @@ TODO:
 sort out subsubsection topics to make it more elegant,
 fill out notes'd bits,
 maybe refer to this bit as introduction or motivation?
+mention my interest in the overall UX of the calibration process
+
 
 \subsubsection{How Humans Localise Sound/What do I mean by spatial audio?}
 add in a bit about this, citing blauert, ez
@@ -14,7 +16,7 @@ Audio has parity with visuals here, as just small errors in either can irreparab
 
 [something about binaural audio here??? Explain meaning etc???
 hrtfs as the principal determinant of sound localisation blah
-Reproducing spatial audio convincingly involves a number of factors, including reflections and occlusion caused by the room and the objects in it. This project however, will focus entirely on the effect the anthropometry of the listener has on the audio signal - the attenuation of the sound caused by the various body parts that they sound waves come into contact with. 
+Reproducing spatial audio convincingly involves a number of factors, including reflections and occlusion caused by the room and the objects in it. This project however, will focus entirely on the effect the anthropometry of the listener has on the audio signal - the attenuation of the sound caused by the various body parts that they sound waves come into contact with. [also mention ITD and IID]
 
 \subsubsection{Recreating Spatial Audio/Representing this change?? idk}
 In most applications involving spatial audio, representing this attenuation is done using Head-Related Transfer Functions, or HRTFs, derived from their time-domain counterparts Head-Related Impulse Responses, or HRIRs. HRIR measurements are taken by placing microphones in the ears of a participant (human or mannequin) and measuring the impulse response resulting when a tone is played from a loudspeaker \citep{who did this first?}. This measurement process should be repeated for as many positions/points of origin around the participant as possible in order to maximise coverage and provide the greatest amount of information when it comes to using the information to process audio. This process is incredibly labour-intensive, requires specialist equipment, and can take hours to perform. As a result, there are few organisations capable of performing these measurements, and generating a set of HRTFs for most people is impractical at best. [maybe a section on databases]There are a few organisations that have assembled databases of HRTFs, that involve measurements from a range of participants. The two main differences in these databases are the number of source positions, and the number of participants. 

@@ -2,15 +2,22 @@
 This idea of generating individualised sets of HRTFs without having to perform the complex measurements that would usually be required has existed since the 1990s \citep{Kulkarni1995}. The ideal scenario for commonplace spatial audio involves every user having access to an HRTF set that works for them. If traditional methods of measurements are impractical, then alternatives are necessary.
 
 \subsection{Methods}
-Investigations into HRTF individualisation have been done using a range methodologies, some involving just simple selection tasks and others complex tuning - adjusting multiple parameters against listening tests. Often these methods hinge on a specific model that is used to decompose the HRTF into individual parameters that can be manipulated independently in order to achieve meaningful control over the customisation process. In some cases these models also seek to make clear the relationship between the features of the HRTF and the features of the user - the morphological properties of the measuree being the primary determinant of generated HRIR this seems a logical approach. In these next few sections I will cover the main of the approaches that have been investigated to date, as well as their efficacy and why they are or are not well suited to this project.
+Investigations into HRTF individualisation have been done using a range methodologies, some involving just simple selection tasks and others complex tuning - adjusting multiple parameters against listening tests. Often these methods hinge on a specific model that is used to decompose the HRTF into individual parameters that can be manipulated independently in order to achieve meaningful control over the customisation process. In some cases these models also seek to make clear the relationship between the features of the HRTF and the features of the user - the morphological properties of the measuree being the primary determinant of generated HRIR this seems a logical approach. In these next few sections I will cover the main of the approaches that have been investigated to date, as well as their efficacy and why they are or are not well suited to this project. We will see that there is a definite overlap between these methods, leading to the idea that perhaps in a more comprehensive but laborious model for HRTF individualisation, a combination of these techniques might be used \citep{Hoene2017}.
 
 \subsubsection{Clustering}
+Fahn and Lo proposed using HRTF measurements at greater spatial intervals - cutting down the 72 samples around the azimuth fown to just 12 for example - and interpolating between them
+\citep{Fahn2003}
+\citep{}
+\citep{shimada1994a}
+
+\subsubsection{Database Matching}
+Database matching is often incorporated into other models for HRTF individualisation, and is somewhat self-explanatory. It is based on the predicate that within a database of a given size, there must be a set of HRTF measurements that have been taken from a participant with similar anthropometric features as a given user. This technique has been used in a range of studies on spatial audio, both as part of a wider study on binaural audio and localisation, \citep{Zotkin2002} and as the sole focus of the study \citep{Zotkin}. This method can be 
 
 \subsubsection{Frequency Scaling}
 
+
 \subsubsection{Structural Models}
 
-\subsubsection{Database Matching}
 
 \subsubsection{Principal Components Analysis}
 

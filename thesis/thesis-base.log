@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  8 JUN 2017 10:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  8 JUN 2017 14:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -229,40 +229,40 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 (./1-background/background.tex
 
-Package natbib Warning: Citation `•' on page 1 undefined on input line 11.
+Package natbib Warning: Citation `•' on page 1 undefined on input line 12.
 
 
-Package natbib Warning: Citation `•' on page 1 undefined on input line 13.
+Package natbib Warning: Citation `•' on page 1 undefined on input line 14.
 
 
 Package natbib Warning: Citation `who did this first?' on page 1 undefined on i
-nput line 20.
+nput line 21.
 
 [1]
 
 Package natbib Warning: Citation `Gardner1994' on page 2 undefined on input lin
-e 26.
+e 27.
 
 
 Package natbib Warning: Citation `Algazi2001' on page 2 undefined on input line
- 26.
+ 27.
 
 
 Package natbib Warning: Citation `AcousticsResearchInstitute' on page 2 undefin
-ed on input line 26.
+ed on input line 27.
 
 Missing character: There is no � in font cmbx10!
 Missing character: There is no � in font cmbx10!
 Missing character: There is no � in font cmbx10!
 
-Package natbib Warning: Citation `•' on page 2 undefined on input line 34.
+Package natbib Warning: Citation `•' on page 2 undefined on input line 35.
 
 
 Package natbib Warning: Citation `kemar mannequin?' on page 2 undefined on inpu
-t line 34.
+t line 35.
 
 
-Package natbib Warning: Citation `•' on page 2 undefined on input line 34.
+Package natbib Warning: Citation `•' on page 2 undefined on input line 35.
 
 ) (./2-literature_review/literature_review.tex
 
@@ -285,7 +285,7 @@ e us-ing a range method-|
 
 ) (./3-methodology_and_process/method.tex)
 (./4-analysis_and_results/analysis.tex) (./5-discussion/discussion.tex)
-(./thesis-base.bbl [3]
+(./thesis-base.bbl [3] [4]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -295,7 +295,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 Package natbib Warning: There were undefined citations.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
-[4
+[5
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
@@ -324,10 +324,10 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on thesis-base.pdf (5 pages, 110493 bytes).
+Output written on thesis-base.pdf (6 pages, 110735 bytes).
 PDF statistics:
- 48 PDF objects out of 1000 (max. 8388607)
- 33 compressed objects within 1 object stream
+ 51 PDF objects out of 1000 (max. 8388607)
+ 35 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
