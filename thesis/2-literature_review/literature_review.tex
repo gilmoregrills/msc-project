@@ -38,12 +38,16 @@ This model often provides promising results, and can be well-suited for applicat
 More recent studies have tried to combine this approach with others, using a combination of PCA and a reduced number of anthropometric measurements \citep{Hugeng2010}. Or a similarly reduced number of measurements to match a set of HRTFs to a subject, then modify them to improve their performance \citep{Tashev2014}. Even trying combination of structural data and a radial basis function (RBF) nerual network \citep{Li2013}.  
 
 \subsubsection{Principal Components Analysis}
-
+Principal Components Analysis \citep{Pearson1901} (PCA) is, as it sounds, a process for analysing a dataset and and identifying the principal components of that dataset. It is a statistical procedure that attempts to return an efficient representation of the dataset, turning the dataset from some large number of variables, into a smaller collection of principal components (PCs), adding some more efficient structure to the dataset. 
 
 \paragraph{Understanding PCA}
+[this section might be simplified too far/unnecessary but it's something I had to research so?]
+So PCA can be used to reduce the number of dimensions in a dataset, reducing it down to its most basic components. The dimensionality of a dataset is identified by the number of variables present in that dataset. In general terms, for our current example (that of an HRTF set) the data should represented as a matrix - the structure of the matrix is dependent on the approach being taken, and different approaches will be explored later in this section. As an example, in the 1992 paper by Kistler and Wightman \citep{Kistler1992} the data set used was arranged into a 5300x150 matrix. If one were performing PCA manually, this dataset could be then be decomposed into a collection of pairs of eigenvectors and eigenvalues - each pair represented by a line through the dataset at the point of greatest variance. Each pair is comprised of a direction and the variance of the data along that line - the vector and the value, respectively. The number of eigenvector/value pairs in a dataset directly corresponds to the dimensionality of the dataset. The dimensions (eigenvectors) with the greatest variance (highest eigenvalues) will consistute the principle components. 
 
-\paragraph{PCA and HRTFs/HRIR}
-test citation \citep{Holzl2012a} 
+
+\paragraph{Individualising HRTFs/HRIR with PCA}
+test citation \citep{Holzl2012a}
+
 \subsection{Search Methods}
 My proposed method for producing HRTFs is based upon being able to automate the adjustment of the principal components/principal component weights within produced by using PCA on a generic set, all within a VR/AR environment, to reduce localisation errors for the user. This can, then, be framed as an optimisation problem. If a user is played multiple samples that have been filtered through HRTFs in sequence and, upon being asked, manages to identify the source of the sound within a sufficiently small margin of error then the HRTF set can be considered to fit the individual. The problem with developing a method for individualisation that works in this way is that there is little in the way of research that investigates which PCWs help to lower error rates in which directions. Because of this, I have instead chosen to investigate existing search algorithms to apply to this problem. 
 
