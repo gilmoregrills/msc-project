@@ -42,10 +42,19 @@ Principal Components Analysis \citep{Pearson1901} (PCA) is, as it sounds, a proc
 
 \paragraph{Understanding PCA}
 [this section might be simplified too far/unnecessary but it's something I had to research so?]
-So PCA can be used to reduce the number of dimensions in a dataset, reducing it down to its most basic components. The dimensionality of a dataset is identified by the number of variables present in that dataset. In general terms, for our current example (that of an HRTF set) the data should represented as a matrix - the structure of the matrix is dependent on the approach being taken, and different approaches will be explored later in this section. As an example, in the 1992 paper by Kistler and Wightman \citep{Kistler1992} the data set used was arranged into a 5300x150 matrix. If one were performing PCA manually, this dataset could be then be decomposed into a collection of pairs of eigenvectors and eigenvalues - each pair represented by a line through the dataset at the point of greatest variance. Each pair is comprised of a direction and the variance of the data along that line - the vector and the value, respectively. The number of eigenvector/value pairs in a dataset directly corresponds to the dimensionality of the dataset. The dimensions (eigenvectors) with the greatest variance (highest eigenvalues) will consistute the principle components. 
+So PCA can be used to reduce the number of dimensions in a dataset, reducing it down to its most basic components. The dimensionality of a dataset is identified by the number of variables present in that dataset. In general terms, for our current example (that of an HRTF set) the data should represented as a matrix - the structure of the matrix is dependent on the approach being taken, and different approaches will be explored later in this section. As an example, in the 1992 paper by Kistler and Wightman \citep{Kistler1992} the data set used was arranged into a 5300x150 matrix. If one were performing PCA manually, this dataset could be then be decomposed into a collection of pairs of eigenvectors and eigenvalues - each pair represented by a line through the dataset at the point of greatest variance. Each pair is comprised of a direction and the variance of the data along that line - the vector and the value, respectively. The number of eigenvector/value pairs in a dataset directly corresponds to the dimensionality of the dataset. The dimensions (eigenvectors) with the greatest variance (highest eigenvalues) will consistute the principle components. The number of principle components chosen from the resulting set is dependent on the level of detail necessary. In the aforementioned Kistler and Wightman study, it was found that 90\% of the HRTF could be reconstructed using only the five PCs with the highest level of variance. 
 
 
 \paragraph{Individualising HRTFs/HRIR with PCA}
+There are a few main differences among studies that apply principal component analysis to HRTFs and HRIRs. Chief among them is whether the study uses HRTFs or HRIRs. 
+
+next the structure of the input matrix
+next the number of PCs used 
+next how much of the dataset they use
+a little on ways to match PCs with anthropometry 
+anything else about the decomposition? 
+then how to reconstruct HRTFs and the effect that the modification of PCWs has on the reconstructions and I think I should be good
+
 test citation \citep{Holzl2012a}
 
 \subsection{Search Methods}
