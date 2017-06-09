@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  9 JUN 2017 14:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  9 JUN 2017 17:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -402,9 +402,9 @@ Package natbib Warning: Citation `Tashev2014' on page 6 undefined on input line
 Package natbib Warning: Citation `Li2013' on page 6 undefined on input line 38.
 
 
-) (./3-methodology_and_process/method.tex)
+[6]) (./3-methodology_and_process/method.tex)
 (./4-analysis_and_results/analysis.tex) (./5-discussion/discussion.tex)
-(./thesis-base.bbl [6] [7]
+(./thesis-base.bbl [7]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -443,7 +443,7 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on thesis-base.pdf (9 pages, 121997 bytes).
+Output written on thesis-base.pdf (9 pages, 122835 bytes).
 PDF statistics:
  62 PDF objects out of 1000 (max. 8388607)
  43 compressed objects within 1 object stream
