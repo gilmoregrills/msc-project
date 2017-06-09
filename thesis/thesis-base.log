@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  9 JUN 2017 18:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  9 JUN 2017 18:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -186,26 +186,26 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 (./thesis-base.aux)
 \openout1 = `thesis-base.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 \AtBeginShipoutBox=\box27
 
 
 Package hyperref Warning: Draft mode on.
 
-Package hyperref Info: Link coloring OFF on input line 35.
+Package hyperref Info: Link coloring OFF on input line 36.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -214,15 +214,15 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count100
 )
-LaTeX Info: Redefining \ref on input line 35.
-LaTeX Info: Redefining \pageref on input line 35.
-LaTeX Info: Redefining \nameref on input line 35.
+LaTeX Info: Redefining \ref on input line 36.
+LaTeX Info: Redefining \pageref on input line 36.
+LaTeX Info: Redefining \nameref on input line 36.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 40.
+(Font)              <12> on input line 41.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 40.
+(Font)              <8> on input line 41.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 40.
+(Font)              <6> on input line 41.
 
 [1
 
@@ -258,11 +258,11 @@ Package natbib Warning: Citation `•' on page 1 undefined on input line 23.
 
 Missing character: There is no � in font cmr10!
 Missing character: There is no � in font cmr10!
+[1]
 
-Package natbib Warning: Citation `who did this first?' on page 1 undefined on i
+Package natbib Warning: Citation `who did this first?' on page 2 undefined on i
 nput line 30.
 
-[1]
 
 Package natbib Warning: Citation `Gardner1994' on page 2 undefined on input lin
 e 36.
@@ -275,20 +275,22 @@ Package natbib Warning: Citation `Algazi2001' on page 2 undefined on input line
 Package natbib Warning: Citation `AcousticsResearchInstitute' on page 2 undefin
 ed on input line 36.
 
+[2]
 Missing character: There is no � in font cmbx10!
 Missing character: There is no � in font cmbx10!
 Missing character: There is no � in font cmbx10!
 
-Package natbib Warning: Citation `•' on page 2 undefined on input line 44.
+
+Package natbib Warning: Citation `•' on page 3 undefined on input line 44.
 
 
-Package natbib Warning: Citation `kemar mannequin?' on page 2 undefined on inpu
+Package natbib Warning: Citation `kemar mannequin?' on page 3 undefined on inpu
 t line 44.
 
 
-Package natbib Warning: Citation `•' on page 2 undefined on input line 44.
+Package natbib Warning: Citation `•' on page 3 undefined on input line 44.
 
-[2]) (./2-literature_review/literature_review.tex
+) (./2-literature_review/literature_review.tex
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13> not available
 (Font)              size <12> substituted on input line 1.
@@ -301,8 +303,9 @@ LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <13> not available
 Package natbib Warning: Citation `Kulkarni1995' on page 3 undefined on input li
 ne 2.
 
+[3]
 
-Package natbib Warning: Citation `Hoene2017' on page 3 undefined on input line 
+Package natbib Warning: Citation `Hoene2017' on page 4 undefined on input line 
 5.
 
 
@@ -312,110 +315,112 @@ e us-ing a range method-|
  []
 
 
-Package natbib Warning: Citation `Zotkin2002' on page 3 undefined on input line
+Package natbib Warning: Citation `Zotkin2002' on page 4 undefined on input line
  8.
 
 
-Package natbib Warning: Citation `Zotkin' on page 3 undefined on input line 8.
-
-
-Package natbib Warning: Citation `•' on page 3 undefined on input line 10.
-
-
-Package natbib Warning: Citation `ARI site docs' on page 3 undefined on input l
-ine 10.
-
-[3]
-
-Package natbib Warning: Citation `Fahn2003' on page 4 undefined on input line 1
-5.
-
-
-Package natbib Warning: Citation `xie2013a' on page 4 undefined on input line 1
-5.
-
-
-Package natbib Warning: Citation `xie2013a' on page 4 undefined on input line 1
-7.
-
-
-Package natbib Warning: Citation `•' on page 4 undefined on input line 17.
-
-
-Package natbib Warning: Citation `doi:10.1080/00140131003675117' on page 4 unde
-fined on input line 19.
-
-
-Package natbib Warning: Citation `shimada1994a' on page 4 undefined on input li
-ne 20.
+Package natbib Warning: Citation `Zotkin' on page 4 undefined on input line 8.
 
 [4]
 
-Package natbib Warning: Citation `Middlebrooks1999a' on page 5 undefined on inp
-ut line 25.
+Package natbib Warning: Citation `•' on page 5 undefined on input line 10.
 
 
-Package natbib Warning: Citation `middlebrooks1990' on page 5 undefined on inpu
-t line 25.
+Package natbib Warning: Citation `ARI site docs' on page 5 undefined on input l
+ine 10.
 
 
-Package natbib Warning: Citation `Tan1998' on page 5 undefined on input line 27
-.
+Package natbib Warning: Citation `Fahn2003' on page 5 undefined on input line 1
+5.
 
 
-Package natbib Warning: Citation `Genuit1984' on page 5 undefined on input line
- 30.
-
-
-Package natbib Warning: Citation `Duraiswami2003' on page 5 undefined on input 
-line 30.
-
-
-Package natbib Warning: Citation `PhillipBrown1998' on page 5 undefined on inpu
-t line 32.
-
-
-Package natbib Warning: Citation `lopexmeddis1996' on page 5 undefined on input
- line 32.
+Package natbib Warning: Citation `xie2013a' on page 5 undefined on input line 1
+5.
 
 [5]
 
-Package natbib Warning: Citation `Algazi2001a' on page 6 undefined on input lin
-e 34.
+Package natbib Warning: Citation `xie2013a' on page 6 undefined on input line 1
+7.
 
 
-Package natbib Warning: Citation `Raykar2003' on page 6 undefined on input line
- 34.
+Package natbib Warning: Citation `•' on page 6 undefined on input line 17.
 
 
-Package natbib Warning: Citation `•' on page 6 undefined on input line 36.
+Package natbib Warning: Citation `doi:10.1080/00140131003675117' on page 6 unde
+fined on input line 19.
 
 
-Package natbib Warning: Citation `Hugeng2010' on page 6 undefined on input line
- 38.
+Package natbib Warning: Citation `shimada1994a' on page 6 undefined on input li
+ne 20.
 
 
-Package natbib Warning: Citation `Tashev2014' on page 6 undefined on input line
- 38.
+Package natbib Warning: Citation `Middlebrooks1999a' on page 6 undefined on inp
+ut line 25.
 
 
-Package natbib Warning: Citation `Li2013' on page 6 undefined on input line 38.
-
+Package natbib Warning: Citation `middlebrooks1990' on page 6 undefined on inpu
+t line 25.
 
 [6]
 
-Package natbib Warning: Citation `vanLaarhoven1987' on page 7 undefined on inpu
+Package natbib Warning: Citation `Tan1998' on page 7 undefined on input line 27
+.
+
+
+Package natbib Warning: Citation `Genuit1984' on page 7 undefined on input line
+ 30.
+
+
+Package natbib Warning: Citation `Duraiswami2003' on page 7 undefined on input 
+line 30.
+
+[7]
+
+Package natbib Warning: Citation `PhillipBrown1998' on page 8 undefined on inpu
+t line 32.
+
+
+Package natbib Warning: Citation `lopexmeddis1996' on page 8 undefined on input
+ line 32.
+
+
+Package natbib Warning: Citation `Algazi2001a' on page 8 undefined on input lin
+e 34.
+
+
+Package natbib Warning: Citation `Raykar2003' on page 8 undefined on input line
+ 34.
+
+
+Package natbib Warning: Citation `•' on page 8 undefined on input line 36.
+
+[8]
+
+Package natbib Warning: Citation `Hugeng2010' on page 9 undefined on input line
+ 38.
+
+
+Package natbib Warning: Citation `Tashev2014' on page 9 undefined on input line
+ 38.
+
+
+Package natbib Warning: Citation `Li2013' on page 9 undefined on input line 38.
+
+
+
+Package natbib Warning: Citation `vanLaarhoven1987' on page 9 undefined on inpu
 t line 51.
 
+[9]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 53.
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 53.
-)
+) [10]
 (./3-methodology_and_process/method.tex) (./4-analysis_and_results/analysis.tex
-) (./5-discussion/discussion.tex) (./thesis-base.bbl [7] [8]
+) (./5-discussion/discussion.tex) (./thesis-base.bbl [11]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -424,29 +429,29 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
-[9
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 60.
+[12
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 60.
  (./thesis-base.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 58.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 58.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 60.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 60.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 60.
  ) 
 Here is how much of TeX's memory you used:
  5133 strings out of 494910
  75840 string characters out of 6179836
- 158103 words of memory out of 5000000
+ 157103 words of memory out of 5000000
  8401 multiletter control sequences out of 15000+600000
  8717 words of font info for 31 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 30i,6n,34p,1348b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,6n,34p,1348b,339s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
@@ -455,10 +460,10 @@ f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmtt10.pfb>
-Output written on thesis-base.pdf (10 pages, 132282 bytes).
+Output written on thesis-base.pdf (13 pages, 133515 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
+ 79 PDF objects out of 1000 (max. 8388607)
+ 55 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
