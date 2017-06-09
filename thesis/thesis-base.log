@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  8 JUN 2017 22:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  9 JUN 2017 10:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -247,6 +247,10 @@ Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¸ in font cmr10!
 
 
+Package natbib Warning: Citation `Middlebrooks1999a' on page 1 undefined on inp
+ut line 18.
+
+
 Package natbib Warning: Citation `â€¢' on page 1 undefined on input line 21.
 
 
@@ -345,18 +349,18 @@ fined on input line 19.
 Package natbib Warning: Citation `shimada1994a' on page 4 undefined on input li
 ne 20.
 
-
-Package natbib Warning: Citation `Tan1998' on page 4 undefined on input line 24
-.
-
 [4]
-Missing character: There is no â in font cmr10!
-Missing character: There is no € in font cmr10!
-Missing character: There is no ™ in font cmr10!
-
 
 Package natbib Warning: Citation `Middlebrooks1999a' on page 5 undefined on inp
-ut line 30.
+ut line 25.
+
+
+Package natbib Warning: Citation `middlebrooks1990' on page 5 undefined on inpu
+t line 25.
+
+
+Package natbib Warning: Citation `Tan1998' on page 5 undefined on input line 27
+.
 
 ) (./3-methodology_and_process/method.tex)
 (./4-analysis_and_results/analysis.tex) (./5-discussion/discussion.tex)
@@ -385,10 +389,10 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 5105 strings out of 494910
- 75392 string characters out of 6179836
+ 5106 strings out of 494910
+ 75410 string characters out of 6179836
  158103 words of memory out of 5000000
- 8376 multiletter control sequences out of 15000+600000
+ 8377 multiletter control sequences out of 15000+600000
  8717 words of font info for 31 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  30i,6n,34p,1290b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -399,7 +403,7 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on thesis-base.pdf (7 pages, 117263 bytes).
+Output written on thesis-base.pdf (7 pages, 118133 bytes).
 PDF statistics:
  56 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream
