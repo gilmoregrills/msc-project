@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  9 JUN 2017 11:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  9 JUN 2017 14:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -363,6 +363,14 @@ Package natbib Warning: Citation `Tan1998' on page 5 undefined on input line 27
 .
 
 
+Package natbib Warning: Citation `Genuit1984' on page 5 undefined on input line
+ 30.
+
+
+Package natbib Warning: Citation `Duraiswami2003' on page 5 undefined on input 
+line 30.
+
+
 Package natbib Warning: Citation `PhillipBrown1998' on page 5 undefined on inpu
 t line 32.
 
@@ -370,9 +378,33 @@ t line 32.
 Package natbib Warning: Citation `lopexmeddis1996' on page 5 undefined on input
  line 32.
 
-[5]) (./3-methodology_and_process/method.tex)
+[5]
+
+Package natbib Warning: Citation `Algazi2001a' on page 6 undefined on input lin
+e 34.
+
+
+Package natbib Warning: Citation `Raykar2003' on page 6 undefined on input line
+ 34.
+
+
+Package natbib Warning: Citation `•' on page 6 undefined on input line 36.
+
+
+Package natbib Warning: Citation `Hugeng2010' on page 6 undefined on input line
+ 38.
+
+
+Package natbib Warning: Citation `Tashev2014' on page 6 undefined on input line
+ 38.
+
+
+Package natbib Warning: Citation `Li2013' on page 6 undefined on input line 38.
+
+
+) (./3-methodology_and_process/method.tex)
 (./4-analysis_and_results/analysis.tex) (./5-discussion/discussion.tex)
-(./thesis-base.bbl [6]
+(./thesis-base.bbl [6] [7]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 13.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -382,7 +414,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 Package natbib Warning: There were undefined citations.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
-[7
+[8
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
@@ -397,13 +429,13 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 5108 strings out of 494910
- 75445 string characters out of 6179836
+ 5115 strings out of 494910
+ 75530 string characters out of 6179836
  158103 words of memory out of 5000000
- 8379 multiletter control sequences out of 15000+600000
+ 8386 multiletter control sequences out of 15000+600000
  8717 words of font info for 31 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 30i,6n,34p,1290b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,6n,34p,1348b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
@@ -411,10 +443,10 @@ ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on thesis-base.pdf (8 pages, 119250 bytes).
+Output written on thesis-base.pdf (9 pages, 121997 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
- 41 compressed objects within 1 object stream
+ 62 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
