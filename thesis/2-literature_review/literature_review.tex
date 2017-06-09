@@ -48,3 +48,14 @@ test citation \citep{Holzl2012a}
 My proposed method for producing HRTFs is based upon being able to automate the adjustment of the principal components/principal component weights within produced by using PCA on a generic set, all within a VR/AR environment, to reduce localisation errors for the user. This can, then, be framed as an optimisation problem. If a user is played multiple samples that have been filtered through HRTFs in sequence and, upon being asked, manages to identify the source of the sound within a sufficiently small margin of error then the HRTF set can be considered to fit the individual. The problem with developing a method for individualisation that works in this way is that there is little in the way of research that investigates which PCWs help to lower error rates in which directions. Because of this, I have instead chosen to investigate existing search algorithms to apply to this problem. 
 
 \subsubsection{Simulated Annealing}
+Simulated Annealing \citep{vanLaarhoven1987} search is a simple iterative search method that requires a heuristic that measures how close a given state is to the goal state. The steps the algorithm takes are essentially as follows:
+\begin{itemize}
+\item From a starting state - in our case a generalised HRTF.
+\item The state is then evaluated by some evaluation function - in this case how close the user got to localising the set of samples.
+\item A new pseudorandom state is generated - in this case each PCW would be modified by a random amount, with the degree of randomness depending on the following:
+\begin{itemize}
+\item If the state was close to the goal state (if the user almost correctly identified the source of the samples) then use less randomness when generating successive states - use a smaller boundary when generating random amounts to adjust by.
+\item Otherwise, generate a new state and start from there - allow greater variance in the values that are used to adjust the weights. 
+\end{itemize}
+\item This successive state - a modified HRTF set - should again be tested according to the evaluation function, as the process loops. 
+\end{itemize}
