@@ -46,16 +46,21 @@ So PCA can be used to reduce the number of dimensions in a dataset, reducing it 
 
 
 \paragraph{Individualising HRTFs/HRIR with PCA}
-There are a few main differences among studies that apply principal component analysis to HRTFs and HRIRs. Chief among them is whether the study uses HRTFs or HRIRs. 
+There are a few main differences among studies that apply principal component analysis to HRTFs and HRIRs. Chief among them is whether the study uses HRTFs \citep{Holzl2014a} \citep{Gutierrez-Parera2017} or HRIRs \citep{Hwang2008} \citep{Hwang2007} \citep{Fink2012}. There are benefits of working solely with HRIRs, one retains the interaural time difference (ITD), and it's easier to extract the effects of subject anthropometry on the resultant HRIR. However when analysing HRIRs with PCA, researchers often time-align the HRIRs before processing \cite{hwang2010customization}, losing information on ITD. Estimation of ITD is a comparatively trivial task, and when not relying on an anthropometric model for individualisation the correlation between HRIR and anthropometric features becomes irrelevant. One advantage of the use of HRTFs that cannot be overstated is the larger corpus of research already done on the work \citep{Holzl2014a}. 
+
+In an early paper on the subject, Middlebrooks \citep{middlebrooks1992observations} found that no matter the database used, the amount of variance described by each PC, and the number of PCs required for a substantial reconstruction of the original HRTF was more or less equal. This is helpful, allowing the results of any investigation into a particular method to be applied semi-interchangably to new research. The number of PCs used for reconstruction varies a lot, however - anywhere from 4 \citep{martens1987principal} to 90 \citep{martens1987principal}. The decision as to how many PCs to use depends heavily on the intended accuracy of the reconstruction. The more PCs that are used, the more accurate any reconstruction based on them would be. There are, however, heavily diminishing returns on this number. Many studies are in agreement that using 4-6 PCs can describe around 90\% of the variance within the HRTF set \citep{martens1987principal} \citep{Kistler1992}. It is common to want to reduce the number of PCs used, so as to in turn reduce the complexity of the tuning process \citep{Hwang2007}. When this tuning process is manual, this concern/focus is understandable. But if the process is automated, there could perhaps be a greater focus on accurate reconstruction.
+
+Holzl
 
 next the structure of the input matrix
-next the number of PCs used 
 next how much of the dataset they use
 a little on ways to match PCs with anthropometry 
 anything else about the decomposition? 
 then how to reconstruct HRTFs and the effect that the modification of PCWs has on the reconstructions and I think I should be good
 
 test citation \citep{Holzl2012a}
+
+\paragraph{Spherical Harmonics}
 
 \subsection{Search Methods}
 My proposed method for producing HRTFs is based upon being able to automate the adjustment of the principal components/principal component weights within produced by using PCA on a generic set, all within a VR/AR environment, to reduce localisation errors for the user. This can, then, be framed as an optimisation problem. If a user is played multiple samples that have been filtered through HRTFs in sequence and, upon being asked, manages to identify the source of the sound within a sufficiently small margin of error then the HRTF set can be considered to fit the individual. The problem with developing a method for individualisation that works in this way is that there is little in the way of research that investigates which PCWs help to lower error rates in which directions. Because of this, I have instead chosen to investigate existing search algorithms to apply to this problem. 
