@@ -1,4 +1,4 @@
-\documentclass[10pt, a4paper, titlepage, draft]{report}
+\documentclass[12pt, a4paper, titlepage, draft]{report}
 \usepackage{titlesec}% http://ctan.org/pkg/titlesec
 \setcounter{secnumdepth}{5}
 \titleformat{\section}%
@@ -32,13 +32,58 @@
 \usepackage{url}
 \usepackage{breakurl} 
 \usepackage[breaklinks]{hyperref}
-\renewcommand{\baselinestretch}{1.5}
+\renewcommand{\baselinestretch}{2}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
 \title{Automated HRTF Individualisation Based on Localization Errors in 3D Space}
 \author{Robin Yonge}
 \date{August 2017}
 \maketitle
 
+\iffalse
+structure from the presentation;
+Final report: structure [1/4]
+ Be guided by your supervisor – different structures are
+appropriate for different project types
+ Title page – template will be provided on QMPlus
+ Acknowledgements
+ Abstract / summary
+ One page maximum
+ Should be a complete summary of your work
+ Should make sense independently from rest of report
++
+Final report: structure [2/4]
+ Table of contents
+ Introduction
+ Context for report
+ Motivation for your work
+ “What others have done” chapter(s), e.g.
+ Background research and/or
+ Literature review
+21
++
+Final report: structure [3/4]
+ “What you have done” chapter(s), e.g. might include some /
+all of
+ Requirements capture / analysis – what your system should do
+ Design – how you went about your work
+ Implementation – practical techniques, problems, solutions
+ Testing and/or evaluation – how well your solution worked
+ Discussion / conclusions
+ Critical analysis
+ Honest appraisal
+ Further work
+ What more you would do if you had time
++
+Final report: structure [4/4]
+ References / bibliography
+ Appendices
+ More detailed material that is not crucial to understanding of
+main message(s), e.g.
+ Detailed experimental results
+ Copy of questionnaire / interview script
+\fi
 
 \section*{Background}
 \input{1-background/background.tex}
