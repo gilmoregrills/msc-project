@@ -10,21 +10,21 @@
 	
 \titleformat{\subsection}%
 	[hang]
-    {\fontsize{13}{15}\normalfont\bfseries}
+    {\fontsize{14}{16}\normalfont\bfseries}
     {\thesubsection}
     {1em}
     {}
 	
 \titleformat{\subsubsection}
 	[hang]
-    {\fontsize{12}{14}\normalfont\bfseries}
+    {\fontsize{13}{15}\normalfont\bfseries}
     {\thesubsection}
     {1em}	
     {}
 	
 \titleformat{\paragraph}
 	[hang]
-	{\fontsize{10}{12}\normalfont\bfseries}
+	{\fontsize{12}{14}\normalfont\bfseries}
 	{\theparagraph}
 	{1em}
 	{}
@@ -36,70 +36,44 @@
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
+
+
 \title{Automated HRTF Individualisation Based on Localization Errors in 3D Space}
 \author{Robin Yonge}
 \date{August 2017}
 \maketitle
 
-\iffalse
-structure from the presentation;
-Final report: structure [1/4]
- Be guided by your supervisor – different structures are
-appropriate for different project types
- Title page – template will be provided on QMPlus
- Acknowledgements
- Abstract / summary
- One page maximum
- Should be a complete summary of your work
- Should make sense independently from rest of report
-+
-Final report: structure [2/4]
- Table of contents
- Introduction
- Context for report
- Motivation for your work
- “What others have done” chapter(s), e.g.
- Background research and/or
- Literature review
-21
-+
-Final report: structure [3/4]
- “What you have done” chapter(s), e.g. might include some /
-all of
- Requirements capture / analysis – what your system should do
- Design – how you went about your work
- Implementation – practical techniques, problems, solutions
- Testing and/or evaluation – how well your solution worked
- Discussion / conclusions
- Critical analysis
- Honest appraisal
- Further work
- What more you would do if you had time
-+
-Final report: structure [4/4]
- References / bibliography
- Appendices
- More detailed material that is not crucial to understanding of
-main message(s), e.g.
- Detailed experimental results
- Copy of questionnaire / interview script
-\fi
+\section{Acknowledgements}
 
-\section*{Background}
+\section{Abstract}
+
+\section{Table of Contents}
+
+\section{Background/Context/Motivation}
 \input{1-background/background.tex}
 
-\section*{Literature Review}
+\section{Literature Review}
 \input{2-literature_review/literature_review.tex}
 
-\section*{Method}
+\section{Method}
+%should maybe include my requirements capture/analysis of what the system should do then
+%design
+%implementation
+%testing
 \input{3-methodology_and_process/method.tex}
 
-\section*{Analysis}
+\section{Analysis}
 \input{4-analysis_and_results/analysis.tex}
+%how well the solution worked and the results from my listening tests, what do they mean? 
 
-\section*{Discussion}
+\section{Discussion}
 \input{5-discussion/discussion.tex}
+%is this a viable solution? Is there further work to be done, what is it? 
+%What would I do if I only had time??
 
 \bibliography{bibliography/library}
 \bibliographystyle{plainnat}
+
+%\section{Appendices}
+%any more detailed results, and things like that? 
 \end{document}
