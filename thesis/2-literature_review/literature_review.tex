@@ -50,17 +50,18 @@ There are a few main differences among studies that apply principal component an
 
 In an early paper on the subject, Middlebrooks \citep{middlebrooks1992observations} found that no matter the database used, the amount of variance described by each PC, and the number of PCs required for a substantial reconstruction of the original HRTF was more or less equal. This is helpful, allowing the results of any investigation into a particular method to be applied semi-interchangably to new research. The number of PCs used for reconstruction varies a lot, however - anywhere from 4 \citep{martens1987principal} to 90 \citep{martens1987principal}. The decision as to how many PCs to use depends heavily on the intended accuracy of the reconstruction. The more PCs that are used, the more accurate any reconstruction based on them would be. There are, however, heavily diminishing returns on this number. Many studies are in agreement that using 4-6 PCs can describe around 90\% of the variance within the HRTF set \citep{martens1987principal} \citep{Kistler1992}. It is common to want to reduce the number of PCs used, so as to in turn reduce the complexity of the tuning process \citep{Hwang2007}. When this tuning process is manual, this concern/focus is understandable. But if the process is automated, there could perhaps be a greater focus on accurate reconstruction.
 
-Holzl
+Holzl \citep{Holzl2012} investigated the effect that different input matrices, created by restructuring the HRTF input data, had when performing PCA on HRTFs. In doing this he identified five different matrix arrangements used by different studies, and found the most effective to be [(\textit{subjects * sound directions}) x \textit{signal}] - a structure used by Kistler and Wightman in their studies \citep{Kistler1992}. 
 
-next the structure of the input matrix
-next how much of the dataset they use
+There is also a difference in how much of the dataset is analysed and adjusted at a time. Some studies \citep{•} [cite a bunch] elect to just adjust a clustered sub-set of positions, playing a subject a sample from that direction and adjusting just those positions based on that. This process of performing PCA and updating the weights for each position can be time consuming. Other studies \citep{Holzl2014a} use a more global model, analysing all directions at once. For this method to be practical when performing manual adjustments, a method for modeling PCWs can be helpful.
+
+Holzl \citep{Holzl2014a} proposes a method for modelling PCWs based on the spherical harmonics transform. The proposed model effectively maps the PCWs to a sphere around the subject, allowing manipulation of the PCWs that apply to the intended apparent source of the sound being played to the user at a given time. There is a possibility that this approach could allow automated individualisation to be performed more effectively, adjusting the relevant datapoints in a more targeted way. 
+
+Alternatively, PCWs can be manipulated directly \citep{•}. As a part of this project, some decisions will need to be made as to the efficacy of each approach when applied to my intended implementation method. 
+
+
 a little on ways to match PCs with anthropometry 
 anything else about the decomposition? 
 then how to reconstruct HRTFs and the effect that the modification of PCWs has on the reconstructions and I think I should be good
-
-test citation \citep{Holzl2012a}
-
-\paragraph{Spherical Harmonics}
 
 \subsection{Search Methods}
 My proposed method for producing HRTFs is based upon being able to automate the adjustment of the principal components/principal component weights within produced by using PCA on a generic set, all within a VR/AR environment, to reduce localisation errors for the user. This can, then, be framed as an optimisation problem. If a user is played multiple samples that have been filtered through HRTFs in sequence and, upon being asked, manages to identify the source of the sound within a sufficiently small margin of error then the HRTF set can be considered to fit the individual. The problem with developing a method for individualisation that works in this way is that there is little in the way of research that investigates which PCWs help to lower error rates in which directions. Because of this, I have instead chosen to investigate existing search algorithms to apply to this problem. 
