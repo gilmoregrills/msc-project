@@ -19,4 +19,9 @@ git add -A
 git status
 echo $1
 git commit -m "$1"
-git push 'https://'$2':'$3'@github.com/gilmoregrills/msc-project.git'
+if [ ! -z "$2" ] ; then
+	echo "performing push with provided credentials" 
+	git push 'https://'$2':'$3'@github.com/gilmoregrills/msc-project.git'
+else 
+	echo "no git credentials provided, performing commit only" 
+fi
