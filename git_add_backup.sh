@@ -19,4 +19,4 @@ git add -A
 git status
 echo $1
 git commit -m "$1"
-echo "$2 $3" | git push -u origin master
+git push 'https://'$2':'$3'@github.com/gilmoregrills/msc-project.git'
