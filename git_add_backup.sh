@@ -1,7 +1,9 @@
 #!/bin/bash
 #Script to rsync to Dropbox folder, and commit/push to github
-#usage: ./git_add_backup.sh "commit message here" gitUsername gitPassword
-#Obviously alias it to something more memorable 
+
+#usage: 
+#for commit only: ./git_add_backup.sh "commit message here"
+#for commit and push: ./git_add_backup.sh "commit message here" gitUsername gitPassword
 
 #rsync to dropbox folder
 CURRENT_DIRECTORY=$(pwd)
@@ -20,8 +22,10 @@ git status
 echo $1
 git commit -m "$1"
 if [ ! -z "$2" ] ; then
+	#if arg 2 is !empty, push
 	echo "performing push with provided credentials" 
 	git push 'https://'$2':'$3'@github.com/gilmoregrills/msc-project.git'
 else 
+	#commit only
 	echo "no git credentials provided, performing commit only" 
 fi
