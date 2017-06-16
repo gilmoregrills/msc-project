@@ -1,6 +1,24 @@
-# msc-project
-Repo for my MSc project, currently in research stage
+#MSC PROJECT AND THESIS
 
-Working directory also contains the CIPIC and MIT databases, as well as Josef Holzl's work on HRTF Individualisation
+##Directory Structure: 
 
-
+root
+    - databases (_in gitignore_)
+        * CIPIC
+        * MIT
+        * ARI
+    - first-attempts (_initial investigation scripts_) 
+    - implementation (_implementation work master folder_)
+  other-work (_other people's work, as research/reference_) 
+  writing
+    specification
+    bibliography
+    thesis
+      abstract-acknowledgements
+      contents
+      introduction
+      literature-review
+      methodology-and-process
+      analysis-and-results
+      discussion
+      
