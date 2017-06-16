@@ -1,6 +1,7 @@
 #!/bin/bash
-#Script to copy parent directory into Dropbox directory for back up
-#can/should be aliased onto the git add or git commit commands.
+#Script to rsync to Dropbox folder, and commit/push to github
+#usage: ./git_add_backup.sh "commit message here" gitUsername gitPassword
+#Obviously alias it to something more memorable 
 
 #rsync to dropbox folder
 CURRENT_DIRECTORY=$(pwd)
@@ -18,4 +19,4 @@ git add -A
 git status
 echo $1
 git commit -m "$1"
-git push -u origin master
+echo "$2 $3" | git push -u origin master
