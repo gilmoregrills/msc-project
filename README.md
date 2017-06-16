@@ -1,6 +1,8 @@
-#MSC PROJECT AND THESIS
+MSC PROJECT AND THESIS
+======================
 
-##Directory Structure: 
+Directory Structure: 
+====================
 
 - root
     - databases (_in gitignore_)
