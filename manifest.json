@@ -1,0 +1,19 @@
+{
+    "appId": "1372968642774505",
+    "canonicalName": "oculus-utilities-for-unity-5",
+    "isCore": true,
+    "packageType": "CORE_APP",
+    "launchFile": null,
+    "launchParameters": "",
+    "launchFile2D": null,
+    "launchParameters2D": "",
+    "version": "1.15.0",
+    "versionCode": 12,
+    "redistributables": [],
+    "files": {
+        "LICENSE.txt": "3cda6b9e60f8033cb696543bc1f74dc9efb97e30905349975102b5f9dd116f01",
+        "OculusUtilities/OculusUtilities.unitypackage": "5795b468bce5f7243d4e188dc07b575131d31eda0f519b016859b5c116684c26"
+    },
+    "firewallExceptionsRequired": false,
+    "parentCanonicalName": null
+}
