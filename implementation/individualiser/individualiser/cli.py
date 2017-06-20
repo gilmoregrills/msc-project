@@ -1,15 +1,21 @@
 import numpy as np
 import matplotlib as plot
+from clint.textui import puts, colored, indent
 
 
-print "\nIndividualiser Test CLI \n=======================\nFirst of all, please select a subject from the CIPIC database:" 
+puts(colored.green("\nIndividualiser Test CLI \n======================="))
+
+print "\nFirst select a subject from the CIPIC database for reference:" 
 
 subjectRef = raw_input()
 
-print "\nPlease select a direction to view as reference:"
+print "\nNext select a direction to view as reference:"
 
 directionRef = raw_input()
 
+with indent(2, quote='>'):
+    puts("subject: "+colored.red(subjectRef))
+    puts("direction: "+colored.red(directionRef))
 #plot this direction and display as an HRTF and/or HRIR
 
 print "\nRunning PCA and preparing PCWs for manipulation..." 
@@ -24,15 +30,22 @@ print "\nReconstructing new HRTF from PCWs..."
 #display graph of new HRTF based on directionRef
 
 while 1 != 2:
-
+    puts(colored.green("\nWeight matrix:\n============="))
+    print ("print weight matrix here")
     while 1 != 2: 
         print "\nEnter the index of the weight you would like to adjust:"
-        raw_input()
+        weight = raw_input()
     
         print "\nEnter the new weight value:"
-        raw_input()
-        #print confirmation here
-    
+        value = raw_input()
+        
+        print "\nUpdating weight:"
+        with indent(2, quote='>'):
+            puts(colored.red(weight))
+        print "To value:"
+        with indent(2, quote='>'):
+            puts(colored.red(value))
+
         print "\nWould you like to adjust any other weights? (yes/no)"
         n = raw_input()
         if n == "no":
