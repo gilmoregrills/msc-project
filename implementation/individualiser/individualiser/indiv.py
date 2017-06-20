@@ -9,22 +9,45 @@ def prepareInputMatrix(databasePath):
     #loop to load every subject (except KEMAR) into an array of mat objects
     #instantiate the matrix in the right dimensions/structure
     #loop again to populate the input matrix
-
+    return
 
 #PCA on an input Matrix, returning PCs, PCWs, etc
 def runPCA(inputMatrix):
-
+    return
 
 
 #model PCWs as spherical harmonics
 def spherHarm(weights):
-
+    return
 
 
 #reconstruct an HRTF from PCW etc
 def reconstruct(weights, components, mean):
+    return
 
 
+#uses the numpy.fft set of functions to transform input matrices 
+#if the inverse flag is true it calls the inverse fft, to go from
+#hrtf to hrir!
+def fourierTransform(inputData, inverse):
+    print "\nStarting FFT \nInput matrix dimension is:"
+    print np.ndim(inputData)
 
-#use fft function to transform from HRTF to HRIR
-def transformData(inputData):
+    if inverse == False:
+        if np.ndim(inputData) == 1:
+            print("\nperforming 1D fft\n")
+            return np.fft.fft(inputData)
+        elif np.ndim(inputData) == 2:
+            print("\nperforming 2D fft\n")
+            return np.fft.fft2(inputData)
+        else:
+            print("\nperforming ND fft\n")
+            return np.fft.fftn(inputData)
+
+    elif inverse == True:
+        if inputData.shape == 1:
+            return np.fft.ifft(inputData)
+        elif inputData.shape == 2:
+            return np.fft.ifft2(inputData)
+        else:
+            return np.fft.ifftn(inputData)

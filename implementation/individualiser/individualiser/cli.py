@@ -37,6 +37,10 @@ while 1 != 2:
         print "\nNow an elevation level (0-49):"
         elevRef = raw_input()
         selectedHRIR = subjectData[azimuthRef][elevRef]
+        print "\nDisplay as HRTF as well as HRIR? (yes/no)"
+        hr = raw_input()
+        if hr == "yes":
+            selectedHRTF = indiv.fourierTransform(selectedHRIR, False);
 
         with indent(2, quote='>'):
             puts("subject: "+colored.red(subjectRef))
@@ -45,9 +49,20 @@ while 1 != 2:
 
         #plot this direction and display as an HRTF and/or HRIR
         #currently displaying as HRIR, just need to fft it to make it HRTF
-        plot.ylabel('power?')
-        plot.xlabel('time (ms)')
-        plot.plot(selectedHRIR)
+        if hr == "yes":
+            f1 = plot.figure()
+            ax1 = f1.add_subplot(111)
+            ax1.plot(selectedHRTF)
+            #ax1.xlabel('frequency')
+            #ax1.ylabel('power?')
+
+        f2 = plot.figure()
+        ax2 = f2.add_subplot(111)
+        ax2.plot(selectedHRIR)
+        #ax2.ylabel('power?')
+        #ax2.xlabel('time (ms)')
+
+        #show either one or both plots
         plot.show()
     
     #NOW UPDATE WEIGHTS
@@ -76,7 +91,7 @@ while 1 != 2:
     print "\nReconstructing individualised HRTF from PCWs..."
     #call reconstruction function
     #display graph from directionRef of new HRTF
-    print "new hrtf graph for same direction here"
+    print "new hrtf graph for same direction as above"
 
     print "\nWould you like to make any further adjustments? (yes/no)"
     m = raw_input()
