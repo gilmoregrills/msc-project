@@ -32,20 +32,20 @@ def reconstruct(weights, components, mean):
 def fourierTransform(inputData, inverse):
     print "\nStarting FFT \nInput matrix dimension is:"
     print np.ndim(inputData)
-
+    
     if inverse == False:
-        returnList = list()
-        returnList[1] = np.fft.fftfreq(inputData.len)#this bit should help as per stackexchange
+        returnList = ["", ""]
+        returnList[1] = np.fft.rfftfreq(inputData.size)#to be used to label axes?
         if np.ndim(inputData) == 1:
             print("\nperforming 1D fft\n")
-            returnList[0] = np.fft.fft(inputData)
+            returnList[0] = np.fft.rfft(inputData)
             return returnList
         elif np.ndim(inputData) == 2:
             print("\nperforming 2D fft\n")
-            returnList[0] = np.fft.fft2(inputData)
+            returnList[0] = np.fft.rfft2(inputData) 
         else:
             print("\nperforming ND fft\n")
-            returnList[0] = np.fft.fftn(inputData)
+            returnList[0] = np.fft.rfftn(inputData)
 
     elif inverse == True:
         if inputData.shape == 1:

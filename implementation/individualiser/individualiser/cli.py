@@ -39,31 +39,34 @@ while 1 != 2:
         selectedHRIR = subjectData[azimuthRef][elevRef]
         print "\nDisplay as HRTF as well as HRIR? (yes/no)"
         hr = raw_input()
-        if hr == "yes":
-            selectedHRTF = indiv.fourierTransform(selectedHRIR, False);
-
         with indent(2, quote='>'):
             puts("subject: "+colored.red(subjectRef))
             puts("azimuth: "+colored.red(azimuthRef))
             puts("elevation: "+colored.red(elevRef))
+            if hr == "yes":
+                puts("as hrtf?: "+colored.red("yes"))
+            else:
+                puts("as hrtf?: "+colored.red("no"))
 
-        #plot this direction and display as an HRTF and/or HRIR
-        #currently displaying as HRIR, just need to fft it to make it HRTF
         if hr == "yes":
+            tmpHRTF = indiv.fourierTransform(selectedHRIR, False);
+            selectedFreq = tmpHRTF[1]#frequency spectrum, should be useful for acis labels?
+            selectedHRTF = tmpHRTF[0]
+
             f1 = plot.figure()
             ax1 = f1.add_subplot(111)
-            ax1.plot(selectedHRTF)
+            ax1.plot(abs(selectedHRTF)/selectedHRIR.size*2)
             #ax1.xlabel('frequency')
-            #ax1.ylabel('power?')
+            #ax1.ylabel('magnitude?')
 
         f2 = plot.figure()
         ax2 = f2.add_subplot(111)
         ax2.plot(selectedHRIR)
-        #ax2.ylabel('power?')
+        #ax2.ylabel('magnitude?')
         #ax2.xlabel('time (ms)')
 
         #show either one or both plots
-        plot.show()
+        plot.draw()
     
     #NOW UPDATE WEIGHTS
     puts(colored.green("\nWeight matrix:\n============="))
