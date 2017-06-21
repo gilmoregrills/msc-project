@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plot
 from clint.textui import puts, colored, indent
 import indiv
+from multiprocessing import Process
 
 
 puts(colored.green("\nIndividualiser Test CLI \n======================="))
@@ -52,21 +53,26 @@ while 1 != 2:
             tmpHRTF = indiv.fourierTransform(selectedHRIR, False);
             selectedFreq = tmpHRTF[1]#frequency spectrum, should be useful for acis labels?
             selectedHRTF = tmpHRTF[0]
+            print "selectedHRTF size:"
+            print selectedHRTF.size
+            print selectedFreq
 
             f1 = plot.figure()
             ax1 = f1.add_subplot(111)
-            ax1.plot(abs(selectedHRTF)/selectedHRIR.size*2)
+            ax1.plot(selectedFreq, abs(selectedHRTF)/selectedHRIR.size*2)
+            ax1.set_title("HRTF")
             #ax1.xlabel('frequency')
             #ax1.ylabel('magnitude?')
 
         f2 = plot.figure()
         ax2 = f2.add_subplot(111)
         ax2.plot(selectedHRIR)
+        ax2.set_title("HRIR")
         #ax2.ylabel('magnitude?')
         #ax2.xlabel('time (ms)')
 
         #show either one or both plots
-        plot.draw()
+        plot.show(block=False)
     
     #NOW UPDATE WEIGHTS
     puts(colored.green("\nWeight matrix:\n============="))
