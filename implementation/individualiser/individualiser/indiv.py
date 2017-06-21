@@ -5,12 +5,14 @@ import sklearn.decomposition as decomp
 
 #take database as input, prepare correct input matrix
 #should only be called when 
-def prepareInputMatrix(databasePath):
+def prepareInputMatrix(databasePath, asHRTF):
     #loop to load every subject (except KEMAR) into an array of mat objects
     #instantiate the matrix in the right dimensions/structure
     #loop again to populate the input matrix
     inputMatrix = [] #[(subject * direction) * samples]
     counter = 0
+    if asHRTF == True:
+        return#fft on all HRIRs :|
     #for folder in os.listdir("../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/")
        #inputMatrix[counter] = sio.loadmat(folder+"/hrir_final.mat") 
     return

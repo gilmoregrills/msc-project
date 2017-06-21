@@ -59,7 +59,7 @@ while 1 != 2:
 
             f1 = plot.figure()
             ax1 = f1.add_subplot(111)
-            ax1.plot(selectedFreq, abs(selectedHRTF)/selectedHRIR.size*2)
+            ax1.plot(selectedFreq, abs(selectedHRTF))
             ax1.set_title("HRTF")
             #ax1.xlabel('frequency')
             #ax1.ylabel('magnitude?')
