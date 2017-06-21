@@ -10,10 +10,13 @@ def prepareInputMatrix(databasePath, asHRTF):
     #instantiate the matrix in the right dimensions/structure
     #loop again to populate the input matrix
     inputMatrix = [] #[(subject * direction) * samples]
+    allSubjects = []
     counter = 0
+    for root, dirs, files in os.walk("../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/")
+        
+
     if asHRTF == True:
         return#fft on all HRIRs :|
-    #for folder in os.listdir("../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/")
        #inputMatrix[counter] = sio.loadmat(folder+"/hrir_final.mat") 
     return
 
