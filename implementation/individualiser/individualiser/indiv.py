@@ -6,24 +6,20 @@ import sklearn.decomposition as decomp
 #take database as input, prepare correct input matrix
 #should only be called when 
 def prepareInputMatrix(database, asHRTF=True):
-    #loop to load every subject (except KEMAR) into an array of mat objects
-    #instantiate the matrix in the right dimensions/structure
-    #loop again to populate the input matrix
+    #set the database path, atm only working with CIPIC
     path = ""
     if database == "cipic" or database == "CIPIC":
         path = "../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/"
     
     #initialise all variables
     inputMatrix = []#[(subject * direction) * samples]
-    allSubjects = [] #ordered list of all subject data as matlab object thingies
-    subjectDirs = sorted(os.listdir(path))
-    subjectDirs.remove("show_data")
-    print(subjectDirs)
+    allSubjects = []#list of all subject data as matlab object thingies
+    subjectDirs = sorted(os.listdir(path))#subject directory names, chrono sorted
+    subjectDirs.remove("show_data")#remove the matlab scripts folder name
     
-    #gather all data for all subjects
+    #gather data for each subject, append to list
     for subDir in subjectDirs: 
         subject = sio.loadmat(path+subDir+"/hrir_final.mat")
-        print subject['name']
         allSubjects.append(subject) 
     
     #if required, fft all data
@@ -34,46 +30,21 @@ def prepareInputMatrix(database, asHRTF=True):
     #instantiate inputMatrix array ahead of time because I'm bad at python tbh
     inputMatrix = np.empty([len(allSubjects[0]['hrir_l'][0][0]), len(allSubjects[0]['hrir_l'])*len(allSubjects[0]['hrir_l'][0])*len(allSubjects)])
 
-    print inputMatrix.shape
-    print len(allSubjects)
-    print allSubjects[0]['hrir_l'].shape
+    #now rearrange that data into the inputMatrix
+    for sample in range(0, len(allSubjects[0]['hrir_l'][0][0])):
 
-    #now arrange that data into the right matrix structure!
-    for sample in range(0, len(allSubjects[0]['hrir_l'][0][0])-1):
-        print "currently filling bin #"
-        print sample
-        counter = 0
-        for azimuth in range(0, len(allSubjects[0]['hrir_l'])-1):
-            #print "accessing aximuth: "
-            #print azimuth
+        for azimuth in range(0, len(allSubjects[0]['hrir_l'])):
+
             for elevation in range(0, len(allSubjects[0]['hrir_l'][0])):
-                #print "accessing elevation: "
-                #print elevation
-                for subject in range(0, len(allSubjects)-1):
-                    #print "accessing subject: "
-                    #print subject['name']
+
+                for subject in range(0, len(allSubjects)):
                     inputMatrix[sample][counter] = allSubjects[subject]['hrir_l'][azimuth][elevation][sample]
+                    #counter just provides a row index for inputmatrix
                     counter = counter+1
 
-    if inputMatrix[0][0] == allSubjects[0]['hrir_l'][0][0][0]:
-        print "test1 success!"
-    else:
-        print "test1 failed"
-    if inputMatrix[100][0] == allSubjects[0]['hrir_l'][0][0][100]:
-        print "test2 success!"
-    else: 
-        print "test2 failed"
-    if inputMatrix[0][56249] == allSubjects[44]['hrir_l'][24][49][0]:
-        print "test3 success!"
-    else:
-        print "test3 failed"
-    if inputMatrix[100][56249] == allSubjects[44]['hrir_l'][24][49][100]:
-        print "test4 success!"
-    else:
-        print "test4 failed"
-
-    print inputMatrix.shape
-    return inputMatrix
+    #returning subject data for testing scripts
+    returnList = [inputMatrix, allSubjects]
+    return returnList
 
 #PCA on an input Matrix, returning PCs, PCWs, etc
 def runPCA(inputMatrix):
