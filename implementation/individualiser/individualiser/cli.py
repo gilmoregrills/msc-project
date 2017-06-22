@@ -3,8 +3,7 @@ import scipy.io as sio
 import numpy as np
 import matplotlib.pyplot as plot
 from clint.textui import puts, colored, indent
-import indiv
-from multiprocessing import Process
+import utility_functions as util
 
 
 puts(colored.green("\nIndividualiser Test CLI \n======================="))
@@ -50,7 +49,7 @@ while 1 != 2:
                 puts("as hrtf?: "+colored.red("no"))
 
         if hr == "yes":
-            tmpHRTF = indiv.fourierTransform(selectedHRIR, False);
+            tmpHRTF = util.fourierTransform(selectedHRIR, False);
             selectedFreq = tmpHRTF[1]#frequency spectrum, should be useful for acis labels?
             selectedHRTF = tmpHRTF[0]
             print "selectedHRTF size:"

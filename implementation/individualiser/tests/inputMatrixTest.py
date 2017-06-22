@@ -1,9 +1,9 @@
 import sys
 sys.path.append('../')
-import individualiser.indiv as indiv
+import individualiser.utility_functions as util
 import numpy as np
 
-data = indiv.prepareInputMatrix('CIPIC')
+data = util.prepareInputMatrix('CIPIC')
 inputMatrix = data[0]
 allSubjects = data[1]
 
