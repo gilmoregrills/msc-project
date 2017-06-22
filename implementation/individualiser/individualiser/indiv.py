@@ -12,20 +12,68 @@ def prepareInputMatrix(database, asHRTF=True):
     path = ""
     if database == "cipic" or database == "CIPIC":
         path = "../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/"
-    inputMatrix = [] #[(subject * direction) * samples]
-    allSubjects = [] #all subject data as matlab object thingies
+    
+    #initialise all variables
+    inputMatrix = []#[(subject * direction) * samples]
+    allSubjects = [] #ordered list of all subject data as matlab object thingies
     subjectDirs = sorted(os.listdir(path))
     subjectDirs.remove("show_data")
     print(subjectDirs)
+    
+    #gather all data for all subjects
     for subDir in subjectDirs: 
         subject = sio.loadmat(path+subDir+"/hrir_final.mat")
         print subject['name']
-        allSubjects.append(subject)
+        allSubjects.append(subject) 
     
+    #if required, fft all data
     if asHRTF == True:
-        return#fft on all HRIRs :|
-       #inputMatrix[counter] = sio.loadmat(folder+"/hrir_final.mat") 
-    return
+        for subject in allSubjects:
+            subject['hrir_l'] = np.fft.rfft(subject['hrir_l'])
+            subject['hrir_r'] = np.fft.rfft(subject['hrir_r'])
+    #instantiate inputMatrix array ahead of time because I'm bad at python tbh
+    inputMatrix = np.empty([len(allSubjects[0]['hrir_l'][0][0]), len(allSubjects[0]['hrir_l'])*len(allSubjects[0]['hrir_l'][0])*len(allSubjects)])
+
+    print inputMatrix.shape
+    print len(allSubjects)
+    print allSubjects[0]['hrir_l'].shape
+
+    #now arrange that data into the right matrix structure!
+    for sample in range(0, len(allSubjects[0]['hrir_l'][0][0])-1):
+        print "currently filling bin #"
+        print sample
+        counter = 0
+        for azimuth in range(0, len(allSubjects[0]['hrir_l'])-1):
+            #print "accessing aximuth: "
+            #print azimuth
+            for elevation in range(0, len(allSubjects[0]['hrir_l'][0])):
+                #print "accessing elevation: "
+                #print elevation
+                for subject in range(0, len(allSubjects)-1):
+                    #print "accessing subject: "
+                    #print subject['name']
+                    inputMatrix[sample][counter] = allSubjects[subject]['hrir_l'][azimuth][elevation][sample]
+                    counter = counter+1
+
+    if inputMatrix[0][0] == allSubjects[0]['hrir_l'][0][0][0]:
+        print "test1 success!"
+    else:
+        print "test1 failed"
+    if inputMatrix[100][0] == allSubjects[0]['hrir_l'][0][0][100]:
+        print "test2 success!"
+    else: 
+        print "test2 failed"
+    if inputMatrix[0][56249] == allSubjects[44]['hrir_l'][24][49][0]:
+        print "test3 success!"
+    else:
+        print "test3 failed"
+    if inputMatrix[100][56249] == allSubjects[44]['hrir_l'][24][49][100]:
+        print "test4 success!"
+    else:
+        print "test4 failed"
+
+    print inputMatrix.shape
+    return inputMatrix
 
 #PCA on an input Matrix, returning PCs, PCWs, etc
 def runPCA(inputMatrix):
