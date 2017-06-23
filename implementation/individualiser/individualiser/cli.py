@@ -29,8 +29,8 @@ while 1 != 2:
         subject_data = sio.loadmat("../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/subject_"+subject_reference+"/hrir_final.mat")
      
         #now select azimuth/elevation/side of head
-        print "\nLeft or right side? (l/r):"
-        sideRef = raw_input()
+        #print "\nLeft or right side? (l/r):"
+        sideRef = "l"#raw_input()
         subject_data = subject_data['hrir_'+sideRef]
         print "\nNext select an azimuth direction (0-24)"
         azimuth_reference = raw_input()
@@ -73,35 +73,67 @@ while 1 != 2:
         #show either one or both plots
         plot.show(block=False)
     
-    #NOW UPDATE WEIGHTS
-    puts(colored.green("\nWeight matrix:\n============="))
-    print ("print weight matrix here")
-    #print resulting weight matrix
-    while 1 != 2: 
-        print "\nEnter the index of the weight you would like to adjust:"
-        weight = raw_input()
+    #NOW PCA A SINGLE HRTF
+    print "\nPreparing single-hrtf input matrix for PCA, shape:"
+    data = util.restructure_data('CIPIC', True, False)
+    input_matrix = data[0]
+    print input_matrix.shape
+    print "\nCreating generalised HRTF, shape:"
+    general_hrtf = util.restructure_to_hrtf(input_matrix, False)
+    print general_hrtf.shape
+    f3 = plot.figure()
+    ax3 = f3.add_subplot(111)
+    ear = 0
+    if sideRef == 'l':
+        ear = 0
+    else:
+        ear = 1
+    ax3.plot(selected_freq, abs(general_hrtf[ear][azimuth_reference][elev_reference]))
+    ax3.set_title("average HRTF")
+    plot.show(block=False)
+    print "\nPreparing principal components and weights"
+    pca_model = util.train_pca(input_matrix, 10)
+    print "\nPCA model trained"
+    input_matrix = util.pca_transform(pca_model, input_matrix)
+    print "\nInput matrix transformed, new shape:"
+    print input_matrix.shape
     
-        print "\nEnter the new weight value:"
-        value = raw_input()
+    while 1 != 2: 
+        print "\nEnter the index of the source position you'd like to modify:"
+        position = raw_input()
+        print "\nCurrent component values:"
+        print input_matrix[position]
         
-        print "\nUpdating weight:"
-        with indent(2, quote='>'):
-            puts(colored.red(weight))
-        print "To value:"
-        with indent(2, quote='>'):
-            puts(colored.red(value))
+        while 1 != 2:
+            print "\nEnter the component you'd like to modify"
+            component = raw_input()
+            
+            print "\nComponent value is currently:"
+            print input_matrix[position][component]
+            print type(input_matrix[position][component])
 
-        print "\nWould you like to adjust any other weights? (yes/no)"
-        n = raw_input()
-        if n == "no":
+            print "\nWhat would you like to set it to?"
+            value = raw_input()
+
+            input_matrix[position][component] = np.float64(value)
+            
+            print "\nUpdate another component?"
+            n = raw_input()
+            if n == "no":
+                break
+
+        print "\nReconstructing individualised HRTF from PCWs..."
+        output_matrix = util.pca_reconstruct(pca_model, input_matrix)
+        output_matrix = util.restructure_to_hrtf(output_matrix, False)
+        #display graph from directionRef of new HRTF
+        f4 = plot.figure()
+        ax4 = f4.add_subplot(111)
+        ax4.plot(selected_freq, abs(general_hrtf[ear][azimuth_reference][elev_reference]))
+        ax4.set_title("customised HRTF")
+        plot.show(block=False)
+        print "\n Modified hrtf graph for same direction as above"
+        
+        print "\nWould you like to make any further adjustments? (yes/no)"
+        m = raw_input()
+        if m == "no":
             break
-
-    print "\nReconstructing individualised HRTF from PCWs..."
-    #call reconstruction function
-    #display graph from directionRef of new HRTF
-    print "new hrtf graph for same direction as above"
-
-    print "\nWould you like to make any further adjustments? (yes/no)"
-    m = raw_input()
-    if m == "no":
-        break

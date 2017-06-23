@@ -119,9 +119,9 @@ def restructure_to_hrtf(input_matrix, all_subjects):
             counter += 1
             input_r[n][m] = input_matrix[n][counter]
             counter += 1
-    print "\nCurrent Matrices:"
-    print input_l.shape
-    print input_r.shape
+    #print "\nCurrent Matrices:"
+    #print input_l.shape
+    #print input_r.shape
      
     # if working with a single HRTF
     if all_subjects == False:
