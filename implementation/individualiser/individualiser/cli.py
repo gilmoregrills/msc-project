@@ -19,53 +19,53 @@ print "\nRunning PCA and preparing PCWs for manipulation..."
 while 1 != 2:
     #FIRST, GENERATE MEASURED HRTF GRAPH AS REFERENCE
     print "\nWould you like to generate a reference graph from a measured HRTF/HRIR? (yes/no)"
-    genRef = raw_input()
-    if genRef == "yes":
+    gen_reference = raw_input()
+    if gen_reference == "yes":
         print "\nFirst select a subject from the CIPIC database for reference:" 
-        subjectRef = raw_input()
-        while len(subjectRef) < 3:
+        subject_reference = raw_input()
+        while len(subject_reference) < 3:
             puts(colored.red("Subjects in the CIPIC database are labeled with 3 digit numbers (padded from left with zeros)"))
-            subjectRef = raw_input()
-        subjectData = sio.loadmat("../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/subject_"+subjectRef+"/hrir_final.mat")
+            subject_reference = raw_input()
+        subject_data = sio.loadmat("../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/subject_"+subject_reference+"/hrir_final.mat")
      
         #now select azimuth/elevation/side of head
         print "\nLeft or right side? (l/r):"
         sideRef = raw_input()
-        subjectData = subjectData['hrir_'+sideRef]
+        subject_data = subject_data['hrir_'+sideRef]
         print "\nNext select an azimuth direction (0-24)"
-        azimuthRef = raw_input()
+        azimuth_reference = raw_input()
         print "\nNow an elevation level (0-49):"
-        elevRef = raw_input()
-        selectedHRIR = subjectData[azimuthRef][elevRef]
+        elev_reference = raw_input()
+        selected_hrir = subject_data[azimuth_reference][elev_reference]
         print "\nDisplay as HRTF as well as HRIR? (yes/no)"
         hr = raw_input()
         with indent(2, quote='>'):
-            puts("subject: "+colored.red(subjectRef))
-            puts("azimuth: "+colored.red(azimuthRef))
-            puts("elevation: "+colored.red(elevRef))
+            puts("subject: "+colored.red(subject_reference))
+            puts("azimuth: "+colored.red(azimuth_reference))
+            puts("elevation: "+colored.red(elev_reference))
             if hr == "yes":
                 puts("as hrtf?: "+colored.red("yes"))
             else:
                 puts("as hrtf?: "+colored.red("no"))
 
         if hr == "yes":
-            tmpHRTF = util.fourierTransform(selectedHRIR, False);
-            selectedFreq = tmpHRTF[1]#frequency spectrum, should be useful for acis labels?
-            selectedHRTF = tmpHRTF[0]
-            print "selectedHRTF size:"
-            print selectedHRTF.size
-            print selectedFreq
+            tmp_hrtf = util.fourier_transform(selected_hrir, False);
+            selected_freq = tmp_hrtf[1]#frequency spectrum, should be useful for acis labels?
+            selected_hrtf = tmp_hrtf[0]
+            print "selected_hrtf size:"
+            print selected_hrtf.size
+            print selected_freq
 
             f1 = plot.figure()
             ax1 = f1.add_subplot(111)
-            ax1.plot(selectedFreq, abs(selectedHRTF))
+            ax1.plot(selected_freq, abs(selected_hrtf))
             ax1.set_title("HRTF")
             #ax1.xlabel('frequency')
             #ax1.ylabel('magnitude?')
 
         f2 = plot.figure()
         ax2 = f2.add_subplot(111)
-        ax2.plot(selectedHRIR)
+        ax2.plot(selected_hrir)
         ax2.set_title("HRIR")
         #ax2.ylabel('magnitude?')
         #ax2.xlabel('time (ms)')

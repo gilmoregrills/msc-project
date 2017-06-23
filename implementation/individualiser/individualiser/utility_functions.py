@@ -4,57 +4,86 @@ import numpy as np
 import sklearn.decomposition as decomp
 
 #take database as input, prepare correct input matrix
-#should only be called when 
-def prepareInputMatrix(database, asHRTF=True):
+#var database is only 'cipic', 'ari', 'mit' etc
+#var as_hrtf, False produces restructured HRIR matrix
+#var all_participants is a boolean, if False produces input array of 1 subject
+#var two_dimensions is also a boolean
+def restructure_data(database, as_hrtf, all_participants, two_dimensions):
     #set the database path, atm only working with CIPIC
     path = ""
     if database == "cipic" or database == "CIPIC":
         path = "../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/"
     
     #initialise all variables
-    inputMatrix = []#[(subject * direction) * samples]
-    allSubjects = []#list of all subject data as matlab object thingies
-    subjectDirs = sorted(os.listdir(path))#subject directory names, chrono sorted
-    subjectDirs.remove("show_data")#remove the matlab scripts folder name
+    output_matrix = []#[(subject * direction) * samples]
+    all_subjects = []#list of all subject data as matlab object thingies
+    subject_dirs = sorted(os.listdir(path))#subject directory names, chrono sorted
+    subject_dirs.remove("show_data")#remove the matlab scripts folder name
     
     #gather data for each subject, append to list
-    for subDir in subjectDirs: 
-        subject = sio.loadmat(path+subDir+"/hrir_final.mat")
-        allSubjects.append(subject) 
+    for sub_dir in subject_dirs: 
+        subject = sio.loadmat(path+sub_dir+"/hrir_final.mat")
+        all_subjects.append(subject) 
     
     #if required, fft all data
-    if asHRTF == True:
-        for subject in allSubjects:
+    if as_hrtf == True:
+        for subject in all_subjects:
             subject['hrir_l'] = np.fft.rfft(subject['hrir_l'])
             subject['hrir_r'] = np.fft.rfft(subject['hrir_r'])
-    #instantiate inputMatrix array ahead of time because I'm bad at python tbh
-    inputMatrix = np.empty([len(allSubjects[0]['hrir_l'][0][0]), len(allSubjects[0]['hrir_l'])*len(allSubjects[0]['hrir_l'][0])*len(allSubjects)])
 
-    #now rearrange that data into the inputMatrix
-    for sample in range(0, len(allSubjects[0]['hrir_l'][0][0])):
-        counter = 0
-        for azimuth in range(0, len(allSubjects[0]['hrir_l'])):
+    #now rearrange that data into the currect output_matrix structure
+    if all_participants == True and two_dimensions == True:
+        output_matrix = np.empty([len(all_subjects[0]['hrir_l'][0][0]), len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0])*len(all_subjects)])
 
-            for elevation in range(0, len(allSubjects[0]['hrir_l'][0])):
+        for sample in range(0, len(all_subjects[0]['hrir_l'][0][0])):
+            counter = 0
+            for azimuth in range(0, len(all_subjects[0]['hrir_l'])):
+                for elevation in range(0, len(all_subjects[0]['hrir_l'][0])):
+                    for subject in range(0, len(all_subjects)): 
+                        output_matrix[sample][counter] = all_subjects[subject]['hrir_l'][azimuth][elevation][sample]
+                        #counter just provides a row index for inputmatrix
+                        counter = counter+1
 
-                for subject in range(0, len(allSubjects)):
-                    inputMatrix[sample][counter] = allSubjects[subject]['hrir_l'][azimuth][elevation][sample]
-                    #counter just provides a row index for inputmatrix
+    # generate a 200*1250*45 3D array containing data for every participant
+    elif all_participants == True and two_dimensions == False:
+        output_matrix = np.empty([len(all_subjects[0]['hrir_l'][0][0]), len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0]), len(all_subjects)])    
+        for sample in range(0, len(all_subjects[0]['hrir_l'][0][0])):
+            counter = 0
+            for azimuth in range(0, len(all_subjects[0]['hrir_l'])):
+                for elevation in range(0, len(all_subjects[0]['hrir_l'][0])):
+                    for subject in range(0, len(all_subjects)): 
+                        output_matrix[sample][counter][subject] = all_subjects[subject]['hrir_l'][azimuth][elevation][sample]
                     counter = counter+1
 
+    # generate a 200*1250 2D array representing the mean value of one participant 
+    elif all_participants == False and two_dimensions == True:
+        output_matrix = np.empty([len(all_subjects[0]['hrir_l'][0][0]), len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0])])
+        for sample in range(0, len(all_subjects[0]['hrir_l'][0][0])):
+            counter = 0
+            for azimuth in range(0, len(all_subjects[0]['hrir_l'])):
+                for elevation in range(0, len(all_subjects[0]['hrir_l'][0])):
+                    tmp = np.empty([45]) # temporary variable for calculating the mean HRTF
+                    for subject in range(0, len(all_subjects)): 
+                        tmp[subject] = all_subjects[subject]['hrir_l'][azimuth][elevation][sample]
+                    output_matrix[sample][counter] = np.mean(tmp)
+                    counter = counter+1
+
+
+
+
     #returning subject data for testing scripts
-    returnList = [inputMatrix, allSubjects]
-    return returnList
+    return_list = [output_matrix, all_subjects]
+    return return_list
 
 #PCA on an input Matrix, returning PCs, PCWs, etc
-def runPCA(inputMatrix, components):
+def run_pca(output_matrix, components):
     pca = decomp.PCA(n_components=components)
-    pca.fit(inputMatrix)
+    pca.fit(output_matrix)
     return pca
 
 
 #model PCWs as spherical harmonics
-def spherHarm(weights):
+def spher_harm(weights):
     return
 
 
@@ -66,30 +95,30 @@ def reconstruct(weights, components, mean):
 #uses the numpy.fft set of functions to transform input matrices 
 #if the inverse flag is true it calls the inverse fft, to go from
 #hrtf to hrir!
-def fourierTransform(inputData, inverse):
+def fourier_transform(input_data, inverse):
     print "\nStarting FFT \nInput matrix dimension is:"
-    print np.ndim(inputData)
+    print np.ndim(input_data)
     print "\nInput matrix length is:"
-    print inputData.size
+    print input_data.size
  
     if inverse == False:
-        returnList = ["", ""]
-        returnList[1] = np.fft.rfftfreq(inputData.size, d=1./44100)#to be used to label axes?
-        if np.ndim(inputData) == 1:
+        return_list = ["", ""]
+        return_list[1] = np.fft.rfftfreq(input_data.size, d=1./44100)#to be used to label axes?
+        if np.ndim(input_data) == 1:
             print("\nperforming 1D fft\n")
-            returnList[0] = np.fft.rfft(inputData)
-            return returnList
-        elif np.ndim(inputData) == 2:
+            return_list[0] = np.fft.rfft(input_data)
+            return return_list
+        elif np.ndim(input_data) == 2:
             print("\nperforming 2D fft\n")
-            returnList[0] = np.fft.rfft2(inputData) 
+            return_list[0] = np.fft.rfft2(input_data) 
         else:
             print("\nperforming ND fft\n")
-            returnList[0] = np.fft.rfftn(inputData)
+            return_list[0] = np.fft.rfftn(input_data)
 
     elif inverse == True:
-        if inputData.shape == 1:
-            return np.fft.ifft(inputData)
-        elif inputData.shape == 2:
-            return np.fft.ifft2(inputData)
+        if input_data.shape == 1:
+            return np.fft.ifft(input_data)
+        elif input_data.shape == 2:
+            return np.fft.ifft2(input_data)
         else:
-            return np.fft.ifftn(inputData)
+            return np.fft.ifftn(input_data)
