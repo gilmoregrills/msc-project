@@ -33,7 +33,7 @@ def restructure_data(database, as_hrtf, all_participants):
 
     # now rearrange that data into the currect output_matrix structure
     if all_participants == True:
-        output_matrix = np.empty([len(all_subjects[0]['hrir_l'][0][0])*2, len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0])*len(all_subjects)])
+        output_matrix = np.empty([len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0])*len(all_subjects), len(all_subjects[0]['hrir_l'][0][0])*2])
         output_sample_index = 0
         input_sample_index = 0
         for sample in range(0, len(all_subjects[0]['hrir_l'][0][0]*2)): 
@@ -41,15 +41,15 @@ def restructure_data(database, as_hrtf, all_participants):
             for azimuth in range(0, len(all_subjects[0]['hrir_l'])):
                 for elevation in range(0, len(all_subjects[0]['hrir_l'][0])):
                     for subject in range(0, len(all_subjects)): 
-                        output_matrix[output_sample_index][counter] = all_subjects[subject]['hrir_l'][azimuth][elevation][input_sample_index]
+                        output_matrix[counter][output_sample_index] = all_subjects[subject]['hrir_l'][azimuth][elevation][input_sample_index]
                         # counter just provides a row index for output_matrix
                         counter += 1
             output_sample_index += 1
             counter = 0
-            for azimuth in range(0, len(all_subjects[0]['hrir_l'])):
-                for elevation in range(0, len(all_subjects[0]['hrir_l'][0])):
+            for azimuth in range(0, len(all_subjects[0]['hrir_r'])):
+                for elevation in range(0, len(all_subjects[0]['hrir_r'][0])):
                     for subject in range(0, len(all_subjects)): 
-                        output_matrix[output_sample_index][counter] = all_subjects[subject]['hrir_r'][azimuth][elevation][input_sample_index]
+                        output_matrix[counter][output_sample_index] = all_subjects[subject]['hrir_r'][azimuth][elevation][input_sample_index]
                         # counter just provides a row index for output_matrix
                         counter += 1
             output_sample_index += 1
@@ -57,7 +57,7 @@ def restructure_data(database, as_hrtf, all_participants):
 
     # generate a 200*1250 2D array representing the mean value of one participant 
     elif all_participants == False:
-        output_matrix = np.empty([len(all_subjects[0]['hrir_l'][0][0])*2, len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0])])
+        output_matrix = np.empty([len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0]), len(all_subjects[0]['hrir_l'][0][0])*2])
         output_sample_index = 0
         input_sample_index = 0
         for sample in range(0, len(all_subjects[0]['hrir_l'][0][0])):
@@ -67,16 +67,16 @@ def restructure_data(database, as_hrtf, all_participants):
                     tmp = np.empty([45]) # temporary variable for calculating the mean HRTF
                     for subject in range(0, len(all_subjects)): 
                         tmp[subject] = all_subjects[subject]['hrir_l'][azimuth][elevation][input_sample_index]
-                    output_matrix[output_sample_index][counter] = np.mean(tmp)
+                    output_matrix[counter][output_sample_index] = np.mean(tmp)
                     counter += 1
             counter = 0
             output_sample_index += 1
-            for azimuth in range(0, len(all_subjects[0]['hrir_l'])):
-                for elevation in range(0, len(all_subjects[0]['hrir_l'][0])):
+            for azimuth in range(0, len(all_subjects[0]['hrir_r'])):
+                for elevation in range(0, len(all_subjects[0]['hrir_r'][0])):
                     tmp = np.empty([45]) # temporary variable for calculating the mean HRTF
                     for subject in range(0, len(all_subjects)): 
                         tmp[subject] = all_subjects[subject]['hrir_r'][azimuth][elevation][input_sample_index]
-                    output_matrix[output_sample_index][counter] = np.mean(tmp)
+                    output_matrix[counter][output_sample_index] = np.mean(tmp)
                     counter += 1
             output_sample_index += 1
             input_sample_index += 1
