@@ -80,8 +80,8 @@ else:
     print "test1 failed"
 
 if input_matrix[0][1] == test_mean2:
-    print "test1 success!"
+    print "test2 success!"
 else:
     print input_matrix[0][0]
     print test_mean2
-    print "test1 failed"
+    print "test2 failed"

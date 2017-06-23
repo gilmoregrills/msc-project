@@ -108,8 +108,9 @@ def spher_harm(weights):
 
 
 # reconstruct an HRTF from PCW etc
-def reconstruct(weights, components, mean):
-    return
+def restructure_to_hrtf(input_matrix):
+    
+    return output_matrix
 
 
 # uses the numpy.fft set of functions to transform input matrices 
