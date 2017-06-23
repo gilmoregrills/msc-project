@@ -3,7 +3,6 @@ sys.path.append('../')
 import individualiser.utility_functions as util
 import numpy as np
 
-
 print "\nTesting all_participants = True and two_dimensions = True\n"
 
 data = util.restructure_data('CIPIC', True, True)
@@ -51,6 +50,10 @@ else:
     print input_matrix.shape[0]
     print input_matrix.shape[1]
 
+print "\nAttempting to re-form HRTF set"
+reassembled_set = util.restructure_to_hrtf(input_matrix, True)
+print "\nFull HRTF set reassembled to SUBJECTxLRxAZIMUTHxELEVATION matrix"
+print reassembled_set.shape
 
 print "\nTesting all_participants = False and two_dimensions = True\n"
 
@@ -84,4 +87,18 @@ if input_matrix[0][1] == test_mean2:
 else:
     print input_matrix[0][0]
     print test_mean2
+    print "test2 failed"
+
+print "\nAttempting to re-form single HRTF"
+reassembled_matrix = util.restructure_to_hrtf(input_matrix, False)
+print "\nSingle HRTF matrix reassembled to L/R hrtfs"
+print reassembled_matrix.shape
+
+if test_mean1 == reassembled_matrix[0][0][0][0]:
+    print "test1 success!"
+else:
+    print "test1 failed"
+if test_mean2 == reassembled_matrix[1][0][0][0]:
+    print "test2 success!"
+else: 
     print "test2 failed"

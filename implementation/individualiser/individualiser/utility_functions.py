@@ -108,9 +108,47 @@ def spher_harm(weights):
 
 
 # reconstruct an HRTF from PCW etc
-def restructure_to_hrtf(input_matrix):
-    
-    return output_matrix
+def restructure_to_hrtf(input_matrix, all_subjects):
+    # First let's split input into L and R arrays
+    input_l = np.empty([len(input_matrix), len(input_matrix[0])/2])
+    input_r = np.empty([len(input_matrix), len(input_matrix[0])/2])
+    for n in range(0, len(input_l)):
+        counter = 0
+        for m in range(0, len(input_l[0])):
+            input_l[n][m] = input_matrix[n][counter]
+            counter += 1
+            input_r[n][m] = input_matrix[n][counter]
+            counter += 1
+    print "\nCurrent Matrices:"
+    print input_l.shape
+    print input_r.shape
+     
+    # if working with a single HRTF
+    if all_subjects == False:
+        hrtf_l = np.empty([25, 50, 101])
+        hrtf_r = np.empty([25, 50, 101])
+        counter2 = 0
+        for x in range(0, 25):
+            for y in range(0, 50):
+                hrtf_l[x][y] = input_l[counter2]
+                hrtf_r[x][y] = input_r[counter2]
+                counter2 += 1
+        output = np.array([hrtf_l, hrtf_r])
+
+    # else if working with the full DB
+    elif all_subjects == True:
+        hrtf_set = np.empty([45, 2, 25, 50, 101])
+        counter3 = 0
+        for x in range(0, 25):
+            for y in range(0, 50):
+                for z in range(0, 45):
+                    hrtf_set[z][0][x][y] = input_l[counter3]
+                    hrtf_set[z][1][x][y] = input_r[counter3]
+                    counter3 += 1
+        print counter3
+        output = hrtf_set
+
+    return output
 
 
 # uses the numpy.fft set of functions to transform input matrices 
