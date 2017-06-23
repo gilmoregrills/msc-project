@@ -6,7 +6,7 @@ import numpy as np
 
 print "\nTesting all_participants = True and two_dimensions = True\n"
 
-data = util.restructure_data('CIPIC', True, True, True)
+data = util.restructure_data('CIPIC', True, True)
 input_matrix = data[0]
 all_subjects = data[1]
 
@@ -42,46 +42,24 @@ if input_matrix.shape[0] == 101 and input_matrix.shape[1] == 56250:
 else:
     print "test5 failed"
 
-print "\nTesting all_participants = True and two_dimensions = False\n"
-
-data2 = util.restructure_data('CIPIC', True, True, False)
-input_matrix = data2[0]
-all_subjects = data2[1]
-
-print "Returned matrix shape:"
-print input_matrix.shape
-print "Number of participants:"
-print len(all_subjects)
-
-if input_matrix[0][0][0] == all_subjects[0]['hrir_l'][0][0][0]:
-    print "test1 success!"
-else:
-    print "test1 failed"
-if input_matrix[0][1][0] == all_subjects[0]['hrir_l'][0][1][0]:
-    print "test2 success!"
-else:
-    print "test2 failed"
-if input_matrix[100][1249][44] == all_subjects[44]['hrir_l'][24][49][100]:
-    print "test3 success!"
-else:
-    print "test3 failed"
-if input_matrix.shape[0] == 101 and input_matrix.shape[1] == 1250:
-    print "test4 success!"
-else:
-    print "test4 failed"
 
 print "\nTesting all_participants = False and two_dimensions = True\n"
 
-data3 = util.restructure_data('CIPIC', True, False, True)
+data3 = util.restructure_data('CIPIC', True, False)
 input_matrix = data3[0]
 all_subjects = data3[1]
+test_array = np.empty([45])
+for subject in range(0, len(all_subjects):
+    test_array[subject] = all_subjects[subject]['hrir_l'][0][0][0]
+    
+test_mean = np.mean(test_array)
 
 print "Returned matrix shape:"
 print input_matrix.shape
 print "Number of participants:"
 print len(all_subjects)
 
-if input_matrix[0][0] == np.mean(data3[0][0][0]):
+if input_matrix[0][0] == test_mean:
     print "test1 success!"
 else:
     print input_matrix[0][0]

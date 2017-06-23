@@ -8,7 +8,7 @@ import sklearn.decomposition as decomp
 #var as_hrtf, False produces restructured HRIR matrix
 #var all_participants is a boolean, if False produces input array of 1 subject
 #var two_dimensions is also a boolean
-def restructure_data(database, as_hrtf, all_participants, two_dimensions):
+def restructure_data(database, as_hrtf, all_participants):
     #set the database path, atm only working with CIPIC
     path = ""
     if database == "cipic" or database == "CIPIC":
@@ -32,7 +32,7 @@ def restructure_data(database, as_hrtf, all_participants, two_dimensions):
             subject['hrir_r'] = np.fft.rfft(subject['hrir_r'])
 
     #now rearrange that data into the currect output_matrix structure
-    if all_participants == True and two_dimensions == True:
+    if all_participants == True:
         output_matrix = np.empty([len(all_subjects[0]['hrir_l'][0][0]), len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0])*len(all_subjects)])
 
         for sample in range(0, len(all_subjects[0]['hrir_l'][0][0])):
@@ -44,19 +44,8 @@ def restructure_data(database, as_hrtf, all_participants, two_dimensions):
                         #counter just provides a row index for inputmatrix
                         counter = counter+1
 
-    # generate a 200*1250*45 3D array containing data for every participant
-    elif all_participants == True and two_dimensions == False:
-        output_matrix = np.empty([len(all_subjects[0]['hrir_l'][0][0]), len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0]), len(all_subjects)])    
-        for sample in range(0, len(all_subjects[0]['hrir_l'][0][0])):
-            counter = 0
-            for azimuth in range(0, len(all_subjects[0]['hrir_l'])):
-                for elevation in range(0, len(all_subjects[0]['hrir_l'][0])):
-                    for subject in range(0, len(all_subjects)): 
-                        output_matrix[sample][counter][subject] = all_subjects[subject]['hrir_l'][azimuth][elevation][sample]
-                    counter = counter+1
-
     # generate a 200*1250 2D array representing the mean value of one participant 
-    elif all_participants == False and two_dimensions == True:
+    elif all_participants == False:
         output_matrix = np.empty([len(all_subjects[0]['hrir_l'][0][0]), len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0])])
         for sample in range(0, len(all_subjects[0]['hrir_l'][0][0])):
             counter = 0
