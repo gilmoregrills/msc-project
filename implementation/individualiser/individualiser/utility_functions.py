@@ -3,53 +3,63 @@ import scipy.io as sio
 import numpy as np
 import sklearn.decomposition as decomp
 
-# take database as input, prepare correct input matrix
-# var database is only 'cipic', 'ari', 'mit' etc
-# var as_hrtf, False produces restructured HRIR matrix
-# var all_participants is a boolean, if False produces input array of 1 subject
-# var two_dimensions is also a boolean
-def restructure_data(database, as_hrtf, all_participants):
-    # set the database path, atm only working with CIPIC
+# take a database name as input, returns an array of data
+# for cipic full db, the structure is: [45, 2, 25, 50, 202/101]
+def fetch_database(database, as_hrtf):
     path = ""
-    if database == "cipic" or database == "CIPIC":
+    if database == "CIPIC" or database == "cipic":
         path = "../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/"
-    
-    # initialise all variables
-    output_matrix = []# [(subject * direction) * samples]
-    all_subjects = []# list of all subject data as matlab object thingies
+
     subject_dirs = sorted(os.listdir(path))# subject directory names, chrono sorted
     subject_dirs.remove("show_data")# remove the matlab scripts folder name
-    
+    all_subjects = []
+
     # gather data for each subject, append to list
     for sub_dir in subject_dirs: 
         subject = sio.loadmat(path+sub_dir+"/hrir_final.mat")
         all_subjects.append(subject) 
     
     # if required, fft all data
+    # MUST CHECK IF THIS IS FFT-ING CORRECTLY
     if as_hrtf == True:
         for subject in all_subjects:
             subject['hrir_l'] = np.fft.rfft(subject['hrir_l'])
             subject['hrir_r'] = np.fft.rfft(subject['hrir_r'])
+    
+    output_matrix = np.empty([45, 2, 25, 50, len(all_subjects[0]['hrir_l'][0][0])])
+    
+    for subject in range(0, len(all_subjects)):
+        output_matrix[subject][0] = all_subjects[subject]['hrir_l']
+        output_matrix[subject][1] = all_subjects[subject]['hrir_r']
+     
+    return output_matrix
+
+# take database matrix as input, restructures it for PCA
+# var all_participants is a boolean, if False produces input array of 1 subject
+def restructure_data(database_matrix, all_participants):
+    
+    # initialise outputs
+    output_matrix = []
 
     # now rearrange that data into the currect output_matrix structure
     if all_participants == True:
-        output_matrix = np.empty([len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0])*len(all_subjects), len(all_subjects[0]['hrir_l'][0][0])*2])
+        output_matrix = np.empty([len(database_matrix[0][0])*len(database_matrix[0][0][0])*len(database_matrix), len(database_matrix[0][0][0][0])*2])
         output_sample_index = 0
         input_sample_index = 0
-        for sample in range(0, len(all_subjects[0]['hrir_l'][0][0]*2)): 
+        for sample in range(0, len(database_matrix[0][0][0][0]*2)): 
             counter = 0
-            for azimuth in range(0, len(all_subjects[0]['hrir_l'])):
-                for elevation in range(0, len(all_subjects[0]['hrir_l'][0])):
-                    for subject in range(0, len(all_subjects)): 
-                        output_matrix[counter][output_sample_index] = all_subjects[subject]['hrir_l'][azimuth][elevation][input_sample_index]
+            for azimuth in range(0, len(database_matrix[0][0])):
+                for elevation in range(0, len(database_matrix[0][0][0])):
+                    for subject in range(0, len(database_matrix)): 
+                        output_matrix[counter][output_sample_index] = database_matrix[subject][0][azimuth][elevation][input_sample_index]
                         # counter just provides a row index for output_matrix
                         counter += 1
             output_sample_index += 1
             counter = 0
-            for azimuth in range(0, len(all_subjects[0]['hrir_r'])):
-                for elevation in range(0, len(all_subjects[0]['hrir_r'][0])):
-                    for subject in range(0, len(all_subjects)): 
-                        output_matrix[counter][output_sample_index] = all_subjects[subject]['hrir_r'][azimuth][elevation][input_sample_index]
+            for azimuth in range(0, len(database_matrix[0][1])):
+                for elevation in range(0, len(database_matrix[0][1][0])):
+                    for subject in range(0, len(database_matrix)): 
+                        output_matrix[counter][output_sample_index] = database_matrix[subject][1][azimuth][elevation][input_sample_index]
                         # counter just provides a row index for output_matrix
                         counter += 1
             output_sample_index += 1
@@ -57,33 +67,32 @@ def restructure_data(database, as_hrtf, all_participants):
 
     # generate a 200*1250 2D array representing the mean value of one participant 
     elif all_participants == False:
-        output_matrix = np.empty([len(all_subjects[0]['hrir_l'])*len(all_subjects[0]['hrir_l'][0]), len(all_subjects[0]['hrir_l'][0][0])*2])
+        output_matrix = np.empty([len(database_matrix[0][0])*len(database_matrix[0][0][0]), len(database_matrix[0][0][0][0])*2])
         output_sample_index = 0
         input_sample_index = 0
-        for sample in range(0, len(all_subjects[0]['hrir_l'][0][0])):
+        for sample in range(0, len(database_matrix[0][0][0][0])):
             counter = 0
-            for azimuth in range(0, len(all_subjects[0]['hrir_l'])):
-                for elevation in range(0, len(all_subjects[0]['hrir_l'][0])):
+            for azimuth in range(0, len(database_matrix[0][0])):
+                for elevation in range(0, len(database_matrix[0][0][0])):
                     tmp = np.empty([45]) # temporary variable for calculating the mean HRTF
-                    for subject in range(0, len(all_subjects)): 
-                        tmp[subject] = all_subjects[subject]['hrir_l'][azimuth][elevation][input_sample_index]
+                    for subject in range(0, len(database_matrix)): 
+                        tmp[subject] = database_matrix[subject][0][azimuth][elevation][input_sample_index]
                     output_matrix[counter][output_sample_index] = np.mean(tmp)
                     counter += 1
             counter = 0
             output_sample_index += 1
-            for azimuth in range(0, len(all_subjects[0]['hrir_r'])):
-                for elevation in range(0, len(all_subjects[0]['hrir_r'][0])):
+            for azimuth in range(0, len(database_matrix[0][1])):
+                for elevation in range(0, len(database_matrix[0][1][0])):
                     tmp = np.empty([45]) # temporary variable for calculating the mean HRTF
-                    for subject in range(0, len(all_subjects)): 
-                        tmp[subject] = all_subjects[subject]['hrir_r'][azimuth][elevation][input_sample_index]
+                    for subject in range(0, len(database_matrix)): 
+                        tmp[subject] = database_matrix[subject][1][azimuth][elevation][input_sample_index]
                     output_matrix[counter][output_sample_index] = np.mean(tmp)
                     counter += 1
             output_sample_index += 1
             input_sample_index += 1
 
     # returning subject data for testing scripts
-    return_list = [output_matrix, all_subjects]
-    return return_list
+    return output_matrix
 
 # creates PCA object and trains/fits it
 def train_pca(input_matrix, components):
@@ -108,7 +117,7 @@ def spher_harm(weights):
 
 
 # reconstruct an HRTF from PCW etc
-def restructure_to_hrtf(input_matrix, all_subjects):
+def restructure_inverse(input_matrix, all_subjects):
     # First let's split input into L and R arrays
     input_l = np.empty([len(input_matrix), len(input_matrix[0])/2])
     input_r = np.empty([len(input_matrix), len(input_matrix[0])/2])

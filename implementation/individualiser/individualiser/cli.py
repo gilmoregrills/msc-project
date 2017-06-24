@@ -75,11 +75,12 @@ while 1 != 2:
     
     #NOW PCA A SINGLE HRTF
     print "\nPreparing single-hrtf input matrix for PCA, shape:"
-    data = util.restructure_data('CIPIC', True, False)
+    database = fetch_database('cipic', True)
+    data = util.restructure_data(database, False)
     input_matrix = data[0]
     print input_matrix.shape
     print "\nCreating generalised HRTF, shape:"
-    general_hrtf = util.restructure_to_hrtf(input_matrix, False)
+    general_hrtf = util.restructure_inverse(input_matrix, False)
     print general_hrtf.shape
     f3 = plot.figure()
     ax3 = f3.add_subplot(111)
@@ -124,7 +125,7 @@ while 1 != 2:
 
         print "\nReconstructing individualised HRTF from PCWs..."
         output_matrix = util.pca_reconstruct(pca_model, input_matrix)
-        output_matrix = util.restructure_to_hrtf(output_matrix, False)
+        output_matrix = util.restructure_inverse(output_matrix, False)
         #display graph from directionRef of new HRTF
         f4 = plot.figure()
         ax4 = f4.add_subplot(111)
