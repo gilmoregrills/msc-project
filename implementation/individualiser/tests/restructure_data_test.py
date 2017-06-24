@@ -4,11 +4,22 @@ import individualiser.utility_functions as util
 import numpy as np
 
 print "\nFetching database data as 5D array"
-database = util.fetch_database('cipic', True)
+hrir_database = util.fetch_database('cipic')
 
 print "\Database fetched, shape: "
-print database.shape
+print hrir_database.shape
 
+database = np.empty([45, 2, 25, 50, 101])
+
+print "\nTransforming database to hrtf\n"
+for subject in range(0, 45):
+    for azimuth in range(0, 25):
+        for elevation in range(0, 50):
+            
+            database[subject][0][azimuth][elevation] = np.fft.rfft(hrir_database[subject][0][azimuth][elevation])
+            database[subject][1][azimuth][elevation] = np.fft.rfft(hrir_database[subject][1][azimuth][elevation])
+print "New shape:"
+print database.shape
 
 print "\nTesting all_participants = True and two_dimensions = True\n"
 
@@ -62,7 +73,7 @@ print reassembled_set.shape
 
 print "\nTesting all_participants = False and two_dimensions = True\n"
 
-input_matrix = util.restructure_data(database, False)
+input_matrix = util.restructure_data(util.average_hrtf(database), False)
 test_array1 = np.empty([45])
 test_array2 = np.empty([45])
 for subject in range(0, len(database)):
@@ -75,8 +86,6 @@ test_mean1 = np.mean(test_array1)
 
 print "Returned matrix shape:"
 print input_matrix.shape
-print "Number of participants:"
-print len(database)
 
 if input_matrix[0][0] == test_mean1:
     print "test1 success!"

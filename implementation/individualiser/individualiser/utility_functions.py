@@ -3,9 +3,10 @@ import scipy.io as sio
 import numpy as np
 import sklearn.decomposition as decomp
 
+
 # take a database name as input, returns an array of data
 # for cipic full db, the structure is: [45, 2, 25, 50, 202/101]
-def fetch_database(database, as_hrtf):
+def fetch_database(database):
     path = ""
     if database == "CIPIC" or database == "cipic":
         path = "../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/"
@@ -21,11 +22,6 @@ def fetch_database(database, as_hrtf):
     
     # if required, fft all data
     # MUST CHECK IF THIS IS FFT-ING CORRECTLY
-    if as_hrtf == True:
-        for subject in all_subjects:
-            subject['hrir_l'] = np.fft.rfft(subject['hrir_l'])
-            subject['hrir_r'] = np.fft.rfft(subject['hrir_r'])
-    
     output_matrix = np.empty([45, 2, 25, 50, len(all_subjects[0]['hrir_l'][0][0])])
     
     for subject in range(0, len(all_subjects)):
@@ -34,14 +30,33 @@ def fetch_database(database, as_hrtf):
      
     return output_matrix
 
+# takes as input a [45, 2, 25, 50, n] array
+# returns a [2, 25, 50, n] array
+def average_hrtf(database):
+    output_matrix = np.empty([2, len(database[0][0]), len(database[0][0][0]), len(database[0][0][0][0])])
+    sample_counter = 0
+    for sample in range(0, len(database[0][0][0][0])): 
+        for azimuth in range(0, len(database[0][0])):
+            for elevation in range(0, len(database[0][0][0])):
+                tmp_l = np.empty([len(database)])
+                tmp_r = np.empty([len(database)])
+                for subject in range(0, len(database)):
+                    tmp_l[subject] = database[subject][0][azimuth][elevation][sample]
+                    tmp_r[subject] = database[subject][1][azimuth][elevation][sample]
+                output_matrix[0][azimuth][elevation][sample] = np.mean(tmp_l)
+                output_matrix[1][azimuth][elevation][sample] = np.mean(tmp_r)
+    
+    return output_matrix
+
+
+
+
 # take database matrix as input, restructures it for PCA
 # var all_participants is a boolean, if False produces input array of 1 subject
-def restructure_data(database_matrix, all_participants):
-    
+def restructure_data(database_matrix, all_participants): 
     # initialise outputs
     output_matrix = []
 
-    # now rearrange that data into the currect output_matrix structure
     if all_participants == True:
         output_matrix = np.empty([len(database_matrix[0][0])*len(database_matrix[0][0][0])*len(database_matrix), len(database_matrix[0][0][0][0])*2])
         output_sample_index = 0
@@ -67,27 +82,24 @@ def restructure_data(database_matrix, all_participants):
 
     # generate a 200*1250 2D array representing the mean value of one participant 
     elif all_participants == False:
-        output_matrix = np.empty([len(database_matrix[0][0])*len(database_matrix[0][0][0]), len(database_matrix[0][0][0][0])*2])
+        output_matrix = np.empty([len(database_matrix[0])*len(database_matrix[0][0]), len(database_matrix[0][0][0])*2])
         output_sample_index = 0
         input_sample_index = 0
-        for sample in range(0, len(database_matrix[0][0][0][0])):
-            counter = 0
-            for azimuth in range(0, len(database_matrix[0][0])):
-                for elevation in range(0, len(database_matrix[0][0][0])):
-                    tmp = np.empty([45]) # temporary variable for calculating the mean HRTF
-                    for subject in range(0, len(database_matrix)): 
-                        tmp[subject] = database_matrix[subject][0][azimuth][elevation][input_sample_index]
-                    output_matrix[counter][output_sample_index] = np.mean(tmp)
+        counter = 0
+        for sample in range(0, len(database_matrix[0][0][0])):
+            for azimuth in range(0, len(database_matrix[0])):
+                for elevation in range(0, len(database_matrix[0][0])):
+                    output_matrix[counter][output_sample_index] = database_matrix[0][azimuth][elevation][sample]
                     counter += 1
+            print counter
             counter = 0
             output_sample_index += 1
-            for azimuth in range(0, len(database_matrix[0][1])):
-                for elevation in range(0, len(database_matrix[0][1][0])):
-                    tmp = np.empty([45]) # temporary variable for calculating the mean HRTF
-                    for subject in range(0, len(database_matrix)): 
-                        tmp[subject] = database_matrix[subject][1][azimuth][elevation][input_sample_index]
-                    output_matrix[counter][output_sample_index] = np.mean(tmp)
+            for azimuth in range(0, len(database_matrix[1])):
+                for elevation in range(0, len(database_matrix[1][0])):
+                    output_matrix[counter][output_sample_index] = database_matrix[1][azimuth][elevation][sample]
                     counter += 1
+            print counter 
+            counter = 0
             output_sample_index += 1
             input_sample_index += 1
 
@@ -161,9 +173,10 @@ def restructure_inverse(input_matrix, all_subjects):
 
 
 # uses the numpy.fft set of functions to transform input matrices 
-# if the inverse flag is true it calls the inverse fft, to go from
-# hrtf to hrir!
-def fourier_transform(input_data, inverse):
+# if the inverse flag is true it calls the inverse fft
+# specify whether it's full dataset of single set, there's 
+# a one-loop difference between processes
+def fourier_transform(input_data, inverse, all_subjects):
     print "\nStarting FFT \nInput matrix dimension is:"
     print np.ndim(input_data)
     print "\nInput matrix length is:"
@@ -171,22 +184,32 @@ def fourier_transform(input_data, inverse):
  
     if inverse == False:
         return_list = ["", ""]
-        return_list[1] = np.fft.rfftfreq(input_data.size, d=1./44100)# to be used to label axes?
-        if np.ndim(input_data) == 1:
-            print("\nperforming 1D fft\n")
-            return_list[0] = np.fft.rfft(input_data)
-            return return_list
-        elif np.ndim(input_data) == 2:
-            print("\nperforming 2D fft\n")
-            return_list[0] = np.fft.rfft2(input_data) 
-        else:
-            print("\nperforming ND fft\n")
-            return_list[0] = np.fft.rfftn(input_data)
+        return_list[1] = np.fft.rfftfreq(input_data.size, d=1./44100)# to be used to label axes
+        if all_subjects == True:
+            return_list[0] = np.empty([45, 2, 25, 50, 101])
+            for subject in range(0, 45):
+                for azimuth in range(0, 25):
+                    for elevation in range(0, 50):
+                        return_list[subject][0][azimuth][elevation] = np.fft.rfft(input_data[subject][0][azimuth][elevation])
+                        return_list[subject][1][azimuth][elevation] = np.fft.rfft[input_data[subject][1][azimuth][elevation])
+        if all_subjects == False:
+            return_list[0] = np.empty([2, 25, 50, 101])    
+                for azimuth in range(0, 25):
+                    for elevation in range(0, 50):
+                        return_list[0][azimuth][elevation] = np.fft.rfft(input_data[0][azimuth][elevation])
+                        return_list[1][azimuth][elevation] = np.fft.rfft[input_data[1][azimuth][elevation]) 
 
-    elif inverse == True:
-        if input_data.shape == 1:
-            return np.fft.ifft(input_data)
-        elif input_data.shape == 2:
-            return np.fft.ifft2(input_data)
-        else:
-            return np.fft.ifftn(input_data)
+    elif inverse == True: 
+        if all_subjects == True:
+            hrir = np.empty([45, 2, 25, 50, 200])
+            for subject in range(0, 45):
+                for azimuth in range(0, 25):
+                    for elevation in range(0, 50):
+                        return_list[subject][0][azimuth][elevation] = np.fft.irfft(input_data[subject][0][azimuth][elevation])
+                        return_list[subject][1][azimuth][elevation] = np.fft.irfft[input_data[subject][1][azimuth][elevation])
+        if all_subjects == False:
+            return_list[0] = np.empty([2, 25, 50, 200])    
+                for azimuth in range(0, 25):
+                    for elevation in range(0, 50):
+                        return_list[0][azimuth][elevation] = np.fft.irfft(input_data[0][azimuth][elevation])
+                        return_list[1][azimuth][elevation] = np.fft.irfft[input_data[1][azimuth][elevation]) 
