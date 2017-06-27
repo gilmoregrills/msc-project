@@ -1,6 +1,6 @@
 import sys
 sys.path.append('../')
-import lmdb_data.lmdb_interface as lmdb
+import lmdb_interface as lmdb
 import numpy as np
 
 print "\nGenerating Data"
