@@ -3,7 +3,7 @@ import numpy as np
 import utility_functions as util
 
 # creates PCA object and trains/fits it
-def train_pca(input_matrix, components):
+def train_model(input_matrix, components):
     pca = decomp.PCA(n_components=components)
     pca.fit(input_matrix)
     return pca

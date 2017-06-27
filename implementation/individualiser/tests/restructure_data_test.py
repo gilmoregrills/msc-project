@@ -6,18 +6,15 @@ import numpy as np
 print "\nFetching database data as 5D array"
 hrir_database = util.fetch_database('cipic')
 
-print "\Database fetched, shape: "
+print "\nDatabase fetched, shape: "
 print hrir_database.shape
 
 database = np.empty([45, 2, 25, 50, 101])
 
 print "\nTransforming database to hrtf\n"
-for subject in range(0, 45):
-    for azimuth in range(0, 25):
-        for elevation in range(0, 50):
-            
-            database[subject][0][azimuth][elevation] = np.fft.rfft(hrir_database[subject][0][azimuth][elevation])
-            database[subject][1][azimuth][elevation] = np.fft.rfft(hrir_database[subject][1][azimuth][elevation])
+data = util.fourier_transform(hrir_database, False, True)
+database = data[0]
+
 print "New shape:"
 print database.shape
 
@@ -71,9 +68,12 @@ reassembled_set = util.restructure_inverse(input_matrix, True)
 print "\nFull HRTF set reassembled to SUBJECTxLRxAZIMUTHxELEVATION matrix"
 print reassembled_set.shape
 
-print "\nTesting all_participants = False and two_dimensions = True\n"
 
-input_matrix = util.restructure_data(util.average_hrtf(database), False)
+print "\nTesting single average HRTF\n"
+
+average_hrtf = util.average_hrtf(database)
+
+input_matrix = util.restructure_data(average_hrtf, False)
 test_array1 = np.empty([45])
 test_array2 = np.empty([45])
 for subject in range(0, len(database)):
@@ -106,11 +106,9 @@ reassembled_matrix = util.restructure_inverse(input_matrix, False)
 print "\nSingle HRTF matrix reassembled to L/R hrtfs"
 print reassembled_matrix.shape
 
-if test_mean1 == reassembled_matrix[0][0][0][0]:
+if average_hrtf[0][0][0][0] == reassembled_matrix[0][0][0][0]:
     print "test1 success!"
 else:
-    print "test1 failed"
-if test_mean2 == reassembled_matrix[1][0][0][0]:
-    print "test2 success!"
-else: 
-    print "test2 failed"
+    print "test failed"
+
+

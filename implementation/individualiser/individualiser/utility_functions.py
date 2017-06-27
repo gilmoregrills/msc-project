@@ -10,7 +10,7 @@ import pca_functions as pca
 def fetch_database(database):
     path = ""
     if database == "CIPIC" or database == "cipic":
-        path = "../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/"
+        path = "../hrtf_data/CIPIC/CIPIC_hrtf_database/standard_hrir_database/"
 
     subject_dirs = sorted(os.listdir(path))# subject directory names, chrono sorted
     subject_dirs.remove("show_data")# remove the matlab scripts folder name
@@ -92,14 +92,12 @@ def restructure_data(database_matrix, all_participants):
                 for elevation in range(0, len(database_matrix[0][0])):
                     output_matrix[counter][output_sample_index] = database_matrix[0][azimuth][elevation][sample]
                     counter += 1
-            print counter
             counter = 0
             output_sample_index += 1
             for azimuth in range(0, len(database_matrix[1])):
                 for elevation in range(0, len(database_matrix[1][0])):
                     output_matrix[counter][output_sample_index] = database_matrix[1][azimuth][elevation][sample]
                     counter += 1
-            print counter 
             counter = 0
             output_sample_index += 1
             input_sample_index += 1
@@ -158,9 +156,9 @@ def restructure_inverse(input_matrix, all_subjects):
 def fourier_transform(input_data, inverse, all_subjects):
     print "\nStarting FFT \nInput matrix dimension is:"
     print np.ndim(input_data)
-    print "\nInput matrix length is:"
-    print input_data.size
- 
+    print "\nInput matrix is:"
+    print input_data.shape
+    return_list = "" 
     if inverse == False:
         return_list = ["", ""]
         return_list[1] = np.fft.rfftfreq(input_data.size, d=1./44100)# to be used to label axes
@@ -169,26 +167,28 @@ def fourier_transform(input_data, inverse, all_subjects):
             for subject in range(0, 45):
                 for azimuth in range(0, 25):
                     for elevation in range(0, 50):
-                        return_list[subject][0][azimuth][elevation] = np.fft.rfft(input_data[subject][0][azimuth][elevation])
-                        return_list[subject][1][azimuth][elevation] = np.fft.rfft[input_data[subject][1][azimuth][elevation])
+                        return_list[0][subject][0][azimuth][elevation] = np.fft.rfft(input_data[subject][0][azimuth][elevation])
+                        return_list[0][subject][1][azimuth][elevation] = np.fft.rfft(input_data[subject][1][azimuth][elevation])
         if all_subjects == False:
             return_list[0] = np.empty([2, 25, 50, 101])    
-                for azimuth in range(0, 25):
-                    for elevation in range(0, 50):
-                        return_list[0][azimuth][elevation] = np.fft.rfft(input_data[0][azimuth][elevation])
-                        return_list[1][azimuth][elevation] = np.fft.rfft[input_data[1][azimuth][elevation]) 
+            for azimuth in range(0, 25):
+                for elevation in range(0, 50):
+                    return_list[0][0][azimuth][elevation] = np.fft.rfft(input_data[0][azimuth][elevation])
+                    return_list[0][1][azimuth][elevation] = np.fft.rfft(input_data[1][azimuth][elevation])
 
     elif inverse == True: 
         if all_subjects == True:
-            hrir = np.empty([45, 2, 25, 50, 200])
+            return_list = np.empty([45, 2, 25, 50, 200])
             for subject in range(0, 45):
                 for azimuth in range(0, 25):
                     for elevation in range(0, 50):
                         return_list[subject][0][azimuth][elevation] = np.fft.irfft(input_data[subject][0][azimuth][elevation])
-                        return_list[subject][1][azimuth][elevation] = np.fft.irfft[input_data[subject][1][azimuth][elevation])
+                        return_list[subject][1][azimuth][elevation] = np.fft.irfft(input_data[subject][1][azimuth][elevation])
         if all_subjects == False:
-            return_list[0] = np.empty([2, 25, 50, 200])    
-                for azimuth in range(0, 25):
-                    for elevation in range(0, 50):
-                        return_list[0][azimuth][elevation] = np.fft.irfft(input_data[0][azimuth][elevation])
-                        return_list[1][azimuth][elevation] = np.fft.irfft[input_data[1][azimuth][elevation]) 
+            return_list = np.empty([2, 25, 50, 200])    
+            for azimuth in range(0, 25):
+                for elevation in range(0, 50):
+                    return_list[0][azimuth][elevation] = np.fft.irfft(input_data[0][azimuth][elevation])
+                    return_list[1][azimuth][elevation] = np.fft.irfft(input_data[1][azimuth][elevation])
+            
+    return return_list
