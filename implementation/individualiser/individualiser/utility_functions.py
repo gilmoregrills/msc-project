@@ -2,6 +2,7 @@ import os
 import scipy.io as sio
 import numpy as np
 import sklearn.decomposition as decomp
+import pca_functions as pca
 
 
 # take a database name as input, returns an array of data
@@ -105,28 +106,6 @@ def restructure_data(database_matrix, all_participants):
 
     # returning subject data for testing scripts
     return output_matrix
-
-# creates PCA object and trains/fits it
-def train_pca(input_matrix, components):
-    pca = decomp.PCA(n_components=components)
-    pca.fit(input_matrix)
-    return pca
-
-# takes a trained PCA object/model, and an input matrix, and returns the PCs/features
-def pca_transform(pca_model, input_matrix):
-    output_matrix = pca_model.transform(input_matrix)
-    return output_matrix
-
-# takes a trained PCA model with a previously-transformed input matrix, and returns
-# a matrix matching the original input (the restructured HRTF)
-def pca_reconstruct(pca_model, input_matrix):
-    output_matrix = pca_model.inverse_transform(input_matrix)
-    return output_matrix
-
-# model PCWs as spherical harmonics
-def spher_harm(weights):
-    return
-
 
 # reconstruct an HRTF from PCW etc
 def restructure_inverse(input_matrix, all_subjects):
