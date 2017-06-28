@@ -26,11 +26,11 @@ while 1 != 2:
         while len(subject_reference) < 3:
             puts(colored.red("Subjects in the CIPIC database are labeled with 3 digit numbers (padded from left with zeros)"))
             subject_reference = raw_input()
-        subject_data = sio.loadmat("../databases/CIPIC/CIPIC_hrtf_database/standard_hrir_database/subject_"+subject_reference+"/hrir_final.mat")
+        subject_data = sio.loadmat("../hrtf_data/CIPIC/CIPIC_hrtf_database/standard_hrir_database/subject_"+subject_reference+"/hrir_final.mat")
      
         #now select azimuth/elevation/side of head
-        #print "\nLeft or right side? (l/r):"
-        sideRef = "l"#raw_input()
+        print "\nLeft or right side? (l/r):"
+        sideRef = raw_input()
         subject_data = subject_data['hrir_'+sideRef]
         print "\nNext select an azimuth direction (0-24)"
         azimuth_reference = raw_input()
@@ -49,9 +49,9 @@ while 1 != 2:
                 puts("as hrtf?: "+colored.red("no"))
 
         if hr == "yes":
-            tmp_hrtf = util.fourier_transform(selected_hrir, False);
-            selected_freq = tmp_hrtf[1]#frequency spectrum, should be useful for acis labels?
-            selected_hrtf = tmp_hrtf[0]
+            tmp_hrtf = np.fft.rfft(selected_hrir)
+            selected_freq = np.fft.rfftfreq(len(selected_hrir), d=1./44100)#frequency spectrum, should be useful for acis labels?
+            selected_hrtf = np.fft.rfft(selected_hrir)
             print "selected_hrtf size:"
             print selected_hrtf.size
             print selected_freq
@@ -74,14 +74,14 @@ while 1 != 2:
         plot.show(block=False)
     
     #NOW PCA A SINGLE HRTF
-    print "\nPreparing single-hrtf input matrix for PCA, shape:"
-    database = fetch_database('cipic', True)
-    data = util.restructure_data(database, False)
-    input_matrix = data[0]
-    print input_matrix.shape
-    print "\nCreating generalised HRTF, shape:"
-    general_hrtf = util.restructure_inverse(input_matrix, False)
-    print general_hrtf.shape
+    print "\nPreparing single-hrtf input matrix for PCA"
+    database = util.fetch_database('cipic')
+    avg_hrir = util.average_hrtf(database)
+    fftd = util.fourier_transform(avg_hrir, False, False)
+    avg_hrtf = fftd[0]
+    pca_data = util.restructure_data(avg_hrtf, False)
+    
+    print "\nPlotting results:"
     f3 = plot.figure()
     ax3 = f3.add_subplot(111)
     ear = 0
@@ -92,31 +92,32 @@ while 1 != 2:
     ax3.plot(selected_freq, abs(general_hrtf[ear][azimuth_reference][elev_reference]))
     ax3.set_title("average HRTF")
     plot.show(block=False)
+
     print "\nPreparing principal components and weights"
-    pca_model = util.train_pca(input_matrix, 10)
+    pca_model = util.train_model(pca_data, 10)
     print "\nPCA model trained"
-    input_matrix = util.pca_transform(pca_model, input_matrix)
+    pca_data_transformed = util.pca_transform(pca_model, pca_data)
     print "\nInput matrix transformed, new shape:"
-    print input_matrix.shape
+    print pca_data_transformed.shape
     
     while 1 != 2: 
         print "\nEnter the index of the source position you'd like to modify:"
         position = raw_input()
         print "\nCurrent component values:"
-        print input_matrix[position]
+        print pca_data_transformed[position]
         
         while 1 != 2:
             print "\nEnter the component you'd like to modify"
             component = raw_input()
             
             print "\nComponent value is currently:"
-            print input_matrix[position][component]
-            print type(input_matrix[position][component])
+            print pca_data_transformed[position][component]
+            print type(pca_data_transformed[position][component])
 
-            print "\nWhat would you like to set it to?"
+            print "\nEnter the new value:"
             value = raw_input()
 
-            input_matrix[position][component] = np.float64(value)
+            pca_data_transformed[position][component] = np.float64(value)
             
             print "\nUpdate another component?"
             n = raw_input()
@@ -124,12 +125,12 @@ while 1 != 2:
                 break
 
         print "\nReconstructing individualised HRTF from PCWs..."
-        output_matrix = util.pca_reconstruct(pca_model, input_matrix)
-        output_matrix = util.restructure_inverse(output_matrix, False)
+        pca_data = util.pca_reconstruct(pca_model, pca_data_transformed)
+        custom_hrtf = util.restructure_inverse(pca_data, False)
         #display graph from directionRef of new HRTF
         f4 = plot.figure()
         ax4 = f4.add_subplot(111)
-        ax4.plot(selected_freq, abs(general_hrtf[ear][azimuth_reference][elev_reference]))
+        ax4.plot(selected_freq, abs(custom_hrtf[ear][azimuth_reference][elev_reference]))
         ax4.set_title("customised HRTF")
         plot.show(block=False)
         print "\n Modified hrtf graph for same direction as above"

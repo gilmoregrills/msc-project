@@ -21,8 +21,6 @@ def fetch_database(database):
         subject = sio.loadmat(path+sub_dir+"/hrir_final.mat")
         all_subjects.append(subject) 
     
-    # if required, fft all data
-    # MUST CHECK IF THIS IS FFT-ING CORRECTLY
     output_matrix = np.empty([45, 2, 25, 50, len(all_subjects[0]['hrir_l'][0][0])])
     
     for subject in range(0, len(all_subjects)):
