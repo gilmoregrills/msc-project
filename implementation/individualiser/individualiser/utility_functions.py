@@ -152,10 +152,6 @@ def restructure_inverse(input_matrix, all_subjects):
 # specify whether it's full dataset of single set, there's 
 # a one-loop difference between processes
 def fourier_transform(input_data, inverse, all_subjects):
-    print "\nStarting FFT \nInput matrix dimension is:"
-    print np.ndim(input_data)
-    print "\nInput matrix is:"
-    print input_data.shape
     return_list = "" 
     if inverse == False:
         return_list = ["", ""]
