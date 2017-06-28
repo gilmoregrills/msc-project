@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plot
 from clint.textui import puts, colored, indent
 import utility_functions as util
+import pca_functions as pc
 
 
 puts(colored.green("\nIndividualiser Test CLI \n======================="))
@@ -72,6 +73,10 @@ while 1 != 2:
 
         #show either one or both plots
         plot.show(block=False)
+    elif gen_reference == 'no':
+        sideRef = 'l'
+        azimuth_reference = 0
+        elev_reference = 0
     
     #NOW PCA A SINGLE HRTF
     print "\nPreparing single-hrtf input matrix for PCA"
@@ -87,16 +92,16 @@ while 1 != 2:
     ear = 0
     if sideRef == 'l':
         ear = 0
-    else:
+    elif sideRef == 'r':
         ear = 1
-    ax3.plot(selected_freq, abs(general_hrtf[ear][azimuth_reference][elev_reference]))
+    ax3.plot(selected_freq, abs(avg_hrtf[ear][azimuth_reference][elev_reference]))
     ax3.set_title("average HRTF")
     plot.show(block=False)
 
     print "\nPreparing principal components and weights"
-    pca_model = util.train_model(pca_data, 10)
+    pca_model = pc.train_model(pca_data, 10)
     print "\nPCA model trained"
-    pca_data_transformed = util.pca_transform(pca_model, pca_data)
+    pca_data_transformed = pc.pca_transform(pca_model, pca_data)
     print "\nInput matrix transformed, new shape:"
     print pca_data_transformed.shape
     
@@ -115,9 +120,11 @@ while 1 != 2:
             print type(pca_data_transformed[position][component])
 
             print "\nEnter the new value:"
-            value = raw_input()
+            value = np.float64(raw_input())
 
-            pca_data_transformed[position][component] = np.float64(value)
+            pca_data_transformed.put([position, component], value)
+            print "\nNew component value is:"
+            print pca_data_transformed[position][component]
             
             print "\nUpdate another component?"
             n = raw_input()
@@ -125,7 +132,7 @@ while 1 != 2:
                 break
 
         print "\nReconstructing individualised HRTF from PCWs..."
-        pca_data = util.pca_reconstruct(pca_model, pca_data_transformed)
+        pca_data = pc.pca_reconstruct(pca_model, pca_data_transformed)
         custom_hrtf = util.restructure_inverse(pca_data, False)
         #display graph from directionRef of new HRTF
         f4 = plot.figure()
