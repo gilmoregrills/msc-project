@@ -14,9 +14,9 @@ namespace Phonon
             HRTFParams hrtfParams = new HRTFParams
             {
 				//yoooo I can set custom HRTFS with this set to "Custom"
-                type = HRTFDatabaseType.Custom,
+                type = HRTFDatabaseType.Default,
                 hrtfData = IntPtr.Zero, //set to zero always apparently
-                numHrirSamples = 200, //the number of samples in my custom hrirs
+                numHrirSamples = 0, //the number of samples in my custom hrirs
 				//gotta implement these callbacks to be able to use custom hrtfs yo! 
                 loadCallback = null, //this should point to a function that loads/fft's hrtfs?
                 unloadCallback = null, //called when renderer is destroyed
