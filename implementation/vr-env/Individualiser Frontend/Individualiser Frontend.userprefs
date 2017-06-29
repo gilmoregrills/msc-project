@@ -2,12 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Phonon\Simulator\BinauralRenderer.cs">
     <Files>
-      <File FileName="Assets\Phonon\Core\Editor\PhononGUI.cs" Line="28" Column="6" />
-      <File FileName="Assets\Phonon\Simulator\PhononSource.cs" Line="314" Column="38" />
-      <File FileName="Assets\Phonon\Simulator\BinauralRenderer.cs" Line="20" Column="74" />
-      <File FileName="Assets\Phonon\Core\PhononCore.cs" Line="137" Column="30" />
-      <File FileName="Assets\Phonon\Core\AudioEngine.cs" Line="1" Column="1" />
-      <File FileName="Assets\Phonon\Core\PhononCommon.cs" Line="170" Column="5" />
+      <File FileName="Assets\Phonon\Core\Editor\PhononGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Phonon\Simulator\PhononSource.cs" Line="1" Column="1" />
+      <File FileName="Assets\Phonon\Simulator\BinauralRenderer.cs" Line="21" Column="28" />
+      <File FileName="Assets\Phonon\Core\PhononCore.cs" Line="1" Column="1" />
+      <File FileName="Assets\Phonon\Core\PhononCommon.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

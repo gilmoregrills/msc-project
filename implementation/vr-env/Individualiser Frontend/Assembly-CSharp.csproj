@@ -109,11 +109,14 @@
      <Compile Include="Assets\Phonon\Simulator\SimulationSettingsPreset.cs" />
      <Compile Include="Assets\Phonon\Simulator\SimulationSettingsPresetList.cs" />
      <Compile Include="Assets\Phonon\Simulator\SimulationSettingsValue.cs" />
+     <Compile Include="Assets\UserScripts\VRMouseLook.cs" />
+     <None Include="Assets\Wilberforce Wireframe\Documentation\ReadMe.txt" />
      <None Include="Assets\OVR\Editor\AndroidManifest.OVRSubmission.xml" />
      <None Include="Assets\OVR\Shaders\OVRColorRampAlpha.shader" />
      <None Include="Assets\OVR\Shaders\Unlit Crosshair.shader" />
      <None Include="Assets\OVR\Resources\Unlit Transparent Color.shader" />
      <None Include="Assets\OVR\Resources\Underlay Transparent Occluder.shader" />
+     <None Include="Assets\Wilberforce Wireframe\Assets\Shaders\Wireframe.shader" />
      <None Include="Assets\OVR\Resources\Underlay Impostor.shader" />
      <None Include="Assets\OVR\Plugins\placeholder.txt" />
  <Reference Include="UnityEngine.UI">
