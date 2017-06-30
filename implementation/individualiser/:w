@@ -32,15 +32,8 @@ def main(args=None):
                 print "receiving localisation vector, triggering algorithm..."
                 print "vector data: ", data
                 conn.close()
-                # read received data into memory then close the 
-                # connection
-                # trigger algo functions, somehow make it non-blocking?
-                # spawn a new thread so requests like the one below can still
-                # come in?
             elif s.getsockname()[1] == 8080:
                 print "received a request for an hrtf, sending from lmdb..."
-                # fetch latest custom HRTF from lmdb, it'll always be in the
-                # same place as old ones get archived
                 conn.send("hrtf")
                 conn.close()
             else:

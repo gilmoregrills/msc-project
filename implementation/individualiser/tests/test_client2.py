@@ -2,12 +2,10 @@ import sys
 import socket
 
 host = socket.gethostname()
-port = 8080
+port = 8888
 
 sock = socket.socket()
 
 sock.connect((host, port))
-sock.send("hrtf pls")
-returned = sock.recv(4096)
-print returned
+sock.send("[example vector data from the client]")
 sock.close()
