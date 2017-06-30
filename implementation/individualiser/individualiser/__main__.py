@@ -3,13 +3,18 @@ import individualiser as ind
 import socket as socket
 import select
 import lmdb_interface as lmdb
-import pca_functions as pca
-import utility_functions as util
+
+# Main individualiser process
+# should be running before the frontend
+# frontend should ping both ports on 
+# awake/start to get a generalised HRTF
+# and test the process
 
 def main(args=None):
     if args is None:
         args = sys.argv[1:]
-    print "This routine should handle the general running of the individualiser"
+    # should potentially open connection to lmdb here
+    print "Individualiser Running!"
     in_port = 8888
     out_port = 8080
     host = socket.gethostname()
@@ -20,15 +25,16 @@ def main(args=None):
     
     sock_out.listen(5)
     sock_in.listen(5)
+    print "Sockets listening on their respective ports"
     
     sockets = [sock_out, sock_in]
     while True:
         ready_sockets,_,_ = select.select(sockets, [], [])
         for s in ready_sockets:
             conn, addr = s.accept()
-            print "received conn from:", addr
+            print "received connection from:", addr
             if s.getsockname()[1] == 8888:
-                data = conn.recv(1024)# the vector data I will feed the algo
+                data = conn.recv(4096)# the vector data I will feed the algo
                 print "receiving localisation vector, triggering algorithm..."
                 print "vector data: ", data
                 conn.close()
@@ -46,6 +52,8 @@ def main(args=None):
             else:
                 print "error"
                 conn.close()
+
+    # should potentially close the connection to lmdb here
 
 if __name__ == "__main__":
     main()
