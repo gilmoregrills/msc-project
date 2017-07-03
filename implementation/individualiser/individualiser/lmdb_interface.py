@@ -15,7 +15,7 @@ def store(key, value):
     # pickle the value, cast key to byte string
     # python 2.7 string type might work anyway
     value = cpk.dumps(value)
-    env = lmdb.open("data", map_size=1139520384)
+    env = lmdb.open("data", map_size=2000011200)
     #transaction part
     with env.begin(write=True) as txn:
         result = txn.put(key, value)
