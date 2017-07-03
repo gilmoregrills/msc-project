@@ -88,6 +88,14 @@ with indent(4, quote='>'):
     puts(str(x[10]))
 lmdb.store('single_pca_transformed', single_pca_transformed)
 
+custom_hrtf = pca.pca_reconstruct(single_pca_model, single_pca_transformed)
+custom_hrtf = util.restructure_inverse(custom_hrtf, False)
+puts(colored.green("storing custom hrtf reconstructed from pca data, size:"))
+with indent(4, quote='>'):
+    x[11] = custom_hrtf.nbytes
+    puts(str(x[11]))
+lmdb.store('custom_hrtf', custom_hrtf)
+
 puts(colored.green("Total data stored:"))
 with indent(4, quote='>'):
     total_data = x.sum()
