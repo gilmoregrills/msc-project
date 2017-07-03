@@ -1,15 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UserScripts\PlaySample.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Phonon\Simulator\BinauralRenderer.cs">
     <Files>
-      <File FileName="Assets\UserScripts\TransmitVector.cs" Line="22" Column="86" />
-      <File FileName="Assets\Phonon\Core\Editor\PhononGUI.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\Phonon\Simulator\PhononSource.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\Phonon\Simulator\BinauralRenderer.cs" Line="19" Column="35" NotebookId="1" />
-      <File FileName="Assets\Phonon\Core\PhononCore.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\Phonon\Core\PhononCommon.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\UserScripts\RandomPosition.cs" Line="28" Column="23" NotebookId="1" />
-      <File FileName="Assets\UserScripts\PlaySample.cs" Line="17" Column="33" NotebookId="1" />
+      <File FileName="Assets\UserScripts\TransmitVector.cs" Line="36" Column="50" />
+      <File FileName="Assets\Phonon\Simulator\BinauralRenderer.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

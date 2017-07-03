@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Net.Sockets;
 
 public class TransmitVector : MonoBehaviour {
 	
@@ -9,6 +10,9 @@ public class TransmitVector : MonoBehaviour {
 	GameObject user;
 	GameObject source;
 	GameObject reticle;
+	System.Net.Sockets.TcpClient clientSocket;
+	NetworkStream serverStream;
+	byte[] output;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +29,12 @@ public class TransmitVector : MonoBehaviour {
 			userLocalisation = reticle.transform.position - user.transform.position;
 			print ("Actual vector from user to sound source =" + userToSource.ToString ());
 			print ("Perceived vector from user to sound source =" + userLocalisation.ToString ());
+			output = System.Text.Encoding.ASCII.GetBytes (userToSource.ToString () + userLocalisation.ToString ());
+			clientSocket = new System.Net.Sockets.TcpClient ();
+			clientSocket.Connect ("127.0.0.1", 8881);
+			serverStream = clientSocket.GetStream ();
+			serverStream.Write (output, 0, output.Length);
+			serverStream.Flush ();
 		}
 			//calculate the current vector, send
 			//that information to listening socket

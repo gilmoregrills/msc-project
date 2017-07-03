@@ -1,0 +1,8 @@
+*.swp
+*.swo
+/implementation/individualiser/individualiser/scripts/data/
+/implementation/individualiser/hrtf_data
+/implementation/individualiser/hrtf_individualiser.egg-info
+/implementation/individualiser/dist
+/implementation/individualiser/build
+*~
