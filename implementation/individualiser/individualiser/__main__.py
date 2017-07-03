@@ -1,5 +1,4 @@
 import sys
-import individualiser as ind
 import socket as socket
 import select
 import lmdb_interface as lmdb
@@ -15,9 +14,10 @@ def main(args=None):
         args = sys.argv[1:]
     # should potentially open connection to lmdb here
     print "Individualiser Running!"
-    in_port = 8888
+    in_port = 8881
     out_port = 8080
-    host = socket.gethostname()
+    host = "127.0.0.1"# hardcoded to work on windows + linux
+    print "the host is: ", host
     sock_in = socket.socket()
     sock_out = socket.socket()
     sock_in.bind((host, in_port))
@@ -32,8 +32,8 @@ def main(args=None):
         ready_sockets,_,_ = select.select(sockets, [], [])
         for s in ready_sockets:
             conn, addr = s.accept()
-            print "received connection from:", addr
-            if s.getsockname()[1] == 8888:
+            print "received connection from:", addr, "into", s.getsockname()
+            if s.getsockname()[1] == 8881:
                 data = conn.recv(4096)# the vector data I will feed the algo
                 print "receiving localisation vector, triggering algorithm..."
                 print "vector data: ", data
