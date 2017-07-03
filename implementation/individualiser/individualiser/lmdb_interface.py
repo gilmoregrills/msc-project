@@ -3,7 +3,7 @@ import numpy as np
 import cPickle as cpk
 
 def open():
-    env = lmdb.open("data", map_size=2000011200)
+    env = lmdb.open("../data/", map_size=2000011200, subdir=True)
     return env
 
 
@@ -15,7 +15,7 @@ def store(key, value):
     # pickle the value, cast key to byte string
     # python 2.7 string type might work anyway
     value = cpk.dumps(value)
-    env = lmdb.open("data", map_size=2000011200)
+    env = open()
     #transaction part
     with env.begin(write=True) as txn:
         result = txn.put(key, value)
@@ -25,7 +25,7 @@ def store(key, value):
 
 def fetch(key):
     #takes key, returns pickled object/thing
-    env = lmdb.open("data", map_size=2000011200)
+    env = open()
     with env.begin(write=False) as txn:
         result = txn.get(key)
         result = cpk.loads(result)
@@ -34,7 +34,7 @@ def fetch(key):
 
 
 def delete(key):
-    env = lmdb.open("data", map_size=2000011200)
+    env = open()
     with env.begin(write=True) as txn:
         result = txn.delete(key) 
         return result
