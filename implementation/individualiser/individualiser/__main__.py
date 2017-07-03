@@ -47,7 +47,8 @@ def main(args=None):
                 print "received a request for an hrtf, sending from lmdb..."
                 # fetch latest custom HRTF from lmdb, it'll always be in the
                 # same place as old ones get archived
-                conn.send("hrtf")
+                latest_hrtf = lmdb.fetch("custom_hrtf")
+                conn.send(latest_hrtf)
                 conn.close()
             else:
                 print "error"
