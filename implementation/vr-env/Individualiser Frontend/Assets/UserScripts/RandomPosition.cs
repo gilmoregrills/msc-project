@@ -24,6 +24,9 @@ public class RandomPosition : MonoBehaviour {
 			currentRotation = audioSource.transform.rotation;
 			print ("current position = " + currentPosition);
 			audioSource.transform.SetPositionAndRotation((Random.insideUnitSphere.normalized * 10), currentRotation);
+			while (audioSource.transform.position.y < -5) {
+				audioSource.transform.SetPositionAndRotation((Random.insideUnitSphere.normalized * 10), currentRotation);
+			}
 			audioSource.transform.LookAt (new Vector3 (0, 0, 0));
 			//play audio sample
 		}
