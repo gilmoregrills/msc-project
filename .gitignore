@@ -1,3 +1,4 @@
+.gitignore
 *.swp
 *.swo
 /implementation/individualiser/individualiser/scripts/data/
@@ -6,3 +7,5 @@
 /implementation/individualiser/dist
 /implementation/individualiser/build
 *~
+other_work/
+other-work/
