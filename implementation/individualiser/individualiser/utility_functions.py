@@ -7,9 +7,8 @@ import pca_functions as pca
 
 # take a database name as input, returns an array of data
 # for cipic full db, the structure is: [45, 2, 25, 50, 202/101]
-def fetch_database(database):
-    path = ""
-    if database == "CIPIC" or database == "cipic":
+def fetch_database(path):
+    if path == "CIPIC" or path == "cipic":
         path = "../hrtf_data/CIPIC/CIPIC_hrtf_database/standard_hrir_database/"
 
     subject_dirs = sorted(os.listdir(path))# subject directory names, chrono sorted
