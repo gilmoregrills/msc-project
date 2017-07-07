@@ -2,6 +2,7 @@ import sys
 import socket as socket
 import select
 import lmdb_interface as lmdb
+import json
 
 # Main individualiser process
 # should be running before the frontend
@@ -13,6 +14,7 @@ def main(args=None):
     if args is None:
         args = sys.argv[1:]
     # should potentially open connection to lmdb here
+    lmdb.open()# there should be a scenario under which this is closed, too
     print "Individualiser Running!"
     in_port = 8881
     out_port = 8080
@@ -48,7 +50,12 @@ def main(args=None):
                 # fetch latest custom HRTF from lmdb, it'll always be in the
                 # same place as old ones get archived
                 latest_hrtf = lmdb.fetch("custom_hrtf")
-                conn.send(latest_hrtf)
+                print "transforming to json to send"
+                latest_hrtf = latest_hrtf.tolist()
+                output = json.dumps(latest_hrtf)
+                print "json ready, sending"
+                conn.send(output)
+                print "sent!"
                 conn.close()
             else:
                 print "error"
