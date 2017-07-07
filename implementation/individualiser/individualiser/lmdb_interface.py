@@ -3,7 +3,7 @@ import numpy as np
 import cPickle as cpk
 
 def open():
-    env = lmdb.open("../data/", map_size=2000011200, subdir=True)
+    env = lmdb.open("data/", map_size=2000011200, subdir=True)
     return env
 
 

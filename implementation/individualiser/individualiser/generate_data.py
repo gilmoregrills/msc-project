@@ -1,8 +1,7 @@
-import sys
-sys.path.append('../')
-import individualiser.utility_functions as util
-import individualiser.pca_functions as pca
-import individualiser.lmdb_interface as lmdb
+import sys as sys
+import utility_functions as util
+import pca_functions as pca
+import lmdb_interface as lmdb
 from clint.textui import puts, colored, indent
 import numpy as np
 
@@ -15,7 +14,7 @@ import numpy as np
 x = np.zeros([20])
 puts("Generating data for full database")
 
-cipic_hrir = util.fetch_database('cipic')
+cipic_hrir = util.fetch_database("cipic")
 puts(colored.green("storing cipic hrir dataset, size:"))
 with indent(4, quote='>'):
     x[1] = cipic_hrir.nbytes
