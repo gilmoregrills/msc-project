@@ -14,10 +14,9 @@ namespace Phonon
 		NetworkStream serverStream;
 		byte[] inputData;
 		string asString;
-		JSONNode asJson;
 		float[][][] leftEarHrtfs;
 		float[][][] rightEarHrtfs;
-        
+        float[][][][] fullHrtf;
 
         public void Create(Environment environment, RenderingSettings renderingSettings, GlobalContext globalContext)
         {
@@ -61,7 +60,7 @@ namespace Phonon
             serverStream = clientSocket.GetStream();
             serverStream.Read(inputData, 0, inputData.Length);
             asString = System.Text.Encoding.Default.GetString(inputData);
-            float[][][][] fullHrtf = Newtonsoft.Json.JsonConvert.DeserializeObject<float[][][][]>(asString);
+            fullHrtf = Newtonsoft.Json.JsonConvert.DeserializeObject<float[][][][]>(asString);
             Debug.Log("dimensions of input hrtf: ");
             Debug.Log(fullHrtf.Length);
             Debug.Log(fullHrtf[0].Length);
@@ -72,13 +71,15 @@ namespace Phonon
             Debug.Log("length of L/R hrtf arrays: (should be 25)");
             Debug.Log(leftEarHrtfs.Length);
             Debug.Log(rightEarHrtfs.Length);
-            
         }
 		public void onUnloadHrtf()
 		{
-			//takes L and R hrir arrays! basically deletes
-			//them from memory!!
-		}
+            //remove everything from memory, would be handled by garbage collection
+            //but it's a hangover from this plugin's history as a C sdk
+            fullHrtf = null;
+            leftEarHrtfs = null;
+            rightEarHrtfs = null;
+        }
 
 		void onLookupHrtf()
 		{
