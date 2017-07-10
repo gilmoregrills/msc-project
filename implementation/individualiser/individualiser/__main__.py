@@ -53,7 +53,8 @@ def main(args=None):
                 print "transforming to json to send"
                 latest_hrtf = latest_hrtf.tolist()
                 output = json.dumps(latest_hrtf)
-                print "json ready, sending"
+                print output
+                print "json ready, size: ", sys.getsizeof(output), " sending..."
                 conn.send(output)
                 print "sent!"
                 conn.close()
