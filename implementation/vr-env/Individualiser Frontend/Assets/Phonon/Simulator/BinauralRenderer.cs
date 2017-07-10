@@ -15,10 +15,8 @@ namespace Phonon
 		byte[] inputData;
 		string asString;
 		JSONNode asJson;
-		float[,,] leftEarHrir = new float[25, 50, 200];
-		JSONArray leftEarHrtf;
-		float[,,] rightEarHrir = new float[25, 50, 200];
-		JSONArray rightEarHrtf;
+		float[][][] leftEarHrtfs;
+		float[][][] rightEarHrtfs;
         
 
         public void Create(Environment environment, RenderingSettings renderingSettings, GlobalContext globalContext)
@@ -63,12 +61,18 @@ namespace Phonon
             serverStream = clientSocket.GetStream();
             serverStream.Read(inputData, 0, inputData.Length);
             asString = System.Text.Encoding.Default.GetString(inputData);
-            float[,,,] fullHrtf = Newtonsoft.Json.JsonConvert.DeserializeObject<float[,,,]>(asString);
+            float[][][][] fullHrtf = Newtonsoft.Json.JsonConvert.DeserializeObject<float[][][][]>(asString);
             Debug.Log("dimensions of input hrtf: ");
-            Debug.Log(fullHrtf.GetLength(0));
-            Debug.Log(fullHrtf.GetLength(1));
-            Debug.Log(fullHrtf.GetLength(2));
-            Debug.Log(fullHrtf.GetLength(3));
+            Debug.Log(fullHrtf.Length);
+            Debug.Log(fullHrtf[0].Length);
+            Debug.Log(fullHrtf[0][0].Length);
+            Debug.Log(fullHrtf[0][0][0].Length);
+            leftEarHrtfs = fullHrtf[0];
+            rightEarHrtfs = fullHrtf[1];
+            Debug.Log("length of L/R hrtf arrays: (should be 25)");
+            Debug.Log(leftEarHrtfs.Length);
+            Debug.Log(rightEarHrtfs.Length);
+            
         }
 		public void onUnloadHrtf()
 		{
