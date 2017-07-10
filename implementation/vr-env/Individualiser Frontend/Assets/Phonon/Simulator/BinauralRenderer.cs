@@ -3,8 +3,8 @@
 //
 using System;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using UnityEngine;
-using SimpleJSON;
 
 namespace Phonon
 {
@@ -14,11 +14,11 @@ namespace Phonon
 		NetworkStream serverStream;
 		byte[] inputData;
 		string asString;
-		float[][][] leftEarHrtfs;
-		float[][][] rightEarHrtfs;
-        float[][][][] fullHrtf;
-        //float[] leftHrtf;
-        //float[] rightHrtf;
+		double[][][] leftEarHrtfs;
+		double[][][] rightEarHrtfs;
+        double[][][][] fullHrtf;
+        //double[] leftHrtf;
+        //double[] rightHrtf;
 
         public void Create(Environment environment, RenderingSettings renderingSettings, GlobalContext globalContext)
         {
@@ -62,7 +62,7 @@ namespace Phonon
             serverStream = clientSocket.GetStream();
             serverStream.Read(inputData, 0, inputData.Length);
             asString = System.Text.Encoding.Default.GetString(inputData);
-            fullHrtf = Newtonsoft.Json.JsonConvert.DeserializeObject<float[][][][]>(asString);
+            fullHrtf = Newtonsoft.Json.JsonConvert.DeserializeObject<double[][][][]>(asString);
             Debug.Log("dimensions of input hrtf: ");
             Debug.Log(fullHrtf.Length);
             Debug.Log(fullHrtf[0].Length);
@@ -87,14 +87,16 @@ namespace Phonon
 
 		void onLookupHrtf(System.IntPtr direction, System.IntPtr leftHrtf, System.IntPtr rightHrtf)
 		{
-            Debug.Log("Fetching HRTF for appropriate direction");
+            Debug.Log("Fetching HRTF for direction");
             //transform a vector into the correct hrtf direction
             //fetch that direction and stuff from the hrtf stuff?
-            //I think leftHrtf and rightHrtf are the two varnames
-            //the C++ version has memcpy with those names as the 
-            //source soooooo??? 
-            //leftHrtf = leftEarHrtfs[0][0][0];
-            //rightHrtf = rightEarHrtfs[0][0][0];
+
+            //test version is currently always fetching the same HRTF regardless of input direction
+            Debug.Log(leftEarHrtfs[0][0].Length);
+            Marshal.Copy(leftEarHrtfs[0][0], 0, leftHrtf, leftEarHrtfs[0][0].Length);
+            Marshal.Copy(rightEarHrtfs[0][0], 0, rightHrtf, rightEarHrtfs[0][0].Length);
+            Debug.Log(leftHrtf.ToString());
+            Debug.Log(rightHrtf.ToString());
 		}
 
         IntPtr binauralRenderer = IntPtr.Zero;
