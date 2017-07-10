@@ -14,6 +14,7 @@ public class PlaySample : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("s") | Input.GetKeyDown ("left alt") && Input.GetKeyDown ("s")) {
+            Debug.Log("playing sample");
 			audio.PlayOneShot (audio.clip);
 		}
 	}
