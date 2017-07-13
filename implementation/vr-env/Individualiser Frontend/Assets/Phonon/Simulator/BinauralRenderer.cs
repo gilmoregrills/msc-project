@@ -14,11 +14,9 @@ namespace Phonon
 		NetworkStream serverStream;
 		byte[] inputData;
 		string asString;
-		double[][][] leftEarHrtfs;
-		double[][][] rightEarHrtfs;
-        double[][][][] fullHrtf;
-        //double[] leftHrtf;
-        //double[] rightHrtf;
+		public double[][][] leftEarHrtfs;
+		public double[][][] rightEarHrtfs;
+        public double[][][][] fullHrtf;
 
         public void Create(Environment environment, RenderingSettings renderingSettings, GlobalContext globalContext)
         {
@@ -27,10 +25,10 @@ namespace Phonon
 				//yoooo I can set custom HRTFS with this set 
 				type = HRTFDatabaseType.Custom, //IPL_HRTFDATABASETYPE_CUSTOM
                 hrtfData = IntPtr.Zero, //set to zero always apparently
-                numHrirSamples = 200, //the number of samples in my custom hrirs
+                numHrirSamples = 202, //the number of samples in my custom hrirs
 				//gotta implement these callbacks to be able to use custom hrtfs yo! 
 				loadCallback = onLoadHrtf, //this should point to a function that loads/fft's hrtfs?
-                unloadCallback = onUnloadHrtf, //called when renderer is destroyed
+                unloadCallback = onUnloadHrtf, //called when renderer is destroyed - redundant basically with GC?
                 lookupCallback = onLookupHrtf //points to a function that finds the hrtf based on direction coordinates returning L/R hrtfs
             };
 
@@ -62,30 +60,22 @@ namespace Phonon
             serverStream = clientSocket.GetStream();
             serverStream.Read(inputData, 0, inputData.Length);
             asString = System.Text.Encoding.Default.GetString(inputData);
-            fullHrtf = Newtonsoft.Json.JsonConvert.DeserializeObject<double[][][][]>(asString);
-            Debug.Log("dimensions of input hrtf: ");
-            Debug.Log(fullHrtf.Length);
-            Debug.Log(fullHrtf[0].Length);
-            Debug.Log(fullHrtf[0][0].Length);
-            Debug.Log(fullHrtf[0][0][0].Length);
-            leftEarHrtfs = fullHrtf[0];
-            rightEarHrtfs = fullHrtf[1];
-            Debug.Log("length of L/R hrtf arrays: (should be 25)");
-            Debug.Log(leftEarHrtfs.Length);
-            Debug.Log(rightEarHrtfs.Length);
+            this.fullHrtf = Newtonsoft.Json.JsonConvert.DeserializeObject<double[][][][]>(asString);
+            this.leftEarHrtfs = fullHrtf[0];
+            this.rightEarHrtfs = fullHrtf[1];
+            Debug.Log("hrtf length " + leftEarHrtfs[0][0].Length);
             Debug.Log("HRTFs loaded");
         }
 		public void onUnloadHrtf()
 		{
             Debug.Log("unloading hrtf data");
-            //remove everything from memory, would be handled by garbage collection
-            //but it's a hangover from this plugin's history as a C sdk
-            fullHrtf = null;
+            //remove everything from memory
+            Debug.Log(this.fullHrtf.Length);
             leftEarHrtfs = null;
             rightEarHrtfs = null;
         }
 
-		void onLookupHrtf(System.IntPtr direction, System.IntPtr leftHrtf, System.IntPtr rightHrtf)
+		public void onLookupHrtf(System.IntPtr direction, System.IntPtr leftHrtf, System.IntPtr rightHrtf)
 		{
             Debug.Log("Fetching HRTF for direction");
             //transform a vector into the correct hrtf direction

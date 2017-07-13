@@ -3,6 +3,7 @@ import socket as socket
 import select
 import lmdb_interface as lmdb
 import json
+import individualiser
 
 # Main individualiser process
 # should be running before the frontend
@@ -13,12 +14,11 @@ import json
 def main(args=None):
     if args is None:
         args = sys.argv[1:]
-    # should potentially open connection to lmdb here
     lmdb.open()# there should be a scenario under which this is closed, too
     print "Individualiser Running!"
     in_port = 8881
     out_port = 8080
-    host = "127.0.0.1"# hardcoded to work on windows + linux
+    host = "127.0.0.1"# hardcoded to work on my windows + linux envs
     print "the host is: ", host
     sock_in = socket.socket()
     sock_out = socket.socket()
@@ -37,23 +37,22 @@ def main(args=None):
             print "received connection from:", addr, "into", s.getsockname()
             if s.getsockname()[1] == 8881:
                 data = conn.recv(4096)# the vector data I will feed the algo
-                print "receiving localisation vector, triggering algorithm..."
-                print "vector data: ", data
-                conn.close()
                 # read received data into memory then close the 
                 # connection
-                # trigger algo functions, somehow make it non-blocking?
+                #print "vector data: ", data
+                conn.close()
+                individualiser.individualiser(data)
+                # trigger algo function, somehow make it non-blocking?
                 # spawn a new thread so requests like the one below can still
                 # come in?
             elif s.getsockname()[1] == 8080:
                 print "received a request for an hrtf, sending from lmdb..."
                 # fetch latest custom HRTF from lmdb, it'll always be in the
-                # same place as old ones get archived
+                # same place as old ones get archived elsewhere
                 latest_hrtf = lmdb.fetch("custom_hrtf")
                 print "transforming to json to send"
                 latest_hrtf = latest_hrtf.tolist()
                 output = json.dumps(latest_hrtf)
-                print output
                 print "json ready, size: ", sys.getsizeof(output), " sending..."
                 conn.send(output)
                 print "sent!"
@@ -62,7 +61,7 @@ def main(args=None):
                 print "error"
                 conn.close()
 
-    # should potentially close the connection to lmdb here
+    lmdb.close()
 
 if __name__ == "__main__":
     main()
