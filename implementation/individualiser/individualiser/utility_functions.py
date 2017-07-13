@@ -4,6 +4,11 @@ import numpy as np
 import sklearn.decomposition as decomp
 import pca_functions as pca
 
+CIPIC_DIRECTIONS = {
+    'ELEVATION': np.linspace(-45.0, 230.625, 50),
+    'AZIMUTH': np.array([-80, -65, -55, -45, -40, -35, -30, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 55, 65, 80])
+}
+
 
 # take a database name as input, returns an array of data
 # for cipic full db, the structure is: [45, 2, 25, 50, 202/101]
@@ -185,3 +190,72 @@ def fourier_transform(input_data, inverse, all_subjects):
                     return_list[1][azimuth][elevation] = np.fft.irfft(input_data[1][azimuth][elevation])
             
     return return_list
+
+# pass a 3D vector from unity, the function
+# should return two values corresponding to
+# the CIPIC elevation/azimuth directions
+def parse_vector(vector_string):
+    #input vector should be a string, parse it!
+    #print type(vector_string)
+    vector_string = vector_string.replace(")(", ",")
+    vector_string = vector_string.replace("(", "")
+    vector_string = vector_string.replace(")", "")
+    vector_string = vector_string.replace(" ", "")
+    vector_string = vector_string.split(",")
+    vector_string = np.array(map(float, vector_string))
+    #print vector_string, type(vector_string), vector_string.size
+    sound_src = np.array(vector_string[:3])
+    percv_src = np.array(vector_string[3:])
+    #print sound_src, percv_src
+    return np.array([sound_src, percv_src])
+
+# basically takes the 2*3 array of two vectors
+# and returns the relevant information for 
+# fetching the correct CIPIC data 
+def find_angles(input_vectors):
+    # split up the input array of vectors
+    sound_src = input_vectors[0]
+    percv_src = input_vectors[1]
+    #print sound_src, percv_src
+    # turn those vectors into angles
+    sound_src_angles = np.array([np.degrees(np.arctan(sound_src[0] / sound_src[2])),
+                                np.degrees(np.arctan(sound_src[1] / sound_src[2]))])
+    sound_src_angles.flags.writeable = True
+    percv_src_angles = np.array([np.degrees(np.arctan(percv_src[0] / percv_src[2])), 
+                                np.degrees(np.arctan(percv_src[1] / percv_src[2]))])
+    sound_src_angles.flags.writeable = True
+    print sound_src_angles, percv_src_angles
+
+    # turn those angles into CIPIC-esque 
+    # angles, 0,0 for ahead, +/- 180 behind
+    # elevation from -45 to +270
+    if sound_src[2] < 0:
+        sound_src_angles.put(1, sound_src_angles[1] + 180)
+        print "source elevation set to: ", sound_src_angles[1]
+    if percv_src[2] < 0:
+        percv_src_angles.put(1, percv_src_angles[1] + 180)
+        print "perceived elevation set to: ", percv_src_angles[1]
+
+    #return array of both angles, ready for index finder
+    return np.array([sound_src_angles, percv_src_angles])
+
+def cipic_indexes(angles):
+    # angles is a 2*2 array of the angles of source and
+    # perceived in the correct form for the coords]
+    output = np.array([[0, 0], [0, 0]])
+    for pair in range(0, 2):
+        output[pair][0] = (np.abs(CIPIC_DIRECTIONS['AZIMUTH']-angles[pair][0])).argmin()
+        #print "input angle: ", angles[pair][0]
+        #print "output index: ", output[pair][0]
+        #print "angle rounded to: ", CIPIC_DIRECTIONS['AZIMUTH'][output[pair][0]]
+        output[pair][1] = (np.abs(CIPIC_DIRECTIONS['ELEVATION']-angles[pair][1])).argmin()
+        #print "input angle: ", angles[pair][1]
+        #print "output index: ", output[pair][1]
+        #print "angle rounded to: ", CIPIC_DIRECTIONS['ELEVATION'][output[pair][1]]
+    #print angles
+    #print output
+    # returns a 2*2 array of indexes for the CIPIC database when structured [25][50][200]
+    # output[0] is the source position index
+    # output[1] is the cursor position index
+    return output
+    

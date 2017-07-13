@@ -12,13 +12,15 @@ import utility_functions as util
 # is how it is  - putting it all in main might
 # be too insane
 
-# take in two vectors from frontend, one for the 
-# actual sound source, and the other for the user's 
-# perceived source, what they "click" on
-def individualiser(source_vector, perceived_vector):
-    # process the input vectors to determine the 
-    # directions that need adjustment (in terms of
-    # 0-1249) and by how much (how great the error)
+# takes in two vectors as a string from VR end
+def individualiser(vector_string):
+    process input vectors into CIPIC directions
+    vectors = util.parse_vector(vector_string)
+    print "vectors: \n", vectors
+    angles = util.find_angles(vectors)
+    print "angles: \n", angles
+    indexes = util.cipic_indexes(angles)
+    print "indexes: \n", indexes
    
     # if no error, put the generalised hrtf in the
     # custom_hrtf key slot of LMDB instance, else:
@@ -33,3 +35,4 @@ def individualiser(source_vector, perceived_vector):
     # transform_inverse on the PCWs, reconstruct 
     # the HRTF, and store it in LMDB under the 
     # custom_hrtf key, moving whatever is there?
+    return
