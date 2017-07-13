@@ -28,7 +28,8 @@ public class RandomPosition : MonoBehaviour {
 				audioSource.transform.SetPositionAndRotation((Random.insideUnitSphere.normalized * 10), currentRotation);
 			}
 			audioSource.transform.LookAt (new Vector3 (0, 0, 0));
-			//play audio sample
-		}
-	}
+            print("new position = " + audioSource.transform.position);
+            //play audio sample
+        }
+    }
 }
