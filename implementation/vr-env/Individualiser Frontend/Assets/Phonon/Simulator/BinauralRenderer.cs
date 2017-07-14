@@ -23,7 +23,7 @@ namespace Phonon
             HRTFParams hrtfParams = new HRTFParams
             {
 				//yoooo I can set custom HRTFS with this set 
-				type = HRTFDatabaseType.Custom, //IPL_HRTFDATABASETYPE_CUSTOM
+				type = HRTFDatabaseType.Default, //IPL_HRTFDATABASETYPE_CUSTOM
                 hrtfData = IntPtr.Zero, //set to zero always apparently
                 numHrirSamples = 202, //the number of samples in my custom hrirs
 				//gotta implement these callbacks to be able to use custom hrtfs yo! 
