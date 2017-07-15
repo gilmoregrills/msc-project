@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlaySample : MonoBehaviour {
 	GameObject sourceObject;
-	AudioSource audioSource;
+	GvrAudioSource audioSource;
 	// Use this for initialization
 	void Start () {
 		sourceObject = GameObject.Find ("Source1");
-		audioSource = sourceObject.GetComponent<AudioSource> ();
+		audioSource = sourceObject.GetComponent<GvrAudioSource> ();
 	}
 	
 	// Update is called once per frame
