@@ -14,7 +14,8 @@ import utility_functions as util
 
 # takes in two vectors as a string from VR end
 def individualiser(vector_string):
-    process input vectors into CIPIC directions
+    print "vector string: ", vector_string
+    # process input vectors into CIPIC directions
     vectors = util.parse_vector(vector_string)
     print "vectors: \n", vectors
     angles = util.find_angles(vectors)

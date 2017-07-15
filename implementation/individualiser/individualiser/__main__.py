@@ -2,7 +2,7 @@ import sys
 import socket as socket
 import select
 import lmdb_interface as lmdb
-import json
+import simplejson as json
 import individualiser
 
 # Main individualiser process
@@ -52,9 +52,14 @@ def main(args=None):
                 latest_hrtf = lmdb.fetch("custom_hrtf")
                 print "transforming to json to send"
                 latest_hrtf = latest_hrtf.tolist()
+                print "hrtf fetched, size: ", 
+                print len(latest_hrtf)
+                print len(latest_hrtf[0])
+                print len(latest_hrtf[0][0])
+                print len(latest_hrtf[0][0][0])
                 output = json.dumps(latest_hrtf)
                 print "json ready, size: ", sys.getsizeof(output), " sending..."
-                conn.send(output)
+                conn.sendall(output)
                 print "sent!"
                 conn.close()
             else:
