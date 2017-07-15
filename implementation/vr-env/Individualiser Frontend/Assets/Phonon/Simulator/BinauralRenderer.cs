@@ -17,13 +17,14 @@ namespace Phonon
 		public double[][][] leftEarHrtfs;
 		public double[][][] rightEarHrtfs;
         public double[][][][] fullHrtf;
+        public double[] directions;
 
         public void Create(Environment environment, RenderingSettings renderingSettings, GlobalContext globalContext)
         {
             HRTFParams hrtfParams = new HRTFParams
             {
 				//yoooo I can set custom HRTFS with this set 
-				type = HRTFDatabaseType.Default, //IPL_HRTFDATABASETYPE_CUSTOM
+				type = HRTFDatabaseType.Custom, //IPL_HRTFDATABASETYPE_CUSTOM
                 hrtfData = IntPtr.Zero, //set to zero always apparently
                 numHrirSamples = 202, //the number of samples in my custom hrirs
 				//gotta implement these callbacks to be able to use custom hrtfs yo! 
@@ -52,7 +53,12 @@ namespace Phonon
         {
             inputData = new byte[5545907];
             clientSocket = new System.Net.Sockets.TcpClient();
-            clientSocket.Connect("127.0.0.1", 8080);
+            #if UNITY_EDITOR
+                clientSocket.Connect("127.0.0.1", 8080); //if running in editor, connect localhost
+            #endif
+            //#if UNITY_ANDROID
+            //    clientSocket.Connect("79.66.218.27", 8080); //should be AWS instance IP/Port, currently it's just the house :P 
+            //#endif
             if (clientSocket.Connected == true)
             {
                 Debug.Log("connection made");
@@ -66,6 +72,7 @@ namespace Phonon
             Debug.Log("hrtf length " + leftEarHrtfs[0][0].Length);
             Debug.Log("HRTFs loaded");
         }
+
 		public void onUnloadHrtf()
 		{
             Debug.Log("unloading hrtf data");
@@ -73,20 +80,29 @@ namespace Phonon
             Debug.Log(this.fullHrtf.Length);
             leftEarHrtfs = null;
             rightEarHrtfs = null;
+
         }
 
 		public void onLookupHrtf(System.IntPtr direction, System.IntPtr leftHrtf, System.IntPtr rightHrtf)
 		{
             Debug.Log("Fetching HRTF for direction");
+            Debug.Log(direction.ToString());
+            Debug.Log(direction.GetType());
+            this.directions = new double[3];
+            Marshal.Copy(direction, directions, 0, directions.Length);
+            //double x = directions[0];
+            //double y = directions[1];
+            //double z = directions[2];
+            Debug.Log(directions);
             //transform a vector into the correct hrtf direction
             //fetch that direction and stuff from the hrtf stuff?
 
             //test version is currently always fetching the same HRTF regardless of input direction
-            Debug.Log(leftEarHrtfs[0][0].Length);
-            Marshal.Copy(leftEarHrtfs[0][0], 0, leftHrtf, leftEarHrtfs[0][0].Length);
-            Marshal.Copy(rightEarHrtfs[0][0], 0, rightHrtf, rightEarHrtfs[0][0].Length);
-            Debug.Log(leftHrtf.ToString());
-            Debug.Log(rightHrtf.ToString());
+            //Debug.Log(leftEarHrtfs[0][0].Length);
+            //Marshal.Copy(leftEarHrtfs[0][0], 0, leftHrtf, leftEarHrtfs[0][0].Length);
+            //Marshal.Copy(rightEarHrtfs[0][0], 0, rightHrtf, rightEarHrtfs[0][0].Length);
+            //Debug.Log(leftHrtf.ToString());
+            //Debug.Log(rightHrtf.ToString());
 		}
 
         IntPtr binauralRenderer = IntPtr.Zero;
