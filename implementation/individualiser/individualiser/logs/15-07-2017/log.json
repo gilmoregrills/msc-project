@@ -1,0 +1,13 @@
+{
+    "logs": [
+        {
+            "error": null,
+            "pcs": [],
+            "pcws": [],
+            "prcv_loc": "test",
+            "src_loc": "test",
+            "timestamp": null,
+            "updates": {}
+        }
+    ]
+}

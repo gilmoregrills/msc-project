@@ -4,6 +4,8 @@ import select
 import lmdb_interface as lmdb
 import simplejson as json
 import individualiser
+import time
+import os
 
 # Main individualiser process
 # should be running before the frontend
@@ -14,6 +16,16 @@ import individualiser
 def main(args=None):
     if args is None:
         args = sys.argv[1:]
+    logdir = "logs/"+time.strftime("%d-%m-%Y")+"/"
+    if not os.path.exists(logdir):
+        print "creating log directory"
+        os.makedirs(logdir)
+    logfname = logdir+"log.json"
+    if not os.path.exists(logfname):
+        print "creating log file"
+        logfile = open(logfname, "w")
+        logfile.write(json.dumps({'logs':[]}, indent=4, sort_keys=True))
+        logfile.close()
     lmdb.open()# there should be a scenario under which this is closed, too
     print "Individualiser Running!"
     in_port = 8881
