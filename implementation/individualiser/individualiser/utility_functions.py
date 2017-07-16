@@ -83,7 +83,6 @@ def restructure_data(database_matrix, all_participants):
             output_sample_index += 1
             input_sample_index += 1
 
-    # generate a 200*1250 2D array representing the mean value of one participant 
     elif all_participants == False:
         output_matrix = np.empty([len(database_matrix[0])*len(database_matrix[0][0]), len(database_matrix[0][0][0])*2])
         output_sample_index = 0
@@ -224,17 +223,14 @@ def find_angles(input_vectors):
     percv_src_angles = np.array([np.degrees(np.arctan(percv_src[0] / percv_src[2])), 
                                 np.degrees(np.arctan(percv_src[1] / percv_src[2]))])
     sound_src_angles.flags.writeable = True
-    print sound_src_angles, percv_src_angles
 
     # turn those angles into CIPIC-esque 
     # angles, 0,0 for ahead, +/- 180 behind
     # elevation from -45 to +270
     if sound_src[2] < 0:
         sound_src_angles.put(1, sound_src_angles[1] + 180)
-        print "source elevation set to: ", sound_src_angles[1]
     if percv_src[2] < 0:
         percv_src_angles.put(1, percv_src_angles[1] + 180)
-        print "perceived elevation set to: ", percv_src_angles[1]
 
     #return array of both angles, ready for index finder
     return np.array([sound_src_angles, percv_src_angles])
@@ -252,10 +248,36 @@ def cipic_indexes(angles):
         #print "input angle: ", angles[pair][1]
         #print "output index: ", output[pair][1]
         #print "angle rounded to: ", CIPIC_DIRECTIONS['ELEVATION'][output[pair][1]]
-    #print angles
-    #print output
+
     # returns a 2*2 array of indexes for the CIPIC database when structured [25][50][200]
     # output[0] is the source position index
     # output[1] is the cursor position index
     return output
     
+def pcw_indexes(indexes):
+    # indexes should be a 1*2 list ft azi and elev
+    # output[0][0] should be primary direction
+    # output[1] should be the other 8 secondary directions
+    output_list = np.array([[0], [0, 0, 0, 0, 0, 0, 0, 8]])
+    output_list.flags.writeable = True
+    # primary direction
+    output_list[0][0] = (indexes[0]*50)+indexes[1]
+    # secondary directions in a square around the primary
+    output_list[1][0] = (indexes[0]*50)+(indexes[1]+1)# up
+    output_list[1][1] = (indexes[0]*50)+(indexes[1]-1)# down
+    output_list[1][2] = ((indexes[0]-1)*50)+indexes[1]# left
+    output_list[1][3] = ((indexes[0]+1)*50)+indexes[1]# right
+    output_list[1][4] = ((indexes[0]-1)*50)+(indexes[1]+1)# up/left
+    output_list[1][5] = ((indexes[0]+1)*50)+(indexes[1]+1)# up/right
+    output_list[1][6] = ((indexes[0]-1)*50)+(indexes[1]-1)# down/left
+    output_list[1][7] = ((indexes[0]+1)*50)+(indexes[1]-1)# down/right
+
+    return output_list
+
+def column_mean(pca_matrix):
+    # input must be of pca input form
+    # 1250*101/202/etc
+    output = np.zeros(pca_matrix.size)
+    for column in range(0, pca_matrix.size):
+        output[column] = np.mean(pca_matrix[column])
+    return output
