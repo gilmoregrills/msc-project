@@ -28,27 +28,55 @@ def individualiser(vector_string):
         'updates' : {},
         'timestamp' : time.strftime("%H-%M-%S")
     }
-    # process input vectors into CIPIC directions
+    # process input vectors into angles
     vectors = util.parse_vector(vector_string)
     angles = util.find_angles(vectors)
-    log_data['src_loc'] = angles[0]
-    log_data['prcv_loc'] = angles[1]
+    # log it
+    log_data['src_loc'] = list(angles[0])
+    log_data['prcv_loc'] = list(angles[1])
+    # work out two error values (for each dir)
+    # positive num for up or right, neg for down
+    # these values dictate what PCs I modify
+    error = [(angles[0][0] - angles[1][0] / 10), (angles[0][1] - angles[1][1] / 10)]
+    weight = 0.1 # multiplied by the error to produce numbers <1 to +/- from PCWs
+    print "error = ", error
+    # log it
+    # if no error/below a certain threshold, make no change and return
+    # indexes in CIPIC coordinate structure
     hrtf_indexes = util.cipic_indexes(angles)
-    pca_indexes = 
-   
-    # if no error, put the generalised hrtf in the
-    # custom_hrtf key slot of LMDB instance, else:
+    # the indexes in a 1250*n PCA matrix!
+    # [0] should be primary value
+    # [1][0-7] should be secondary
+    pcw_indexes = util.pcw_indexes(hrtf_indexes[0])
 
     # fetch the pca model
-    # fetch the HRTF
-    
-    # transform HRTF to its PCs/PCWs
-   
-    # make the adjustment, based on *something*
+    pca_model = lmdb.fetch('single_pca_model')
 
-    # transform_inverse on the PCWs, reconstruct 
-    # the HRTF, and store it in LMDB under the 
-    # custom_hrtf key, moving whatever is there?
+    # fetch the current working HRTF from custom_hrtf
+    current_hrtf = lmdb.fetch('custom_hrtf')
+
+    # transform HRTF to its PCA input form
+    current_hrtf = util.restructure_data(current_hrtf, False)
+    print current_hrtf.shape
+
+    # fetch column mean matrix from database
+    column_mean = lmdb.fetch('avg_pca_mean')
+    # subtract column mean matrix from PC matrix
+
+    # actually run PCA transformation
+
+    # make the adjustment, based on holzl research
+    # and the weight/error identified above
+
+    # transform_inverse on the PCW matrix,
+    # add column mean matrix back into modified PCW matrix 
+    # reconstruct the HRTF, and store it in LMDB under the 
+    # custom_hrtf key, archiving what is there??? 
+
+    # NEED A WAY TO ARCHIVE THE CUSTOM HRTF ON
+    # EACH MODIFICATION, AND MUST THEN RESTORE
+    # AFTER TESTING FROM GENERATE_DATA
+    # Probably a new bucket in LMDB?
 
     # write log data dict to log.json file
     logfilepath = "logs/"+time.strftime("%d-%m-%Y")+"/log.json"
