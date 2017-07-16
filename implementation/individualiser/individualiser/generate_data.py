@@ -13,7 +13,7 @@ import numpy as np
 # values over and over
 x = np.zeros([20])
 puts("Generating data for full database")
-
+'''
 cipic_hrir = util.fetch_database("cipic")
 puts(colored.green("storing cipic hrir dataset, size:"))
 with indent(4, quote='>'):
@@ -51,7 +51,7 @@ with indent(4, quote='>'):
 lmdb.store('full_pca_transformed', full_pca_transformed)
 
 puts("\nGenerating data for single/average user")
-
+'''
 avg_hrir = util.average_hrtf(cipic_hrir)
 puts(colored.green("storing averaged hrir, size:"))
 with indent(4, quote='>'):
@@ -73,26 +73,33 @@ with indent(4, quote='>'):
     puts(str(x[8]))
 lmdb.store('avg_pca_input', avg_pca_input)
 
+avg_pca_mean = util.column_mean(avg_pca_input)
+puts(colored.green("storing column mean of restructured hrtf, size:"))
+with indent(4, quote='>'):
+    x[9] = sys.getsizeof(avg_pca_mean)
+    puts(str(x[9]))
+lmdb.store('avg_pca_mean', avg_pca_mean)
+
 single_pca_model = pca.train_model(avg_pca_input, 10)
 puts(colored.green("storing trained pca model"))
 with indent(4, quote='>'):
-    x[9] = sys.getsizeof(single_pca_model)
-    puts(str(x[9]))
+    x[10] = sys.getsizeof(single_pca_model)
+    puts(str(x[10]))
 lmdb.store('single_pca_model', single_pca_model)
 
 single_pca_transformed = pca.pca_transform(single_pca_model, avg_pca_input)
 puts(colored.green("storing transformed pca input set, size:"))
 with indent(4, quote='>'):
-    x[10] = single_pca_transformed.nbytes
-    puts(str(x[10]))
+    x[11] = single_pca_transformed.nbytes
+    puts(str(x[11]))
 lmdb.store('single_pca_transformed', single_pca_transformed)
 
 custom_hrtf = pca.pca_reconstruct(single_pca_model, single_pca_transformed)
 custom_hrtf = util.restructure_inverse(custom_hrtf, False)
 puts(colored.green("storing custom hrtf reconstructed from pca data, size:"))
 with indent(4, quote='>'):
-    x[11] = custom_hrtf.nbytes
-    puts(str(x[11]))
+    x[12] = custom_hrtf.nbytes
+    puts(str(x[12]))
 lmdb.store('custom_hrtf', custom_hrtf)
 
 puts(colored.green("Total data stored:"))
