@@ -13,7 +13,6 @@ import numpy as np
 # values over and over
 x = np.zeros([20])
 puts("Generating data for full database")
-<<<<<<< HEAD:implementation/individualiser/individualiser/generate_data.py
 
 cipic_hrir = util.fetch_database("cipic")
 #puts(colored.green("storing cipic hrir dataset, size:"))
@@ -81,11 +80,7 @@ with indent(4, quote='>'):
     puts(str(x[9]))
 lmdb.store('avg_pca_mean', avg_pca_mean)
 
-<<<<<<< HEAD:implementation/individualiser/individualiser/generate_data.py
 single_pca_model = pca.train_model(avg_pca_input-avg_pca_mean, 10)
-=======
-single_pca_model = pca.train_model(avg_pca_input, 10)
->>>>>>> 1a0f5db3dc1a42c0764c606f1fd287fa9cecac78:implementation/individualiser/individualiser/generate_data.py
 puts(colored.green("storing trained pca model"))
 with indent(4, quote='>'):
     x[10] = sys.getsizeof(single_pca_model)
@@ -100,11 +95,7 @@ with indent(4, quote='>'):
 lmdb.store('single_pca_transformed', single_pca_transformed)
 
 custom_hrtf = pca.pca_reconstruct(single_pca_model, single_pca_transformed)
-<<<<<<< HEAD:implementation/individualiser/individualiser/generate_data.py
 custom_hrtf = util.restructure_inverse(custom_hrtf+avg_pca_mean, False)
-=======
-custom_hrtf = util.restructure_inverse(custom_hrtf, False)
->>>>>>> 1a0f5db3dc1a42c0764c606f1fd287fa9cecac78:implementation/individualiser/individualiser/generate_data.py
 puts(colored.green("storing custom hrtf reconstructed from pca data, size:"))
 with indent(4, quote='>'):
     x[12] = custom_hrtf.nbytes

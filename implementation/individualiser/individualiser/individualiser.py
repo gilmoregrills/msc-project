@@ -54,29 +54,34 @@ def individualiser(vector_string):
 
     # fetch the current working HRTF from custom_hrtf
     current_hrtf = lmdb.fetch('custom_hrtf')
+    # archive this hrtf in preparation 
+    lmdb.store('custom_hrtf_'+time.strftime("%H-%M-%S")+time.strftime("%d-%m-%Y"), current_hrtf)
 
     # transform HRTF to its PCA input form
     current_hrtf = util.restructure_data(current_hrtf, False)
 
-    # fetch column mean matrix from database
+    # fetch column mean matrix from database    
     column_mean = lmdb.fetch('avg_pca_mean')# hold this for later
     # subtract column mean matrix from PC matrix
     current_hrtf = current_hrtf - column_mean
 
     # actually run PCA transformation
+    current_hrtf = pca.pca_transform(pca_model, current_hrtf)
 
     # make the adjustment, based on holzl research
     # and the weight/error identified above
 
-    # transform_inverse on the PCW matrix,
+    # pca_reconstruct on the PCW matrix,
+    current_hrtf = pca.pca_reconstruct(pca_model, current_hrtf)
+    print "inverse pca transform result: ", current_hrtf.shape
     # add column mean matrix back into modified PCW matrix 
-    # reconstruct the HRTF, and store it in LMDB under the 
-    # custom_hrtf key, archiving what is there??? 
+    current_hrtf = current_hrtf + column_mean
+    # reconstruct the HRTF
+    current_hrtf = util.restructure_inverse(current_hrtf, False)
+    print "reconstructed hrtf shape: ", current_hrtf.shape
 
-    # NEED A WAY TO ARCHIVE THE CUSTOM HRTF ON
-    # EACH MODIFICATION, AND MUST THEN RESTORE
-    # AFTER TESTING FROM GENERATE_DATA
-    # Probably a new bucket in LMDB?
+    # store in custom_hrtf index
+    lmdb.store('custom_hrtf', custom_hrtf)
 
     # write log data dict to log.json file
     logfilepath = "logs/"+time.strftime("%d-%m-%Y")+"/log.json"
