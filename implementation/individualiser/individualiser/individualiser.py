@@ -63,7 +63,6 @@ def individualiser(vector_string):
     # subtract column mean matrix from PC matrix
     current_hrtf = current_hrtf - column_mean
 
-    
     # actually run PCA transformation
 
     # make the adjustment, based on holzl research
