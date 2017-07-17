@@ -277,7 +277,9 @@ def pcw_indexes(indexes):
 def column_mean(pca_matrix):
     # input must be of pca input form
     # 1250*101/202/etc
-    output = np.zeros(pca_matrix.size)
-    for column in range(0, pca_matrix.size):
+    print "pca matrix size ", pca_matrix.shape[0]
+    output = np.zeros(pca_matrix.shape[0])
+    for column in range(0, pca_matrix.shape[0]):
         output[column] = np.mean(pca_matrix[column])
+    output = output[:, np.newaxis]
     return output

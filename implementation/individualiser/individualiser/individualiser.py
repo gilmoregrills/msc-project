@@ -57,12 +57,13 @@ def individualiser(vector_string):
 
     # transform HRTF to its PCA input form
     current_hrtf = util.restructure_data(current_hrtf, False)
-    print current_hrtf.shape
 
     # fetch column mean matrix from database
-    column_mean = lmdb.fetch('avg_pca_mean')
+    column_mean = lmdb.fetch('avg_pca_mean')# hold this for later
     # subtract column mean matrix from PC matrix
+    current_hrtf = current_hrtf - column_mean
 
+    
     # actually run PCA transformation
 
     # make the adjustment, based on holzl research
