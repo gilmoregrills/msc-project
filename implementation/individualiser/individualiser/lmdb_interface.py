@@ -28,6 +28,8 @@ def fetch(key):
     env = open()
     with env.begin(write=False) as txn:
         result = txn.get(key)
+        if result == None:
+            return None
         result = cpk.loads(result)
         return result
         txn.commit()

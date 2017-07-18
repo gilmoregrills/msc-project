@@ -7,6 +7,7 @@ import simplejson as json
 import time
 import os
 import sys
+import random
 
 # Individualisation Algorithm, implemented
 
@@ -40,6 +41,7 @@ def individualiser(vector_string):
     error = [(angles[0][0] - angles[1][0] / 10), (angles[0][1] - angles[1][1] / 10)]
     weight = 0.1 # multiplied by the error to produce numbers <1 to +/- from PCWs
     print "error = ", error
+    log_data['error'] = error
     # log it
     # if no error/below a certain threshold, make no change and return
     # indexes in CIPIC coordinate structure
@@ -68,8 +70,39 @@ def individualiser(vector_string):
     # actually run PCA transformation
     current_hrtf = pca.pca_transform(pca_model, current_hrtf)
 
-    # make the adjustment, based on holzl research
-    # and the weight/error identified above
+    # getting ready to make the adjustments
+    current_hrtf.flags.writeable = True
+    # fetch the precious adjustment, if it exists
+    adj_key = 'adj'+str(hrtf_indexes[0][0])+str(hrtf_indexes[0][1])
+    prev_adj = lmdb.fetch(adj_key)
+
+    # change direction (+ or - to PCW) set to none
+    change = None
+
+    if prev_adj is not None: 
+        # make change based on precious change
+        # and the weight/error identified above
+        if prev_adj['error'] > error:
+            print "make change in same direction"
+            change = prev_adj['change']
+        else: 
+            print "make change in the opposite direction"
+            change = not prev_adj['change']
+    else:
+        change = bool(random.getrandbits(1))
+        print 'rand_bool is: ', rand_bool
+        if change is True:
+            print "rand bool is True so add modifier value"
+        elif change is False: 
+            print "rand bool is False so subtract modifier value"
+
+    # store the adjustment made this time
+    adjustment = {
+        'error' = error,
+        'change' = change
+    }
+    lmdb.store(adj_key, adjustment)
+
 
     # pca_reconstruct on the PCW matrix,
     current_hrtf = pca.pca_reconstruct(pca_model, current_hrtf)
@@ -81,9 +114,11 @@ def individualiser(vector_string):
     print "reconstructed hrtf shape: ", current_hrtf.shape
 
     # store in custom_hrtf index
-    lmdb.store('custom_hrtf', custom_hrtf)
+    lmdb.store('custom_hrtf', current_hrtf)
+    print 'storing custom_hrtf'
 
     # write log data dict to log.json file
+    print "logging results!"
     logfilepath = "logs/"+time.strftime("%d-%m-%Y")+"/log.json"
     logfile = open(logfilepath, "r")
     log_string = logfile.read()
