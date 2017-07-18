@@ -283,3 +283,26 @@ def column_mean(pca_matrix):
         output[column] = np.mean(pca_matrix[column])
     output = output[:, np.newaxis]
     return output
+
+def adjust_matrix(pcw_indexes, pc_matrix, direction, value):
+    pc_matrix.flags.writeable = True
+    before = np.zeros([9, 10])
+    after = np.zeros([9, 10])
+    if direction is True:
+        before[0] = pc_matrix[pcw_indexes[0][0]]
+        pc_matrix[pcw_indexes[0][0]] += value
+        after[0] = pc_matrix[pcw_indexes[0][0]]
+        for index in range(0, 8):
+            before[index] = pc_matrix[index]
+            pc_matrix[index] += (value / 2)
+            after[index] = pc_matrix[index]
+    else:
+        before[0] = pc_matrix[pcw_indexes[0][0]]
+        pc_matrix[pcw_indexes[0][0]] -= value
+        after[0] = pc_matrix[pcw_indexes[0][0]]
+        for index in range(0, 8):
+            before[index] = pc_matrix[index]
+            pc_matrix[index] -= (value / 2)
+            after[index] = pc_matrix[index]
+
+    return [pc_matrix, before, after]

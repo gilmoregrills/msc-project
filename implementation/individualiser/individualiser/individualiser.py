@@ -24,9 +24,9 @@ def individualiser(vector_string):
         'src_loc' : None,
         'prcv_loc' : None,
         'error' : None,
-        'pcs' : [],
-        'pcws' : [],
-        'updates' : {},
+        'pcws_before' : None,
+        'pcws_after' : None,
+        'update_value': None,
         'timestamp' : time.strftime("%H-%M-%S")
     }
     # process input vectors into angles
@@ -42,7 +42,10 @@ def individualiser(vector_string):
     weight = 0.1 # multiplied by the error to produce numbers <1 to +/- from PCWs
     print "error = ", error
     log_data['error'] = error
-    # log it
+    value = 2
+    # CALCULATE THE UPDATE VALUE
+    # RIGHT NOW IT'S SET TO A DEFAULT VALUE
+
     # if no error/below a certain threshold, make no change and return
     # indexes in CIPIC coordinate structure
     hrtf_indexes = util.cipic_indexes(angles)
@@ -78,28 +81,39 @@ def individualiser(vector_string):
 
     # change direction (+ or - to PCW) set to none
     change = None
-
+    adj_results = None
     if prev_adj is not None: 
         # make change based on precious change
         # and the weight/error identified above
         if prev_adj['error'] > error:
             print "make change in same direction"
             change = prev_adj['change']
+            adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
         else: 
             print "make change in the opposite direction"
             change = not prev_adj['change']
+            adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
     else:
         change = bool(random.getrandbits(1))
-        print 'rand_bool is: ', rand_bool
+        print 'randomly generated change value is: ', change
         if change is True:
-            print "rand bool is True so add modifier value"
+            print "change is True so add modifier value"
+            adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
+
         elif change is False: 
-            print "rand bool is False so subtract modifier value"
+            print "change is False so subtract modifier value"
+            adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
+
+    #use the returned values
+    current_hrtf = adj_results[0]
+    log_data['pcws_before'] = adj_results[1].tolist()
+    log_data['pcws_after'] = adj_results[2].tolist()
 
     # store the adjustment made this time
     adjustment = {
-        'error' = error,
-        'change' = change
+        'error' : error,
+        'value' : value,
+        'change' : change
     }
     lmdb.store(adj_key, adjustment)
 
