@@ -39,8 +39,8 @@ def individualiser(vector_string):
     # positive num for up or right, neg for down
     # these values dictate what PCs I modify
     print "angles: ", angles
-    error = [(angles[0][0] - angles[1][0]), (angles[0][1] - angles[1][1])]
-    weight = 0.1 # multiplied by the error to produce numbers <1 to +/- from PCWs
+    error = [(angles[0][0] - angles[1][0]) / 10, (angles[0][1] - angles[1][1]) / 10]
+    weight = 0.6 # multiplied by the error to produce numbers <1 to +/- from PCWs
     print "error = ", error
     log_data['error'] = error
     value = error[0] * weight + error[1] * weight
