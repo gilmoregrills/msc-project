@@ -28,9 +28,10 @@ def main(args=None):
         logfile.close()
     lmdb.open()# there should be a scenario under which this is closed, too
     print "Individualiser Running!"
-    in_port = 8881
-    out_port = 8080
-    host = "127.0.0.1"# hardcoded to work on my windows + linux envs
+    in_port = 54678
+    out_port = 54679
+    print "hostname = ", socket.gethostname()
+    host = "ec2-35-176-144-147.eu-west-2.compute.amazonaws.com"# hardcoded to work on my windows + linux envs
     print "the host is: ", host
     sock_in = socket.socket()
     sock_out = socket.socket()
@@ -47,7 +48,7 @@ def main(args=None):
         for s in ready_sockets:
             conn, addr = s.accept()
             print "received connection from:", addr, "into", s.getsockname()
-            if s.getsockname()[1] == 8881:
+            if s.getsockname()[1] == in_port:
                 data = conn.recv(4096)# the vector data I will feed the algo
                 # read received data into memory then close the 
                 # connection
@@ -57,7 +58,7 @@ def main(args=None):
                 # trigger algo function, somehow make it non-blocking?
                 # spawn a new thread so requests like the one below can still
                 # come in?
-            elif s.getsockname()[1] == 8080:
+            elif s.getsockname()[1] == out_port:
                 print "received a request for an hrtf, sending from lmdb..."
                 # fetch latest custom HRTF from lmdb, it'll always be in the
                 # same place as old ones get archived elsewhere
@@ -67,10 +68,12 @@ def main(args=None):
                 print "hrtf fetched, shape: ", 
                 print len(latest_hrtf), len(latest_hrtf[0]), len(latest_hrtf[0][0]), len(latest_hrtf[0][0][0])
                 output = json.dumps(latest_hrtf)
-                print "json ready, size: ", sys.getsizeof(output), " sending..."
+		size = sys.getsizeof(output)
+                print "json ready, size: ", size, " sending..."
+		conn.send(str(size))
                 conn.sendall(output)
-                print "sent!"
                 conn.close()
+                print "sent!"
             else:
                 print "error"
                 conn.close()
