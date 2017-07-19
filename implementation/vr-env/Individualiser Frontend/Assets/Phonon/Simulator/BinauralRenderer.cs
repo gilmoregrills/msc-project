@@ -58,15 +58,10 @@ namespace Phonon
         {
             sizeData = new byte[24];
             clientSocket = new System.Net.Sockets.TcpClient();
-#if UNITY_EDITOR
-            clientSocket.Connect("127.0.0.1", 54679); //if running in editor, connect localhost
+
+            clientSocket.Connect("35.176.144.147", 54679); //if running in editor, connect localhost
             Debug.Log("connecting to local version");
-#endif
-            /*
-            #if UNITY_ANDROID
-                clientSocket.Connect("35.176.144.147", 54679); //should be AWS instance IP/Port, currently it's just the house :P 
-            #endif
-    */
+
             if (clientSocket.Connected)
             {
                 Debug.Log("connection made");
@@ -86,17 +81,19 @@ namespace Phonon
             inputData = new byte[1024];
             int numBytesRead = 0;
             clientSocket.ReceiveTimeout = 1000;
+            serverStream.ReadTimeout = 1000;
             do
             {
                 numBytesRead += serverStream.Read(inputData, 0, inputData.Length);
 
                 wip.Append(System.Text.Encoding.Default.GetString(inputData));
+                Debug.Log("bytes read: "+numBytesRead);
 
             } while (serverStream.DataAvailable);
-            Debug.Log(numBytesRead);
+            Debug.Log("bytes read: "+numBytesRead);
 
             asString = wip.ToString();
-            //Debug.Log("hrtf as string lol \n" + asString.Substring(5540000));
+            Debug.Log("end of hrtf as string lol \n" + asString.Substring(5540000));
             int index = asString.IndexOf("]]]]") + 4;
             String doubles = asString.Substring(index);
             asString = asString.Substring(0, index);

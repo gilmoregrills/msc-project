@@ -36,7 +36,7 @@ public class TransmitVector : MonoBehaviour {
 			output = System.Text.Encoding.ASCII.GetBytes (userToSource.ToString () + userLocalisation.ToString ());
 			clientSocket = new System.Net.Sockets.TcpClient ();
             #if UNITY_EDITOR
-                clientSocket.Connect("127.0.0.1", 54678); //if running in editor, connect localhost
+                clientSocket.Connect("35.176.144.147", 54678); //if running in editor, connect localhost
             #endif
             if (clientSocket.Connected)
             {
