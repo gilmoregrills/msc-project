@@ -6,14 +6,16 @@ public class RandomPosition : MonoBehaviour {
 	GameObject audioSource;
 	Vector3 currentPosition;
 	Quaternion currentRotation;
-	Transform transform;
+	Transform currentTransform;
 	Transform newTransform;
+    GameObject positionNotif;
 	// Use this for initialization
 	void Start () {
 		audioSource = GameObject.Find ("Source1");
 		Random rnd = new Random ();
 		audioSource.transform.SetPositionAndRotation((Random.insideUnitSphere.normalized * 10), currentRotation);
 		audioSource.transform.LookAt (new Vector3 (0, 0, 0));
+        positionNotif = GameObject.Find("New Position");
 	}
 	
 	// Update is called once per frame
@@ -24,7 +26,8 @@ public class RandomPosition : MonoBehaviour {
 			currentRotation = audioSource.transform.rotation;
 			print ("current position = " + currentPosition);
 			audioSource.transform.SetPositionAndRotation((Random.insideUnitSphere.normalized * 10), currentRotation);
-			while (audioSource.transform.position.y < -5) {
+            positionNotif.GetComponent<Renderer>().enabled = true;
+            while (audioSource.transform.position.y < -5) {
 				audioSource.transform.SetPositionAndRotation((Random.insideUnitSphere.normalized * 10), currentRotation);
 			}
 			audioSource.transform.LookAt (new Vector3 (0, 0, 0));

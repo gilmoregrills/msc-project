@@ -4,20 +4,25 @@
 using System;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using System.Text;
 using UnityEngine;
-
+using System.Collections;
 namespace Phonon
 {
     public class BinauralRenderer
     {
 		System.Net.Sockets.TcpClient clientSocket;
 		NetworkStream serverStream;
+        Int32 size;
 		byte[] inputData;
+        byte[] sizeData;
 		string asString;
 		public double[][][] leftEarHrtfs;
 		public double[][][] rightEarHrtfs;
         public double[][][][] fullHrtf;
         public double[] directions;
+        GameObject connectNotif;
+        GameObject fetchNotif;
 
         public void Create(Environment environment, RenderingSettings renderingSettings, GlobalContext globalContext)
         {
@@ -51,26 +56,69 @@ namespace Phonon
 
         public void onLoadHrtf(int numSamples, int numSpectrumSamples, Phonon.FFTHelper fft, System.IntPtr fftHelperData)
         {
-            inputData = new byte[5545907];
+            sizeData = new byte[24];
             clientSocket = new System.Net.Sockets.TcpClient();
-            #if UNITY_EDITOR
-                clientSocket.Connect("127.0.0.1", 8080); //if running in editor, connect localhost
+#if UNITY_EDITOR
+            clientSocket.Connect("127.0.0.1", 54679); //if running in editor, connect localhost
+            Debug.Log("connecting to local version");
+#endif
+            /*
+            #if UNITY_ANDROID
+                clientSocket.Connect("35.176.144.147", 54679); //should be AWS instance IP/Port, currently it's just the house :P 
             #endif
-            //#if UNITY_ANDROID
-            //    clientSocket.Connect("79.66.218.27", 8080); //should be AWS instance IP/Port, currently it's just the house :P 
-            //#endif
-            if (clientSocket.Connected == true)
+    */
+            if (clientSocket.Connected)
             {
                 Debug.Log("connection made");
+                connectNotif = GameObject.Find("Connected");
+                UnityEngine.Vector3 pos = connectNotif.transform.position;
+                pos.x = 0;
+                connectNotif.transform.position = pos;
             }
             serverStream = clientSocket.GetStream();
-            serverStream.Read(inputData, 0, inputData.Length);
-            asString = System.Text.Encoding.Default.GetString(inputData);
+            serverStream.Read(sizeData, 0, 24);
+
+            asString = System.Text.Encoding.Default.GetString(sizeData);
+
+            size = Int32.Parse(asString);
+            Debug.Log("size value = " + size);
+            StringBuilder wip = new StringBuilder();
+            inputData = new byte[1024];
+            int numBytesRead = 0;
+            clientSocket.ReceiveTimeout = 1000;
+            do
+            {
+                numBytesRead += serverStream.Read(inputData, 0, inputData.Length);
+
+                wip.Append(System.Text.Encoding.Default.GetString(inputData));
+
+            } while (serverStream.DataAvailable);
+            Debug.Log(numBytesRead);
+
+            asString = wip.ToString();
+            //Debug.Log("hrtf as string lol \n" + asString.Substring(5540000));
+            int index = asString.IndexOf("]]]]") + 4;
+            String doubles = asString.Substring(index);
+            asString = asString.Substring(0, index);
+            /*
+            if (asString.Contains(doubles))
+            {
+                Debug.Log("they are doubles...");
+                Debug.Log(doubles);
+            }
+            */
+            //Debug.Log("hrtf as string lol \n" + asString.Substring(5540000));
+
             this.fullHrtf = Newtonsoft.Json.JsonConvert.DeserializeObject<double[][][][]>(asString);
             this.leftEarHrtfs = fullHrtf[0];
             this.rightEarHrtfs = fullHrtf[1];
-            Debug.Log("hrtf length " + leftEarHrtfs[0][0].Length);
+            Debug.Log("hrtf shape: " + leftEarHrtfs.Length + ", " + leftEarHrtfs[0].Length + ", " + leftEarHrtfs[0][0].Length);
+            Debug.Log("hrtf shape: " + rightEarHrtfs.Length + ", " + rightEarHrtfs[24].Length + ", " + rightEarHrtfs[24][49].Length);
             Debug.Log("HRTFs loaded");
+            fetchNotif = GameObject.Find("Fetched HRTF");
+            UnityEngine.Vector3 newPos = fetchNotif.transform.position;
+            newPos.x = -6;
+            fetchNotif.transform.position = newPos;
         }
 
 		public void onUnloadHrtf()

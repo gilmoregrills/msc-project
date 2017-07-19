@@ -71,6 +71,7 @@ def main(args=None):
                 print len(latest_hrtf), len(latest_hrtf[0]), len(latest_hrtf[0][0]), len(latest_hrtf[0][0][0])
                 output = json.dumps(latest_hrtf)
                 size = sys.getsizeof(output)
+                print "size of size value: ", sys.getsizeof(size)
                 print "json ready, size: ", size, " sending..."
                 conn.send(str(size))
                 conn.sendall(output)

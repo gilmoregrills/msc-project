@@ -10,6 +10,8 @@ public class TransmitVector : MonoBehaviour {
 	GameObject user;
 	GameObject source;
 	GameObject reticle;
+    GameObject connectNotif;
+    GameObject dataNotif;
 	System.Net.Sockets.TcpClient clientSocket;
 	NetworkStream serverStream;
 	byte[] output;
@@ -19,6 +21,8 @@ public class TransmitVector : MonoBehaviour {
 		user = GameObject.Find("MegaCam");
 		source = GameObject.Find("Source1");
 		reticle = GameObject.Find("Ball");
+        connectNotif = GameObject.Find("Connected");
+        dataNotif = GameObject.Find("Sent Position");
 	}
 	
 	// Update is called once per frame
@@ -31,9 +35,19 @@ public class TransmitVector : MonoBehaviour {
 			print ("Perceived vector from user to sound source =" + userLocalisation.ToString ());
 			output = System.Text.Encoding.ASCII.GetBytes (userToSource.ToString () + userLocalisation.ToString ());
 			clientSocket = new System.Net.Sockets.TcpClient ();
-			clientSocket.Connect ("127.0.0.1", 8881);
+            #if UNITY_EDITOR
+                clientSocket.Connect("127.0.0.1", 54678); //if running in editor, connect localhost
+            #endif
+            if (clientSocket.Connected)
+            {
+                connectNotif = GameObject.Find("Connected");
+                UnityEngine.Vector3 pos = connectNotif.transform.position;
+                pos.x = -6;
+                connectNotif.transform.position = pos;
+            }
 			serverStream = clientSocket.GetStream ();
 			serverStream.Write (output, 0, output.Length);
+            dataNotif.GetComponent<Renderer>().enabled = true;
 			serverStream.Flush ();
 		}
 			//calculate the current vector, send
