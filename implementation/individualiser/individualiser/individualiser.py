@@ -42,7 +42,8 @@ def individualiser(vector_string):
     weight = 0.1 # multiplied by the error to produce numbers <1 to +/- from PCWs
     print "error = ", error
     log_data['error'] = error
-    value = 2
+    value = error[0] * weight + error[1] * weight
+    print "value = ", value
     # CALCULATE THE UPDATE VALUE
     # RIGHT NOW IT'S SET TO A DEFAULT VALUE
 
