@@ -30,8 +30,10 @@ def main(args=None):
     print "Individualiser Running!"
     in_port = 54678
     out_port = 54679
-    print "hostname = ", socket.gethostname()
-    host = "ec2-35-176-144-147.eu-west-2.compute.amazonaws.com"# hardcoded to work on my windows + linux envs
+    if "DESKTOP" not in socket.gethostname():
+        host = "ec2-35-176-144-147.eu-west-2.compute.amazonaws.com"
+    else:
+        host = "127.0.0.1"
     print "the host is: ", host
     sock_in = socket.socket()
     sock_out = socket.socket()
@@ -68,9 +70,9 @@ def main(args=None):
                 print "hrtf fetched, shape: ", 
                 print len(latest_hrtf), len(latest_hrtf[0]), len(latest_hrtf[0][0]), len(latest_hrtf[0][0][0])
                 output = json.dumps(latest_hrtf)
-		size = sys.getsizeof(output)
+                size = sys.getsizeof(output)
                 print "json ready, size: ", size, " sending..."
-		conn.send(str(size))
+                conn.send(str(size))
                 conn.sendall(output)
                 conn.close()
                 print "sent!"

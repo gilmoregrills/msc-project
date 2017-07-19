@@ -4,14 +4,17 @@ import simplejson as json
 import time
 import os
 
-host = "127.0.0.1"
-port = 8080
+host = "35.176.144.147"
+port = 54679
 
 sock = socket.socket()
 
 sock.connect((host, port))
+size = int(sock.recv(1024))
+print "size received: ", size
 input_data = sock.recv(1024)
-while sys.getsizeof(input_data) < 5545907:
+while sys.getsizeof(input_data) < size:
+	#print "receiving data", sys.getsizeof(input_data)
 	input_data = input_data+sock.recv(1024)
 print "hrtf data received \n", sys.getsizeof(input_data)
 as_string = input_data.decode("utf-8")

@@ -1,8 +1,8 @@
 import sys
 import socket
 
-host = "127.0.0.1"
-port = 8881
+host = "35.176.144.147"
+port = 54678
 
 sock = socket.socket()
 
