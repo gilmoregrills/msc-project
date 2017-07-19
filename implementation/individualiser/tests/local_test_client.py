@@ -7,6 +7,6 @@ port = 54678
 sock = socket.socket()
 
 sock.connect((host, port))
-sock.send("(-0.6, 9.9, -0.9)(6.4, 4.2, 6.4)")
+sock.send("(4.4, -5.9, -6.8)(5.6, -2.1, -8.0)")
 print "sent fake vector data!"
 sock.close()
