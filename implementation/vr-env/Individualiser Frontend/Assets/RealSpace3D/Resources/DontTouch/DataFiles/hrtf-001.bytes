@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRealSpace3D_DoOnce xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RealSpace3D_DoOnce>
+    <DoOnce>1</DoOnce>
+  </RealSpace3D_DoOnce>
+</ArrayOfRealSpace3D_DoOnce>

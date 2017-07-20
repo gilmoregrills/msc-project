@@ -82,6 +82,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assets\Plugins\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RealSpace3D">
+      <HintPath>Assets\RealSpace3D\Plugins\RealSpace3D.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Individualiser Frontend.Plugins.csproj">
@@ -201,6 +204,11 @@
     <Compile Include="Assets\InstantPreview\InstantPreview.cs" />
     <Compile Include="Assets\InstantPreview\InstantPreviewControllerProvider.cs" />
     <Compile Include="Assets\InstantPreview\InstantPreviewHelper.cs" />
+    <Compile Include="Assets\OSPNative\scenes\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\OSPNative\scripts\ONSPAmbisonicsNative.cs" />
+    <Compile Include="Assets\OSPNative\scripts\ONSPAudioSource.cs" />
+    <Compile Include="Assets\OSPNative\scripts\ONSPVersion.cs" />
+    <Compile Include="Assets\OSPNative\scripts\helpers\ONSPReflectionZone.cs" />
     <Compile Include="Assets\OVR\Scripts\OVRBoundary.cs" />
     <Compile Include="Assets\OVR\Scripts\OVRCameraRig.cs" />
     <Compile Include="Assets\OVR\Scripts\OVRCommon.cs" />
@@ -304,6 +312,7 @@
     <None Include="Assets\Plugins\Android\AndroidManifest-Daydream.xml" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\Plugins\Android\proguard-gvr.txt" />
+    <None Include="Assets\RealSpace3D\Plugins\Android\libs\armeabi-v7a\AndroidManifest.xml" />
     <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Cutout Wireframe.shader" />
     <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Double-Sided Cutout Wireframe.shader" />
     <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Double-Sided Wireframe.shader" />
