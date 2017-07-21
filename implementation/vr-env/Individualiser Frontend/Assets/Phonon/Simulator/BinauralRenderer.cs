@@ -1,30 +1,28 @@
 //
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
+
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
-using System.Text;
-using UnityEngine;
+
+
 namespace Phonon
 {
     public class BinauralRenderer
     {
-
         public void Create(Environment environment, RenderingSettings renderingSettings, GlobalContext globalContext)
         {
             HRTFParams hrtfParams = new HRTFParams
             {
-				//yoooo I can set custom HRTFS with this set 
-				type = HRTFDatabaseType.Custom, //IPL_HRTFDATABASETYPE_CUSTOM
-                hrtfData = IntPtr.Zero, //set to zero always apparently
-                numHrirSamples = 202, //the number of samples in my custom hrirs
-				//gotta implement these callbacks to be able to use custom hrtfs yo! 
-				loadCallback = onLoadHrtf, //this should point to a function that loads/fft's hrtfs?
-                unloadCallback = onUnloadHrtf, //called when renderer is destroyed - redundant basically with GC?
-                lookupCallback = onLookupHrtf //points to a function that finds the hrtf based on direction coordinates returning L/R hrtfs
+                type = HRTFDatabaseType.Custom,
+                hrtfData = IntPtr.Zero,
+                numHrirSamples = 101,
+                loadCallback = OnLoadHrtf,
+                unloadCallback = onUnloadHrtf,
+                lookupCallback = onLookupHrtf
             };
 
             var error = PhononCore.iplCreateBinauralRenderer(globalContext, renderingSettings, hrtfParams, ref binauralRenderer);
@@ -32,20 +30,10 @@ namespace Phonon
                 throw new Exception("Unable to create binaural renderer [" + error.ToString() + "]");
         }
 
-		public IntPtr GetBinauralRenderer()
+        public void OnLoadHrtf(int numSamples, int numSpectrumSamples, FFTHelper fft, IntPtr data)
         {
-            return binauralRenderer;
-        }
-
-        public void Destroy()
-        {
-            if (binauralRenderer != IntPtr.Zero)
-                PhononCore.iplDestroyBinauralRenderer(ref binauralRenderer);
-        }
-
-        public void onLoadHrtf(int numSamples, int numSpectrumSamples, Phonon.FFTHelper fft, System.IntPtr data)
-        {
-            UnityEngine.Debug.Log(this.GetType());            
+            
+            UnityEngine.Debug.Log("data pointer points to: "+data.ToString());
             //declaring variables in tighter scope
             double[][][][] fullHrtf;
             TcpClient clientSocket;
@@ -70,26 +58,23 @@ namespace Phonon
             size = Int32.Parse(asString);
             UnityEngine.Debug.Log("size value = " + size);
 
-           
+
             clientSocket.ReceiveTimeout = 1000;
             serverStream.ReadTimeout = 1000;
             StreamReader read = new StreamReader(serverStream);
-            asString = read.ReadToEnd(); 
+            asString = read.ReadToEnd();
             UnityEngine.Debug.Log("end of hrtf as string \n" + asString.Substring(5540000));
             fullHrtf = Newtonsoft.Json.JsonConvert.DeserializeObject<double[][][][]>(asString);
 
             bf.Serialize(ms, fullHrtf);
             byte[] biter = ms.ToArray();
-            UnityEngine.Debug.Log(data);
-            UnityEngine.Debug.Log(data.GetType());
             //MOVE THIS HRTF DATA INTO THE INTPTR PROVIDED
             //Marshal.Copy(biter, 0, data, biter.Length);
-            
             UnityEngine.Debug.Log("HRTFs loaded");
         }
 
-		public void onUnloadHrtf()
-		{
+        public void onUnloadHrtf()
+        {
             UnityEngine.Debug.Log("");
             UnityEngine.Debug.Log("unloading hrtf data");
             //remove everything from memory
@@ -97,11 +82,12 @@ namespace Phonon
             //DESTROY THE HRTFDATA INTPTR
             //this.leftEarHrtfs = null;
             //this.rightEarHrtfs = null;
-
         }
 
-		public void onLookupHrtf(System.IntPtr direction, System.IntPtr leftHrtf, System.IntPtr rightHrtf)
-		{
+        public void onLookupHrtf(System.IntPtr direction, System.IntPtr leftHrtf, System.IntPtr rightHrtf)
+        {
+            BinauralRenderer currentRenderer = new BinauralRenderer();
+            Marshal.PtrToStructure(binauralRenderer, currentRenderer);
             
             //ONCE I FIND HOW TO GET THE HrtfData IntPtr I can get its size with IntPtr.size and do this stuff below:
             //System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
@@ -130,7 +116,20 @@ namespace Phonon
             //Marshal.Copy(rightEarHrtfs[0][0], 0, rightHrtf, rightEarHrtfs[0][0].Length);
             //Debug.Log(leftHrtf.ToString());
             //Debug.Log(rightHrtf.ToString());
-		}
+        }
+
+        public IntPtr GetBinauralRenderer()
+        {
+            return binauralRenderer;
+        }
+
+        public void Destroy()
+        {
+            if (binauralRenderer != IntPtr.Zero)
+                PhononCore.iplDestroyBinauralRenderer(ref binauralRenderer);
+        }
+
+        
 
         IntPtr binauralRenderer = IntPtr.Zero;
     }

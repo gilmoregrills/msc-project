@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using UnityEditor;
@@ -28,16 +29,17 @@ namespace Phonon
             PhononGUI.SectionHeader("Renderer Setting");
             serializedObject.FindProperty("convolutionOption").enumValueIndex = EditorGUILayout.Popup("Convolution Options", serializedObject.FindProperty("convolutionOption").enumValueIndex, optionsConvolution);
 
-            PhononGUI.SectionHeader("OpenCL Setting");
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("useOpenCL"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("computeDeviceOption"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("numComputeUnits"));
+            CustomPhononSettings customSettings = serializedObject.targetObject as CustomPhononSettings;
+            if (customSettings.convolutionOption == ConvolutionOption.TrueAudioNext)
+            {
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("numComputeUnits"));
+            }
 
             EditorGUILayout.HelpBox("This is an experimental feature. Please contact the developers to get relevant documentation to use Custom Phonon Settings feature.", MessageType.Info);
             serializedObject.ApplyModifiedProperties();
         }
 
         string[] optionsRayTracer = new string[] { "Phonon", "Embree", "Radeon Rays", "Custom" };
-        string[] optionsConvolution = new string[] { "Phonon", "TrueAudioNext" };
+        string[] optionsConvolution = new string[] { "Phonon", "TrueAudio Next" };
     }
 }

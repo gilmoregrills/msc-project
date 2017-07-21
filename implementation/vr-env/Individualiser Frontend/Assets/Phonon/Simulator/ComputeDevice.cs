@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using System;
@@ -13,13 +14,13 @@ namespace Phonon
             return device;
         }
 
-        public Error Create(bool useOpenCL, ComputeDeviceType deviceType, int numComputeUnits)
+        public Error Create(GlobalContext globalContext, bool useOpenCL, ComputeDeviceType deviceType, int numComputeUnits)
         {
             var error = Error.None;
 
             if (useOpenCL)
             {
-                error = PhononCore.iplCreateComputeDevice(deviceType, numComputeUnits, ref device);
+                error = PhononCore.iplCreateComputeDevice(globalContext, deviceType, numComputeUnits, ref device);
                 if (error != Error.None)
                 {
                     throw new Exception("Unable to create OpenCL compute device (" + deviceType.ToString() + ", " +

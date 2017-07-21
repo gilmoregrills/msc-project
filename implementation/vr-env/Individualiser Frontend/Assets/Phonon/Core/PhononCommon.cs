@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using System;
@@ -28,11 +29,13 @@ namespace Phonon
         Initialization
     }
 
+    public delegate void LogCallback(string message);
+
     // Global context.
     [StructLayout(LayoutKind.Sequential)]
     public struct GlobalContext
     {
-        public IntPtr logCallback;
+        public LogCallback logCallback;
         public IntPtr allocateCallback;
         public IntPtr freeCallback;
     };
@@ -69,13 +72,22 @@ namespace Phonon
         public Vector3 maxCoordinates;
     }
 
+    // Oriented Box for Acoustic Probes.
+    [StructLayout(LayoutKind.Sequential)]
+    public struct OrientedBox
+    {
+        public Vector3 center;
+        public Vector3 extents;
+        public Quaternion rotation;
+    }
+
     // Sphere for Acoustic Probes.
     [StructLayout(LayoutKind.Sequential)]
     public struct Sphere
     {
-		public float centerx;
-		public float centery;
-		public float centerz;
+        public float centerx;
+        public float centery;
+        public float centerz;
         public float radius;
     }
 
@@ -320,8 +332,9 @@ namespace Phonon
     {
         public Vector3 direction;
         public float distanceAttenuation;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
-        public float[] airAbsorption;
+        public float airAbsorptionLow;
+        public float airAbsorptionMid;
+        public float airAbsorptionHigh;
         public float propagationDelay;
         public float occlusionFactor;
         public float transmissionFactorLow;
@@ -361,6 +374,30 @@ namespace Phonon
             convertedPoint.z = -point.z;
 
             return convertedPoint;
+        }
+
+        public static Quaternion ConvertQuaternion(UnityEngine.Quaternion quaternion)
+        {
+            Quaternion convertedQuaternion;
+            convertedQuaternion.x = -quaternion.x;
+            convertedQuaternion.y = -quaternion.y;
+            convertedQuaternion.z = quaternion.z;
+            convertedQuaternion.w = quaternion.w;
+
+            return convertedQuaternion;
+        }
+
+        public static float[] ConvertMatrix(UnityEngine.Matrix4x4 matrix)
+        {
+            UnityEngine.Matrix4x4 flipZ = UnityEngine.Matrix4x4.Scale(new UnityEngine.Vector3(1, 1, -1));
+            UnityEngine.Matrix4x4 flippedMatrix = flipZ * matrix * flipZ;
+
+            float[] transformArray = new float[16];
+            for (int i = 0, count = 0; i < 4; ++i)
+                for (int j = 0; j < 4; ++j, ++count)
+                    transformArray[count] = flippedMatrix[j, i];
+
+            return transformArray;
         }
 
         public static byte[] ConvertString(string s)

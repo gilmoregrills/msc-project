@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using UnityEngine;
@@ -20,7 +21,10 @@ namespace Phonon
             bool useOpenCL;
             int numComputeUnits;
             ComputeDeviceType deviceType;
+
             deviceType = phononManager.ComputeDeviceSettings(out numComputeUnits, out useOpenCL);
+            if (!initializeRenderer)
+                useOpenCL = false;
 
             SimulationSettings simulationSettings = phononManager.SimulationSettings();
             GlobalContext globalContext = phononManager.GlobalContext();
@@ -28,7 +32,7 @@ namespace Phonon
 
             try
             {
-                computeDevice.Create(useOpenCL, deviceType, numComputeUnits);
+                computeDevice.Create(globalContext, useOpenCL, deviceType, numComputeUnits);
             }
             catch (Exception e)
             {
