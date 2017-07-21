@@ -36,7 +36,9 @@ def main(args=None):
         host = "127.0.0.1"
     print "the host is: ", host
     sock_in = socket.socket()
+    sock_in.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock_out = socket.socket()
+    sock_out.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock_in.bind((host, in_port))
     sock_out.bind((host, out_port))
     
