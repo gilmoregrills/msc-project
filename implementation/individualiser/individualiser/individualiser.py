@@ -133,6 +133,9 @@ def individualiser(vector_string):
     lmdb.store('custom_hrtf', current_hrtf)
     print 'storing custom_hrtf'
 
+    current_hrir = util.fourier_transform(current_hrtf, True, False)
+    lmdb.store('custom_hrir', current_hrir)
+
     # write log data dict to log.json file
     print "logging results!"
     logfilepath = "logs/"+time.strftime("%d-%m-%Y")+"/log.json"

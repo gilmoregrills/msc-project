@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 
 using System;
+using System.Collections.Generic;
 
 namespace Phonon
 {
@@ -28,10 +30,13 @@ namespace Phonon
             serializedObject.Update();
 
             // Audio Engine
+            GUI.enabled = !EditorApplication.isPlayingOrWillChangePlaymode;
+
             PhononGUI.SectionHeader("Audio Engine Integration");
             string[] engines = { "Unity Audio" };
             var audioEngineProperty = serializedObject.FindProperty("audioEngine");
-            audioEngineProperty.enumValueIndex = EditorGUILayout.Popup("Audio Engine", audioEngineProperty.enumValueIndex, engines);
+            audioEngineProperty.enumValueIndex = EditorGUILayout.Popup("Audio Engine", 
+                audioEngineProperty.enumValueIndex, engines);
 
             // Scene Settings
             PhononManager phononManager = ((PhononManager)target);
@@ -40,7 +45,8 @@ namespace Phonon
             if (serializedObject.FindProperty("materialPreset").enumValueIndex < 11)
             {
                 PhononMaterialValue actualValue = phononManager.materialValue;
-                actualValue.CopyFrom(PhononMaterialPresetList.PresetValue(serializedObject.FindProperty("materialPreset").enumValueIndex));
+                actualValue.CopyFrom(PhononMaterialPresetList.PresetValue(
+                    serializedObject.FindProperty("materialPreset").enumValueIndex));
             }
             else
             {
@@ -64,7 +70,8 @@ namespace Phonon
             if (serializedObject.FindProperty("simulationPreset").enumValueIndex < 3)
             {
                 SimulationSettingsValue actualValue = phononManager.simulationValue;
-                actualValue.CopyFrom(SimulationSettingsPresetList.PresetValue(serializedObject.FindProperty("simulationPreset").enumValueIndex));
+                actualValue.CopyFrom(SimulationSettingsPresetList.PresetValue(
+                    serializedObject.FindProperty("simulationPreset").enumValueIndex));
             }
             else
             {
@@ -80,26 +87,34 @@ namespace Phonon
 
             // Fold Out for Advanced Settings
             PhononGUI.SectionHeader("Advanced Options");
-            phononManager.showLoadTimeOptions = EditorGUILayout.Foldout(phononManager.showLoadTimeOptions, "Per Frame Query Optimization");
+            serializedObject.FindProperty("showLoadTimeOptions").boolValue = 
+            EditorGUILayout.Foldout(serializedObject.FindProperty("showLoadTimeOptions").boolValue, 
+                "Per Frame Query Optimization");
+
             if (phononManager.showLoadTimeOptions)
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("updateComponents"));
             }
 
-            phononManager.showMassBakingOptions = EditorGUILayout.Foldout(phononManager.showMassBakingOptions, "Consolidated Baking Options");
+            serializedObject.FindProperty("showMassBakingOptions").boolValue = 
+                EditorGUILayout.Foldout(serializedObject.FindProperty("showMassBakingOptions").boolValue, 
+                "Consolidated Baking Options");
             if (phononManager.showMassBakingOptions)
             {
                 bool noSettingMessage = false;
                 noSettingMessage = ProbeGenerationGUI() || noSettingMessage;
+                noSettingMessage = BakeAllGUI() || noSettingMessage;
                 noSettingMessage = BakedSourcesGUI(phononManager) || noSettingMessage;
-                noSettingMessage = BakedReverbGUI(phononManager) || noSettingMessage;
                 noSettingMessage =  BakedStaticListenerNodeGUI(phononManager) || noSettingMessage;
+                noSettingMessage = BakedReverbGUI(phononManager) || noSettingMessage;
 
                 if (!noSettingMessage)
                     EditorGUILayout.LabelField("Scene does not contain any baking related components.");
             }
 
-            EditorGUILayout.HelpBox("Do not manually add Phonon Manager component. Click Window > Phonon.", MessageType.Info);
+            GUI.enabled = true;
+            EditorGUILayout.HelpBox("Do not manually add Phonon Manager component. Click Window > Phonon.", 
+                MessageType.Info);
 
             EditorGUILayout.Space();
             serializedObject.ApplyModifiedProperties();
@@ -113,16 +128,179 @@ namespace Phonon
             else
                 return false;
 
+            GUI.enabled = !PhononBaker.IsBakeActive() && !EditorApplication.isPlayingOrWillChangePlaymode;
             foreach (ProbeBox probeBox in probeBoxes)
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField(probeBox.name);
                 if (GUILayout.Button("Generate Probe", GUILayout.Width(200.0f)))
+                {
                     probeBox.GenerateProbes();
+                    EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+                }
                 EditorGUILayout.EndHorizontal();
             }
+            GUI.enabled = true;
 
             return true;
+        }
+
+        public bool BakeAllGUI()
+        {
+            bool hasBakeComponents = GameObject.FindObjectsOfType<ProbeBox>().Length > 0;
+
+            if (hasBakeComponents)
+                PhononGUI.SectionHeader("Bake All");
+            else
+                return false;
+
+            GUI.enabled = !PhononBaker.IsBakeActive() && !EditorApplication.isPlayingOrWillChangePlaymode;
+            EditorGUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Select All"))
+            {
+                SelectForBakeEffect(true);
+            }
+
+            if (GUILayout.Button("Select None"))
+            {
+                SelectForBakeEffect(false);
+            }
+
+            if (GUILayout.Button("Bake", GUILayout.Width(200.0f)))
+            {
+                BakeSelected();
+            }
+
+            EditorGUILayout.EndHorizontal();
+            GUI.enabled = true;
+
+            DisplayProgressBarAndCancel();
+
+            return true;
+        }
+
+        void DisplayProgressBarAndCancel()
+        {
+            PhononManager phononManager = serializedObject.targetObject as PhononManager;
+            phononManager.phononBaker.DrawProgressBar();
+            Repaint();
+        }
+
+        public void BakeSelected()
+        {
+            List<GameObject> gameObjects = new List<GameObject>();
+            List<BakingMode> bakingModes = new List<BakingMode>();
+            List<string> identifers = new List<string>();
+            List<Sphere> influenceSpheres = new List<Sphere>();
+            List<ProbeBox[]> probeBoxes = new List<ProbeBox[]>();
+
+            PhononSource[] bakedSources = GameObject.FindObjectsOfType<PhononSource>();
+            foreach (PhononSource bakedSource in bakedSources)
+            {
+                if (bakedSource.enableReflections && bakedSource.uniqueIdentifier.Length != 0 && 
+                    bakedSource.sourceSimulationType == SourceSimulationType.BakedStaticSource && 
+                    bakedSource.bakeToggle)
+                {
+                    gameObjects.Add(bakedSource.gameObject);
+                    bakingModes.Add(BakingMode.StaticSource);
+                    identifers.Add(bakedSource.uniqueIdentifier);
+
+                    Sphere bakeSphere;
+                    Vector3 sphereCenter = Common.ConvertVector(bakedSource.transform.position);
+                    bakeSphere.centerx = sphereCenter.x;
+                    bakeSphere.centery = sphereCenter.y;
+                    bakeSphere.centerz = sphereCenter.z;
+                    bakeSphere.radius = bakedSource.bakingRadius;
+                    influenceSpheres.Add(bakeSphere);
+
+                    if (bakedSource.useAllProbeBoxes)
+                        probeBoxes.Add(FindObjectsOfType<ProbeBox>() as ProbeBox[]);
+                    else
+                        probeBoxes.Add(bakedSource.probeBoxes);
+                }
+            }
+
+            BakedStaticListenerNode[] bakedStaticNodes = GameObject.FindObjectsOfType<BakedStaticListenerNode>();
+            foreach (BakedStaticListenerNode bakedStaticNode in bakedStaticNodes)
+            {
+                if (bakedStaticNode.uniqueIdentifier.Length != 0 && bakedStaticNode.bakeToggle)
+                {
+                    gameObjects.Add(bakedStaticNode.gameObject);
+                    bakingModes.Add(BakingMode.StaticListener);
+                    identifers.Add(bakedStaticNode.uniqueIdentifier);
+
+                    Sphere bakeSphere;
+                    Vector3 sphereCenter = Common.ConvertVector(bakedStaticNode.transform.position);
+                    bakeSphere.centerx = sphereCenter.x;
+                    bakeSphere.centery = sphereCenter.y;
+                    bakeSphere.centerz = sphereCenter.z;
+                    bakeSphere.radius = bakedStaticNode.bakingRadius;
+                    influenceSpheres.Add(bakeSphere);
+
+                    if (bakedStaticNode.useAllProbeBoxes)
+                        probeBoxes.Add(FindObjectsOfType<ProbeBox>() as ProbeBox[]);
+                    else
+                        probeBoxes.Add(bakedStaticNode.probeBoxes);
+                }
+            }
+
+            PhononListener bakedReverb = GameObject.FindObjectOfType<PhononListener>();
+            if (!(bakedReverb == null || !bakedReverb.enableReverb
+                || bakedReverb.reverbSimulationType != ReverbSimulationType.BakedReverb) && 
+                bakedReverb.bakeToggle)
+            {
+                gameObjects.Add(bakedReverb.gameObject);
+                bakingModes.Add(BakingMode.Reverb);
+                identifers.Add("__reverb__");
+                influenceSpheres.Add(new Sphere());
+
+                if (bakedReverb.useAllProbeBoxes)
+                    probeBoxes.Add(FindObjectsOfType<ProbeBox>() as ProbeBox[]);
+                else
+                    probeBoxes.Add(bakedReverb.probeBoxes);
+            }
+
+            if (gameObjects.Count > 0)
+            {
+                PhononManager phononManager = serializedObject.targetObject as PhononManager;
+                phononManager.phononBaker.BeginBake(gameObjects.ToArray(), bakingModes.ToArray(), 
+                    identifers.ToArray(), influenceSpheres.ToArray(), probeBoxes.ToArray());
+            }
+            else
+            {
+                Debug.LogWarning("No game object selected for baking.");
+            }
+        }
+
+        public void SelectForBakeEffect(bool select)
+        {
+            PhononSource[] bakedSources = GameObject.FindObjectsOfType<PhononSource>();
+            foreach (PhononSource bakedSource in bakedSources)
+            {
+                if (bakedSource.enableReflections && bakedSource.uniqueIdentifier.Length != 0
+                    && bakedSource.sourceSimulationType == SourceSimulationType.BakedStaticSource)
+                {
+                    bakedSource.bakeToggle = select;
+                }
+            }
+
+            BakedStaticListenerNode[] bakedStaticNodes = GameObject.FindObjectsOfType<BakedStaticListenerNode>();
+            foreach (BakedStaticListenerNode bakedStaticNode in bakedStaticNodes)
+            {
+                if (bakedStaticNode.uniqueIdentifier.Length != 0)
+                {
+                    bakedStaticNode.bakeToggle = select;
+                }
+            }
+
+            PhononListener bakedReverb = GameObject.FindObjectOfType<PhononListener>();
+            if (!(bakedReverb == null || !bakedReverb.enableReverb
+                || bakedReverb.reverbSimulationType != ReverbSimulationType.BakedReverb))
+            {
+                bakedReverb.bakeToggle = select;
+            }
+
         }
 
         public bool BakedSourcesGUI(PhononManager phononManager)
@@ -149,31 +327,22 @@ namespace Phonon
                     || bakedSource.sourceSimulationType != SourceSimulationType.BakedStaticSource)
                     continue;
 
-                GUI.enabled = !bakedSource.phononBaker.IsBakeActive();
+                GUI.enabled = !PhononBaker.IsBakeActive() && !EditorApplication.isPlayingOrWillChangePlaymode;
                 EditorGUILayout.BeginHorizontal();
 
                 bakedSource.UpdateBakedDataStatistics();
-                EditorGUILayout.LabelField(bakedSource.uniqueIdentifier, (bakedSource.bakedDataSize / 1000.0f).ToString("0.0") + " KB");
-                if (GUILayout.Button("Bake Effect", GUILayout.Width(200.0f)))
+                bool previousValue = bakedSource.bakeToggle;
+                bool newValue = GUILayout.Toggle(bakedSource.bakeToggle, " " + bakedSource.uniqueIdentifier);
+                if (previousValue != newValue)
                 {
-                    phononManager.currentlyBakingObject = bakedSource;
-                    Debug.Log("START: Baking effect for \"" + bakedSource.uniqueIdentifier + "\" with influence radius of "
-                        + bakedSource.bakingRadius + " meters.");
-                    bakedSource.BeginBake();
+                    Undo.RecordObject(bakedSource, "Toggled " + bakedSource.uniqueIdentifier + 
+                        " in Phonon Manager");
+                    bakedSource.bakeToggle = newValue;
                 }
+
+                EditorGUILayout.LabelField((bakedSource.bakedDataSize / 1000.0f).ToString("0.0") + " KB");
                 EditorGUILayout.EndHorizontal();
                 GUI.enabled = true;
-
-                DisplayProgressBarAndCancel(bakedSource, phononManager);
-
-                if (bakedSource.phononBaker.GetBakeStatus() == BakeStatus.Complete)
-                {
-                    bakedSource.EndBake();
-                    phononManager.currentlyBakingObject = null;
-                    EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-                    Debug.Log("COMPLETED: Baking effect for \"" + bakedSource.uniqueIdentifier + "\" with influence radius of "
-                        + bakedSource.bakingRadius + " meters.");
-                }
             }
 
             return true;
@@ -183,7 +352,15 @@ namespace Phonon
         {
             BakedStaticListenerNode[] bakedStaticNodes = GameObject.FindObjectsOfType<BakedStaticListenerNode>();
 
-            if (bakedStaticNodes.Length > 0)
+            bool showBakedStaticListenerNodes = false;
+            foreach (BakedStaticListenerNode bakedStaticNode in bakedStaticNodes)
+                if (bakedStaticNode.uniqueIdentifier.Length != 0)
+                {
+                    showBakedStaticListenerNodes = true;
+                    break;
+                }
+
+            if (showBakedStaticListenerNodes)
                 PhononGUI.SectionHeader("Baked Static Listener Nodes");
             else
                 return false;
@@ -193,28 +370,22 @@ namespace Phonon
                 if (bakedStaticNode.uniqueIdentifier.Length == 0)
                     continue;
 
-                GUI.enabled = !bakedStaticNode.phononBaker.IsBakeActive();
+                GUI.enabled = !PhononBaker.IsBakeActive() && !EditorApplication.isPlayingOrWillChangePlaymode;
                 EditorGUILayout.BeginHorizontal();
                 bakedStaticNode.UpdateBakedDataStatistics();
-                EditorGUILayout.LabelField("__staticlistener__" + bakedStaticNode.uniqueIdentifier, (bakedStaticNode.bakedDataSize / 1000.0f).ToString("0.0") + " KB");
-                if (GUILayout.Button("Bake Effect", GUILayout.Width(200.0f)))
+
+                bool previousValue = bakedStaticNode.bakeToggle;
+                bool newValue = GUILayout.Toggle(bakedStaticNode.bakeToggle, " " + 
+                    bakedStaticNode.uniqueIdentifier);
+                if (previousValue != newValue)
                 {
-                    phononManager.currentlyBakingObject = bakedStaticNode;
-                    Debug.Log("START: Baking effect for \"" + bakedStaticNode.uniqueIdentifier + "\".");
-                    bakedStaticNode.BeginBake();
+                    Undo.RecordObject(bakedStaticNode, "Toggled " + bakedStaticNode.uniqueIdentifier +
+                        " in Phonon Manager");
+                    bakedStaticNode.bakeToggle = newValue;
                 }
+                EditorGUILayout.LabelField((bakedStaticNode.bakedDataSize / 1000.0f).ToString("0.0") + " KB");
                 EditorGUILayout.EndHorizontal();
                 GUI.enabled = true;
-
-                DisplayProgressBarAndCancel(bakedStaticNode, phononManager);
-
-                if (bakedStaticNode.phononBaker.GetBakeStatus() == BakeStatus.Complete)
-                {
-                    bakedStaticNode.EndBake();
-                    phononManager.currentlyBakingObject = null;
-                    EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-                    Debug.Log("COMPLETED: Baking effect for \"" + bakedStaticNode.uniqueIdentifier + "\".");
-                }
             }
 
             return true;
@@ -229,57 +400,24 @@ namespace Phonon
 
             PhononGUI.SectionHeader("Bake Reverb");
 
-            GUI.enabled = !bakedReverb.phononBaker.IsBakeActive();
+            GUI.enabled = !PhononBaker.IsBakeActive() && !EditorApplication.isPlayingOrWillChangePlaymode;
             EditorGUILayout.BeginHorizontal();
             bakedReverb.UpdateBakedDataStatistics();
-            EditorGUILayout.LabelField("__reverb__", (bakedReverb.bakedDataSize / 1000.0f).ToString("0.0") + " KB");
-            if (GUILayout.Button("Bake Reverb", GUILayout.Width(200.0f)))
+
+            bool previousValues = bakedReverb.bakeToggle;
+            bool newValue = GUILayout.Toggle(bakedReverb.bakeToggle, " reverb");
+            if (previousValues != newValue)
             {
-                Debug.Log("START: Baking reverb effect.");
-                phononManager.currentlyBakingObject = bakedReverb;
-                bakedReverb.BeginBake();
+                Undo.RecordObject(bakedReverb, "Toggled reverb in Phonon Manager");
+                bakedReverb.bakeToggle = newValue;
             }
+
+            EditorGUILayout.LabelField((bakedReverb.bakedDataSize / 1000.0f).ToString("0.0") + " KB");
             EditorGUILayout.EndHorizontal();
             GUI.enabled = true;
-
-            DisplayProgressBarAndCancel(bakedReverb, phononManager);
-
-            if (bakedReverb.phononBaker.GetBakeStatus() == BakeStatus.Complete)
-            {
-                bakedReverb.EndBake();
-                phononManager.currentlyBakingObject = null;
-                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-                Debug.Log("COMPLETED: Baking reverb effect.");
-            }
 
             return true;
         }
 
-        void DisplayProgressBarAndCancel(PhononSource phononSource, PhononManager phononManager)
-        {
-            if (phononManager.currentlyBakingObject == null || phononManager.currentlyBakingObject != phononSource)
-                return;
-
-            phononSource.phononBaker.DrawProgressBar();
-            Repaint();
-        }
-
-        void DisplayProgressBarAndCancel(PhononListener phononReverb, PhononManager phononManager)
-        {
-            if (phononManager.currentlyBakingObject == null)
-                return;
-
-            phononReverb.phononBaker.DrawProgressBar();
-            Repaint();
-        }
-
-        void DisplayProgressBarAndCancel(BakedStaticListenerNode phononStaticNode, PhononManager phononManager)
-        {
-            if (phononManager.currentlyBakingObject == null || phononManager.currentlyBakingObject != phononStaticNode)
-                return;
-
-            phononStaticNode.phononBaker.DrawProgressBar();
-            Repaint();
-        }
     }
 }

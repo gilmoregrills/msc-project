@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using UnityEditor;
@@ -34,13 +35,19 @@ namespace Phonon
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("hrtfInterpolation"), new GUIContent("HRTF Interpolation"));
             }
 
-            serializedObject.FindProperty("directOcclusionMode").enumValueIndex = EditorGUILayout.Popup("Direct Sound Occlusion", serializedObject.FindProperty("directOcclusionMode").enumValueIndex, optionsOcclusion);
-            if (serializedObject.FindProperty("directOcclusionMode").enumValueIndex != (int) OcclusionMode.NoOcclusion)
+            serializedObject.FindProperty("directOcclusionMode").enumValueIndex = 
+                EditorGUILayout.Popup("Direct Sound Occlusion", 
+                serializedObject.FindProperty("directOcclusionMode").enumValueIndex, optionsOcclusion);
+
+            if (serializedObject.FindProperty("directOcclusionMode").enumValueIndex 
+                != (int) OcclusionMode.NoOcclusion)
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("directOcclusionMethod"));
-                if (serializedObject.FindProperty("directOcclusionMethod").enumValueIndex == (int)OcclusionMethod.Partial)
+                if (serializedObject.FindProperty("directOcclusionMethod").enumValueIndex == 
+                    (int)OcclusionMethod.Partial)
                 {
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("partialOcclusionRadius"), new GUIContent("Source Radius (meters)"));
+                    EditorGUILayout.PropertyField(serializedObject.FindProperty("partialOcclusionRadius"), 
+                        new GUIContent("Source Radius (meters)"));
                 }
             }
 
@@ -58,16 +65,20 @@ namespace Phonon
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("indirectMixFraction"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("indirectBinauralEnabled"));
 
-                EditorGUILayout.HelpBox("Go to Window > Phonon > Simulation to update the global simulation settings.", MessageType.Info);
+                EditorGUILayout.HelpBox("Go to Window > Phonon > Simulation to update the global simulation " +
+                    "settings.", MessageType.Info);
                 if (serializedObject.FindProperty("indirectBinauralEnabled").boolValue)
-                    EditorGUILayout.HelpBox("The binaural setting is ignored if Phonon Listener component is attached with mixing enabled.", MessageType.Info);
+                    EditorGUILayout.HelpBox("The binaural setting is ignored if Phonon Listener component is " +
+                        "attached with mixing enabled.", MessageType.Info);
 
                 PhononSource phononEffect = serializedObject.targetObject as PhononSource;
                 if (phononEffect.sourceSimulationType == SourceSimulationType.BakedStaticSource)
                 {
                     BakedSourceGUI();
-                    bakedStatsFoldout = EditorGUILayout.Foldout(bakedStatsFoldout, "Baked Static Source Statistics");
-                    if (bakedStatsFoldout)
+                    serializedObject.FindProperty("bakedStatsFoldout").boolValue = 
+                        EditorGUILayout.Foldout(serializedObject.FindProperty("bakedStatsFoldout").boolValue, 
+                        "Baked Static Source Statistics");
+                    if (phononEffect.bakedStatsFoldout)
                         BakedSourceStatsGUI();
                 }
             }
@@ -81,7 +92,7 @@ namespace Phonon
             PhononGUI.SectionHeader("Baked Static Source Settings");
 
             PhononSource bakedSource = serializedObject.targetObject as PhononSource;
-            GUI.enabled = !bakedSource.phononBaker.IsBakeActive();
+            GUI.enabled = !PhononBaker.IsBakeActive() && !EditorApplication.isPlayingOrWillChangePlaymode;
             EditorGUILayout.PropertyField(serializedObject.FindProperty("uniqueIdentifier"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("bakingRadius"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("useAllProbeBoxes"));
@@ -101,7 +112,6 @@ namespace Phonon
                     Debug.LogError("You must specify a unique identifier name.");
                 else
                 {
-                    Debug.Log("START: Baking effect for \"" + bakedSource.uniqueIdentifier + "\" with influence radius of " + bakedSource.bakingRadius + " meters.");
                     bakedSource.BeginBake();
                 }
             }
@@ -109,20 +119,12 @@ namespace Phonon
             GUI.enabled = true;
 
             DisplayProgressBarAndCancel();
-
-            if (bakedSource.phononBaker.GetBakeStatus() == BakeStatus.Complete)
-            {
-                bakedSource.EndBake();
-                Repaint();
-                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-                Debug.Log("COMPLETED: Baking effect for \"" + bakedSource.uniqueIdentifier + "\" with influence radius of " + bakedSource.bakingRadius + " meters.");
-            }
         }
 
         public void BakedSourceStatsGUI()
         {
             PhononSource bakedSource = serializedObject.targetObject as PhononSource;
-            GUI.enabled = !bakedSource.phononBaker.IsBakeActive();
+            GUI.enabled = !PhononBaker.IsBakeActive() && !EditorApplication.isPlayingOrWillChangePlaymode;
             bakedSource.UpdateBakedDataStatistics();
             for (int i = 0; i < bakedSource.bakedProbeNames.Count; ++i)
                 EditorGUILayout.LabelField(bakedSource.bakedProbeNames[i], (bakedSource.bakedProbeDataSizes[i] / 1000.0f).ToString("0.0") + " KB");
@@ -137,7 +139,6 @@ namespace Phonon
             Repaint();
         }
 
-        bool bakedStatsFoldout = false;
         string[] optionsOcclusion = new string[] { "Off", "On, No Transmission", "On, Frequency Independent Transmission", "On, Frequency Dependent Transmission" };
     }
 }

@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using UnityEditor;
@@ -22,36 +23,42 @@ namespace Phonon
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
+
+            GUI.enabled = !serializedObject.FindProperty("enableReverb").boolValue;
             PhononGUI.SectionHeader("Mixer Settings");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("acceleratedMixing"));
+            GUI.enabled = true;
 
             PhononGUI.SectionHeader("Rendering Settings");
             EditorGUILayout.PropertyField(serializedObject.FindProperty("indirectBinauralEnabled"));
 
-            if (serializedObject.FindProperty("acceleratedMixing").boolValue && serializedObject.FindProperty("indirectBinauralEnabled").boolValue)
-                EditorGUILayout.HelpBox("The binaural settings on Phonon Source will be ignored.", MessageType.Info);
+            if (serializedObject.FindProperty("acceleratedMixing").boolValue && 
+                serializedObject.FindProperty("indirectBinauralEnabled").boolValue)
+                EditorGUILayout.HelpBox("The binaural settings on Phonon Source will be ignored.", 
+                    MessageType.Info);
 
-            if (!serializedObject.FindProperty("acceleratedMixing").boolValue)
+            GUI.enabled = !serializedObject.FindProperty("acceleratedMixing").boolValue;
+            PhononGUI.SectionHeader("Reverb Settings");
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("enableReverb"));
+
+            if (serializedObject.FindProperty("enableReverb").boolValue)
             {
-                PhononGUI.SectionHeader("Reverb Settings");
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("enableReverb"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("reverbSimulationType"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("dryMixFraction"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("reverbMixFraction"));
 
-                if (serializedObject.FindProperty("enableReverb").boolValue)
+                PhononListener phononListener = serializedObject.targetObject as PhononListener;
+                if (phononListener.reverbSimulationType == ReverbSimulationType.BakedReverb)
                 {
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("reverbSimulationType"));
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("dryMixFraction"));
-                    EditorGUILayout.PropertyField(serializedObject.FindProperty("reverbMixFraction"));
-
-                    PhononListener phononListener = serializedObject.targetObject as PhononListener;
-                    if (phononListener.reverbSimulationType == ReverbSimulationType.BakedReverb)
-                    {
-                        BakedReverbGUI();
-                        bakedStatsFoldout = EditorGUILayout.Foldout(bakedStatsFoldout, "Baked Reverb Statistics");
-                        if (bakedStatsFoldout)
-                            BakedReverbStatsGUI();
-                    }
+                    BakedReverbGUI();
+                    serializedObject.FindProperty("bakedStatsFoldout").boolValue =
+                        EditorGUILayout.Foldout(serializedObject.FindProperty("bakedStatsFoldout").boolValue,
+                        "Baked Reverb Statistics");
+                    if (phononListener.bakedStatsFoldout)
+                        BakedReverbStatsGUI();
                 }
             }
+            GUI.enabled = true;
 
             serializedObject.ApplyModifiedProperties();
         }
@@ -64,7 +71,7 @@ namespace Phonon
             PhononGUI.SectionHeader("Baked Reverb Settings");
 
             PhononListener bakedReverb = serializedObject.targetObject as PhononListener;
-            GUI.enabled = !bakedReverb.phononBaker.IsBakeActive();
+            GUI.enabled = !PhononBaker.IsBakeActive() && !EditorApplication.isPlayingOrWillChangePlaymode;
             EditorGUILayout.PropertyField(serializedObject.FindProperty("useAllProbeBoxes"));
             if (!serializedObject.FindProperty("useAllProbeBoxes").boolValue)
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("probeBoxes"), true);
@@ -73,31 +80,23 @@ namespace Phonon
             EditorGUILayout.PrefixLabel(" ");
             if (GUILayout.Button("Bake Reverb"))
             {
-                Debug.Log("START: Baking reverb effect.");
                 bakedReverb.BeginBake();
             }
             EditorGUILayout.EndHorizontal();
             GUI.enabled = true;
 
             DisplayProgressBarAndCancel();
-
-            if (bakedReverb.phononBaker.GetBakeStatus() == BakeStatus.Complete)
-            {
-                bakedReverb.EndBake();
-                Repaint();
-                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-                Debug.Log("COMPLETED: Baking reverb effect.");
-            }
         }
-
         public void BakedReverbStatsGUI()
         {
             PhononListener bakedReverb = serializedObject.targetObject as PhononListener;
-            GUI.enabled = !bakedReverb.phononBaker.IsBakeActive();
+            GUI.enabled = !PhononBaker.IsBakeActive() && !EditorApplication.isPlayingOrWillChangePlaymode;
             bakedReverb.UpdateBakedDataStatistics();
             for (int i = 0; i < bakedReverb.bakedProbeNames.Count; ++i)
-                EditorGUILayout.LabelField(bakedReverb.bakedProbeNames[i], (bakedReverb.bakedProbeDataSizes[i] / 1000.0f).ToString("0.0") + " KB");
-            EditorGUILayout.LabelField("Total Size", (bakedReverb.bakedDataSize / 1000.0f).ToString("0.0") + " KB");
+                EditorGUILayout.LabelField(bakedReverb.bakedProbeNames[i], 
+                    (bakedReverb.bakedProbeDataSizes[i] / 1000.0f).ToString("0.0") + " KB");
+            EditorGUILayout.LabelField("Total Size", 
+                (bakedReverb.bakedDataSize / 1000.0f).ToString("0.0") + " KB");
             GUI.enabled = true;
         }
 
@@ -107,7 +106,5 @@ namespace Phonon
             bakedReverb.phononBaker.DrawProgressBar();
             Repaint();
         }
-
-        bool bakedStatsFoldout = false;
     }
 }

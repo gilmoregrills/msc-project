@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using UnityEngine;
@@ -117,11 +118,16 @@ namespace Phonon
         public GlobalContext GlobalContext()
         {
             GlobalContext globalContext;
-            globalContext.logCallback = IntPtr.Zero;
+            globalContext.logCallback = LogMessage;
             globalContext.allocateCallback = IntPtr.Zero;
             globalContext.freeCallback = IntPtr.Zero;
 
             return globalContext;
+        }
+
+        public static void LogMessage(string message)
+        {
+            Debug.Log(message);
         }
 
         // Returns Rendering Settings.
@@ -233,11 +239,11 @@ namespace Phonon
         public ComputeDeviceType ComputeDeviceSettings(out int numComputeUnits, out bool useOpenCL)
         {
             CustomPhononSettings customSettings = CustomPhononSettings();
-            if (customSettings)
+            if (customSettings && customSettings.convolutionOption == Phonon.ConvolutionOption.TrueAudioNext)
             {
                 numComputeUnits = customSettings.numComputeUnits;
-                useOpenCL = customSettings.useOpenCL;
-                return customSettings.computeDeviceOption;
+                useOpenCL = true;
+                return ComputeDeviceType.GPU;
             }
 
             numComputeUnits = 0;
@@ -246,10 +252,10 @@ namespace Phonon
         }
 
         // Sets Audio Listener. This function is called when Phonon Manager is initialized. 
-        // Further, this functionis also called every frame update to keep latest version of Audio Listener. 
+        // Further, this function is also called every frame update to keep latest version of Audio Listener. 
         // Returns Audio Listener. The value is null if Phonon Manager has not been initialized.
-        // To reduce overhead due to FindObjectOfType call, the value can potentially be cached. Audio Listener cannot
-        // be changed in that case. See PhononStaticListener() on caching the value properly.
+        // To reduce overhead due to FindObjectOfType call, the value can potentially be cached. Audio Listener 
+        // cannot be changed in that case. See PhononStaticListener() on caching the value properly.
         public AudioListener AudioListener(bool setValue = false)
         {
             if (setValue)
@@ -259,10 +265,10 @@ namespace Phonon
         }
 
         // Sets Phonon Listener. This function is called when Phonon Manager is initialized. 
-        // Further, this functionis also called every frame update to keep latest version of Phonon Listener. 
+        // Further, this function is also called every frame update to keep latest version of Phonon Listener. 
         // Returns Phonon Listener. The value is null if Phonon Manager has not been initialized.
-        // To reduce overhead due to FindObjectOfType call, the value can potentially be cached. Audio Listener cannot
-        // be changed in that case. See PhononStaticListener() on caching the value properly.
+        // To reduce overhead due to FindObjectOfType call, the value can potentially be cached. Audio Listener 
+        // cannot be changed in that case. See PhononStaticListener() on caching the value properly.
         public PhononListener PhononListener(bool setValue = false)
         {
             if (setValue)
@@ -336,12 +342,12 @@ namespace Phonon
         // Audio Engine
         public AudioEngine audioEngine;
 
-        // Advaned Options
+        // Advanced Options
         public bool updateComponents = true;
 
         public bool showLoadTimeOptions = false;
         public bool showMassBakingOptions = false;
-        public UnityEngine.Object currentlyBakingObject = null;
+        public PhononBaker phononBaker = new PhononBaker();
 
         // Structures to encapsulate Phonon C API objects.
         PhononManagerContainer phononContainer = new PhononManagerContainer();

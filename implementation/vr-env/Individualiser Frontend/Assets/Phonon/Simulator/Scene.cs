@@ -1,10 +1,10 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using System;
 using System.IO;
-using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -99,13 +99,14 @@ namespace Phonon
             }
             else
             {
-                error = PhononCore.iplSaveFinalizedScene(scene, Common.ConvertString(SceneFileName()));
-                if (error != Error.None)
-                {
-                    throw new Exception("Unable to save scene to " + SceneFileName() + " [" + error.ToString() + "]");
-                }
+                var dataSize = PhononCore.iplSaveFinalizedScene(scene, null);
+                var data = new byte[dataSize];
+                PhononCore.iplSaveFinalizedScene(scene, data);
 
-                Debug.Log("Scene exported to " + SceneFileName() + ".");
+                var fileName = SceneFileName();
+                File.WriteAllBytes(fileName, data);
+
+                Debug.Log("Scene exported to " + fileName + ".");
             }
 
             PhononCore.iplDestroyStaticMesh(ref staticMesh);
@@ -119,7 +120,9 @@ namespace Phonon
             if (!File.Exists(fileName))
                 return Error.Fail;
 
-            var error = PhononCore.iplLoadFinalizedScene(globalContext, simulationSettings, Common.ConvertString(fileName),
+            byte[] data = File.ReadAllBytes(fileName);
+
+            var error = PhononCore.iplLoadFinalizedScene(globalContext, simulationSettings, data, data.Length,
                 computeDevice.GetDevice(), null, ref scene);
 
             return error;

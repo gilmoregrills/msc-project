@@ -1,11 +1,10 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using UnityEditor;
 using UnityEngine;
-using UnityEditor.SceneManagement;
-using UnityEngine.SceneManagement;
 
 namespace Phonon
 {
@@ -26,8 +25,9 @@ namespace Phonon
 
             PhononGUI.SectionHeader("Baked Static Listener Settings");
 
-            BakedStaticListenerNode bakedStaticListener = serializedObject.targetObject as BakedStaticListenerNode;
-            GUI.enabled = !bakedStaticListener.phononBaker.IsBakeActive();
+            BakedStaticListenerNode bakedStaticListener = 
+                serializedObject.targetObject as BakedStaticListenerNode;
+            GUI.enabled = !PhononBaker.IsBakeActive() && !EditorApplication.isPlayingOrWillChangePlaymode;
             EditorGUILayout.PropertyField(serializedObject.FindProperty("uniqueIdentifier"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("bakingRadius"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("useAllProbeBoxes"));
@@ -47,7 +47,6 @@ namespace Phonon
                     Debug.LogError("You must specify a unique identifier name.");
                 else
                 {
-                    Debug.Log("START: Baking effect for \"" + bakedStaticListener.uniqueIdentifier + "\".");
                     bakedStaticListener.BeginBake();
                 }
             }
@@ -56,23 +55,18 @@ namespace Phonon
 
             DisplayProgressBarAndCancel();
 
-            if (bakedStaticListener.phononBaker.GetBakeStatus() == BakeStatus.Complete)
-            {
-                bakedStaticListener.EndBake();
-                Repaint();
-                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-                Debug.Log("COMPLETED: Baking effect for \"" + bakedStaticListener.uniqueIdentifier + "\".");
-            }
-
-            bakedStatsFoldout = EditorGUILayout.Foldout(bakedStatsFoldout, "Baked Static Listener Node Statistics");
-            if (bakedStatsFoldout)
+            serializedObject.FindProperty("bakedStatsFoldout").boolValue =
+                EditorGUILayout.Foldout(serializedObject.FindProperty("bakedStatsFoldout").boolValue,
+                "Baked Static Listener Node Statistics");
+            if (bakedStaticListener.bakedStatsFoldout)
                 BakedStaticListenerNodeStatsGUI();
             serializedObject.ApplyModifiedProperties();
         }
 
         void DisplayProgressBarAndCancel()
         {
-            BakedStaticListenerNode bakedStaticListener = serializedObject.targetObject as BakedStaticListenerNode;
+            BakedStaticListenerNode bakedStaticListener = 
+                serializedObject.targetObject as BakedStaticListenerNode;
             bakedStaticListener.phononBaker.DrawProgressBar();
             Repaint();
         }
@@ -80,14 +74,14 @@ namespace Phonon
         public void BakedStaticListenerNodeStatsGUI()
         {
             BakedStaticListenerNode bakedNode = serializedObject.targetObject as BakedStaticListenerNode;
-            GUI.enabled = !bakedNode.phononBaker.IsBakeActive();
+            GUI.enabled = !PhononBaker.IsBakeActive() && !EditorApplication.isPlayingOrWillChangePlaymode;
             bakedNode.UpdateBakedDataStatistics();
             for (int i = 0; i < bakedNode.bakedProbeNames.Count; ++i)
-                EditorGUILayout.LabelField(bakedNode.bakedProbeNames[i], (bakedNode.bakedProbeDataSizes[i] / 1000.0f).ToString("0.0") + " KB");
-            EditorGUILayout.LabelField("Total Size", (bakedNode.bakedDataSize / 1000.0f).ToString("0.0") + " KB");
+                EditorGUILayout.LabelField(bakedNode.bakedProbeNames[i], 
+                    (bakedNode.bakedProbeDataSizes[i] / 1000.0f).ToString("0.0") + " KB");
+            EditorGUILayout.LabelField("Total Size", 
+                (bakedNode.bakedDataSize / 1000.0f).ToString("0.0") + " KB");
             GUI.enabled = true;
         }
-
-        bool bakedStatsFoldout = false;
     }
 }

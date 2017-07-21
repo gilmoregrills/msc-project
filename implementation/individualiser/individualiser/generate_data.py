@@ -102,6 +102,13 @@ with indent(4, quote='>'):
     puts(str(x[12]))
 lmdb.store('custom_hrtf', custom_hrtf)
 
+custom_hrir = util.fourier_transform(custom_hrtf, True, False)
+puts(colored.green("storing custom hrir, transformed from hrtf data, size:"))
+with indent(4, quote='>'):
+    x[13] = custom_hrir.nbytes
+    puts(str(x[13]))
+lmdb.store('custom_hrir', custom_hrir)
+
 puts(colored.green("Total data stored:"))
 with indent(4, quote='>'):
     total_data = x.sum()

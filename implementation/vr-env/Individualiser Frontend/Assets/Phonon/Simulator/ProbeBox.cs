@@ -1,11 +1,11 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Phonon
 {
@@ -21,7 +21,11 @@ namespace Phonon
         {
             Color oldColor = Gizmos.color;
             Gizmos.color = Color.magenta;
-            Gizmos.DrawWireCube(gameObject.transform.position, gameObject.transform.localScale);
+
+            Matrix4x4 oldMatrix = Gizmos.matrix;
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.DrawWireCube(new UnityEngine.Vector3(0, 0, 0), new UnityEngine.Vector3(1, 1, 1));
+            Gizmos.matrix = oldMatrix;
 
             float PROBE_DRAW_SIZE = .1f;
             Gizmos.color = Color.yellow;
@@ -69,17 +73,8 @@ namespace Phonon
 
             // Create bounding box for the probe.
             IntPtr probeBox = IntPtr.Zero;
-            Box boundingBox;
-            boundingBox.minCoordinates = Common.ConvertVector(gameObject.transform.position);
-            boundingBox.maxCoordinates = Common.ConvertVector(gameObject.transform.position);
-            boundingBox.minCoordinates.x -= gameObject.transform.localScale.x / 2;
-            boundingBox.minCoordinates.y -= gameObject.transform.localScale.y / 2;
-            boundingBox.minCoordinates.z -= gameObject.transform.localScale.z / 2;
-            boundingBox.maxCoordinates.x += gameObject.transform.localScale.x / 2;
-            boundingBox.maxCoordinates.y += gameObject.transform.localScale.y / 2;
-            boundingBox.maxCoordinates.z += gameObject.transform.localScale.z / 2;
-
-            PhononCore.iplCreateProbeBox(duringProbePhononContainer.Scene().GetScene(), boundingBox, placementParameters, null, ref probeBox);
+            PhononCore.iplCreateProbeBox(duringProbePhononContainer.Scene().GetScene(),
+            Common.ConvertMatrix(gameObject.transform.localToWorldMatrix), placementParameters, null, ref probeBox);
 
             int numProbes = PhononCore.iplGetProbeSpheres(probeBox, null);
             probeSpherePoints = new float[3*numProbes];

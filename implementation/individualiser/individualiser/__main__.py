@@ -66,12 +66,12 @@ def main(args=None):
                 print "received a request for an hrtf, sending from lmdb..."
                 # fetch latest custom HRTF from lmdb, it'll always be in the
                 # same place as old ones get archived elsewhere
-                latest_hrtf = lmdb.fetch("custom_hrtf")
+                latest_hrir = lmdb.fetch("custom_hrir")
                 print "transforming to json to send"
-                latest_hrtf = latest_hrtf.tolist()
+                latest_hrir = latest_hrir.tolist()
                 print "hrtf fetched, shape: ", 
-                print len(latest_hrtf), len(latest_hrtf[0]), len(latest_hrtf[0][0]), len(latest_hrtf[0][0][0])
-                output = json.dumps(latest_hrtf)
+                print len(latest_hrir), len(latest_hrir[0]), len(latest_hrir[0][0]), len(latest_hrir[0][0][0])
+                output = json.dumps(latest_hrir)
                 size = sys.getsizeof(output)
                 print "size of size value: ", sys.getsizeof(size)
                 print "json ready, size: ", size, " sending..."

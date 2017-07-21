@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using System;
@@ -18,7 +19,7 @@ namespace Phonon
             ambisonicsFormat.channelOrder = ChannelOrder.Deinterleaved;
 
             var error = PhononCore.iplCreateEnvironmentalRenderer(globalContext, environment.GetEnvironment(),
-                renderingSettings, ambisonicsFormat, ref environmentalRenderer);
+                renderingSettings, ambisonicsFormat, IntPtr.Zero, IntPtr.Zero, ref environmentalRenderer);
             if (error != Error.None)
             {
                 throw new Exception("Unable to create environment renderer [" + error.ToString() + "]");

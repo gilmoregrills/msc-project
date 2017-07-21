@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using System;
@@ -105,7 +106,7 @@ namespace Phonon
         }
 
         //
-        // Courutine to update source and listener position and orientation at frame end.
+        // Coroutine to update source and listener position and orientation at frame end.
         // Done this way to ensure correct update in VR setup.
         //
         private IEnumerator EndOfFrameUpdate()
@@ -154,7 +155,7 @@ namespace Phonon
         }
 
         //
-        // Applies propagtion effects to dry audio.
+        // Applies propagation effects to dry audio.
         //
         void OnAudioFilterRead(float[] data, int channels)
         {
@@ -201,11 +202,20 @@ namespace Phonon
             bakeSphere.centerz = sphereCenter.z;
             bakeSphere.radius = bakingRadius;
 
+            GameObject[] bakeObjects = { gameObject };
+            BakingMode[] bakingModes = { BakingMode.StaticSource };
+            string[] bakeStrings = { uniqueIdentifier };
+            Sphere[] bakeSpheres = { bakeSphere };
+
+            ProbeBox[][] bakeProbeBoxes;
+            bakeProbeBoxes = new ProbeBox[1][];
+
             if (useAllProbeBoxes)
-                phononBaker.BeginBake(FindObjectsOfType<ProbeBox>() as ProbeBox[], BakingMode.StaticSource, 
-                    uniqueIdentifier, bakeSphere);
+                bakeProbeBoxes[0] = FindObjectsOfType<ProbeBox>() as ProbeBox[];
             else
-                phononBaker.BeginBake(probeBoxes, BakingMode.StaticSource, uniqueIdentifier, bakeSphere);
+                bakeProbeBoxes[0] = probeBoxes;
+
+            phononBaker.BeginBake(bakeObjects, bakingModes, bakeStrings, bakeSpheres, bakeProbeBoxes);
         }
 
         public void EndBake()
@@ -218,6 +228,7 @@ namespace Phonon
             if (sourceSimulationType == SourceSimulationType.BakedStaticSource)
             {
                 Color oldColor = Gizmos.color;
+                Matrix4x4 oldMatrix = Gizmos.matrix;
 
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawWireSphere(gameObject.transform.position, bakingRadius);
@@ -228,10 +239,18 @@ namespace Phonon
                     drawProbeBoxes = FindObjectsOfType<ProbeBox>() as ProbeBox[];
 
                 if (drawProbeBoxes != null)
+                {
                     foreach (ProbeBox probeBox in drawProbeBoxes)
-                        if (probeBox != null)
-                            Gizmos.DrawWireCube(probeBox.transform.position, probeBox.transform.localScale);
+                    {
+                        if (probeBox == null)
+                            continue;
 
+                        Gizmos.matrix = probeBox.transform.localToWorldMatrix;
+                        Gizmos.DrawWireCube(new UnityEngine.Vector3(0, 0, 0), new UnityEngine.Vector3(1, 1, 1));
+                    }
+                }
+
+                Gizmos.matrix = oldMatrix;
                 Gizmos.color = oldColor;
             }
         }
@@ -304,6 +323,8 @@ namespace Phonon
         public List<string> bakedProbeNames = new List<string>();
         public List<int> bakedProbeDataSizes = new List<int>();
         public int bakedDataSize = 0;
+        public bool bakedStatsFoldout = false;
+        public bool bakeToggle = false;
 
         // Private fields.
         PhononManager phononManager = null;

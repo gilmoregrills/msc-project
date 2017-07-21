@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using System;
@@ -17,7 +18,7 @@ namespace Phonon
         //
 
         [DllImport("phonon")]
-        public static extern Error iplCreateComputeDevice(ComputeDeviceType deviceType, int numComputeUnits, [In, Out] ref IntPtr device);
+        public static extern Error iplCreateComputeDevice(GlobalContext globalContext, ComputeDeviceType deviceType, int numComputeUnits, [In, Out] ref IntPtr device);
 
         [DllImport("phonon")]
         public static extern void iplDestroyComputeDevice([In, Out] ref IntPtr device);
@@ -64,10 +65,10 @@ namespace Phonon
         public static extern void iplFinalizeScene(IntPtr scene, FinalizeSceneProgressCallback progressCallback);
 
         [DllImport("phonon")]
-        public static extern Error iplSaveFinalizedScene(IntPtr scene, byte[] fileName);
+        public static extern int iplSaveFinalizedScene(IntPtr scene, [In, Out] byte[] data);
 
         [DllImport("phonon", CallingConvention = CallingConvention.Cdecl)]
-        public static extern Error iplLoadFinalizedScene(GlobalContext globalContext, SimulationSettings simulationSettings, byte[] fileName, IntPtr computeDevice, LoadSceneProgressCallback progressCallback, [In, Out] ref IntPtr scene);
+        public static extern Error iplLoadFinalizedScene(GlobalContext globalContext, SimulationSettings simulationSettings, byte[] data, int size, IntPtr computeDevice, LoadSceneProgressCallback progressCallback, [In, Out] ref IntPtr scene);
 
         [DllImport("phonon")]
         public static extern void iplDumpSceneToObjFile(IntPtr scene, byte[] fileName);
@@ -208,7 +209,9 @@ namespace Phonon
         //
 
         [DllImport("phonon")]
-        public static extern Error iplCreateEnvironmentalRenderer(GlobalContext globalContext, IntPtr environment, RenderingSettings renderingSettings, AudioFormat outputFormat, [In, Out] ref IntPtr renderer);
+        public static extern Error iplCreateEnvironmentalRenderer(GlobalContext globalContext, IntPtr environment,
+            RenderingSettings renderingSettings, AudioFormat outputFormat, IntPtr threadCreateCallback,
+            IntPtr threadDestroyCallback, [In, Out] ref IntPtr renderer);
 
         [DllImport("phonon")]
         public static extern void iplDestroyEnvironmentalRenderer([In, Out] ref IntPtr renderer);
@@ -269,11 +272,11 @@ namespace Phonon
         public delegate void ProbePlacementProgressCallback(float progress);
 
         //
-        // Functions for creating and managing Acoutic Probes for baking.
+        // Functions for creating and managing Acoustic Probes for baking.
         //
 
         [DllImport("phonon")]
-        public static extern Error iplCreateProbeBox(IntPtr scene, Box box, ProbePlacementParameters placementParams, ProbePlacementProgressCallback progressCallback, [In, Out] ref IntPtr probeBox);
+        public static extern Error iplCreateProbeBox(IntPtr scene, float[] boxLocalToWorldTransform, ProbePlacementParameters placementParams, ProbePlacementProgressCallback progressCallback, [In, Out] ref IntPtr probeBox);
 
         [DllImport("phonon")]
         public static extern void iplDestroyProbeBox([In, Out] ref IntPtr probeBox);

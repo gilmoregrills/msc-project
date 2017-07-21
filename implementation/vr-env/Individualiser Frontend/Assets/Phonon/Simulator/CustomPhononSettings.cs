@@ -1,5 +1,6 @@
 ﻿//
-// Copyright (C) Valve Corporation. All rights reserved.
+// Copyright 2017 Valve Corporation. All rights reserved. Subject to the following license:
+// https://valvesoftware.github.io/steam-audio/license.html
 //
 
 using UnityEngine;
@@ -21,8 +22,6 @@ namespace Phonon
         public ConvolutionOption convolutionOption;
 
         //OpenCL settings.
-        public bool useOpenCL = false;
-        public ComputeDeviceType computeDeviceOption = ComputeDeviceType.Any;
         [Range(0, 8)]
         public int numComputeUnits = 4;
     }
