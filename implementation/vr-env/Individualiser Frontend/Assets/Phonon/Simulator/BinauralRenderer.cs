@@ -7,7 +7,7 @@ using System;
 using System.IO;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
-
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Phonon
 {
@@ -19,7 +19,7 @@ namespace Phonon
             {
                 type = HRTFDatabaseType.Custom,
                 hrtfData = IntPtr.Zero,
-                numHrirSamples = 101,
+                numHrirSamples = 200,
                 loadCallback = OnLoadHrtf,
                 unloadCallback = onUnloadHrtf,
                 lookupCallback = onLookupHrtf
@@ -31,23 +31,22 @@ namespace Phonon
         }
 
         public void OnLoadHrtf(int numSamples, int numSpectrumSamples, FFTHelper fft, IntPtr data)
+        
         {
-            
+            UnityEngine.Debug.Log("numSpectrumSamples is: " + numSpectrumSamples);
             UnityEngine.Debug.Log("data pointer points to: "+data.ToString());
             //declaring variables in tighter scope
-            double[][][][] fullHrtf;
             TcpClient clientSocket;
             NetworkStream serverStream;
             Int32 size;
             byte[] sizeData;
             string asString;
-            System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            BinaryFormatter bf = new BinaryFormatter();
             MemoryStream ms = new MemoryStream();
 
             sizeData = new byte[24];
             clientSocket = new System.Net.Sockets.TcpClient();
             clientSocket.Connect("35.176.144.147", 54679);
-
             if (clientSocket.Connected)
             {
                 UnityEngine.Debug.Log("connection made");
@@ -57,20 +56,55 @@ namespace Phonon
             asString = System.Text.Encoding.Default.GetString(sizeData);
             size = Int32.Parse(asString);
             UnityEngine.Debug.Log("size value = " + size);
-
-
+       
             clientSocket.ReceiveTimeout = 1000;
             serverStream.ReadTimeout = 1000;
             StreamReader read = new StreamReader(serverStream);
             asString = read.ReadToEnd();
             UnityEngine.Debug.Log("end of hrtf as string \n" + asString.Substring(5540000));
-            fullHrtf = Newtonsoft.Json.JsonConvert.DeserializeObject<double[][][][]>(asString);
-
+            
+            unsafe {
+                float*[][][][] fullHrir;
+                fullHrir = Newtonsoft.Json.JsonConvert.DeserializeObject<float*[][][][]>(asString);
+                int numHrirs = 1250;
+                Complex*[][] leftEarHrtfs;
+                leftEarHrtfs = new Complex*[numHrirs][];
+                Complex*[][] rightEarHrtfs;
+                rightEarHrtfs = new Complex*[numHrirs][];
+                int counter = 0;
+                for (int i = 0; i < fullHrir[0].Length; i++)
+                {
+                    for (int j = 0; j < fullHrir[0][0].Length; j++)
+                    {
+                        float*[] tmpL = new float*[numSamples];
+                        float*[] tmpR = new float*[numSamples];
+                        IntPtr left = new IntPtr(Int64.Parse(tmpL.ToString()));
+                        IntPtr right = new IntPtr(Int64.Parse(tmpR.ToString()));
+                        for (int k = 0; k < 200; k++)
+                        {
+                            tmpL[k] = fullHrir[0][i][j][k];
+                            tmpR[k] = fullHrir[1][i][j][k];
+                        }
+                        Complex*[] lHrtf = new Complex*[numSamples];
+                        Complex*[] rHrtf = new Complex*[numSamples];
+                        IntPtr leftHrtf = new IntPtr(Int64.Parse(lHrtf.ToString()));
+                        IntPtr rightHrtf = new IntPtr(Int64.Parse(rHrtf.ToString()));
+                        fft(data, left, leftHrtf);
+                        fft(data, right, rightHrtf);
+                        leftEarHrtfs[counter] = lHrtf;
+                        rightEarHrtfs[counter] = rHrtf;
+                        counter++;
+                    }
+                    counter++;
+                }
+            }
+            /*
             bf.Serialize(ms, fullHrtf);
             byte[] biter = ms.ToArray();
             //MOVE THIS HRTF DATA INTO THE INTPTR PROVIDED
             //Marshal.Copy(biter, 0, data, biter.Length);
             UnityEngine.Debug.Log("HRTFs loaded");
+            */
         }
 
         public void onUnloadHrtf()
