@@ -66,7 +66,7 @@ namespace Phonon
             UnityEngine.Debug.Log("end of hrtf as string \n" + asString.Substring(5540000));
             
             unsafe {
-                float[][][][] fullHrir;
+                float*[][][][] fullHrir;
                 fullHrir = Newtonsoft.Json.JsonConvert.DeserializeObject<float[][][][]>(asString);
                 int numHrirs = 1250;
                 Complex*[][] leftEarHrtfs;
@@ -100,6 +100,7 @@ namespace Phonon
                     counter++;
                 }
             }
+            
             /*
             bf.Serialize(ms, fullHrtf);
             byte[] biter = ms.ToArray();
