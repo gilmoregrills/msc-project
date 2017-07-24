@@ -31,7 +31,7 @@ def individualiser(vector_string):
     }
     # process input vectors into angles
     vectors = util.parse_vector(vector_string)
-    print "input vectors: ", vectors
+    print "vectors: ", vectors
     angles = util.find_angles(vectors)
     # log it
     log_data['src_loc'] = list(angles[0])

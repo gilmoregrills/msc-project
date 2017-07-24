@@ -3,6 +3,7 @@ import scipy as scp
 import scipy.signal as sig
 import scipy.io.wavfile as wav
 import lmdb_interface as lmdb
+import utility_functions as util
 import pyaudio
 import wave
 import sys
@@ -11,6 +12,10 @@ import subprocess
 import time
 
 hrir = lmdb.fetch('custom_hrir')
+sound_src = lmdb.fetch('current_source')
+
+
+
 hrir_l = hrir[0][0][0]
 hrir_r = hrir[1][0][0]
 
