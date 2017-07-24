@@ -10,11 +10,32 @@ import sys
 import os
 import subprocess
 import time
+import simplejson as json
+import socket
 
 while 1 == True:
+	# fetch data from individualiser
+	host = "35.176.144.147"
+	port = 54679
+
+	sock = socket.socket()
+
+	sock.connect((host, port))
+	current_source = sock.recv(1024)
+	current_source = json.loads(current_source)
+	print "current source: ", current_source
+	size = int(sock.recv(1024))
+	print "size received: ", size
+	input_data = sock.recv(1024)
+	while sys.getsizeof(input_data) < size:
+		#print "receiving data", sys.getsizeof(input_data)
+		input_data = input_data+sock.recv(1024)
+	print "hrir data received \n", sys.getsizeof(input_data)
+	as_string = input_data.decode("utf-8")
+	hrir = json.loads(as_string)
 	# run from AWS for now, fetch via socket later
-	hrir = lmdb.fetch('custom_hrir')
-	sound_src = lmdb.fetch('current_source')
+	# hrir = lmdb.fetch('custom_hrir')
+	# sound_src = lmdb.fetch('current_source')
 
 	hrir_l = hrir[0][sound_src[0]][sound_src[1]]
 	hrir_r = hrir[1][sound_src[0]][sound_src[1]]

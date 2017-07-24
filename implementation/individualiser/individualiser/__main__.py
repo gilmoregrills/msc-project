@@ -8,6 +8,7 @@ import numpy as np
 import time
 import os
 
+
 # Main individualiser process
 # should be running before the frontend
 # frontend should ping both ports on 
@@ -69,6 +70,10 @@ def main(args=None):
                 # fetch latest custom HRTF from lmdb, it'll always be in the
                 # same place as old ones get archived elsewhere
                 latest_hrir = lmdb.fetch("custom_hrir")
+                
+                current_source = lmdb.fetch("current_source")
+                conn.send(json.dumps(current_source))
+                print "sending current source"
                 print "transforming to json to send"
                 latest_hrir = latest_hrir.astype(float)
                 latest_hrir = latest_hrir.tolist()
@@ -78,6 +83,7 @@ def main(args=None):
                 size = sys.getsizeof(output)
                 print "size of size value: ", sys.getsizeof(size)
                 print "json ready, size: ", size, " sending..."
+                
                 conn.send(str(size))
                 conn.sendall(output)
                 conn.close()
