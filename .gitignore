@@ -11,3 +11,5 @@ other_work/
 other-work/
 /implementation/individualiser/individualiser/data
 aws-keys/
+*.pyc
+/implementation/individualiser/individualiser/output.wav
