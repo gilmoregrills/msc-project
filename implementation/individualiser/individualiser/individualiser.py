@@ -52,6 +52,7 @@ def individualiser(vector_string):
     # if no error/below a certain threshold, make no change and return
     # indexes in CIPIC coordinate structure
     hrtf_indexes = util.cipic_indexes(angles)
+    lmdb.store('current_source', np.array(hrtf_indexes[2]))
     print "indexes: ", hrtf_indexes
     # the indexes in a 1250*n PCA matrix!
     # [0] should be primary value
