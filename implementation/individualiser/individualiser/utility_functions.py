@@ -205,7 +205,7 @@ def parse_vector(vector_string):
     vector_string = np.array(map(float, vector_string))
     print vector_string, type(vector_string), vector_string.size
     sound_src = np.array(vector_string[:3])
-    percv_src = np.array(vector_string[3:])
+    percv_src = np.array(vector_string[3:6])
     #print sound_src, percv_src
     return np.array([sound_src, percv_src])
 

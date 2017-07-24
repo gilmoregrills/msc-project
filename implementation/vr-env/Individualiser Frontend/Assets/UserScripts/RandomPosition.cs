@@ -21,7 +21,7 @@ public class RandomPosition : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown ("z") | Input.GetKeyDown("left alt") && Input.GetKeyDown("z")) {
-			print ("pressed Z - generating new random position");
+			print ("generating new random position");
 			currentPosition = audioSource.transform.position;
 			currentRotation = audioSource.transform.rotation;
 			print ("current position = " + currentPosition);
