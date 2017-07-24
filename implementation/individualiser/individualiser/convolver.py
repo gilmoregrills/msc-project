@@ -8,6 +8,7 @@ import wave
 import sys
 import os
 import subprocess
+import time
 
 # # ready AUI/GUI
 # import pygame
@@ -32,8 +33,13 @@ output[1] = sig.convolve(pinknoise[1], hrir_r, mode='same')
 wav.write("output.wav", 44100, output.T)
 
 audiofile = "output.wav"
-subprocess.call(('open', audiofile))
 
+FNULL = open(os.devnull, 'w')
+
+player = subprocess.Popen(['vlc', '-vvv', audiofile], stdout=FNULL, stderr=subprocess.STDOUT)
+time.sleep(1.2)
+player.kill()
+player.wait()
 
 # chunk = 1024
 # sound = wave.open(audiofile)
