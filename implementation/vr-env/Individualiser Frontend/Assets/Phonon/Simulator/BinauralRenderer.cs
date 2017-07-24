@@ -53,9 +53,11 @@ namespace Phonon
             }
             serverStream = clientSocket.GetStream();
             serverStream.Read(sizeData, 0, 24);
+            /*
             asString = System.Text.Encoding.Default.GetString(sizeData);
             size = Int32.Parse(asString);
-            UnityEngine.Debug.Log("size value = " + size);
+            */
+            //UnityEngine.Debug.Log("size value = " + size);
        
             clientSocket.ReceiveTimeout = 1000;
             serverStream.ReadTimeout = 1000;
@@ -64,8 +66,8 @@ namespace Phonon
             UnityEngine.Debug.Log("end of hrtf as string \n" + asString.Substring(5540000));
             
             unsafe {
-                float*[][][][] fullHrir;
-                fullHrir = Newtonsoft.Json.JsonConvert.DeserializeObject<float*[][][][]>(asString);
+                float[][][][] fullHrir;
+                fullHrir = Newtonsoft.Json.JsonConvert.DeserializeObject<float[][][][]>(asString);
                 int numHrirs = 1250;
                 Complex*[][] leftEarHrtfs;
                 leftEarHrtfs = new Complex*[numHrirs][];

@@ -66,6 +66,7 @@ def main(args=None):
                 # same place as old ones get archived elsewhere
                 latest_hrir = lmdb.fetch("custom_hrir")
                 print "transforming to json to send"
+                latest_hrir = latest_hrir.astype(float)
                 latest_hrir = latest_hrir.tolist()
                 print "hrtf fetched, shape: ", 
                 print len(latest_hrir), len(latest_hrir[0]), len(latest_hrir[0][0]), len(latest_hrir[0][0][0])
