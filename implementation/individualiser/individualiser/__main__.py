@@ -4,6 +4,7 @@ import select
 import lmdb_interface as lmdb
 import simplejson as json
 import individualiser
+import numpy as np
 import time
 import os
 
@@ -27,6 +28,7 @@ def main(args=None):
         logfile.write(json.dumps({'logs':[]}, indent=4, sort_keys=True))
         logfile.close()
     lmdb.open()# there should be a scenario under which this is closed, too
+    print "setting initial sound source origin: ", lmdb.store('current_source', np.array([8, 12]))# must be the same as the initial starting position of the source in Unity
     print "Individualiser Running!"
     in_port = 54678
     out_port = 54679

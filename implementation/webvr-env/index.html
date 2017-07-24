@@ -28,7 +28,7 @@
       <a-entity id="sourceFTL" position="-10 0 -10">
         <script>
           var audioElement = document.createElement('audio');
-          audioElement.src = 'pinknoise.mp3';
+          audioElement.src = 'jlwarbirds3.amb';
 
           var audioContext = new AudioContext();
           var audioElementSource = 
@@ -38,8 +38,10 @@
           });
 
           foaRenderer.initialize().then(function() {
+            foaRenderer.setRenderingMode('ambisonic');
             audioElementSource.connect(foaRenderer.input);
             foaRenderer.output.connect(audioContext.destination);
+
             audioElement.play();
             console.log("playing");
           });

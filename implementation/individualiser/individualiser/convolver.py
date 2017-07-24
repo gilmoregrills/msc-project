@@ -11,29 +11,38 @@ import os
 import subprocess
 import time
 
-hrir = lmdb.fetch('custom_hrir')
-sound_src = lmdb.fetch('current_source')
+while 1 == True:
+	# run from AWS for now, fetch via socket later
+	hrir = lmdb.fetch('custom_hrir')
+	sound_src = lmdb.fetch('current_source')
 
+	hrir_l = hrir[0][sound_src[0]][sound_src[1]]
+	hrir_r = hrir[1][sound_src[0]][sound_src[1]]
 
+	pinknoise = wav.read('pinknoise.wav')
 
-hrir_l = hrir[0][0][0]
-hrir_r = hrir[1][0][0]
+	output = np.zeros([2, 44100])
+	output[0] = sig.convolve(pinknoise[1], hrir_l, mode='same')
+	output[1] = sig.convolve(pinknoise[1], hrir_r, mode='same')
 
-pinknoise = wav.read('pinknoise.wav')
+	wav.write("output.wav", 44100, output.T)
+	while 1 == True:
+		audiofile = "output.wav"
 
-output = np.zeros([2, 44100])
-output[0] = sig.convolve(pinknoise[1], hrir_l, mode='same')
-output[1] = sig.convolve(pinknoise[1], hrir_r, mode='same')
+		FNULL = open(os.devnull, 'w')
 
-wav.write("output.wav", 44100, output.T)
+		player = subprocess.Popen(['vlc', '-vvv', audiofile], stdout=FNULL, stderr=subprocess.STDOUT)
+		time.sleep(1.2)
+		player.kill()
+		player.terminate()
+		player.wait()
+		print "Would you like to play the sample again?"
+		answer1 = raw_input()
+		if answer1 is "no" or answer1 is "n":
+			break 
 
-audiofile = "output.wav"
-
-FNULL = open(os.devnull, 'w')
-
-player = subprocess.Popen(['vlc', '-vvv', audiofile], stdout=FNULL, stderr=subprocess.STDOUT)
-time.sleep(1.2)
-player.kill()
-player.terminate()
-player.wait()
+	print "ready for the next sample?"
+	answer2 = raw_input()
+	if answer2 is "yes" or answer2 is "y":
+			break 
 
