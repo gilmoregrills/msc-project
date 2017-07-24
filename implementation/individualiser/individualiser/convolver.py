@@ -24,7 +24,7 @@ while 1 == True:
 	current_source = sock.recv(1024)
 	print current_source
 	current_source = json.loads(current_source)
-	print "current source: ", current_source
+	print "current source: ", current_source, type(current_source)
 	size = int(sock.recv(1024))
 	print "size received: ", size
 	input_data = sock.recv(1024)
@@ -38,8 +38,8 @@ while 1 == True:
 	# hrir = lmdb.fetch('custom_hrir')
 	# sound_src = lmdb.fetch('current_source')
 
-	hrir_l = hrir[0][sound_src[0]][sound_src[1]]
-	hrir_r = hrir[1][sound_src[0]][sound_src[1]]
+	hrir_l = hrir[0][current_source[0]][current_source[1]]
+	hrir_r = hrir[1][current_source[0]][current_source[1]]
 
 	pinknoise = wav.read('pinknoise.wav')
 
