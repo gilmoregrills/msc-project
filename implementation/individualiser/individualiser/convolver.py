@@ -22,6 +22,7 @@ while 1 == True:
 
 	sock.connect((host, port))
 	current_source = sock.recv(1024)
+	print current_source
 	current_source = json.loads(current_source)
 	print "current source: ", current_source
 	size = int(sock.recv(1024))

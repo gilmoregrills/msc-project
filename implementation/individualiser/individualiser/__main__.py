@@ -72,7 +72,7 @@ def main(args=None):
                 latest_hrir = lmdb.fetch("custom_hrir")
                 
                 current_source = lmdb.fetch("current_source")
-                conn.send(json.dumps(current_source))
+                conn.send(json.dumps(current_source.tolist()))
                 print "sending current source"
                 print "transforming to json to send"
                 latest_hrir = latest_hrir.astype(float)
