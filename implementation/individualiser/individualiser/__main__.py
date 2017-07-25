@@ -84,8 +84,11 @@ def main(args=None):
                 print "size of size value: ", sys.getsizeof(size)
                 print "json ready, size: ", size, " sending..."
                 
-                conn.send(str(size))
+                conn.sendall(str(size))
+		print "sent ", str(size)
+		print "sending output! hrir!"
                 conn.sendall(output)
+		conn.send("xoxo")
                 conn.close()
                 print "sent!"
             else:
