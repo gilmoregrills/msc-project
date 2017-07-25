@@ -16,6 +16,7 @@ import os
 # and test the process
 
 def main(args=None):
+
     if args is None:
         args = sys.argv[1:]
     logdir = "logs/"+time.strftime("%d-%m-%Y")+"/"
@@ -28,28 +29,32 @@ def main(args=None):
         logfile = open(logfname, "w")
         logfile.write(json.dumps({'logs':[]}, indent=4, sort_keys=True))
         logfile.close()
+    # open DB and prep original source data
     lmdb.open()# there should be a scenario under which this is closed, too
     print "setting initial sound source origin: ", lmdb.store('current_source', np.array([8, 12]))# must be the same as the initial starting position of the source in Unity
+
     print "Individualiser Running!"
+
+    # prepare socket stuff
     in_port = 54678
     out_port = 54679
-    if "DESKTOP" not in socket.gethostname():
-        host = "ec2-35-176-144-147.eu-west-2.compute.amazonaws.com"
-    else:
-        host = "127.0.0.1"
+    # if "DESKTOP" not in socket.gethostname():
+    host = "ec2-35-176-144-147.eu-west-2.compute.amazonaws.com"
+    # else:
+    #     host = "127.0.0.1"
     print "the host is: ", host
     sock_in = socket.socket()
     sock_in.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock_out = socket.socket()
     sock_out.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     sock_in.bind((host, in_port))
-    sock_out.bind((host, out_port))
-    
+    sock_out.bind((host, out_port)) 
     sock_out.listen(5)
     sock_in.listen(5)
     print "Sockets listening on their respective ports"
-    
     sockets = [sock_out, sock_in]
+
+    # loop through, listening and transmitting!
     while True:
         ready_sockets,_,_ = select.select(sockets, [], [])
         for s in ready_sockets:
