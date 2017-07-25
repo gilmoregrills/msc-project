@@ -60,7 +60,7 @@ while 1 == True:
 		player.wait()
 		print "Would you like to play the sample again?"
 		answer1 = raw_input()
-		if answer1 is "no" or answer1 is "n":
+		if answer1 == "no" or answer1 == "n":
 			break 
 
 	print "ready for the next sample?"
