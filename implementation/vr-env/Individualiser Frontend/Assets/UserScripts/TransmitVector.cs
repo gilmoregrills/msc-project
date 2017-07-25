@@ -38,18 +38,21 @@ public class TransmitVector : MonoBehaviour {
         }
     }
     public void transmit() {
+        //find all the game objects
         user = GameObject.Find("MegaCam");
         source = GameObject.Find("Source1");
         reticle = GameObject.Find("Reticle");
         connectNotif = GameObject.Find("Connected");
         dataNotif = GameObject.Find("Sent Position");
-        print ("pressed X, transmitting perceived/actual source vector");
+        //starting the script
+        print ("pressed trigger, transmitting perceived/actual source vector");
+        //fetch the current position values
 		userToSource = source.transform.position - user.transform.position;
 		userLocalisation = reticle.transform.position - user.transform.position;
-            
         print ("Actual vector from user to sound source =" + userToSource.ToString ());
 		print ("Perceived vector from user to sound source =" + userLocalisation.ToString ());
 
+        //generate a new position for the sound source
         print("generating new random position");
         currentPosition = source.transform.position;
         currentRotation = source.transform.rotation;
@@ -61,22 +64,24 @@ public class TransmitVector : MonoBehaviour {
         source.transform.LookAt(new Vector3(0, 0, 0));
         print("new position = " + source.transform.position);
         newPosition = source.transform.position;
+
+        //turn these directsions into strings to transmit them
         output = System.Text.Encoding.ASCII.GetBytes (userToSource.ToString () + userLocalisation.ToString () + newPosition.ToString());
+        //start a TCP client
 		clientSocket = new System.Net.Sockets.TcpClient ();
-            
-        clientSocket.Connect("35.176.144.147", 54678); //if running in editor, connect localhost
-            
+        clientSocket.Connect("35.176.144.147", 54678); //connect it to AWS instance
+        //if connected flash the confirmation on-screen for a few seconds
         if (clientSocket.Connected)
         {
             connectNotif = GameObject.Find("Connected");
             UnityEngine.Vector3 pos = connectNotif.transform.position;
-            pos.x = -6;
+            pos.x = 1;
+            pos.y = 1;
+            pos.z = 7;
             connectNotif.transform.position = pos;
         }
-
 		serverStream = clientSocket.GetStream ();
 		serverStream.Write (output, 0, output.Length);
-        dataNotif.GetComponent<Renderer>().enabled = true;
 		serverStream.Flush ();
 	}
 }
