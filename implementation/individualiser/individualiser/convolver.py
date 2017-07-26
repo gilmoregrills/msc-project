@@ -2,8 +2,8 @@ import numpy as np
 import scipy as scp
 import scipy.signal as sig
 import scipy.io.wavfile as wav
-import pygame
-import wave
+#import pygame
+#import wave
 import sys
 import os
 import subprocess
@@ -12,9 +12,9 @@ import simplejson as json
 import socket
 
 # test audio
-player = subprocess.Popen(['aplay', 'pinknoise.wav'])
-time.sleep(1.2)
-player.terminate()
+# player = subprocess.Popen(['aplay', 'pinknoise.wav'])
+# time.sleep(1.2)
+# player.terminate()
 
 while 1 == True:
 	print "ready? yes/y or exit \n>"
@@ -46,7 +46,7 @@ while 1 == True:
 	print "start of hrir!", input_data
 	input_data = input_data + sock.recv(1024)
 	while sys.getsizeof(input_data) < size:
-		print "receiving data", sys.getsizeof(input_data)
+		# print "receiving data", sys.getsizeof(input_data)
 		input_data = input_data+sock.recv(1024)
 		if input_data[-4:] == "xoxo":
 			break
@@ -84,7 +84,9 @@ while 1 == True:
 		audiofile = "output.wav"
 		FNULL = open(os.devnull, 'w')
 		# open player, sleep while the sample plays, then terminate the process!
-		player = subprocess.Popen(['aplay', audiofile])
+		# player = subprocess.Popen(['aplay', audiofile]) # if rasbian lite
+		# player = subprocess.Popen(['vlc', '-vvv', audiofile]) # if ubuntu
+		player = subprocess.Popen(['/mnt/c/Program Files/VideoLAN/VLC/vlc.exe', audiofile]) # if windows
 		time.sleep(1.2)
 		player.kill()
 		player.terminate()
