@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  26 JUL 2017 16:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  26 JUL 2017 21:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -185,7 +185,12 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/helvet.sty
 Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS) 
-) (./thesis-base.aux)
+)
+
+LaTeX Warning: Unused global option(s):
+    [letter].
+
+(./thesis-base.aux)
 \openout1 = `thesis-base.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
@@ -203,7 +208,7 @@ LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 38.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 \AtBeginShipoutBox=\box27
@@ -307,30 +312,30 @@ Package natbib Warning: Citation `Algazi2001' on page 5 undefined on input line
 Package natbib Warning: Citation `AcousticsResearchInstitute' on page 5 undefin
 ed on input line 33.
 
+[5]
 Missing character: There is no � in font phvb7t!
 Missing character: There is no � in font phvb7t!
 Missing character: There is no � in font phvb7t!
-[5]
+ [6]
 
-Package natbib Warning: Citation `Middlebrooks1999a' on page 6 undefined on inp
+Package natbib Warning: Citation `Middlebrooks1999a' on page 7 undefined on inp
 ut line 41.
 
 
-Package natbib Warning: Citation `kemar mannequin?' on page 6 undefined on inpu
+Package natbib Warning: Citation `kemar mannequin?' on page 7 undefined on inpu
 t line 41.
 
 
-Package natbib Warning: Citation `•' on page 6 undefined on input line 41.
+Package natbib Warning: Citation `•' on page 7 undefined on input line 41.
 
-[6] [7]) (./literature-review/literature-review.tex
-LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <14> not available
+[7] [8]) (./literature-review/literature-review.tex
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <15> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 1.
 
 
-Package natbib Warning: Citation `Kulkarni1995' on page 8 undefined on input li
+Package natbib Warning: Citation `Kulkarni1995' on page 9 undefined on input li
 ne 2.
 
-[8]
 
 Package natbib Warning: Citation `•' on page 9 undefined on input line 5.
 
@@ -350,223 +355,231 @@ e 8.
 Package natbib Warning: Citation `Zotkin' on page 10 undefined on input line 8.
 
 
+[10]
 
-Package natbib Warning: Citation `•' on page 10 undefined on input line 10.
+Package natbib Warning: Citation `•' on page 11 undefined on input line 10.
 
 
-Package natbib Warning: Citation `ARI site docs' on page 10 undefined on input 
+Package natbib Warning: Citation `ARI site docs' on page 11 undefined on input 
 line 10.
 
-[10]
+[11]
 Overfull \hbox (7.24088pt too wide) in paragraph at lines 12--13
 []\OT1/phv/m/n/12 An al-ter-na-tive method for match-ing users to their closest
 -matching HRTF|
  []
 
-[11]
+[12]
 
-Package natbib Warning: Citation `Fahn2003' on page 12 undefined on input line 
+Package natbib Warning: Citation `Fahn2003' on page 13 undefined on input line 
 15.
 
 
-Package natbib Warning: Citation `xie2013a' on page 12 undefined on input line 
+Package natbib Warning: Citation `xie2013a' on page 13 undefined on input line 
 15.
 
 
-Package natbib Warning: Citation `xie2013a' on page 12 undefined on input line 
+Package natbib Warning: Citation `xie2013a' on page 13 undefined on input line 
 19.
 
 
-Package natbib Warning: Citation `•' on page 12 undefined on input line 19.
-
-[12]
-
-Package natbib Warning: Citation `doi:10.1080/00140131003675117' on page 13 und
-efined on input line 21.
-
-
-Package natbib Warning: Citation `shimada1994a' on page 13 undefined on input l
-ine 22.
-
-
-Package natbib Warning: Citation `Middlebrooks1999a' on page 13 undefined on in
-put line 27.
-
-
-Package natbib Warning: Citation `middlebrooks1990' on page 13 undefined on inp
-ut line 27.
+Package natbib Warning: Citation `•' on page 13 undefined on input line 19.
 
 [13]
 
-Package natbib Warning: Citation `Tan1998' on page 14 undefined on input line 2
-9.
+Package natbib Warning: Citation `doi:10.1080/00140131003675117' on page 14 und
+efined on input line 22.
 
 
-Overfull \hbox (1.3272pt too wide) in paragraph at lines 29--30
+Package natbib Warning: Citation `shimada1994a' on page 14 undefined on input l
+ine 23.
+
+
+Package natbib Warning: Citation `Middlebrooks1999a' on page 14 undefined on in
+put line 28.
+
+
+Package natbib Warning: Citation `middlebrooks1990' on page 14 undefined on inp
+ut line 28.
+
+[14]
+
+Package natbib Warning: Citation `Tan1998' on page 15 undefined on input line 3
+0.
+
+
+Overfull \hbox (1.3272pt too wide) in paragraph at lines 30--31
 \OT1/phv/m/n/12 that al-lowed users to ma-nip-u-late the scal-ing of an HRTF th
 em-selves. Given|
  []
 
 
-Overfull \hbox (14.76816pt too wide) in paragraph at lines 29--30
+Overfull \hbox (14.76816pt too wide) in paragraph at lines 30--31
 \OT1/phv/m/n/12 ceived. Their re-sults showed a small im-prove-ment over the no
 n-individualised|
  []
 
-
-Package natbib Warning: Citation `seminal paper' on page 14 undefined on input 
-line 32.
-
-
-Package natbib Warning: Citation `Genuit1984' on page 14 undefined on input lin
-e 32.
-
-
-Package natbib Warning: Citation `Duraiswami2003' on page 14 undefined on input
- line 32.
-
-[14]
-
-Package natbib Warning: Citation `PhillipBrown1998' on page 15 undefined on inp
-ut line 34.
-
-
-Package natbib Warning: Citation `lopexmeddis1996' on page 15 undefined on inpu
-t line 34.
-
 [15]
 
-Package natbib Warning: Citation `Algazi2001a' on page 16 undefined on input li
-ne 36.
+Package natbib Warning: Citation `seminal paper' on page 16 undefined on input 
+line 33.
 
 
-Package natbib Warning: Citation `Raykar2003' on page 16 undefined on input lin
-e 36.
+Package natbib Warning: Citation `Genuit1984' on page 16 undefined on input lin
+e 33.
 
 
-Package natbib Warning: Citation `•' on page 16 undefined on input line 38.
+Package natbib Warning: Citation `Duraiswami2003' on page 16 undefined on input
+ line 33.
 
 [16]
 
-Package natbib Warning: Citation `Hugeng2010' on page 17 undefined on input lin
-e 40.
+Package natbib Warning: Citation `PhillipBrown1998' on page 17 undefined on inp
+ut line 35.
 
 
-Package natbib Warning: Citation `Tashev2014' on page 17 undefined on input lin
-e 40.
+Package natbib Warning: Citation `lopexmeddis1996' on page 17 undefined on inpu
+t line 35.
 
 
-Package natbib Warning: Citation `Li2013' on page 17 undefined on input line 40
-.
+Package natbib Warning: Citation `Algazi2001a' on page 17 undefined on input li
+ne 37.
 
 
-Package natbib Warning: Citation `Pearson1901' on page 17 undefined on input li
-ne 43.
+Package natbib Warning: Citation `Raykar2003' on page 17 undefined on input lin
+e 37.
 
 [17]
 
-Package natbib Warning: Citation `Kistler1992' on page 18 undefined on input li
-ne 47.
+Package natbib Warning: Citation `•' on page 18 undefined on input line 39.
+
+
+Package natbib Warning: Citation `Hugeng2010' on page 18 undefined on input lin
+e 41.
+
+
+Package natbib Warning: Citation `Tashev2014' on page 18 undefined on input lin
+e 41.
+
+
+Package natbib Warning: Citation `Li2013' on page 18 undefined on input line 41
+.
 
 [18]
 
-Package natbib Warning: Citation `Holzl2014a' on page 19 undefined on input lin
-e 51.
-
-
-Package natbib Warning: Citation `Gutierrez-Parera2017' on page 19 undefined on
- input line 51.
-
-
-Package natbib Warning: Citation `Hwang2008' on page 19 undefined on input line
- 51.
-
-
-Package natbib Warning: Citation `Hwang2007' on page 19 undefined on input line
- 51.
-
-
-Package natbib Warning: Citation `Fink2012' on page 19 undefined on input line 
-51.
-
-
-Package natbib Warning: Citation `hwang2010customization' on page 19 undefined 
-on input line 51.
-
-
-Package natbib Warning: Citation `Holzl2014a' on page 19 undefined on input lin
-e 51.
-
-
-Package natbib Warning: Citation `middlebrooks1992observations' on page 19 unde
-fined on input line 53.
-
-
-Package natbib Warning: Citation `martens1987principal' on page 19 undefined on
- input line 53.
-
-
-Package natbib Warning: Citation `martens1987principal' on page 19 undefined on
- input line 53.
-
-
-Package natbib Warning: Citation `martens1987principal' on page 19 undefined on
- input line 53.
+Package natbib Warning: Citation `Pearson1901' on page 19 undefined on input li
+ne 44.
 
 
 Package natbib Warning: Citation `Kistler1992' on page 19 undefined on input li
-ne 53.
-
-
-Package natbib Warning: Citation `Hwang2007' on page 19 undefined on input line
- 53.
+ne 47.
 
 [19]
 
-Package natbib Warning: Citation `Holzl2012' on page 20 undefined on input line
+Package natbib Warning: Citation `Holzl2014a' on page 20 undefined on input lin
+e 51.
+
+
+Package natbib Warning: Citation `Gutierrez-Parera2017' on page 20 undefined on
+ input line 51.
+
+
+Package natbib Warning: Citation `Hwang2008' on page 20 undefined on input line
+ 51.
+
+
+Package natbib Warning: Citation `Hwang2007' on page 20 undefined on input line
+ 51.
+
+
+Package natbib Warning: Citation `Fink2012' on page 20 undefined on input line 
+51.
+
+
+Package natbib Warning: Citation `hwang2010customization' on page 20 undefined 
+on input line 51.
+
+
+Package natbib Warning: Citation `Holzl2014a' on page 20 undefined on input lin
+e 51.
+
+[20]
+
+Package natbib Warning: Citation `middlebrooks1992observations' on page 21 unde
+fined on input line 53.
+
+
+Package natbib Warning: Citation `martens1987principal' on page 21 undefined on
+ input line 53.
+
+
+Package natbib Warning: Citation `martens1987principal' on page 21 undefined on
+ input line 53.
+
+
+Package natbib Warning: Citation `martens1987principal' on page 21 undefined on
+ input line 53.
+
+
+Package natbib Warning: Citation `Kistler1992' on page 21 undefined on input li
+ne 53.
+
+
+Package natbib Warning: Citation `Hwang2007' on page 21 undefined on input line
+ 53.
+
+[21]
+
+Package natbib Warning: Citation `Holzl2012' on page 22 undefined on input line
  55.
 
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <12> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 55.
 
-Package natbib Warning: Citation `Kistler1992' on page 20 undefined on input li
+Package natbib Warning: Citation `Kistler1992' on page 22 undefined on input li
 ne 55.
 
 
-Package natbib Warning: Citation `•' on page 20 undefined on input line 57.
+Package natbib Warning: Citation `•' on page 22 undefined on input line 57.
 
 
-Package natbib Warning: Citation `Holzl2014a' on page 20 undefined on input lin
+Package natbib Warning: Citation `Holzl2014a' on page 22 undefined on input lin
 e 57.
 
-[20]
+[22]
 
-Package natbib Warning: Citation `Holzl2014a' on page 21 undefined on input lin
+Package natbib Warning: Citation `Holzl2014a' on page 23 undefined on input lin
 e 59.
 
+[23]
 
-Package natbib Warning: Citation `•' on page 21 undefined on input line 61.
+Package natbib Warning: Citation `norvig1995' on page 24 undefined on input lin
+e 69.
 
-[21]
-
-Package natbib Warning: Citation `vanLaarhoven1987' on page 22 undefined on inp
-ut line 72.
-
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 74.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsphv.fd
+[24]
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 71.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsphv.fd
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
- [22]
-Overfull \hbox (2.51637pt too wide) in paragraph at lines 79--80
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 71.
+
+
+Package natbib Warning: Citation `•' on page 25 undefined on input line 76.
+
+
+Package natbib Warning: Citation `vanLaarhoven1987' on page 25 undefined on inp
+ut line 79.
+
+[25]
+Overfull \hbox (2.51637pt too wide) in paragraph at lines 86--87
 \OT1/phv/m/n/12 greater vari-ance in the val-ues that are used to ad-just the w
 eights. |
  []
 
-[23]) (./methodology-and-process/method.tex)
+[26]) [27] (./methodology-and-process/method.tex)
 (./analysis-and-results/analysis.tex) (./discussion/discussion.tex)
-(./thesis-base.bbl [24]
+(./thesis-base.bbl [28]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 1.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -580,7 +593,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 Package natbib Warning: There were undefined citations.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 80.
-[25
+[29
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 80.
@@ -590,23 +603,23 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 80.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 80.
  ) 
 Here is how much of TeX's memory you used:
- 5238 strings out of 494910
- 77392 string characters out of 6179836
- 156124 words of memory out of 5000000
- 8488 multiletter control sequences out of 15000+600000
+ 5241 strings out of 494910
+ 77424 string characters out of 6179836
+ 156127 words of memory out of 5000000
+ 8491 multiletter control sequences out of 15000+600000
  24607 words of font info for 48 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 30i,6n,34p,1529b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,6n,34p,1670b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helveti
 c/uhvro8a.pfb>
-Output written on thesis-base.pdf (26 pages, 76436 bytes).
+Output written on thesis-base.pdf (30 pages, 78762 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 75 compressed objects within 1 object stream
+ 121 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
