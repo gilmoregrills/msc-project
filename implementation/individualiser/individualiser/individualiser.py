@@ -45,6 +45,7 @@ def individualiser(vector_string):
     print "error = ", error
     log_data['error'] = error
     value = error[0] * weight + error[1] * weight
+    log_data['update_value'] = value
     print "value = ", value
     # CALCULATE THE UPDATE VALUE
     # RIGHT NOW IT'S SET TO A DEFAULT VALUE
