@@ -3,13 +3,7 @@ sort out subsubsection topics to make it more elegant,
 fill out notes'd bits,
 should be ntroduction, can include sections on background, the problem being solved/my motivation, and my proposed solution method. 
 
-
-\subsubsection{How Humans Localise Sound/What do I mean by spatial audio?}
-Humans localise sound in a number of ways, 
-
-add in a bit about this, citing blauert, ez
-
-humans are binaural, not monaural 
+Notes: 
 
 When HRTFs are applied to an arbitrary signal
 and presented to the listener’s two ears through headphones,
@@ -17,7 +11,7 @@ he or she hears a ‘‘virtual target’’ that appears to originate
 from the location of the original sound source ?e.g., Wight-man and Kistler, 1989b; Bronkhorst, 1995; Møller et al.,
 1996?.
 
-users inability to localise using someone else's hrtfs in: \citep{Middlebrooks1999a}
+
 
 \subsubsection{Present Context}
 Spatial audio has never been more important. Though there has been a steady stream of interest in applications of spatial audio in fields like defence - primarily applied to Virtual Auditory Displays (VADs)\citep{•} - virtual, augmented, and mixed reality form a large component of the current technological zeitgeist. One major stated goal of these technologies is that of immersion. This doesn't have to mean that the user feels as if they have been transported to somewhere completely new, they just have to believe in the virtual elements of the experience. Anecdotes about users gingerly walking around virtual holes, or skirting a table that they know was not in the room before they put the headset on abound. No matter whether the technology is designed for entertainment, enterprise use, or to assist, the end user must be deceived into believing in what they are experiencing. 
@@ -42,12 +36,10 @@ These databases may contain anything from data from a single mannequin in the ca
 [table of databases by subjects and participants maybe?]
 
 \subsubsection{The Problem}
-Because of the aforementioned difficulty in measuring HRTFs, data from these databases is commonly used in attempts to implement spatial audio solutions. Either a  In the simplest implementations, the audio sample is convolved with the HRIR, producing audio that appears to come, convincingly or otherwise, from the position in 3D space that the HRIR was originally measured from. 
+Because of the aforementioned difficulty in measuring HRTFs, data from these databases is commonly used in attempts to implement spatial audio solutions. Either a participant from the database who is deemed to be sufficiently average in their morphology, a selection of participants, or an HRTF set derived from average values for the participants in the database may be used. In the simplest implementations, the audio sample is then convolved with the HRIR, producing audio that appears to come, convincingly or otherwise, from the position in 3D space that the HRIR was originally measured from. The difficult tasks is then to interpolate between these HRIRs in real time in response to the movements of the user (and potentially the source too).  
 
-The problem with using this data in any spatial audio implementations that are to be used in applications for the consumption of a wide range of end users, is that HRTF data is incredibly specific to the person the measurements have been taken from. Just small differences in the anthropometry of the measured participant and the end user can compromise the efficacy of the HRTF used\citep{•}. However, when one tries instead to use a generalised HRTF - derived from the average of a set of measurements, or from a mannequin like the KEMAR\citep{kemar mannequin?} - the processed audio is ineffective in much the same way that it is when using HRTFs measured from another person. The KEMAR, by dint of being a mannequin with average features, doesn't work for anyone who is not in possession of a totally average morophology. When using HRTFs that are not well matched to the user, front/back and elevation confusion is very common \citep{•}. 
+The problem with using this data in any spatial audio implementations that are to be used in applications for the consumption of a wide range of end users, is that HRTF data is incredibly specific to the person the measurements have been taken from. Just small differences in the anthropometry of the measured participant and the end user can compromise the efficacy of the HRTF used\citep{Middlebrooks1999a}. However, when one tries instead to use a generalised HRTF - derived from the average of a set of measurements, or from a mannequin like the KEMAR\citep{kemar mannequin?} - the processed audio is ineffective in much the same way that it is when using HRTFs measured from another person. The KEMAR, by dint of being a mannequin with average features, will not be effective for anyone who is not in possession of a totally average morophology. When using HRTFs that are not well matched to the user, front/back and elevation confusion in particular is very pronounced \citep{•}. 
 
-Re-mention that VR/AR is popular, and that audio is integral to the progression of the technology!!!!.
-
-It follows, then, that in a system that implements binaural audio, the audio for a user would be processed using a set of HRTFs could be used to recreate audio in such a manner that the user would be able to accurately localise the source of a sound. As we have already established, the traditional method of measuring HRTFs is impractical for the vast majority of users, which leaves us at something of an impasse. We need a method for producing individualised sets of HRTFs with minimal specialist equipment, an easy user experience that does not require expert knowledge, as small a time investment as possible. 
+It follows, then, that in a system that implements HRTF-based binaural audio, the audio for a user would be processed using a set of HRTFs that matched the user well enough that the resulting audio would enable the user to accurately localise the source of a sound. As we have already established, the traditional method of measuring HRTFs is impractical for the vast majority of users, which leaves us at something of an impasse. We need a method for producing individualised sets of HRTFs with minimal specialist equipment, an easy user experience that does not require expert knowledge, as small a time investment as possible. 
 
 \subsubsection{Proposed Solution?}
