@@ -23,6 +23,18 @@ The bulk of the implementation is written in Python\citep{python lol}, making li
 Typically the individualisation process would run as follows, beginning with the user or participant in the VR space that is being used to generate the data. 
 
 \begin{itemize}
-\item The user is played an audio cue, from a source position that is generated at random but that does correspond to a source position available in the database - in the case of CIPIC, this is anything from -45 degrees and up.
-\item 
+\item The user faces a marker signifying the 0, 0 angular coordinate for the CIPIC database.
+\item The user is then played an audio cue that has been convolved with the corresponding HRIR from a source position that is generated at random but corresonds to a source position available in the database - in the case of CIPIC, this is anything from -45 degrees and up.
+\item  Next, the user should point a reticle situated in the centre of their screen at where they think the sound originated from and issue some kind of confirmation. 
+\item The perceived and actual sound source positions are then passed to the core module.
+\item This information is then transformed into angular coordinates that match the way the CIPIC data is arranged, from which the update value is calculated like so:
+\begin{itemize}
+\item maths stuff
+\end{itemize}
+\item This update value is then used to adjust the PCWs according to the following conditions:
+\begin{itemize}
+\item If there is no data about previous adjustments, a boolean value is generated using Python's random module\citep{python random} to represent the direction of the first adjustment. 
+\item Otherwise, if the difference between the perceived and actual source positions in the most recent localisation attempt is greater than the previous one, make the adjustement in the opposite direction, is the difference is lower, make the (smaller) adjustment in the same direction. 
+\end{itemize}
+
 \end{itemize}
