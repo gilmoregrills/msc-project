@@ -302,21 +302,22 @@ def adjust_matrix(pcw_indexes, pc_matrix, directions, value):
     counter = 0
     print "change directions: ", directions, len(directions)
     for direction in directions:# that's the change direction for each PC 
-        before[0] = pc_matrix[pcw_indexes[0][0]]
+        before[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
         if direction is True:
-            pc_matrix[pcw_indexes[0][counter]] += value
-            after[0] = pc_matrix[pcw_indexes[0][counter]]
+            pc_matrix[pcw_indexes[0][0]][counter] += value
+            after[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
             for index in range (0, 8):
-                before[index][counter] = pc_matrix[index][counter]
-                pc_matrix[index][counter] += (value/2)
-                after[index][counter] = pc_matrix[index][counter]
+                before[index][counter] = pc_matrix[pcw_indexes[1][index]][counter]
+                pc_matrix[pcw_indexes[1][index]][counter] += (value/2)
+                after[index][counter] = pc_matrix[pcw_indexes[1][index]][counter]
         if direction is False:
-            pc_matrix[pcw_indexes[0][counter]] -= value
-            after[0] = pc_matrix[pcw_indexes[0][counter]]
+            pc_matrix[pcw_indexes[0][0]][counter] -= value
+            after[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
             for index in range (0, 8):
-                before[index][counter] = pc_matrix[index][counter]
-                pc_matrix[index][counter] -= (value/2)
-                after[index][counter] = pc_matrix[index][counter]
+                before[index][counter] = pc_matrix[pcw_indexes[1][index]][counter]
+                pc_matrix[pcw_indexes[1][index]][counter] -= (value/2)
+                after[index][counter] = pc_matrix[pcw_indexes[1][index]][counter]
+        counter++
 
 #        if direction is True:
 #           before[0] = pc_matrix[pcw_indexes[0][0]]
