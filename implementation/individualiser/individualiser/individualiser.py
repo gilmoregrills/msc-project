@@ -88,7 +88,7 @@ def individualiser(vector_string):
     prev_adj = lmdb.fetch(adj_key)
 
     # change direction (+ or - to PCW) set to none
-    change = []
+    change = [None] * 10
     adj_results = None
     if prev_adj is not None: 
         # make change based on precious change
