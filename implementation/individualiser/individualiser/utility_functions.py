@@ -304,14 +304,14 @@ def adjust_matrix(pcw_indexes, pc_matrix, directions, value):
     for direction in directions:# that's the change direction for each PC 
         before[0] = pc_matrix[pcw_indexes[0][0]]
         if direction is True:
-            pc_matrix[pcw_indexes[0][counter] += value
+            pc_matrix[pcw_indexes[0][counter]] += value
             after[0] = pc_matrix[pcw_indexes[0][counter]]
             for index in range (0, 8):
                 before[index][counter] = pc_matrix[index][counter]
                 pc_matrix[index][counter] += (value/2)
                 after[index][counter] = pc_matrix[index][counter]
         if direction is False:
-            pc_matrix[pcw_indexes[0][counter] -= value
+            pc_matrix[pcw_indexes[0][counter]] -= value
             after[0] = pc_matrix[pcw_indexes[0][counter]]
             for index in range (0, 8):
                 before[index][counter] = pc_matrix[index][counter]
