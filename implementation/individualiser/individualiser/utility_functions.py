@@ -306,6 +306,7 @@ def adjust_matrix(pcw_indexes, pc_matrix, directions, value):
     for direction in range (0, 10):# that's the change direction for each PC 
         print "counter is at :", counter
         before[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
+        print "change direction for this PC: ", directions[direction]
         if directions[direction] is True:
             print "changed ", pc_matrix[pcw_indexes[0][0]][counter]
             pc_matrix[pcw_indexes[0][0]][counter] += value
