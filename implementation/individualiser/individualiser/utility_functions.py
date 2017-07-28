@@ -261,6 +261,7 @@ def cipic_indexes(angles):
     return output
     
 def pcw_indexes(indexes):
+    print "indexes ", indexes
     # indexes should be a 1*2 list ft azi and elev
     # output[0][0] should be primary direction
     # output[1] should be the other 8 secondary directions
