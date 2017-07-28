@@ -100,13 +100,13 @@ def individualiser(vector_string):
             adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
         else: 
             print "make change in the opposite direction"
-            for changes in change:
-                changes = not changes
+            for j in range (0, 10):
+                change[j] = not change[j]
             print change
             adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
     else:
         for i in range (0, 10):
-            changes[i] = bool(random.getrandbits(1))
+            change[i] = bool(random.getrandbits(1))
         print 'randomly generated change values are ', change
         adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
 
