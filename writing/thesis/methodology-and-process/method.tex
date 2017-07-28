@@ -5,11 +5,11 @@ For this implementation I elected to follow the model for PCA, along with PCW we
 
 The PCA model produced by this input matrix also allows for around ninety percent of the variance in the to be described by 10 PCs, greatly limiting the number of variables that can be modified. This means that to adjust the perceived source of a sample the algorithm needs to only modify ten PCWs, one for each PCW that corresponds to that source position in each PC. 
 
-Core to simulated annealing (SA) search is that the degree of randomness, or the range of potential child states, is reduced as the current state gets closer to the goal state. In this implementation of the algorithm the value that is used to update the PCW is derived from user's localisation error, so the closer the user is to locating the sound source correctly, the smaller the change that is made to the PCW. It is worth noting that this search method is essentially running many individual searches - either in sequence or in parallel - in order to find the optimal value for every individual source position. 
+Core to simulated annealing (SA) search is that the degree of randomness, or the range of potential child states, is reduced as the current state gets closer to the goal state. In this implementation of the algorithm the value that is used to update the PCW is derived from user's localisation error, so the closer the user is to locating the sound source correctly, the smaller the change that is made to the PCW. It is worth noting that this implementation of this search method is essentially running many individual searches - either in sequence or in parallel - in order to find the optimal value for every individual source position. 
 
 Modifying PCWs like this does mean that generating an individualised HRTF set would take at least 1250 seperate measurements, something that is almost as laborious as the standard measurement procedure. So to expedite the process, or at least to affect a greater amount of the HRTF with each modification, the PCWs for the eight source positions directly around the source being tested will also be modified by the same value, halved. This may mean that subsequent modifications partially overwrite previous ones, but it seems preferable to expedite the process at least while data on the relationship between PCWs and localisation errors is so limited. 
 
-Because there will be so much time betweeen each subsequent alteration made to a given PCW, the details of each alteration made are stored for future measurements from the same source position. This means that each time the algorithm begins to modify a set of PCWs, it first checks the existing database for previous adjustments. If extant, the previous error value, the modifier value for each PCW, and the change direction (whether the modifier was added to or subtracted from the weight) are all returned, and can inform this change. The direction of change is informed by whether or not this localisation attempt fared better than the previous one. If it did, then the change is made in the same direction. If it did not, the change is made back the other way. In the event that a change is reversed, this system will ensure that the next change is made in the same direction. 
+Because there will be so much time betweeen each subsequent alteration made to a given PCW, the details of each alteration made are stored for future measurements from the same source position. This means that each time the algorithm begins to modify a set of PCWs, it first checks the existing database for previous adjustments. If extant, the previous error value, the modifier value for each PCW, and the change direction (whether the modifier was added to or subtracted from the weight within that PC) are all returned, and can inform this change. The direction of change is informed by whether or not this localisation attempt fared better than the previous one. If it did, then the change is made in the same direction. If it did not, the change is made back the other way. In the event that a change is reversed, this system will ensure that the next change is made in the same direction. 
 
 [CONFIRM HOW THE MEMORY ASPECT WORKS, AM I MODIFYING ALL PCWS AT ONCE IN THE SAME DIRECTION BY THE SAME VALUE? OR STORING AN ARRAY OF MODIFICATION VALUES? BE CLEAR]
 
@@ -31,10 +31,16 @@ Typically the individualisation process would run as follows, beginning with the
 \begin{itemize}
 \item maths stuff
 \end{itemize}
-\item This update value is then used to adjust the PCWs according to the following conditions:
+\item The current individualisation-in-progress HRTF is fetched from the database, along with a pre-prepared PCA model, and reformed into a [1250 x 202] input matrix. 
+\item Next a matrix containing the mean value of each column in this matrix is subtracted from the input matrix and stored for later. 
+\item The input matrix minus the mean is transformed using the PCA model, to produce the [1250 x 10] [PCWs x PCs] matrix. 
+\item The database is then queried, to see if a modification has been made to this source position before, and the update value is used to adjust the PCWs according to the following conditions:
 \begin{itemize}
-\item If there is no data about previous adjustments, a boolean value is generated using Python's random module\citep{python random} to represent the direction of the first adjustment. 
-\item Otherwise, if the difference between the perceived and actual source positions in the most recent localisation attempt is greater than the previous one, make the adjustement in the opposite direction, is the difference is lower, make the (smaller) adjustment in the same direction. 
+\item If there is no data about previous adjustments, a set of ten boolean values are generated using Python's random module\citep{python random} to represent the adjustment direction for each principal component for that this weight (source position). 
+\item Otherwise, if the data exists and the difference between the perceived and actual source positions in the most recent localisation attempt is greater than the previous one, the previously-used set of booleans have their values reversed and each PC is adjusted in the opposite direction. Otherwise, if the difference is lower, make the adjustment in the same direction. 
 \end{itemize}
-
+\item Information on the details of the adjustment made are then stored in the database, overwriting any previous data for changes made to that direction.
+\item Once the PC matrix has been updated, the PCA transform is performed in reverse, and the column mean values are added back in.
+\item Lastly, this matrix is re-structured into the same format as the original HRTF matrix and stored in the database under the same key it was fetched from, archiving the previous iteration. 
+\item This new, modified, HRTF is then used to process the next audio sample played to the user, and the process begins again. 
 \end{itemize}
