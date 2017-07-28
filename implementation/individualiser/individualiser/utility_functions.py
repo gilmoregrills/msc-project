@@ -317,7 +317,7 @@ def adjust_matrix(pcw_indexes, pc_matrix, directions, value):
                 before[index][counter] = pc_matrix[pcw_indexes[1][index]][counter]
                 pc_matrix[pcw_indexes[1][index]][counter] -= (value/2)
                 after[index][counter] = pc_matrix[pcw_indexes[1][index]][counter]
-        counter++
+        counter =+ 1
 
 #        if direction is True:
 #           before[0] = pc_matrix[pcw_indexes[0][0]]
