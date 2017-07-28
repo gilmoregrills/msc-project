@@ -290,25 +290,50 @@ def column_mean(pca_matrix):
     output = output[:, np.newaxis]
     return output
 
-def adjust_matrix(pcw_indexes, pc_matrix, direction, value):
+def adjust_matrix(pcw_indexes, pc_matrix, directions, value):
+    # directions is a 10-index list of booleans
+    # pcw_indexes is an array of all the indexes that will be adjusted
+    # value is the adjustment value (amount)
     pc_matrix.flags.writeable = True
     before = np.zeros([9, 10])
     after = np.zeros([9, 10])
-    if direction is True:
+    print "pc input matrix ", pc_matrix.shape
+    # for direction in directions
+    counter = 0
+    print "change directions: ", directions, len(directions)
+    for direction in directions:# that's the change direction for each PC 
         before[0] = pc_matrix[pcw_indexes[0][0]]
-        pc_matrix[pcw_indexes[0][0]] += value
-        after[0] = pc_matrix[pcw_indexes[0][0]]
-        for index in range(0, 8):
-            before[index] = pc_matrix[index]
-            pc_matrix[index] += (value / 2)
-            after[index] = pc_matrix[index]
-    else:
-        before[0] = pc_matrix[pcw_indexes[0][0]]
-        pc_matrix[pcw_indexes[0][0]] -= value
-        after[0] = pc_matrix[pcw_indexes[0][0]]
-        for index in range(0, 8):
-            before[index] = pc_matrix[index]
-            pc_matrix[index] -= (value / 2)
-            after[index] = pc_matrix[index]
+        if direction is True:
+            pc_matrix[pcw_indexes[0][counter] += value
+            after[0] = pc_matrix[pcw_indexes[0][counter]]
+            for index in range (0, 8):
+                before[index][counter] = pc_matrix[index][counter]
+                pc_matrix[index][counter] += (value/2)
+                after[index][counter] = pc_matrix[index][counter]
+        if direction is False:
+            pc_matrix[pcw_indexes[0][counter] -= value
+            after[0] = pc_matrix[pcw_indexes[0][counter]]
+            for index in range (0, 8):
+                before[index][counter] = pc_matrix[index][counter]
+                pc_matrix[index][counter] -= (value/2)
+                after[index][counter] = pc_matrix[index][counter]
 
-    return [pc_matrix, before, after]
+#        if direction is True:
+#           before[0] = pc_matrix[pcw_indexes[0][0]]
+#           pc_matrix[pcw_indexes[0][0]] += value
+#           after[0] = pc_matrix[pcw_indexes[0][0]]
+#           for index in range(0, 8):
+#               before[index] = pc_matrix[index]
+#               pc_matrix[index] += (value / 2)
+#               after[index] = pc_matrix[index]
+#       else:
+#           before[0] = pc_matrix[pcw_indexes[0][0]]
+#           pc_matrix[pcw_indexes[0][0]] -= value
+#           after[0] = pc_matrix[pcw_indexes[0][0]]
+#           for index in range(0, 8):
+#               before[index] = pc_matrix[index]
+#               pc_matrix[index] -= (value / 2)
+#               after[index] = pc_matrix[index]
+        print "before : ", before
+        print "after : ", after
+        return [pc_matrix, before, after]
