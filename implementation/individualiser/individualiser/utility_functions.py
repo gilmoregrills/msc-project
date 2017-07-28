@@ -261,7 +261,6 @@ def cipic_indexes(angles):
     return output
     
 def pcw_indexes(indexes):
-    print "indexes ", indexes
     # indexes should be a 1*2 list ft azi and elev
     # output[0][0] should be primary direction
     # output[1] should be the other 8 secondary directions
@@ -284,7 +283,6 @@ def pcw_indexes(indexes):
 def column_mean(pca_matrix):
     # input must be of pca input form
     # 1250*101/202/etc
-    print "pca matrix size ", pca_matrix.shape[0]
     output = np.zeros(pca_matrix.shape[0])
     for column in range(0, pca_matrix.shape[0]):
         output[column] = np.mean(pca_matrix[column])
@@ -298,25 +296,25 @@ def adjust_matrix(pcw_indexes, pc_matrix, directions, value):
     pc_matrix.flags.writeable = True
     before = np.zeros([9, 10])
     after = np.zeros([9, 10])
-    print "pc input matrix ", pc_matrix.shape
+    
     # for direction in directions
     counter = 0
     print "pcw indexes ", pcw_indexes
     print "change directions: ", directions, len(directions)
     for direction in range (0, 10):# that's the change direction for each PC 
-        print "counter is at :", counter
+        
         before[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
-        print "change direction for this PC: ", directions[direction]
+        
         if directions[direction] is True:
-            print "changed ", pc_matrix[pcw_indexes[0][0]][counter]
+            
             pc_matrix[pcw_indexes[0][0]][counter] += value
-            print "to ", pc_matrix[pcw_indexes[0][0]][counter]
+            
             after[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
             for index in range (0, 8):
                 before[index+1][counter] = pc_matrix[pcw_indexes[1][index]][counter]
-                print "changed ", pc_matrix[pcw_indexes[1][index]][counter]
+                
                 pc_matrix[pcw_indexes[1][index]][counter] += (value/2)
-                print "to ", pc_matrix[pcw_indexes[1][index]][counter]
+                
                 after[index+1][counter] = pc_matrix[pcw_indexes[1][index]][counter]
         if directions[direction] is False:
             pc_matrix[pcw_indexes[0][0]][counter] -= value
