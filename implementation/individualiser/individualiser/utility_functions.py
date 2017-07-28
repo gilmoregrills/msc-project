@@ -265,7 +265,7 @@ def pcw_indexes(indexes):
     # indexes should be a 1*2 list ft azi and elev
     # output[0][0] should be primary direction
     # output[1] should be the other 8 secondary directions
-    output_list = np.array([[0], [0, 0, 0, 0, 0, 0, 0, 8]])
+    output_list = np.array([[0], [0, 0, 0, 0, 0, 0, 0, 0]])
     output_list.flags.writeable = True
     # primary direction
     output_list[0][0] = (indexes[0]*50)+indexes[1]
@@ -278,7 +278,7 @@ def pcw_indexes(indexes):
     output_list[1][5] = ((indexes[0]+1)*50)+(indexes[1]+1)# up/right
     output_list[1][6] = ((indexes[0]-1)*50)+(indexes[1]-1)# down/left
     output_list[1][7] = ((indexes[0]+1)*50)+(indexes[1]-1)# down/right
-
+    
     return output_list
 
 def column_mean(pca_matrix):
@@ -304,21 +304,21 @@ def adjust_matrix(pcw_indexes, pc_matrix, directions, value):
     print "pcw indexes ", pcw_indexes
     print "change directions: ", directions, len(directions)
     for direction in directions:# that's the change direction for each PC 
-        #before[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
+        before[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
         if direction is True:
             pc_matrix[pcw_indexes[0][0]][counter] += value
-         #   after[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
+            after[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
             for index in range (0, 8):
-          #      before[index+1][counter] = pc_matrix[pcw_indexes[1][index]][counter]
+                before[index+1][counter] = pc_matrix[pcw_indexes[1][index]][counter]
                 pc_matrix[pcw_indexes[1][index]][counter] += (value/2)
-           #     after[index+1][counter] = pc_matrix[pcw_indexes[1][index]][counter]
+                after[index+1][counter] = pc_matrix[pcw_indexes[1][index]][counter]
         if direction is False:
             pc_matrix[pcw_indexes[0][0]][counter] -= value
-           # after[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
+            after[0][counter] = pc_matrix[pcw_indexes[0][0]][counter]
             for index in range (0, 8):
-            #    before[index+1][counter] = pc_matrix[pcw_indexes[1][index]][counter]
+                before[index+1][counter] = pc_matrix[pcw_indexes[1][index]][counter]
                 pc_matrix[pcw_indexes[1][index]][counter] -= (value/2)
-             #   after[index+1][counter] = pc_matrix[pcw_indexes[1][index]][counter]
+                after[index+1][counter] = pc_matrix[pcw_indexes[1][index]][counter]
         counter =+ 1
 
 #        if direction is True:
