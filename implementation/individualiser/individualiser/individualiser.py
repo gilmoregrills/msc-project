@@ -93,6 +93,7 @@ def individualiser(vector_string):
     if prev_adj is not None: 
         # make change based on precious change
         # and the weight/error identified above
+        print change
         if prev_adj['error'] > error:
             print "make change in same direction"
             change = prev_adj['change']
@@ -100,7 +101,8 @@ def individualiser(vector_string):
         else: 
             print "make change in the opposite direction"
             for changes in change:
-                change = not prev_adj['change'][change]
+                changes = not changes
+            print change
             adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
     else:
         for changes in change:
