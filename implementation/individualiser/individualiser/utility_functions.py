@@ -343,6 +343,6 @@ def adjust_matrix(pcw_indexes, pc_matrix, directions, value):
 #               before[index] = pc_matrix[index]
 #               pc_matrix[index] -= (value / 2)
 #               after[index] = pc_matrix[index]
-        print "before : ", before
-        print "after : ", after
-        return [pc_matrix, before, after]
+    print "before : ", before
+    print "after : ", after
+    return [pc_matrix, before, after]
