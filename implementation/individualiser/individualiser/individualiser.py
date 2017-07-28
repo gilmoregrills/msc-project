@@ -88,7 +88,7 @@ def individualiser(vector_string):
     prev_adj = lmdb.fetch(adj_key)
 
     # change direction (+ or - to PCW) set to none
-    change = [True, False, True, False, True, False, True, False, True, False]
+    change = []
     adj_results = None
     if prev_adj is not None: 
         # make change based on precious change
@@ -105,8 +105,8 @@ def individualiser(vector_string):
             print change
             adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
     else:
-        for changes in change:
-            changes = bool(random.getrandbits(1))
+        for i in range (0, 10):
+            changes[i] = bool(random.getrandbits(1))
         print 'randomly generated change values are ', change
         adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
 
