@@ -1,5 +1,5 @@
 import numpy as np
-import scipy as scp
+#import scipy as scp
 import scipy.signal as sig
 import scipy.io.wavfile as wav
 #import pygame
@@ -76,7 +76,7 @@ while 1 == True:
 
 	# write the output wave file!
 	print "writing output file"
-	wav.write("output.wav", 44100, output.T)
+	wav.write("output.wav", 44100, output.T)#.astype(np.dtype('i4')))
 
 	# now let's play it!
 	while 1 == True:
@@ -84,9 +84,9 @@ while 1 == True:
 		audiofile = "output.wav"
 		FNULL = open(os.devnull, 'w')
 		# open player, sleep while the sample plays, then terminate the process!
-		# player = subprocess.Popen(['aplay', audiofile]) # if rasbian lite
+		player = subprocess.Popen(['mpv', audiofile]) # if rasbian lite
 		# player = subprocess.Popen(['vlc', '-vvv', audiofile]) # if ubuntu
-		player = subprocess.Popen(['/mnt/c/Program Files/VideoLAN/VLC/vlc.exe', audiofile]) # if windows
+		# player = subprocess.Popen(['/mnt/c/Program Files/VideoLAN/VLC/vlc.exe', audiofile]) # if windows
 		time.sleep(1.2)
 		player.kill()
 		player.terminate()
