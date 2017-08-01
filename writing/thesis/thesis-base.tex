@@ -1,33 +1,18 @@
-\documentclass[12pt, letter, titlepage, draft]{report}
-\usepackage{titlesec}% http://ctan.org/pkg/titlesec
-%\setcounter{secnumdepth}{5}
-\titleformat{\section}%
-	[hang]% <shape>
-	{\normalfont\bfseries\Large}% <format>
-	{}% <label>
-	{0pt}% <sep>
-	{}% <before code>
-	
-\titleformat{\subsection}%
-	[hang]
-    {\fontsize{15}{16}\normalfont\bfseries}
-    {\thesubsection}
-    {1em}
-    {}
-	
-\titleformat{\subsubsection}
-	[hang]
-    {\fontsize{13}{14}\normalfont\bfseries}
-    {\thesubsection}
-    {1em}	
-    {}
-	
-\titleformat{\paragraph}
-	[hang]
-	{\fontsize{12}{13}\normalfont\bfseries}
-	{\theparagraph}
-	{1em}
-	{}
+\documentclass[12pt]{report}
+%Fucking QMUL title shit:
+%\usepackage[utf8]{inputenc}
+\usepackage[pass]{geometry}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+%Title Stuff
+%\usepackage{titlesec}
+%\titleformat{\chapter}{\normalfont\huge}{\thechapter.}{20pt}{\huge}
+
+%Section Stuff
+\setcounter{secnumdepth}{5}
+\renewcommand{\chaptername}{} %% remove the word \chapter
+
 \usepackage[round]{natbib}
 \usepackage{url}
 \usepackage{breakurl} 
@@ -37,37 +22,37 @@
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
 
+\input{title}
 
-\title{Automated HRTF Individualisation Based on Localization Errors in 3D Space}
-\author{Robin Yonge}
-\date{August 2017}
-\maketitle
+\chapter{Acknowledgements}
+sentimental stuff!!
 
-\section{Acknowledgements}
+I also acknowledge that the chapter headings are messed up at the moment, the title page doesn't quite work, the bibtex citation things are broken, the margins are a little large, and I'm sure there's some redundant information up in here. 
 
-\section{Abstract}
+\tableofcontents
+
+\chapter{Abstract}
 \input{abstract/abstract.tex}
 
-\section{Table of Contents}
 
-\section{Introduction}
+\chapter{Introduction}
 \input{introduction/introduction.tex}
 
-\section{Literature Review}
+\chapter{Literature Review}
 \input{literature-review/literature-review.tex}
 
-\section{Methodology}
+\chapter{Methodology}
 %should maybe include my requirements capture/analysis of what the system should do then
 %design
 %implementation
 %testing
 \input{methodology-and-process/method.tex}
 
-\section{Analysis}
+\chapter{Analysis}
 \input{analysis-and-results/analysis.tex}
 %how well the solution worked and the results from my listening tests, what do they mean? 
 
-\section{Discussion}
+\chapter{Discussion}
 \input{discussion/discussion.tex}
 %is this a viable solution? Is there further work to be done, what is it? 
 %What would I do if I only had tiiime??
@@ -75,7 +60,7 @@
 \bibliography{bibliography/library}
 \bibliographystyle{plainnat}
 
-%\section{Appendices}
+\chapter{Appendix}
 %One appendix should definitely be my results from doing the individualisation process on myself, from all source positions for a couple of hours or something. Just to see what kinda results I get
 %any more detailed results, and things like that? 
 \end{document}
