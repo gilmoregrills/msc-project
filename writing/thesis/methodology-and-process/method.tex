@@ -22,7 +22,7 @@ The bulk of the implementation is written in Python\citep{python lol}, making li
 Typically the individualisation process would run as follows, beginning with the user or participant in the VR space that is being used to generate the data. 
 
 \begin{itemize}
-\item The user faces a marker signifying the 0, 0 angular coordinate for the CIPIC database.
+\item The user faces a marker signifying the direction that relates to the 0, 0 angular coordinate for the CIPIC database.
 \item The user is then played an audio cue that has been convolved with the corresponding HRIR from a source position that is generated at random but corresonds to a source position available in the database - in the case of CIPIC, this is anything from -45 degrees and up.
 \item  Next, the user should point a reticle situated in the centre of their screen at where they think the sound originated from and issue some kind of confirmation. 
 \item The perceived and actual sound source positions are then passed to the core module.
@@ -44,3 +44,9 @@ Typically the individualisation process would run as follows, beginning with the
 \item This new, modified, HRTF is then used to process the next audio sample played to the user, and the process begins again. 
 \end{itemize}
 
+\paragraph{Testing}
+When it comes to analysing the efficacy of the approach, the tests will largely follow the above process with some small deviations. Because of the limited time frame available with each participant, I will be running the process with the random source positions limited to a smaller subset of 12 key directions as opposed to the 1250 possible source positions in the full dataset. Limiting the source positions like this will allow me to ensure that over the course of each test we are able to iterate over each source position several times, getting a better idea of how the PCWs change over time in relation to error rate, and how localisation accuracy might change for a given direction over time. This limited set of source positions will be located in front of, behind, and to the left and right of the participant, as well as on the eight corners making up a cube around the participant like so: 
+
+[DIAGRAM OF THE ARRANGEMENT]
+
+Duirng the tests, the individualisation module will automatically capture and all necessary for analysis. This includes the source location, perceived location, and resulting error value, as well as all of the primary PCWs both before and after they have been updated and what the direction of each update. All of this data is also timestamped, to make it easier to group data by test/participant. 
