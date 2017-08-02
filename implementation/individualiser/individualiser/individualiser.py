@@ -27,7 +27,8 @@ def individualiser(vector_string):
         'pcws_before' : None,
         'pcws_after' : None,
         'update_value': None,
-        'timestamp' : time.strftime("%H-%M-%S")
+        'timestamp' : time.strftime("%H-%M-%S"),
+        'direction': None
     }
     # process input vectors into angles
     vectors = util.parse_vector(vector_string)
@@ -123,6 +124,7 @@ def individualiser(vector_string):
         'change' : change
     }
     lmdb.store(adj_key, adjustment)
+    lod_data['direction'] = change
 
 
     # pca_reconstruct on the PCW matrix,

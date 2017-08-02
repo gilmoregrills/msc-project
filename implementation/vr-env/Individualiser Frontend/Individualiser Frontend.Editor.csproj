@@ -124,9 +124,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assets\Plugins\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-UnityScript">
-      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Individualiser Frontend.Plugins.csproj">
@@ -151,27 +148,6 @@
     <Compile Include="Assets\GoogleVR\Editor\GvrBuildProcessor.cs" />
     <Compile Include="Assets\GoogleVR\Editor\GvrEditorSettings.cs" />
     <Compile Include="Assets\GoogleVR\Editor\GvrMenu.cs" />
-    <Compile Include="Assets\OSPNative\editor\ONSPAudioSourceEditor.cs" />
-    <Compile Include="Assets\OSPNative\editor\ONSPReflectionCustomGUI.cs" />
-    <Compile Include="Assets\OVR\Editor\OVRBuild.cs" />
-    <Compile Include="Assets\OVR\Editor\OVRManifestPreprocessor.cs" />
-    <Compile Include="Assets\OVR\Editor\OVRMoonlightLoader.cs" />
-    <Compile Include="Assets\OVR\Editor\OVRPluginUpdater.cs" />
-    <Compile Include="Assets\OVR\Editor\OVRPluginUpdaterStub.cs" />
-    <Compile Include="Assets\OVR\Editor\OVRScreenshotWizard.cs" />
-    <Compile Include="Assets\Phonon\Build\Editor\PhononBuild.cs" />
-    <Compile Include="Assets\Phonon\Core\Editor\PhononGUI.cs" />
-    <Compile Include="Assets\Phonon\Core\Editor\PhononWindow.cs" />
-    <Compile Include="Assets\Phonon\Export\Editor\PhononGeometryInspector.cs" />
-    <Compile Include="Assets\Phonon\Export\Editor\PhononMaterialDrawer.cs" />
-    <Compile Include="Assets\Phonon\Export\Editor\PhononMaterialInspector.cs" />
-    <Compile Include="Assets\Phonon\Simulator\Editor\BakedStaticListenerNodeInspector.cs" />
-    <Compile Include="Assets\Phonon\Simulator\Editor\CustomPhononSettingsInspector.cs" />
-    <Compile Include="Assets\Phonon\Simulator\Editor\PhononListenerInspector.cs" />
-    <Compile Include="Assets\Phonon\Simulator\Editor\PhononManagerInspector.cs" />
-    <Compile Include="Assets\Phonon\Simulator\Editor\PhononSourceInspector.cs" />
-    <Compile Include="Assets\Phonon\Simulator\Editor\ProbeBoxInspector.cs" />
-    <Compile Include="Assets\Phonon\Simulator\Editor\SimulationSettingsValueDrawer.cs" />
     <Compile Include="Assets\Wilberforce Wireframe\Assets\Editor\WireframeEditor.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -189,24 +165,10 @@
     <None Include="Assets\GoogleVR\Shaders\GvrUnlitTextureOverlay.shader" />
     <None Include="Assets\GoogleVR\Shaders\GvrUnlitTransparentOverlay.shader" />
     <None Include="Assets\GoogleVR\Shaders\GvrUnlitTransparentOverlayColor.shader" />
-    <None Include="Assets\OVR\Plugins\placeholder.txt" />
-    <None Include="Assets\OVR\Resources\Underlay Impostor.shader" />
-    <None Include="Assets\OVR\Resources\Underlay Transparent Occluder.shader" />
-    <None Include="Assets\OVR\Resources\Unlit Transparent Color.shader" />
-    <None Include="Assets\OVR\Shaders\OVRColorRampAlpha.shader" />
-    <None Include="Assets\OVR\Shaders\Unlit Crosshair.shader" />
-    <None Include="Assets\OutlineEffect\Resources\OutlineBufferCullOffShader.shader" />
-    <None Include="Assets\OutlineEffect\Resources\OutlineBufferShader.shader" />
-    <None Include="Assets\OutlineEffect\Resources\OutlineShader.shader" />
     <None Include="Assets\Plugins\Android\AndroidManifest-Cardboard.xml" />
     <None Include="Assets\Plugins\Android\AndroidManifest-Daydream.xml" />
     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\Plugins\Android\proguard-gvr.txt" />
-    <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Cutout Wireframe.shader" />
-    <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Double-Sided Cutout Wireframe.shader" />
-    <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Double-Sided Wireframe.shader" />
-    <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Wireframe Functions.cginc" />
-    <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Wireframe.shader" />
     <None Include="Assets\Wilberforce Wireframe\Assets\Shaders\Wireframe.shader" />
     <None Include="Assets\Wilberforce Wireframe\Documentation\ReadMe.txt" />
   </ItemGroup>
