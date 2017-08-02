@@ -80,6 +80,12 @@ while 1 == True:
 
 	# now let's play it!
 	while 1 == True:
+		print "play sample? yes/y or no/n \n>"
+		answer1 = raw_input()
+		if answer1 == "yes" or answer1 == "y":
+			print "fetching next source location and HRIR"
+		elif answer1 == "no" or answer1 == "n":
+			break
 		print "preparing to play audio file"
 		audiofile = "output.wav"
 		FNULL = open(os.devnull, 'w')
@@ -94,11 +100,11 @@ while 1 == True:
 
 		# confirm, play again? if no, break 
 		# out and return to main loop
-		print "play the sample again? \n>"
-		answer1 = raw_input()
-		if answer1 == "no" or answer1 == "n":
-			break 
-		else: 
-			continue
+#		print "play the sample again? \n>"
+#		answer1 = raw_input()
+#		if answer1 == "no" or answer1 == "n":
+#			break 
+#		else: 
+#			continue
 
 
