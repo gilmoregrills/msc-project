@@ -22,10 +22,12 @@ public class TransmitVector : MonoBehaviour {
 	System.Net.Sockets.TcpClient clientSocket;
 	NetworkStream serverStream;
 	byte[] output;
+    int[] timesTested;
     System.Random rando;
 
     // Use this for initialization
     void Start () {
+        timesTested = new int[12];
         rando = new System.Random();
         user = GameObject.Find("MegaCam");
 		source = GameObject.Find("Source1");
@@ -51,7 +53,7 @@ public class TransmitVector : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown("x") | Input.GetKeyDown("left alt") && Input.GetKeyDown("x"))
+        if (Input.GetKeyDown("x") | Input.GetKeyDown("left alt") && Input.GetKeyDown("x") | GvrController.AppButtonDown | GvrController.ClickButtonDown)
         {
             transmit();
         }
@@ -75,10 +77,9 @@ public class TransmitVector : MonoBehaviour {
         print("generating new random position");
         currentPosition = source.transform.position;
         currentRotation = source.transform.rotation;
-
-        //generate random from 0-11, 
         int n = rando.Next(0, 12);
         source.transform.SetPositionAndRotation(potentialPositions[n], currentRotation);
+        //POTENTIALLY USE TIMESTESTED TO LIMIT THE NUMBER OF TIMES EACH SOURCE IS USED
         /*
         source.transform.SetPositionAndRotation((Random.insideUnitSphere.normalized * 10), currentRotation);
         while (source.transform.position.y < -5)
