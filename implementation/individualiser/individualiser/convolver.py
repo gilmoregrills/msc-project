@@ -19,7 +19,7 @@ import socket
 while 1 == True:
 	print "ready? yes/y or exit \n>"
 	answer2 = raw_input()
-	if answer2 == "yes" or answer2 == "y":
+	if answer2 == "yes" or answer2 == "y" or answer2 == "":
 		print "fetching next source location and HRIR"
 	elif answer2 == "exit":
 		break
@@ -96,7 +96,7 @@ while 1 == True:
 		# out and return to main loop
 		print "play the sample again? \n>"
 		answer1 = raw_input()
-		if answer1 == "no" or answer1 == "n":
+		if answer1 == "no" or answer1 == "n" or answer1 == "":
 			break 
 		else: 
 			continue
