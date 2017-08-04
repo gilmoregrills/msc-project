@@ -27,7 +27,8 @@ def individualiser(vector_string):
         'pcws_before' : None,
         'pcws_after' : None,
         'update_value': None,
-        'timestamp' : time.strftime("%H-%M-%S")
+        'timestamp' : time.strftime("%H-%M-%S"),
+        'direction': None
     }
     # process input vectors into angles
     vectors = util.parse_vector(vector_string)
@@ -100,8 +101,9 @@ def individualiser(vector_string):
             adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
         else: 
             print "make change in the opposite direction"
-            for j in range (0, 10):
-                change[j] = not change[j]
+            for j in range (0, int(round(value*3))):
+                num = random.randint(0, 9)
+                change[num] = not change[num]
             print change
             adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
     else:
@@ -122,6 +124,7 @@ def individualiser(vector_string):
         'change' : change
     }
     lmdb.store(adj_key, adjustment)
+    lod_data['direction'] = change
 
 
     # pca_reconstruct on the PCW matrix,

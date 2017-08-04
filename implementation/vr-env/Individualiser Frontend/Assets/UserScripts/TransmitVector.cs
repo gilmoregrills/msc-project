@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Net.Sockets;
 
+
 public class TransmitVector : MonoBehaviour {
 	
 	Vector3 userToSource;
 	Vector3 userLocalisation;
     Vector3 newPosition;
     Vector3 currentPosition;
+    Vector3[] potentialPositions;
     Quaternion currentRotation;
     Transform currentTransform;
     Transform newTransform;
@@ -20,19 +22,38 @@ public class TransmitVector : MonoBehaviour {
 	System.Net.Sockets.TcpClient clientSocket;
 	NetworkStream serverStream;
 	byte[] output;
+    int[] timesTested;
+    System.Random rando;
 
-	// Use this for initialization
-	void Start () {
-		user = GameObject.Find("MegaCam");
+    // Use this for initialization
+    void Start () {
+        timesTested = new int[12];
+        rando = new System.Random();
+        user = GameObject.Find("MegaCam");
 		source = GameObject.Find("Source1");
 		reticle = GameObject.Find("Reticle");
         connectNotif = GameObject.Find("Connected");
         dataNotif = GameObject.Find("Sent Position");
-	}
+        potentialPositions = new Vector3[12];
+        potentialPositions[0] = new Vector3(0, 0, 10);// front
+        potentialPositions[1] = new Vector3(0, 0, -10);// back
+        potentialPositions[2] = new Vector3(-10, 0, 0);// left
+        potentialPositions[3] = new Vector3(10, 0, 0);// right
+
+        potentialPositions[4] = new Vector3((float)-5.75, (float)5.75, (float)5.75);// up front left
+        potentialPositions[5] = new Vector3((float)5.75, (float)5.75, (float)5.75);// up front right
+        potentialPositions[6] = new Vector3((float)-5.75, (float)5.75, (float)-5.75);// up back left
+        potentialPositions[7] = new Vector3((float)5.75, (float)5.75, (float)-5.75);// up back right
+
+        potentialPositions[8] = new Vector3((float)-5.75, (float)-5.75, (float)5.75);// down front left
+        potentialPositions[9] = new Vector3((float)5.75, (float)-5.75, (float)5.75);// down front right
+        potentialPositions[10] = new Vector3((float)-5.75, (float)-5.75, (float)-5.75);// down back left
+        potentialPositions[11] = new Vector3((float)5.75, (float)-5.75, (float)-5.75);// down back right
+    }
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown("x") | Input.GetKeyDown("left alt") && Input.GetKeyDown("x"))
+        if (Input.GetKeyDown("x") | Input.GetKeyDown("left alt") && Input.GetKeyDown("x") | GvrController.AppButtonDown | GvrController.ClickButtonDown)
         {
             transmit();
         }
@@ -56,11 +77,16 @@ public class TransmitVector : MonoBehaviour {
         print("generating new random position");
         currentPosition = source.transform.position;
         currentRotation = source.transform.rotation;
+        int n = rando.Next(0, 12);
+        source.transform.SetPositionAndRotation(potentialPositions[n], currentRotation);
+        //POTENTIALLY USE TIMESTESTED TO LIMIT THE NUMBER OF TIMES EACH SOURCE IS USED
+        /*
         source.transform.SetPositionAndRotation((Random.insideUnitSphere.normalized * 10), currentRotation);
         while (source.transform.position.y < -5)
         {
             source.transform.SetPositionAndRotation((Random.insideUnitSphere.normalized * 10), currentRotation);
         }
+        */
         source.transform.LookAt(new Vector3(0, 0, 0));
         print("new position = " + source.transform.position);
         newPosition = source.transform.position;
