@@ -42,11 +42,11 @@ def individualiser(vector_string):
     # these values dictate what PCs I modify
     print "angles: ", angles
     error = [(angles[0][0] - angles[1][0]) / 10, (angles[0][1] - angles[1][1]) / 10]
-    weight = 0.6 # multiplied by the error to produce numbers <1 to +/- from PCWs
+    weight = 0.5 # multiplied by the error to produce numbers <1 to +/- from PCWs
     print "error = ", error
     log_data['error'] = error
     value = error[0] * weight + error[1] * weight
-    if value > 3:
+    if value > 3 or np.isnan(value):
         value = 3
     log_data['update_value'] = value
     print "value = ", value
@@ -103,7 +103,10 @@ def individualiser(vector_string):
             print "make change in the opposite direction"
             for j in range (0, int(round(value*3))):
                 num = random.randint(0, 9)
-                change[num] = not change[num]
+		if change[num] == True:
+		    change[num] = False
+		else:
+		    change[num] = True
             print change
             adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
     else:
@@ -111,7 +114,6 @@ def individualiser(vector_string):
             change[i] = bool(random.getrandbits(1))
         print 'randomly generated change values are ', change
         adj_results = util.adjust_matrix(pcw_indexes, current_hrtf, change, value)
-
     #use the returned values
     current_hrtf = adj_results[0]
     log_data['pcws_before'] = adj_results[1].tolist()
