@@ -124,7 +124,7 @@ def individualiser(vector_string):
         'change' : change
     }
     lmdb.store(adj_key, adjustment)
-    lod_data['direction'] = change
+    log_data['direction'] = change
 
 
     # pca_reconstruct on the PCW matrix,
