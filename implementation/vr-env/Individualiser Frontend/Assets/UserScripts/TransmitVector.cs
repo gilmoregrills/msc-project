@@ -19,11 +19,13 @@ public class TransmitVector : MonoBehaviour {
 	GameObject reticle;
     GameObject connectNotif;
     GameObject dataNotif;
+    GameObject finishCube;
 	System.Net.Sockets.TcpClient clientSocket;
 	NetworkStream serverStream;
 	byte[] output;
     int[] timesTested;
     System.Random rando;
+    int[] positionCounter;
 
     // Use this for initialization
     void Start () {
@@ -34,21 +36,25 @@ public class TransmitVector : MonoBehaviour {
 		reticle = GameObject.Find("Reticle");
         connectNotif = GameObject.Find("Connected");
         dataNotif = GameObject.Find("Sent Position");
-        potentialPositions = new Vector3[12];
-        potentialPositions[0] = new Vector3(0, 0, 10);// front
-        potentialPositions[1] = new Vector3(0, 0, -10);// back
-        potentialPositions[2] = new Vector3(-10, 0, 0);// left
-        potentialPositions[3] = new Vector3(10, 0, 0);// right
+        finishCube = GameObject.Find("CubeFinish");
+        potentialPositions = new Vector3[8];
 
-        potentialPositions[4] = new Vector3((float)-5.75, (float)5.75, (float)5.75);// up front left
-        potentialPositions[5] = new Vector3((float)5.75, (float)5.75, (float)5.75);// up front right
-        potentialPositions[6] = new Vector3((float)-5.75, (float)5.75, (float)-5.75);// up back left
-        potentialPositions[7] = new Vector3((float)5.75, (float)5.75, (float)-5.75);// up back right
+        potentialPositions[0] = new Vector3((float)-5.75, (float)5.75, (float)5.75);// up front left
+        potentialPositions[1] = new Vector3((float)5.75, (float)5.75, (float)5.75);// up front right
+        potentialPositions[2] = new Vector3((float)-5.75, (float)5.75, (float)-5.75);// up back left
+        potentialPositions[3] = new Vector3((float)5.75, (float)5.75, (float)-5.75);// up back right
 
-        potentialPositions[8] = new Vector3((float)-5.75, (float)-5.75, (float)5.75);// down front left
-        potentialPositions[9] = new Vector3((float)5.75, (float)-5.75, (float)5.75);// down front right
-        potentialPositions[10] = new Vector3((float)-5.75, (float)-5.75, (float)-5.75);// down back left
-        potentialPositions[11] = new Vector3((float)5.75, (float)-5.75, (float)-5.75);// down back right
+        potentialPositions[4] = new Vector3((float)-5.75, (float)-5.75, (float)5.75);// down front left
+        potentialPositions[5] = new Vector3((float)5.75, (float)-5.75, (float)5.75);// down front right
+        potentialPositions[6] = new Vector3((float)-5.75, (float)-5.75, (float)-5.75);// down back left
+        potentialPositions[7] = new Vector3((float)5.75, (float)-5.75, (float)-5.75);// down back right
+
+        //potentialPositions[8] = new Vector3(0, 0, 10);// front
+        //potentialPositions[9] = new Vector3(0, 0, -10);// back
+        //potentialPositions[10] = new Vector3(-10, 0, 0);// left
+        //potentialPositions[11] = new Vector3(10, 0, 0);// right
+
+        positionCounter = new int[12];
     }
 
     // Update is called once per frame
@@ -77,8 +83,24 @@ public class TransmitVector : MonoBehaviour {
         print("generating new random position");
         currentPosition = source.transform.position;
         currentRotation = source.transform.rotation;
-        int n = rando.Next(0, 12);
-        source.transform.SetPositionAndRotation(potentialPositions[n], currentRotation);
+        if (System.Array.IndexOf(positionCounter, 5) != -1 | System.Array.IndexOf(positionCounter, 4) != -1 | System.Array.IndexOf(positionCounter, 3) != -1 | System.Array.IndexOf(positionCounter, 2) != -1 | System.Array.IndexOf(positionCounter, 2) != -1 | System.Array.IndexOf(positionCounter, 1) != -1 | System.Array.IndexOf(positionCounter, 0) != -1)
+        {
+            int n = rando.Next(0, potentialPositions.Length);
+            while (positionCounter[n] >= 6)
+            {
+                n = rando.Next(0, potentialPositions.Length);
+            }
+            positionCounter[n] = positionCounter[n] + 1;
+            source.transform.SetPositionAndRotation(potentialPositions[n], currentRotation);
+            Debug.Log(positionCounter[n]);
+        } 
+        else
+        {
+            //make some visual indicator appear
+            Debug.Log("we're fucking done mate");
+            finishCube.transform.SetPositionAndRotation(new Vector3(0, 0, 8), currentRotation);
+
+        }
         //POTENTIALLY USE TIMESTESTED TO LIMIT THE NUMBER OF TIMES EACH SOURCE IS USED
         /*
         source.transform.SetPositionAndRotation((Random.insideUnitSphere.normalized * 10), currentRotation);
