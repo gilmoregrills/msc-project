@@ -83,12 +83,12 @@ public class TransmitVector : MonoBehaviour {
         print("generating new random position");
         currentPosition = source.transform.position;
         currentRotation = source.transform.rotation;
-        if (System.Array.IndexOf(positionCounter, 5) != -1 | System.Array.IndexOf(positionCounter, 4) != -1 | System.Array.IndexOf(positionCounter, 3) != -1 | System.Array.IndexOf(positionCounter, 2) != -1 | System.Array.IndexOf(positionCounter, 2) != -1 | System.Array.IndexOf(positionCounter, 1) != -1 | System.Array.IndexOf(positionCounter, 0) != -1)
+        if (System.Array.IndexOf(positionCounter, 5) != -1 | System.Array.IndexOf(positionCounter, 4) != -1 | System.Array.IndexOf(positionCounter, 3) != -1 | System.Array.IndexOf(positionCounter, 2) != -1 | System.Array.IndexOf(positionCounter, 1) != -1 | System.Array.IndexOf(positionCounter, 0) != -1)
         {
-            int n = rando.Next(0, potentialPositions.Length);
-            while (positionCounter[n] >= 6)
+            int n = rando.Next(0, 8);
+            while (positionCounter[n] == 6)
             {
-                n = rando.Next(0, potentialPositions.Length);
+                n = rando.Next(0, 8);
             }
             positionCounter[n] = positionCounter[n] + 1;
             source.transform.SetPositionAndRotation(potentialPositions[n], currentRotation);
