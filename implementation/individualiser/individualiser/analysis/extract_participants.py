@@ -40,7 +40,7 @@ for log in logs:
 	timestamp = datetime.strptime(log['timestamp'], "%H-%M-%S")
 	
 	if timestamp >= start_time and timestamp <= end_time \
-			and (timestamp - previous_time > timedelta(seconds=5) \
+			and (timestamp - previous_time > timedelta(seconds=2) \
 			or previous_time == None):
 		output['data'].append(log)
 	previous_time = timestamp
