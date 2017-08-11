@@ -12,13 +12,10 @@ subject = sys.argv[1]
 errors = utils.fetch_individual_errors(subject)
 
 # error is an angular thing, so sum those values
-for direction in range(0, 8):
-	for error in range(0, 6):
-		error_sum = errors[direction][error][0]+errors[direction][error][1]		
-		errors[direction][error] = error_sum
+errors = utils.sum_errors(errors)
 
 # as an np array
 errors = np.array(errors)
 print errors, errors.shape
 
-#plot the data! 8 lines of 6 points!
+#plot the data! 8 lines of 6 points!array
