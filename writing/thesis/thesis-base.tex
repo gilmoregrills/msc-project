@@ -5,9 +5,8 @@
 \usepackage{graphicx}
 \graphicspath{ {images/} }
 
-%Title Stuff
-%\usepackage{titlesec}
-%\titleformat{\chapter}{\normalfont\huge}{\thechapter.}{20pt}{\huge}
+%Attempting fixes:
+\usepackage{texlive-latex-recommended/extra}
 
 %Section Stuff
 \setcounter{secnumdepth}{5}
@@ -22,17 +21,20 @@
 \renewcommand{\familydefault}{\sfdefault}
 \begin{document}
 
+
 \input{title}
 
-\chapter{Acknowledgements}
-sentimental stuff!!
+\begin{abstract}
+\input{abstract/abstract.tex}
+\end{abstract}
 
+\renewcommand{\abstractname}{Acknowledgements}
+\begin{abstract}
+sentimental stuff!!
 I also acknowledge that the chapter headings are messed up at the moment, the title page doesn't quite work, the bibtex citation things are broken, the margins are a little large, and I'm sure there's some redundant information up in here. 
+\end{abstract}
 
 \tableofcontents
-
-\chapter{Abstract}
-\input{abstract/abstract.tex}
 
 
 \chapter{Introduction}

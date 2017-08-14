@@ -99,7 +99,7 @@ def column_mean(input_data):
 
 	return output
 print "EACH PARTICIPANT OVER ALL DIRECTIONS"
-for hats in range(1, 10):
+for hats in range(1, 11):
 	print hats
 	testo = fetch_individual_errors(hats)
 	testo = sum_errors(testo)
