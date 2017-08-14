@@ -1,5 +1,5 @@
 import numpy as np
-import scipy as scp
+#import scipy as scp
 import scipy.signal as sig
 import scipy.io.wavfile as wav
 #import pygame
@@ -19,7 +19,7 @@ import socket
 while 1 == True:
 	print "ready? yes/y or exit \n>"
 	answer2 = raw_input()
-	if answer2 == "yes" or answer2 == "y":
+	if answer2 == "yes" or answer2 == "y" or answer2 == "":
 		print "fetching next source location and HRIR"
 	elif answer2 == "exit":
 		break
@@ -76,17 +76,23 @@ while 1 == True:
 
 	# write the output wave file!
 	print "writing output file"
-	wav.write("output.wav", 44100, output.T)
+	wav.write("output.wav", 44100, output.T)#.astype(np.dtype('i4')))
 
 	# now let's play it!
 	while 1 == True:
+		print "play sample? yes/y or no/n \n>"
+		answer1 = raw_input()
+		if answer1 == "yes" or answer1 == "y" or answer1 == "":
+			print "fetching next source location and HRIR"
+		elif answer1 == "no" or answer1 == "n":
+			break
 		print "preparing to play audio file"
 		audiofile = "output.wav"
 		FNULL = open(os.devnull, 'w')
 		# open player, sleep while the sample plays, then terminate the process!
-		# player = subprocess.Popen(['aplay', audiofile]) # if rasbian lite
+		player = subprocess.Popen(['mpv', audiofile]) # if rasbian lite
 		# player = subprocess.Popen(['vlc', '-vvv', audiofile]) # if ubuntu
-		player = subprocess.Popen(['/mnt/c/Program Files/VideoLAN/VLC/vlc.exe', audiofile]) # if windows
+		# player = subprocess.Popen(['/mnt/c/Program Files/VideoLAN/VLC/vlc.exe', audiofile]) # if windows
 		time.sleep(1.2)
 		player.kill()
 		player.terminate()
@@ -94,11 +100,12 @@ while 1 == True:
 
 		# confirm, play again? if no, break 
 		# out and return to main loop
-		print "play the sample again? \n>"
-		answer1 = raw_input()
-		if answer1 == "no" or answer1 == "n":
-			break 
-		else: 
-			continue
+#		print "play the sample again? \n>"
+#		answer1 = raw_input()
+#		if answer1 == "no" or answer1 == "n":
+#			break 
+#		else: 
+#			continue
+
 
 
