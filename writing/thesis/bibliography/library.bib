@@ -20,24 +20,24 @@ annote = {Cone of Confusion is caused by ITD
 Torus of Confusion is caused by ILD
 
 
-So ILD and ITD are the main components of the duplex theory of sound localization, but duplex theroy fails to account for front/back confusion and elevation 
+So ILD and ITD are the main components of the duplex theory of sound localization, but duplex theroy fails to account for front/back confusion and elevation 
 
 
-"The impact of the presence of the body, head and outer eat is to cause peaks and notches in the HRTF frequency response. These spectral cues are mostly contained in the first 0.7ms of the HRIR [BD98]. The impact of the different components can be extracted from the HRIR, if the reflections caused by shoulders, torso, and pinna are separated." page 8
+"The impact of the presence of the body, head and outer eat is to cause peaks and notches in the HRTF frequency response. These spectral cues are mostly contained in the first 0.7ms of the HRIR [BD98]. The impact of the different components can be extracted from the HRIR, if the reflections caused by shoulders, torso, and pinna are separated." page 8
 
 
 "Spectral cues occurring at middle and low frequency bands ({\{}{\{}{\}}
 
-" Blauert [Bla70] found out, that energy in speciﬁc frequency bands (280-560 Hz, 2.9-5.8 kHz) result in frontal perception whereas others (720-1800 Hz, 10.3-14.9 kHz) tend to be perceived as coming more from the back. " - page 8
+" Blauert [Bla70] found out, that energy in speciﬁc frequency bands (280-560 Hz, 2.9-5.8 kHz) result in frontal perception whereas others (720-1800 Hz, 10.3-14.9 kHz) tend to be perceived as coming more from the back. " - page 8
 
 
-" Tan and Gan [Tan98] continued Myers work and implemented a set of parallel ﬁlters based on ﬁve frequency regions (f1: 225-680 Hz, f2: 680-2000 Hz, f3: 2-6.3 kHz, f4: 6.3-10.9 kHz, f5: 10.9-22 kHz). For frontal localization f1, f3 and f5 were ampliﬁed whereas f2 and f4 were attenuated for backward perception. However, they did not describe the full experiment and statistical analysis." - useful for film/vg stuff (page 8)
+" Tan and Gan [Tan98] continued Myers work and implemented a set of parallel ﬁlters based on ﬁve frequency regions (f1: 225-680 Hz, f2: 680-2000 Hz, f3: 2-6.3 kHz, f4: 6.3-10.9 kHz, f5: 10.9-22 kHz). For frontal localization f1, f3 and f5 were ampliﬁed whereas f2 and f4 were attenuated for backward perception. However, they did not describe the full experiment and statistical analysis." - useful for film/vg stuff (page 8)
 
 
-"Kulkarni and Colburn mentioned that a smoothing of the HRTFs by reducing the Fourier coeﬃcients in the reconstruction of the magnitude spectrum did not signiﬁcantly aﬀect localizationperformance, evenwhenthecoeﬃcientswerereducedfrom256to16[KC98]. Furthermore, in a test focusing on azimuth location, all subjects reported complete externalization of the sound stimuli." - page 9, not entirely sure I understand it but it seems important. 
+"Kulkarni and Colburn mentioned that a smoothing of the HRTFs by reducing the Fourier coeﬃcients in the reconstruction of the magnitude spectrum did not signiﬁcantly aﬀect localizationperformance, evenwhenthecoeﬃcientswerereducedfrom256to16[KC98]. Furthermore, in a test focusing on azimuth location, all subjects reported complete externalization of the sound stimuli." - page 9, not entirely sure I understand it but it seems important. 
 
 
-Minimum Phase definition from Wikipedia https://en.wikipedia.org/wiki/Minimum{\{}{\{}{\}}{\{}{\_}{\}}{\{}{\}}{\}}phase: In control theory and signal processing, a linear, time-invariant system is said to be minimum-phase if the system and its inverse are causal and stable.
+Minimum Phase definition from Wikipedia https://en.wikipedia.org/wiki/Minimum{\{}{\{}{\}}{\{}{\_}{\}}{\{}{\}}{\}}phase: In control theory and signal processing, a linear, time-invariant system is said to be minimum-phase if the system and its inverse are causal and stable.
 
 
 "HRTFs are usually decomposed into a directional and a non-directional part, which are called Directional transfer function (DTF) and Common transfer function (CTF) or Average transfer function (ATF) [LB02], respectively." - page 10
@@ -73,7 +73,7 @@ to read: "Martens [Mar87] presented a model that is based on PCA and minimum-pha
 "The ﬁrst principal component therefore contains most of the interaural intensity information necessary for lateral discrimination. Front-back and up-down performance dramatically decreased when using less than ﬁve PCs." - page 16 - useful to know
 
 
-"A high correlation between the two diﬀerent sets of basis vectors was found (PC1: 96{\{}{\{}{\}}{\{}{\%}{\}}{\{}{\}}{\}}, PC2: 88{\{}{\{}{\}}{\{}{\%}{\}}{\{}{\}}{\}}, PC3: 70{\{}{\{}{\}}{\{}{\%}{\}}{\{}{\}}{\}}). This reveals that PCA is relatively robust to diﬀerent measurement techniques" - page 17 - meaning that applying PCA to my own hrtfs should result in similar results to these researchers? 
+"A high correlation between the two diﬀerent sets of basis vectors was found (PC1: 96{\{}{\{}{\}}{\{}{\%}{\}}{\{}{\}}{\}}, PC2: 88{\{}{\{}{\}}{\{}{\%}{\}}{\{}{\}}{\}}, PC3: 70{\{}{\{}{\}}{\{}{\%}{\}}{\{}{\}}{\}}). This reveals that PCA is relatively robust to diﬀerent measurement techniques" - page 17 - meaning that applying PCA to my own hrtfs should result in similar results to these researchers? 
 
 
 "Prior to experiment, an HRTF customization procedure has been applied, because non-individualized HRTF sets were used." - READ THIS PAPER, Qian and Eddins
@@ -82,7 +82,7 @@ to read: "Martens [Mar87] presented a model that is based on PCA and minimum-pha
 "For seven of nine subjects there was no statistically signiﬁcant diﬀerence between using measured or customized HRIRs. Contrary, localization performance for all probands increased when using individual instead of KEMAR HRIRs." - page 18 - customized hrtfs can be as good as measured ones, individual hrtfs are better than KEMAR
 
 
-"To use the powerful mechanism of component decomposition, several individualization techniques based on PCA were established. By subjective adjustment of the component weights, localization performance could be signiﬁcantly increased. In Section 4, fundamental studies are presented." - page23 - If manual, subjective, adjustment of the component weights can yield improved results, then 
+"To use the powerful mechanism of component decomposition, several individualization techniques based on PCA were established. By subjective adjustment of the component weights, localization performance could be signiﬁcantly increased. In Section 4, fundamental studies are presented." - page23 - If manual, subjective, adjustment of the component weights can yield improved results, then 
 
 
 stopped at chap 4, p 25 (26 on pdf){\}}},
@@ -115,24 +115,24 @@ annote = {Cone of Confusion is caused by ITD
 Torus of Confusion is caused by ILD
 
 
-So ILD and ITD are the main components of the duplex theory of sound localization, but duplex theroy fails to account for front/back confusion and elevation 
+So ILD and ITD are the main components of the duplex theory of sound localization, but duplex theroy fails to account for front/back confusion and elevation 
 
 
-"The impact of the presence of the body, head and outer eat is to cause peaks and notches in the HRTF frequency response. These spectral cues are mostly contained in the first 0.7ms of the HRIR [BD98]. The impact of the different components can be extracted from the HRIR, if the reflections caused by shoulders, torso, and pinna are separated." page 8
+"The impact of the presence of the body, head and outer eat is to cause peaks and notches in the HRTF frequency response. These spectral cues are mostly contained in the first 0.7ms of the HRIR [BD98]. The impact of the different components can be extracted from the HRIR, if the reflections caused by shoulders, torso, and pinna are separated." page 8
 
 
 "Spectral cues occurring at middle and low frequency bands ({\{}
 
-" Blauert [Bla70] found out, that energy in speciﬁc frequency bands (280-560 Hz, 2.9-5.8 kHz) result in frontal perception whereas others (720-1800 Hz, 10.3-14.9 kHz) tend to be perceived as coming more from the back. " - page 8
+" Blauert [Bla70] found out, that energy in speciﬁc frequency bands (280-560 Hz, 2.9-5.8 kHz) result in frontal perception whereas others (720-1800 Hz, 10.3-14.9 kHz) tend to be perceived as coming more from the back. " - page 8
 
 
-" Tan and Gan [Tan98] continued Myers work and implemented a set of parallel ﬁlters based on ﬁve frequency regions (f1: 225-680 Hz, f2: 680-2000 Hz, f3: 2-6.3 kHz, f4: 6.3-10.9 kHz, f5: 10.9-22 kHz). For frontal localization f1, f3 and f5 were ampliﬁed whereas f2 and f4 were attenuated for backward perception. However, they did not describe the full experiment and statistical analysis." - useful for film/vg stuff (page 8)
+" Tan and Gan [Tan98] continued Myers work and implemented a set of parallel ﬁlters based on ﬁve frequency regions (f1: 225-680 Hz, f2: 680-2000 Hz, f3: 2-6.3 kHz, f4: 6.3-10.9 kHz, f5: 10.9-22 kHz). For frontal localization f1, f3 and f5 were ampliﬁed whereas f2 and f4 were attenuated for backward perception. However, they did not describe the full experiment and statistical analysis." - useful for film/vg stuff (page 8)
 
 
-"Kulkarni and Colburn mentioned that a smoothing of the HRTFs by reducing the Fourier coeﬃcients in the reconstruction of the magnitude spectrum did not signiﬁcantly aﬀect localizationperformance, evenwhenthecoeﬃcientswerereducedfrom256to16[KC98]. Furthermore, in a test focusing on azimuth location, all subjects reported complete externalization of the sound stimuli." - page 9, not entirely sure I understand it but it seems important. 
+"Kulkarni and Colburn mentioned that a smoothing of the HRTFs by reducing the Fourier coeﬃcients in the reconstruction of the magnitude spectrum did not signiﬁcantly aﬀect localizationperformance, evenwhenthecoeﬃcientswerereducedfrom256to16[KC98]. Furthermore, in a test focusing on azimuth location, all subjects reported complete externalization of the sound stimuli." - page 9, not entirely sure I understand it but it seems important. 
 
 
-Minimum Phase definition from Wikipedia https://en.wikipedia.org/wiki/Minimum{\{}{\_}{\}}phase: In control theory and signal processing, a linear, time-invariant system is said to be minimum-phase if the system and its inverse are causal and stable.
+Minimum Phase definition from Wikipedia https://en.wikipedia.org/wiki/Minimum{\{}{\_}{\}}phase: In control theory and signal processing, a linear, time-invariant system is said to be minimum-phase if the system and its inverse are causal and stable.
 
 
 "HRTFs are usually decomposed into a directional and a non-directional part, which are called Directional transfer function (DTF) and Common transfer function (CTF) or Average transfer function (ATF) [LB02], respectively." - page 10
@@ -168,7 +168,7 @@ to read: "Martens [Mar87] presented a model that is based on PCA and minimum-pha
 "The ﬁrst principal component therefore contains most of the interaural intensity information necessary for lateral discrimination. Front-back and up-down performance dramatically decreased when using less than ﬁve PCs." - page 16 - useful to know
 
 
-"A high correlation between the two diﬀerent sets of basis vectors was found (PC1: 96{\{}{\%}{\}}, PC2: 88{\{}{\%}{\}}, PC3: 70{\{}{\%}{\}}). This reveals that PCA is relatively robust to diﬀerent measurement techniques" - page 17 - meaning that applying PCA to my own hrtfs should result in similar results to these researchers? 
+"A high correlation between the two diﬀerent sets of basis vectors was found (PC1: 96{\{}{\%}{\}}, PC2: 88{\{}{\%}{\}}, PC3: 70{\{}{\%}{\}}). This reveals that PCA is relatively robust to diﬀerent measurement techniques" - page 17 - meaning that applying PCA to my own hrtfs should result in similar results to these researchers? 
 
 
 "Prior to experiment, an HRTF customization procedure has been applied, because non-individualized HRTF sets were used." - READ THIS PAPER, Qian and Eddins
@@ -177,7 +177,7 @@ to read: "Martens [Mar87] presented a model that is based on PCA and minimum-pha
 "For seven of nine subjects there was no statistically signiﬁcant diﬀerence between using measured or customized HRIRs. Contrary, localization performance for all probands increased when using individual instead of KEMAR HRIRs." - page 18 - customized hrtfs can be as good as measured ones, individual hrtfs are better than KEMAR
 
 
-"To use the powerful mechanism of component decomposition, several individualization techniques based on PCA were established. By subjective adjustment of the component weights, localization performance could be signiﬁcantly increased. In Section 4, fundamental studies are presented." - page23 - If manual, subjective, adjustment of the component weights can yield improved results, then 
+"To use the powerful mechanism of component decomposition, several individualization techniques based on PCA were established. By subjective adjustment of the component weights, localization performance could be signiﬁcantly increased. In Section 4, fundamental studies are presented." - page23 - If manual, subjective, adjustment of the component weights can yield improved results, then 
 
 
 stopped at chap 4, p 25 (26 on pdf)}},
@@ -288,24 +288,24 @@ annote = {Cone of Confusion is caused by ITD
 Torus of Confusion is caused by ILD
 
 
-So ILD and ITD are the main components of the duplex theory of sound localization, but duplex theroy fails to account for front/back confusion and elevation 
+So ILD and ITD are the main components of the duplex theory of sound localization, but duplex theroy fails to account for front/back confusion and elevation 
 
 
-"The impact of the presence of the body, head and outer eat is to cause peaks and notches in the HRTF frequency response. These spectral cues are mostly contained in the first 0.7ms of the HRIR [BD98]. The impact of the different components can be extracted from the HRIR, if the reflections caused by shoulders, torso, and pinna are separated." page 8
+"The impact of the presence of the body, head and outer eat is to cause peaks and notches in the HRTF frequency response. These spectral cues are mostly contained in the first 0.7ms of the HRIR [BD98]. The impact of the different components can be extracted from the HRIR, if the reflections caused by shoulders, torso, and pinna are separated." page 8
 
 
 "Spectral cues occurring at middle and low frequency bands ({\{}
 
-" Blauert [Bla70] found out, that energy in speciﬁc frequency bands (280-560 Hz, 2.9-5.8 kHz) result in frontal perception whereas others (720-1800 Hz, 10.3-14.9 kHz) tend to be perceived as coming more from the back. " - page 8
+" Blauert [Bla70] found out, that energy in speciﬁc frequency bands (280-560 Hz, 2.9-5.8 kHz) result in frontal perception whereas others (720-1800 Hz, 10.3-14.9 kHz) tend to be perceived as coming more from the back. " - page 8
 
 
-" Tan and Gan [Tan98] continued Myers work and implemented a set of parallel ﬁlters based on ﬁve frequency regions (f1: 225-680 Hz, f2: 680-2000 Hz, f3: 2-6.3 kHz, f4: 6.3-10.9 kHz, f5: 10.9-22 kHz). For frontal localization f1, f3 and f5 were ampliﬁed whereas f2 and f4 were attenuated for backward perception. However, they did not describe the full experiment and statistical analysis." - useful for film/vg stuff (page 8)
+" Tan and Gan [Tan98] continued Myers work and implemented a set of parallel ﬁlters based on ﬁve frequency regions (f1: 225-680 Hz, f2: 680-2000 Hz, f3: 2-6.3 kHz, f4: 6.3-10.9 kHz, f5: 10.9-22 kHz). For frontal localization f1, f3 and f5 were ampliﬁed whereas f2 and f4 were attenuated for backward perception. However, they did not describe the full experiment and statistical analysis." - useful for film/vg stuff (page 8)
 
 
-"Kulkarni and Colburn mentioned that a smoothing of the HRTFs by reducing the Fourier coeﬃcients in the reconstruction of the magnitude spectrum did not signiﬁcantly aﬀect localizationperformance, evenwhenthecoeﬃcientswerereducedfrom256to16[KC98]. Furthermore, in a test focusing on azimuth location, all subjects reported complete externalization of the sound stimuli." - page 9, not entirely sure I understand it but it seems important. 
+"Kulkarni and Colburn mentioned that a smoothing of the HRTFs by reducing the Fourier coeﬃcients in the reconstruction of the magnitude spectrum did not signiﬁcantly aﬀect localizationperformance, evenwhenthecoeﬃcientswerereducedfrom256to16[KC98]. Furthermore, in a test focusing on azimuth location, all subjects reported complete externalization of the sound stimuli." - page 9, not entirely sure I understand it but it seems important. 
 
 
-Minimum Phase definition from Wikipedia https://en.wikipedia.org/wiki/Minimum{\{}{\_}{\}}phase: In control theory and signal processing, a linear, time-invariant system is said to be minimum-phase if the system and its inverse are causal and stable.
+Minimum Phase definition from Wikipedia https://en.wikipedia.org/wiki/Minimum{\{}{\_}{\}}phase: In control theory and signal processing, a linear, time-invariant system is said to be minimum-phase if the system and its inverse are causal and stable.
 
 
 "HRTFs are usually decomposed into a directional and a non-directional part, which are called Directional transfer function (DTF) and Common transfer function (CTF) or Average transfer function (ATF) [LB02], respectively." - page 10
@@ -341,7 +341,7 @@ to read: "Martens [Mar87] presented a model that is based on PCA and minimum-pha
 "The ﬁrst principal component therefore contains most of the interaural intensity information necessary for lateral discrimination. Front-back and up-down performance dramatically decreased when using less than ﬁve PCs." - page 16 - useful to know
 
 
-"A high correlation between the two diﬀerent sets of basis vectors was found (PC1: 96{\{}{\%}{\}}, PC2: 88{\{}{\%}{\}}, PC3: 70{\{}{\%}{\}}). This reveals that PCA is relatively robust to diﬀerent measurement techniques" - page 17 - meaning that applying PCA to my own hrtfs should result in similar results to these researchers? 
+"A high correlation between the two diﬀerent sets of basis vectors was found (PC1: 96{\{}{\%}{\}}, PC2: 88{\{}{\%}{\}}, PC3: 70{\{}{\%}{\}}). This reveals that PCA is relatively robust to diﬀerent measurement techniques" - page 17 - meaning that applying PCA to my own hrtfs should result in similar results to these researchers? 
 
 
 "Prior to experiment, an HRTF customization procedure has been applied, because non-individualized HRTF sets were used." - READ THIS PAPER, Qian and Eddins
@@ -350,7 +350,7 @@ to read: "Martens [Mar87] presented a model that is based on PCA and minimum-pha
 "For seven of nine subjects there was no statistically signiﬁcant diﬀerence between using measured or customized HRIRs. Contrary, localization performance for all probands increased when using individual instead of KEMAR HRIRs." - page 18 - customized hrtfs can be as good as measured ones, individual hrtfs are better than KEMAR
 
 
-"To use the powerful mechanism of component decomposition, several individualization techniques based on PCA were established. By subjective adjustment of the component weights, localization performance could be signiﬁcantly increased. In Section 4, fundamental studies are presented." - page23 - If manual, subjective, adjustment of the component weights can yield improved results, then 
+"To use the powerful mechanism of component decomposition, several individualization techniques based on PCA were established. By subjective adjustment of the component weights, localization performance could be signiﬁcantly increased. In Section 4, fundamental studies are presented." - page23 - If manual, subjective, adjustment of the component weights can yield improved results, then 
 
 
 stopped at chap 4, p 25 (26 on pdf)}},
@@ -517,25 +517,25 @@ annote = {Cone of Confusion is caused by ITD
 Torus of Confusion is caused by ILD
 
 
-So ILD and ITD are the main components of the duplex theory of sound localization, but duplex theroy fails to account for front/back confusion and elevation 
+So ILD and ITD are the main components of the duplex theory of sound localization, but duplex theroy fails to account for front/back confusion and elevation 
 
 
-"The impact of the presence of the body, head and outer eat is to cause peaks and notches in the HRTF frequency response. These spectral cues are mostly contained in the first 0.7ms of the HRIR [BD98]. The impact of the different components can be extracted from the HRIR, if the reflections caused by shoulders, torso, and pinna are separated." page 8
+"The impact of the presence of the body, head and outer eat is to cause peaks and notches in the HRTF frequency response. These spectral cues are mostly contained in the first 0.7ms of the HRIR [BD98]. The impact of the different components can be extracted from the HRIR, if the reflections caused by shoulders, torso, and pinna are separated." page 8
 
 
 "Spectral cues occurring at middle and low frequency bands ({\textless} 3khz) are mostly due to head diffraction and torso reflections [Shi08]. Pinna generally influences frquencies in the range of 2-14khz [Gie92] and becomes dominant abovee 5khz [RD05]." page 8
 
 
-" Blauert [Bla70] found out, that energy in speciﬁc frequency bands (280-560 Hz, 2.9-5.8 kHz) result in frontal perception whereas others (720-1800 Hz, 10.3-14.9 kHz) tend to be perceived as coming more from the back. " - page 8
+" Blauert [Bla70] found out, that energy in speciﬁc frequency bands (280-560 Hz, 2.9-5.8 kHz) result in frontal perception whereas others (720-1800 Hz, 10.3-14.9 kHz) tend to be perceived as coming more from the back. " - page 8
 
 
-" Tan and Gan [Tan98] continued Myers work and implemented a set of parallel ﬁlters based on ﬁve frequency regions (f1: 225-680 Hz, f2: 680-2000 Hz, f3: 2-6.3 kHz, f4: 6.3-10.9 kHz, f5: 10.9-22 kHz). For frontal localization f1, f3 and f5 were ampliﬁed whereas f2 and f4 were attenuated for backward perception. However, they did not describe the full experiment and statistical analysis." - useful for film/vg stuff (page 8)
+" Tan and Gan [Tan98] continued Myers work and implemented a set of parallel ﬁlters based on ﬁve frequency regions (f1: 225-680 Hz, f2: 680-2000 Hz, f3: 2-6.3 kHz, f4: 6.3-10.9 kHz, f5: 10.9-22 kHz). For frontal localization f1, f3 and f5 were ampliﬁed whereas f2 and f4 were attenuated for backward perception. However, they did not describe the full experiment and statistical analysis." - useful for film/vg stuff (page 8)
 
 
-"Kulkarni and Colburn mentioned that a smoothing of the HRTFs by reducing the Fourier coeﬃcients in the reconstruction of the magnitude spectrum did not signiﬁcantly aﬀect localizationperformance, evenwhenthecoeﬃcientswerereducedfrom256to16[KC98]. Furthermore, in a test focusing on azimuth location, all subjects reported complete externalization of the sound stimuli." - page 9, not entirely sure I understand it but it seems important. 
+"Kulkarni and Colburn mentioned that a smoothing of the HRTFs by reducing the Fourier coeﬃcients in the reconstruction of the magnitude spectrum did not signiﬁcantly aﬀect localizationperformance, evenwhenthecoeﬃcientswerereducedfrom256to16[KC98]. Furthermore, in a test focusing on azimuth location, all subjects reported complete externalization of the sound stimuli." - page 9, not entirely sure I understand it but it seems important. 
 
 
-Minimum Phase definition from Wikipedia https://en.wikipedia.org/wiki/Minimum{\_}phase:  In control theory and signal processing, a linear, time-invariant system is said to be minimum-phase if the system and its inverse are causal and stable.
+Minimum Phase definition from Wikipedia https://en.wikipedia.org/wiki/Minimum{\_}phase:  In control theory and signal processing, a linear, time-invariant system is said to be minimum-phase if the system and its inverse are causal and stable.
 
 
 "HRTFs are usually decomposed into a directional and a non-directional part, which are called Directional transfer function (DTF) and Common transfer function (CTF) or Average transfer function (ATF) [LB02], respectively." - page 10
@@ -571,7 +571,7 @@ to read: "Martens [Mar87] presented a model that is based on PCA and minimum-pha
 "The ﬁrst principal component therefore contains most of the interaural intensity information necessary for lateral discrimination. Front-back and up-down performance dramatically decreased when using less than ﬁve PCs." - page 16 - useful to know
 
 
-"A high correlation between the two diﬀerent sets of basis vectors was found (PC1: 96{\%}, PC2: 88{\%}, PC3: 70{\%}). This reveals that PCA is relatively robust to diﬀerent measurement techniques" - page 17 - meaning that applying PCA to my own hrtfs should result in similar results to these researchers? 
+"A high correlation between the two diﬀerent sets of basis vectors was found (PC1: 96{\%}, PC2: 88{\%}, PC3: 70{\%}). This reveals that PCA is relatively robust to diﬀerent measurement techniques" - page 17 - meaning that applying PCA to my own hrtfs should result in similar results to these researchers? 
 
 
 "Prior to experiment, an HRTF customization procedure has been applied, because non-individualized HRTF sets were used." - READ THIS PAPER, Qian and Eddins
@@ -580,7 +580,7 @@ to read: "Martens [Mar87] presented a model that is based on PCA and minimum-pha
 "For seven of nine subjects there was no statistically signiﬁcant diﬀerence between using measured or customized HRIRs. Contrary, localization performance for all probands increased when using individual instead of KEMAR HRIRs." - page 18 - customized hrtfs can be as good as measured ones, individual hrtfs are better than KEMAR
 
 
-"To use the powerful mechanism of component decomposition, several individualization techniques based on PCA were established. By subjective adjustment of the component weights, localization performance could be signiﬁcantly increased. In Section 4, fundamental studies are presented." - page23 - If manual, subjective, adjustment of the component weights can yield improved results, then 
+"To use the powerful mechanism of component decomposition, several individualization techniques based on PCA were established. By subjective adjustment of the component weights, localization performance could be signiﬁcantly increased. In Section 4, fundamental studies are presented." - page23 - If manual, subjective, adjustment of the component weights can yield improved results, then 
 
 
 stopped at chap 4, p 25 (26 on pdf)},
@@ -778,7 +778,7 @@ year = {1994}
 }
 @article{Tashev2014,
 abstract = {We propose a method for the synthesis of the phases of Head-Related Transfer Functions (HRTFs) using a sparse representation of anthropometric features. Our approach treats the HRTF synthesis problem as finding a sparse representation of the subjects anthropometric features w.r.t. the anthropometric features in the training set. The fundamental assumption is that the group delay of a given HRTF set can be described by thWe propose a method for the synthesis of the phases of Head-Related Transfer Functions (HRTFs) using a sparse representation of anthropometric features. Our approach treats the HRTF synthesis problem as finding a sparse representation of the subjects anthropometric features w.r.t. the anthropometric features in the training set. The fundamental assumption is that the group delay of a given HRTF set can be described by the same sparse combination as the anthropometric data. Thus, we learn a sparse vector that represents the subjects anthropometric features as a linear superposition of the anthropometric features of a small subset of subjects from the training data. Then, we apply the same sparse vector directly on the HRTF group delay data. For evaluation purpose we use a new dataset, containing both anthropometric features and HRTFs. We compare the proposed sparse representation based approach with ridge regression and with the data of a manikin (which was designed based on average anthropometric data), and we simulate the best and the worst possible classifiers to select one of the HRTFs from the dataset. For objective evaluation we use the mean square error of the group delay scaling factor. Experiments show that our sparse representation outperforms all other evaluated techniques, and that the synthesized HRTFs are almost as good as the best possible HRTF classifier.e same sparse combination as the anthropometric data. Thus, we learn a sparse vector that represents the subjects anthropometric features as a linear superposition of the anthropometr- c features of a small subset of subjects from the training data. Then, we apply the same sparse vector directly on the HRTF group delay data. For evaluation purpose we use a new dataset, containing both anthropometric features and HRTFs. We compare the proposed sparse representation based approach with ridge regression and with the data of a manikin (which was designed based on average anthropometric data), and we simulate the best and the worst possible classifiers to select one of the HRTFs from the dataset. For objective evaluation we use the mean square error of the group delay scaling factor. Experiments show that our sparse representation outperforms all other evaluated techniques, and that the synthesized HRTFs are almost as good as the best possible HRTF classifier.},
-annote = {" Many techniques have been recently proposed for HRTF personalization [2], [3], [4], [5], [6], [7], [8], [9], [10] based on a selected set of anthropometric features." (for above)
+annote = {" Many techniques have been recently proposed for HRTF personalization [2], [3], [4], [5], [6], [7], [8], [9], [10] based on a selected set of anthropometric features." (for above)
 
 
 Conclusion:
