@@ -64,7 +64,7 @@ def sum_errors(errors):
 
 
 # fetch a SUBJECTS * 6 * 2 array that contains
-# each subjects errors for a given direction 
+# each subject's errors for a given direction 
 def fetch_all_for_direction(direction):
 	subjects = len(os.listdir("subjects"))
 	output = np.zeros([subjects, 6, 2])
@@ -82,7 +82,6 @@ def fetch_all_for_direction(direction):
 def column_mean(input_data):
 	dim1 = len(input_data)
 	dim2 = len(input_data[0])
-	print input_data.shape
 	output = np.zeros([dim2])
 
 	for column in range(0, dim2):
@@ -98,15 +97,15 @@ def column_mean(input_data):
 		output[column] = avg
 
 	return output
-print "EACH PARTICIPANT OVER ALL DIRECTIONS"
-for hats in range(1, 11):
-	print hats
-	testo = fetch_individual_errors(hats)
-	testo = sum_errors(testo)
-	print column_mean(testo)
-print "FOR ALL PARTICIPANTS IN A DIRECTION"
-for butts in range(0, 8):
-	print butts
-	testo2 = fetch_all_for_direction(butts)
-	testo2 = sum_errors(testo2)
-	print column_mean(testo2)
+# print "EACH PARTICIPANT OVER ALL DIRECTIONS"
+# for hats in range(1, 11):
+# 	print hats
+# 	testo = fetch_individual_errors(hats)
+# 	testo = sum_errors(testo)
+# 	print column_mean(testo)
+# print "FOR ALL PARTICIPANTS IN A DIRECTION"
+# for butts in range(0, 8):
+# 	print butts
+# 	testo2 = fetch_all_for_direction(butts)
+# 	testo2 = sum_errors(testo2)
+# 	print column_mean(testo2)
