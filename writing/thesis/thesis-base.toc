@@ -24,8 +24,8 @@
 \contentsline {subsection}{\numberline {3.2.2}Process}{40}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}Testing}{43}{subsection.3.2.3}
 \contentsline {chapter}{\numberline {4}Evaluation}{46}{chapter.4}
-\contentsline {section}{\numberline {4.1}Localisation Error Over Time}{47}{section.4.1}
-\contentsline {section}{\numberline {4.2}Relationships Between PCs and Localisation Errors}{50}{section.4.2}
-\contentsline {section}{\numberline {4.3}•}{50}{section.4.3}
-\contentsline {chapter}{\numberline {5}Discussion}{51}{chapter.5}
-\contentsline {chapter}{\numberline {6}Appendix}{53}{chapter.6}
+\contentsline {section}{\numberline {4.1}Localisation Error Over Time}{48}{section.4.1}
+\contentsline {section}{\numberline {4.2}Relationships Between PCs and Localisation Errors}{51}{section.4.2}
+\contentsline {section}{\numberline {4.3}•}{51}{section.4.3}
+\contentsline {chapter}{\numberline {5}Discussion}{52}{chapter.5}
+\contentsline {chapter}{\numberline {6}Appendix}{54}{chapter.6}
