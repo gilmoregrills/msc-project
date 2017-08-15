@@ -70,8 +70,9 @@ def fetch_all_for_direction(direction):
 	output = np.zeros([subjects, 6, 2])
 
 	for subject in range(1, subjects+1):
-		all_errors = fetch_individual_errors(subject)
-		output[subject-1] = all_errors[direction]
+		if subject != 2:
+			all_errors = fetch_individual_errors(subject)
+			output[subject-1] = all_errors[direction]
 
 	return output
 

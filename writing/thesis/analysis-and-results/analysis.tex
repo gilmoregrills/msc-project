@@ -1,15 +1,18 @@
-I was thinking I'd do a section for each metric/relationship I'm able to analyse
+[HOW DID THE TESTING GO??]
+
+As mentioned in previous chapters, the primary metric for whether or not this implementation can be deemed effective is based upon the degree to which the severity of a participant's localisation errors decrease over time, if they decrease at all. This chapter will begin by investigating whether or not this is the case by reviewing the data captured during the listening tests. After this, further sections will investigate other conclusions or noteworthy observations that may be drawn from the additional data captured. Of particular interest is the aforementioned relationship between PCW adjustment and localisation, to this end I will be comparing PCW values and perceived/actual source positions before and after adjustment on an individual participant level.
 
 \section{Localisation Error Over Time}
-start with description of the data being displayed on the charts and how the charts were generated (how data was processed and the technologies used)
+In order to properly analyse this metric I am looking at the average total error value for each of the eight source positions. This error value is the angular error that comes from subtracting the perceived source position from the actual source position. These two values are then made positive if either one is negative, so as to not produce deceptively low error values, and summed to produce a combined error value. This process is performed for every participant, and the mean error value for each measurement over the course of the test from each direction is then calculated based on that data. These mean error rates over time can then be plotted as in figure 4.1. 
 
-\bigskip
+\begin{figure}
+	\caption{The average error rate over each direction.}
+	\centering{
+		\includegraphics[scale=0.6]{average_error_each_direction}
+	}
+\end{figure}
 
-Here I was thinking a graph or set of line charts displaying mean error rate for all participants over time for each source position, but twelve lines on a single chart might be too much? Unless it's one very large chart. So I was expecting to split it into three, one for each elevation - sources below the listener, sources at the same level, and sources above. There will also be only about 5 points along the X axis so they might all fit in a single line. Is there a well-defined style? Or should I just try both and go with whatever I think looks nicer?
-
-\bigskip 
-
-Then describe what the conclusions can be drawn from the data being displayed
+On this chart each line represents a source position, so by following each line along it is simple to track how localisation errors for samples played from that source position changed over the course of the listening test. When displayed like this we can see something of a reduction in the overall errors for most source positions, but the short test length makes it unclear if these values would eventually begin to near zero. What we can see at play is the self-correcting quality afforded to the algorithm through knowledge of the history of previous changes. For almost all of the directions there are large spikes where the algorithm explores a sub-optimal child state and the participant's subsequent localisation attempt fares more poorly, in all cases but one (the black line representing the [-45.0, 135.0] source position) this mistake is quickly rectified as the algorithm makes adjustments in the opposite direction. If these changes could be made more intelligently, then it's quite possible that these kinds of mis-steps could be minimized further, reaching a more effectively individualised HRTF sooner. It's worth noting that three of the four directions with the most promising results were situated in front of the participant: [-45.0, 45.0], [45.0, 45.0], and [-45.0, -45.0]. Suggesting a degree of front/back confusion in participants and a tendency towards assuming sources were positioned towards the front hemisphere of the test environment, resulting in poor average error rates for sources positioned behind the participant, except for position [45.0, 135.0]. This outlier may have something to do with the starting HRTF used, and if would be interesting in further research to attempt to identify an ideal base HRTF. 
 
 \section{Relationships Between PCs and Localisation Errors}
 Again, starting with a description of how the data was was collated from the tests, and how it was arranged on the charts. I just can't yet work out the best way of displaying the data for this. It would be nice to represent it on a sphere or section of a sphere, something like that? 

@@ -18,16 +18,22 @@ for i in range(0, 8):
 	tmp = utils.sum_errors(tmp)
 	output[i] = utils.column_mean(tmp)
 
-print output
+print output, output.shape
 
 # plot the output array!
-lines = plot.plot(output)
+fig = plot.figure()
+ax = plot.subplot(111)
+lines = ax.plot(output.transpose())
 for j in range(0, len(lines)):
 	print ", ".join(map(str, utils.DIRECTIONS[j]))
-	lines[j].label = " ".join(map(str, utils.DIRECTIONS[j]))
+	lines[j].set_label(" ".join(map(str, utils.DIRECTIONS[j])))
 #lines[j].set_label(" ".join(map(str, utils.DIRECTIONS[j])))
 print "number of lines", len(lines)
-plot.legend(loc="best")
+box = ax.get_position()
+ax.set_position([box.x0, box.y0 + box.height * 0.15,
+                 box.width, box.height * 0.9])
+ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.09),
+          fancybox=True, shadow=True, ncol=5)
 plot.ylabel('Total Error (degrees)')
 plot.xlabel('Iterations')
 plot.show()
