@@ -52,39 +52,75 @@ for pair in output:
 	# make data marginally easier to work with
 	a1 = pair['angle1']
 	a2 = pair['angle2']
+	if a1[1] > 90:
+		a = a1[1] - 90 
+		a1[1] = 90 - a
+	if a2[1] > 90:
+		b = a2[1] - 90
+		a2[1] = 90 - b
 	# if up!!
-	if ((a1[1] > 90) and (a2[1] < a1[1])) | ((a1[1] <= 90) and (a2[1] > a1[1])):
-		#if left or right
-		if (abs(a1[0] - a2[0]) > 180):
-			if (a2[0] < a1[0]):
+	# if ((a1[1] > 90) and (a2[1] < a1[1])) | ((a1[1] <= 90) and (a2[1] > a1[1])):
+	# 	#if left or right
+	# 	if (abs(a1[0] - a2[0]) > 180):
+	# 		if (a2[0] < a1[0]):
+	# 			up_right.append(pair)
+	# 		elif (a2[0] > a1[0]):
+	# 			up_left.append(pair)
+
+	# 	elif (abs(a1[0] - a2[0]) < 180):
+	# 		if (a2[0] < a1[0]):
+	# 			up_left.append(pair)
+	# 		if (a2[0] < a1[0]):
+	# 			up_right.append(pair)
+
+	# #if down!! (could just be elif tbh)
+	# elif ((a1[1] > 90) and (a2[1] > a1[1])) | ((a1[1] <= 90) and (a2[1] < a1[1])):
+	# 	#if left or right
+
+	# if left or right
+	if (abs(a1[0] - a2[0]) > 180):
+
+		if (a2[0] < a1[0]):
+			# right! now up or down?
+			if (a2[1] < a1[1]):
+				# down
+				down_right.append(pair)
+			elif (a2[1] > a1[1]):
+				# up
 				up_right.append(pair)
-			elif (a2[0] > a1[0]):
+
+		elif (a2[0] > a1[0]):
+			# left! now up or down?
+			if (a2[1] < a1[1]):
+				# down
+				down_left.append(pair)
+			elif (a2[1] > a1[1]):
+				# up
 				up_left.append(pair)
 
-		elif (abs(a1[0] - a2[0]) < 180):
-			if (a2[0] < a1[0]):
+	elif (abs(a1[0] - a2[0]) < 180):
+
+		if (a2[0] < a1[0]):
+			# left! now up or down?
+			if (a2[1] < a1[1]):
+				# down
+				down_left.append(pair)
+			elif (a2[1] > a1[1]):
+				# up
 				up_left.append(pair)
-			if (a2[0] < a1[0]):
+
+		if (a2[0] > a1[0]):
+			# right! now up or down?
+			if (a2[1] < a1[1]):
+				# down
+				down_right.append(pair)
+			elif (a2[1] > a1[1]):
+				# up
 				up_right.append(pair)
-
-	#if down!! (could just be elif tbh)
-	elif ((a1[1] > 90) and (a2[1] > a1[1])) | ((a1[1] <= 90) and (a2[1] < a1[1])):
-		#if left or right
-		if (abs(a1[0] - a2[0]) > 180):
-			if (a2[0] < a1[0]):
-				down_right.append(pair)
-			elif (a2[0] > a1[0]):
-				down_left.append(pair)
-
-		elif (abs(a1[0] - a2[0]) < 180):
-			if (a2[0] < a1[0]):
-				down_left.append(pair)
-			if (a2[0] < a1[0]):
-				down_right.append(pair)
 
 print "up left len: ", len(up_left)
 print "up right len: ", len(up_right)
 print "down left len: ", len(down_left)
 print "down right len: ", len(down_right)
 
-print _right[0]
+print up_right[0]
