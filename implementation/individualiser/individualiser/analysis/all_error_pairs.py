@@ -58,24 +58,6 @@ for pair in output:
 	if a2[1] > 90:
 		b = a2[1] - 90
 		a2[1] = 90 - b
-	# if up!!
-	# if ((a1[1] > 90) and (a2[1] < a1[1])) | ((a1[1] <= 90) and (a2[1] > a1[1])):
-	# 	#if left or right
-	# 	if (abs(a1[0] - a2[0]) > 180):
-	# 		if (a2[0] < a1[0]):
-	# 			up_right.append(pair)
-	# 		elif (a2[0] > a1[0]):
-	# 			up_left.append(pair)
-
-	# 	elif (abs(a1[0] - a2[0]) < 180):
-	# 		if (a2[0] < a1[0]):
-	# 			up_left.append(pair)
-	# 		if (a2[0] < a1[0]):
-	# 			up_right.append(pair)
-
-	# #if down!! (could just be elif tbh)
-	# elif ((a1[1] > 90) and (a2[1] > a1[1])) | ((a1[1] <= 90) and (a2[1] < a1[1])):
-	# 	#if left or right
 
 	# if left or right
 	if (abs(a1[0] - a2[0]) > 180):
