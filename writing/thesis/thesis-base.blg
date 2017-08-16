@@ -1,51 +1,129 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis-base.aux
+White space in argument---line 27 of file thesis-base.aux
+ : \citation{who
+ :               did this first?}
+I'm skipping whatever remains of this command
+White space in argument---line 28 of file thesis-base.aux
+ : \citation{ari
+ :               database}
+I'm skipping whatever remains of this command
+White space in argument---line 29 of file thesis-base.aux
+ : \citation{sadie
+ :                 db}
+I'm skipping whatever remains of this command
+White space in argument---line 33 of file thesis-base.aux
+ : \citation{kemar
+ :                 mannequin?}
+I'm skipping whatever remains of this command
+White space in argument---line 47 of file thesis-base.aux
+ : \citation{ARI
+ :               site docs}
+I'm skipping whatever remains of this command
+White space in argument---line 60 of file thesis-base.aux
+ : \citation{seminal
+ :                   paper}
+I'm skipping whatever remains of this command
+White space in argument---line 100 of file thesis-base.aux
+ : \citation{random
+ :                  restart}
+I'm skipping whatever remains of this command
+White space in argument---line 112 of file thesis-base.aux
+ : \citation{python
+ :                  lol}
+I'm skipping whatever remains of this command
+White space in argument---line 113 of file thesis-base.aux
+ : \citation{scipy
+ :                 and numpy}
+I'm skipping whatever remains of this command
+White space in argument---line 115 of file thesis-base.aux
+ : \citation{scikit
+ :                  learn}
+I'm skipping whatever remains of this command
+White space in argument---line 117 of file thesis-base.aux
+ : \citation{lmdb
+ :                db}
+I'm skipping whatever remains of this command
+White space in argument---line 126 of file thesis-base.aux
+ : \citation{python
+ :                  random}
+I'm skipping whatever remains of this command
 The style file: plainnat.bst
 Database file #1: bibliography/library.bib
-Repeated entry---line 514 of file bibliography/library.bib
- : @phdthesis{Holzl2012a
+Repeated entry---line 129 of file bibliography/library.bib
+ : @article{Middlebrooks1999
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 244 of file bibliography/library.bib
+ : @phdthesis{Holzl2012
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 585 of file bibliography/library.bib
+ : @phdthesis{Holzl2014a
  :                      ,
 I'm skipping whatever remains of this entry
-You've used 1 entry,
+Warning--I didn't find a database entry for "•"
+Warning--I didn't find a database entry for "?"
+Warning--I didn't find a database entry for "Kulkarni1995"
+Warning--I didn't find a database entry for "1998"
+Warning--I didn't find a database entry for "Hoene2017"
+Warning--I didn't find a database entry for "Middlebrooks1999a"
+Warning--I didn't find a database entry for "Tan1998"
+Warning--I didn't find a database entry for "Duraiswami2003"
+Warning--I didn't find a database entry for "PhillipBrown1998"
+Warning--I didn't find a database entry for "Algazi2001a"
+Warning--I didn't find a database entry for "Raykar2003"
+Warning--I didn't find a database entry for "Hugeng2010"
+Warning--I didn't find a database entry for "Tashev2014"
+Warning--I didn't find a database entry for "Li2013"
+Warning--I didn't find a database entry for "Gutierrez-Parera2017"
+Warning--I didn't find a database entry for "Hwang2008"
+Warning--I didn't find a database entry for "norvig1995"
+Warning--I didn't find a database entry for "stochastic"
+Warning--I didn't find a database entry for "Whitley1994"
+Warning--I didn't find a database entry for "simplejson"
+Warning--I didn't find a database entry for "lmdb"
+Warning--there's a number but no volume in Zotkin2002
+You've used 20 entries,
             2773 wiz_defined-function locations,
-            600 strings with 5052 characters,
-and the built_in function-call counts, 324 in all, are:
-= -- 30
-> -- 10
-< -- 1
-+ -- 4
-- -- 3
-* -- 20
-:= -- 63
-add.period$ -- 4
-call.type$ -- 1
-change.case$ -- 3
-chr.to.int$ -- 1
-cite$ -- 2
-duplicate$ -- 16
-empty$ -- 23
-format.name$ -- 4
-if$ -- 58
-int.to.chr$ -- 1
+            795 strings with 9688 characters,
+and the built_in function-call counts, 9353 in all, are:
+= -- 903
+> -- 442
+< -- 17
++ -- 153
+- -- 132
+* -- 760
+:= -- 1452
+add.period$ -- 86
+call.type$ -- 20
+change.case$ -- 99
+chr.to.int$ -- 19
+cite$ -- 41
+duplicate$ -- 424
+empty$ -- 774
+format.name$ -- 166
+if$ -- 1960
+int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 14
-num.names$ -- 4
-pop$ -- 5
+missing$ -- 21
+newline$ -- 133
+num.names$ -- 80
+pop$ -- 178
 preamble$ -- 1
-purify$ -- 3
+purify$ -- 84
 quote$ -- 0
-skip$ -- 13
+skip$ -- 306
 stack$ -- 0
-substring$ -- 2
-swap$ -- 1
-text.length$ -- 0
+substring$ -- 434
+swap$ -- 46
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 11
-warning$ -- 0
-while$ -- 3
+type$ -- 205
+warning$ -- 1
+while$ -- 93
 width$ -- 0
-write$ -- 22
-(There was 1 error message)
+write$ -- 317
+(There were 15 error messages)
