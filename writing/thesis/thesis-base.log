@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  15 AUG 2017 15:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  16 AUG 2017 13:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -777,63 +777,75 @@ on. This means
  []
 
 [36] [37]
+<images/individualiser_system_diagram.png, id=331, 694.595pt x 574.145pt>
+File: images/individualiser_system_diagram.png Graphic file (type png)
+
+<use images/individualiser_system_diagram.png>
+Package pdftex.def Info: images/individualiser_system_diagram.png used on input
+ line 22.
+(pdftex.def)             Requested size: 416.76022pt x 344.48965pt.
+
+Overfull \hbox (26.76022pt too wide) in paragraph at lines 22--24
+ [][] 
+ []
+
 
 Package natbib Warning: Citation `python lol' on page 38 undefined on input lin
-e 23.
+e 27.
 
 
 Package natbib Warning: Citation `scipy and numpy' on page 38 undefined on inpu
-t line 23.
+t line 27.
 
 
 Package natbib Warning: Citation `simplejson' on page 38 undefined on input lin
-e 23.
+e 27.
 
 
 Package natbib Warning: Citation `scikit learn' on page 38 undefined on input l
-ine 23.
+ine 27.
 
 
-Package natbib Warning: Citation `lmdb' on page 38 undefined on input line 23.
+Package natbib Warning: Citation `lmdb' on page 38 undefined on input line 27.
 
 
 Package natbib Warning: Citation `lmdb db' on page 38 undefined on input line 2
-3.
+7.
 
 
-Package natbib Warning: Citation `•' on page 38 undefined on input line 23.
+Package natbib Warning: Citation `•' on page 38 undefined on input line 27.
 
 
-Package natbib Warning: Citation `•' on page 38 undefined on input line 23.
+Package natbib Warning: Citation `•' on page 38 undefined on input line 27.
 
 
-Package natbib Warning: Citation `•' on page 38 undefined on input line 23.
+Package natbib Warning: Citation `•' on page 38 undefined on input line 27.
 
 
-Package natbib Warning: Citation `•' on page 38 undefined on input line 23.
+Package natbib Warning: Citation `•' on page 38 undefined on input line 27.
 
-[38] [39] [40]
-Overfull \hbox (4.014pt too wide) in paragraph at lines 39--40
+[38] [39 <./images/individualiser_system_diagram.png>] [40] [41]
+Overfull \hbox (4.014pt too wide) in paragraph at lines 43--44
 []\OT1/phv/m/n/12 The in-put ma-trix mi-nus the mean is trans-formed us-ing the
  PCA model,
  []
 
 
-Package natbib Warning: Citation `python random' on page 41 undefined on input 
-line 42.
+Package natbib Warning: Citation `python random' on page 42 undefined on input 
+line 46.
 
 
-Overfull \hbox (0.69293pt too wide) in paragraph at lines 42--43
+Overfull \hbox (0.69293pt too wide) in paragraph at lines 46--47
 \OT1/phv/m/n/12 boolean val-ues are gen-er-ated us-ing Python's ran-dom mod-ule
 (\OT1/phv/b/n/12 ?\OT1/phv/m/n/12 )
  []
 
-[41] [42] [43]) [44] [45]
+[42] [43] [44]) [45]
  4.
 (./analysis-and-results/analysis.tex [46
 
 ] [47]
-<images/average_error_each_direction.png, id=373, 763.8939pt x 502.9992pt>
+<images/average_error_each_direction.png, id=377, 763.8939pt x 502.9992pt>
 File: images/average_error_each_direction.png Graphic file (type png)
 
 <use images/average_error_each_direction.png>
@@ -873,10 +885,10 @@ Package rerunfilecheck Info: File `thesis-base.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 68.
  ) 
 Here is how much of TeX's memory you used:
- 6365 strings out of 494910
- 93519 string characters out of 6179836
+ 6371 strings out of 494910
+ 93741 string characters out of 6179836
  180901 words of memory out of 5000000
- 9470 multiletter control sequences out of 15000+600000
+ 9474 multiletter control sequences out of 15000+600000
  20849 words of font info for 41 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  30i,12n,35p,2224b,442s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -886,10 +898,10 @@ f-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helveti
 c/uhvro8a.pfb>
-Output written on thesis-base.pdf (59 pages, 214383 bytes).
+Output written on thesis-base.pdf (59 pages, 233044 bytes).
 PDF statistics:
- 454 PDF objects out of 1000 (max. 8388607)
- 380 compressed objects within 4 object streams
- 91 named destinations out of 1000 (max. 500000)
- 243 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 457 PDF objects out of 1000 (max. 8388607)
+ 381 compressed objects within 4 object streams
+ 92 named destinations out of 1000 (max. 500000)
+ 248 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -16,8 +16,12 @@ Because there will be a not-insignificant amount of time betweeen each alteratio
 \section{Implementation}
 The project that has been produced to test this proposed method is formed of three parts: A VR test environment that manages the positions of the sound sources and processes the audio samples, passing data to another module for processing. This individualisation module forms the core of the implementation, as it handles the deconstruction, modification, and reconstruction of the HRTF data. This module is then tied to an in-memory key-value datastore that holds the starting HRTFs, intermediate results, and an archive of the changes made so far. In this test implementation the VR environment and individualisation module run on different machines. This was necessary for ease of development, but it is also an interesting idea for potential future implementations using a similar method, if such a system could be built to aggregate PCW/localisation error data, using it to train a model that takes that data and returns customised HRTFs. 
 
-\bigskip
-[SYSTEM DIAGRAM HERE PLEASE]
+\begin{figure}
+	\caption{HRTF Individualiser system diagram. }
+	\centering{
+		\includegraphics[scale=0.6]{individualiser_system_diagram}
+	}
+\end{figure}
 
 \subsection{Technologies}
 The bulk of the implementation is written in Python\citep{python lol}, making liberal use of the SciPy\citep{scipy and numpy} set of libraries to handle the majority of processing involved. Also in use is the simplejson\citep{simplejson} module, used to encode both HRTF data and logs extensively. To handle principal components analysis, the scikit-learn\citep{scikit learn} PCA class from the decomposition module was employed. Lastly, interfacing with the database was done using the lmdb module\citep{lmdb}. Symas' Lightning Memory-mapped Database \citep{lmdb db} was chosen both because it is a simple key-value datastore that doesn't require the kind of strictly defined strucure a relational database might, and because the entire contents of it can be loaded into memory when the program is started, making fetch and store operations comparatively rapid - useful when working in real-time. The test environment was produced using the Unity game engine \citep{•}, with the GoogleVR SDK \citep{•} and the Final Wireframe \citep{•} shader pack and run on a smartphone inside a Daydream\citep{•} viewer. The module and database are hosted on an Amazon Web Services (AWS) EC2 instance and communicate with the VR environment via TCP.
