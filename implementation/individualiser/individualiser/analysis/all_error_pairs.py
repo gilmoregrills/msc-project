@@ -127,7 +127,7 @@ for n in range(0, len(up_left)):
 print up_left_change.shape
 
 for x in range(0, len(up_right)):
-	up_right_change[x] = np.array(up_right[x]['pcws1']) - np.array(up_left[x]['pcws2'])
+	up_right_change[x] = np.array(up_right[x]['pcws1']) - np.array(up_right[x]['pcws2'])
 	up_right_angle[x] = utils.fix_angles(up_right[x]['angle1'], up_right[x]['angle2'])
 print up_right_change.shape
 
@@ -149,6 +149,7 @@ print up_left_change.transpose().shape
 # in the angle array are above like 50
 up_left_angle, up_left_change = utils.remove_outliers(up_left_angle, up_left_change)
 up_right_angle, up_right_change = utils.remove_outliers(up_right_angle, up_right_change)
+print np.absolute(up_right_change)
 down_left_angle, down_left_change = utils.remove_outliers(down_left_angle, down_left_change)
 down_right_angle, down_right_change = utils.remove_outliers(down_right_angle, down_right_change)
 
