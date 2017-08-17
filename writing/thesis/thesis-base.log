@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  17 AUG 2017 16:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  17 AUG 2017 17:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -746,10 +746,7 @@ Overfull \hbox (43.61893pt too wide) in paragraph at lines 31--33
  [][] 
  []
 
-Missing character: There is no â in font phvb7t!
-Missing character: There is no € in font phvb7t!
-Missing character: There is no ¢ in font phvb7t!
-) [53] [54 <./images/pcw_change_directions.png>] [55]
+[53] [54 <./images/pcw_change_directions.png>]) [55]
  5.
 (./discussion/discussion.tex) (./thesis-base.bbl [56
 
@@ -817,8 +814,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 68.
  (./thesis-base.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 68.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 68.
-Package rerunfilecheck Info: File `thesis-base.out' has not changed.
-(rerunfilecheck)             Checksum: 42A734F23006F13C197DE296DDB043D9;1862.
+
+
+Package rerunfilecheck Warning: File `thesis-base.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `thesis-base.out':
+(rerunfilecheck)             Before: 42A734F23006F13C197DE296DDB043D9;1862
+(rerunfilecheck)             After:  BC5999F029FF3411AB84FDAA0E1AFDA1;1812.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 68.
  ) 
 Here is how much of TeX's memory you used:
@@ -829,14 +833,17 @@ Here is how much of TeX's memory you used:
  20849 words of font info for 41 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  30i,12n,35p,2225b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/he
-lvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro
-8a.pfb>
-Output written on thesis-base.pdf (67 pages, 289788 bytes).
+pdfTeX warning (dest): name{section.4.3} has been referenced but does not exi
+st, replaced by a fixed one
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helv
+etic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a
+.pfb>
+Output written on thesis-base.pdf (67 pages, 290807 bytes).
 PDF statistics:
  608 PDF objects out of 1000 (max. 8388607)
  519 compressed objects within 6 object streams
