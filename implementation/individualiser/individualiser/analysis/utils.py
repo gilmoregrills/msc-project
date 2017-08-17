@@ -110,3 +110,34 @@ def column_mean(input_data):
 # 	testo2 = fetch_all_for_direction(butts)
 # 	testo2 = sum_errors(testo2)
 # 	print column_mean(testo2)
+
+def fix_angles(angle1, angle2):
+
+	output = np.array([1, 2])
+	output[1] = abs(angle1[1] - angle2[1])
+	
+	tmp = angle1[0] - angle2[0]
+	if abs(tmp) > 180:
+		output[0] = 360 - abs[tmp]
+	else: 
+		output[0] = abs(tmp)
+
+	return output
+
+
+def remove_outliers(angles, changes):
+	to_delete = []
+	count = 0
+	for anglepair in angles:
+		if anglepair[0] > 80 or anglepair[1] > 80:
+			to_delete.append(count)
+		count += 1
+
+	print to_delete
+
+	out_angle = np.delete(angles, to_delete, axis=0)
+	out_change = np.delete(changes, to_delete, axis=0)
+
+	print "removed ", len(angles) - len(out_angle), " records"
+	
+	return out_angle, out_change
