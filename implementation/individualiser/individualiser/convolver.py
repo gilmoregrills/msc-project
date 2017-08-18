@@ -89,6 +89,7 @@ while 1 == True:
 		print "preparing to play audio file"
 		audiofile = "output.wav"
 		FNULL = open(os.devnull, 'w')
+		# different players commented out
 		# open player, sleep while the sample plays, then terminate the process!
 		player = subprocess.Popen(['mpv', audiofile]) # if rasbian lite
 		# player = subprocess.Popen(['vlc', '-vvv', audiofile]) # if ubuntu
@@ -97,15 +98,3 @@ while 1 == True:
 		player.kill()
 		player.terminate()
 		player.wait()
-
-		# confirm, play again? if no, break 
-		# out and return to main loop
-#		print "play the sample again? \n>"
-#		answer1 = raw_input()
-#		if answer1 == "no" or answer1 == "n":
-#			break 
-#		else: 
-#			continue
-
-
-

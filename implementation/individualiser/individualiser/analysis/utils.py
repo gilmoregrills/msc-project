@@ -1,4 +1,4 @@
-# helpful functions and data! 
+# helpful functions and data! Excuse the lack of documentation! I'm dying!!!
 import simplejson as json
 import os
 import sys
@@ -98,6 +98,7 @@ def column_mean(input_data):
 		output[column] = avg
 
 	return output
+
 # print "EACH PARTICIPANT OVER ALL DIRECTIONS"
 # for hats in range(1, 11):
 # 	print hats

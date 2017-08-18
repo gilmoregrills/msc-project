@@ -25,15 +25,22 @@ fig = plot.figure()
 ax = plot.subplot(111)
 lines = ax.plot(output.transpose())
 for j in range(0, len(lines)):
+	# code from stackexchange
 	print ", ".join(map(str, utils.DIRECTIONS[j]))
 	lines[j].set_label(" ".join(map(str, utils.DIRECTIONS[j])))
+	# code from stackexchange
+	
 #lines[j].set_label(" ".join(map(str, utils.DIRECTIONS[j])))
 print "number of lines", len(lines)
 box = ax.get_position()
+
+# code from stackexchange 
 ax.set_position([box.x0, box.y0 + box.height * 0.15,
                  box.width, box.height * 0.9])
 ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.09),
           fancybox=True, shadow=True, ncol=5)
+# code from stackexchange
+
 plot.ylabel('Total Error (degrees)')
 plot.xlabel('Iterations')
 plot.show()

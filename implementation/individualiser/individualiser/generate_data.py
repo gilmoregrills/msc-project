@@ -11,6 +11,7 @@ import numpy as np
 # without copying over the big ol' database, and allows future
 # implementation to be pseudo-dynamic and not re-generate these
 # values over and over
+
 x = np.zeros([20])
 puts("Generating data for full database")
 

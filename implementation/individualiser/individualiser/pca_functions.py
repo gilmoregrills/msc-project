@@ -2,6 +2,10 @@ import sklearn.decomposition as decomp
 import numpy as np
 import utility_functions as util
 
+# Just wrapping around the PCA functions 
+# used initially to test something but 
+# now it's basically redundant lol 
+
 # creates PCA object and trains/fits it
 def train_model(input_matrix, components):
     pca = decomp.PCA(n_components=components)

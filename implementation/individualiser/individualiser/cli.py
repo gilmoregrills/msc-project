@@ -6,6 +6,8 @@ from clint.textui import puts, colored, indent
 import utility_functions as util
 import pca_functions as pc
 
+# Original CLI program for manual manipulation
+# of PCWs! Also ft. GRAPHS o_O
 
 puts(colored.green("\nIndividualiser Test CLI \n======================="))
 

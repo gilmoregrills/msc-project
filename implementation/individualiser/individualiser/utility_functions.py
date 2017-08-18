@@ -9,6 +9,12 @@ CIPIC_DIRECTIONS = {
     'AZIMUTH': np.array([-80, -65, -55, -45, -40, -35, -30, -25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 55, 65, 80])
 }
 
+# You just *know* that any file name util/utility etc 
+# is going to be full of shit. 
+# Basically any uncategorisable function that needed 
+# a home at any point during development lived here 
+# Sorry if you're reading this! There's some shit in
+# here. 
 
 # take a database name as input, returns an array of data
 # for cipic full db, the structure is: [45, 2, 25, 50, 202/101]

@@ -24,18 +24,18 @@ for direction in range(0, 8):
 		# now data from the subject is loaded into data
 		direction_data = []
 		for entry in data:
-			directo = entry['src_loc']
+			directo = entry["src_loc"]
 			index = utils.DIRECTIONS.index(directo)
 			if index == direction:
 				direction_data.append(entry)
 		# now direction_data is a 6 index array 
 		for i in  range(0, len(direction_data)-1):
 			output.append({
-				"angle1": direction_data[i]['prcv_loc'],
-				"angle2": direction_data[i+1]['prcv_loc'],
-				"pcws1": direction_data[i]['pcws_before'][0],
-				"pcws2": direction_data[i+1]['pcws_before'][0],
-				"change": direction_data[i]['direction']
+				"angle1": direction_data[i]["prcv_loc"],
+				"angle2": direction_data[i+1]["prcv_loc"],
+				"pcws1": direction_data[i]["pcws_before"][0],
+				"pcws2": direction_data[i+1]["pcws_before"][0],
+				"change": direction_data[i]["direction"]
 				})
 
 
@@ -50,16 +50,16 @@ down_right = []
 # into a list befitting the movement made
 for pair in output:
 	# make data marginally easier to work with
-	a1 = pair['angle1']
-	a2 = pair['angle2']
+	a1 = pair["angle1"]
+	a2 = pair["angle2"]
 	if a1[1] > 90:
 		a = a1[1] - 90 
 		a1[1] = 90 - a
 	if a2[1] > 90:
 		b = a2[1] - 90
 		a2[1] = 90 - b
-	pair['angle1'] = a1
-	pair['angle2'] = a2
+	pair["angle1"] = a1
+	pair["angle2"] = a2
 
 	# if left or right
 	if (abs(a1[0] - a2[0]) > 180):
@@ -122,23 +122,23 @@ down_right_angle = np.zeros([len(down_right), 2])
 # change array = pcw1 - pcw2
 
 for n in range(0, len(up_left)):
-	up_left_change[n] = np.array(up_left[n]['pcws1']) - np.array(up_left[n]['pcws2'])
-	up_left_angle[n] = utils.fix_angles(up_left[n]['angle1'], up_left[n]['angle2'])
+	up_left_change[n] = np.array(up_left[n]["pcws1"]) - np.array(up_left[n]["pcws2"])
+	up_left_angle[n] = utils.fix_angles(up_left[n]["angle1"], up_left[n]["angle2"])
 print up_left_change.shape
 
 for x in range(0, len(up_right)):
-	up_right_change[x] = np.array(up_right[x]['pcws1']) - np.array(up_right[x]['pcws2'])
-	up_right_angle[x] = utils.fix_angles(up_right[x]['angle1'], up_right[x]['angle2'])
+	up_right_change[x] = np.array(up_right[x]["pcws1"]) - np.array(up_right[x]["pcws2"])
+	up_right_angle[x] = utils.fix_angles(up_right[x]["angle1"], up_right[x]["angle2"])
 print up_right_change.shape
 
 for p in range(0, len(down_left)):
-	down_left_change[p] = np.array(down_left[p]['pcws1']) - np.array(down_left[p]['pcws2'])
-	down_left_angle[p] = utils.fix_angles(down_left[p]['angle1'], down_left[p]['angle2'])
+	down_left_change[p] = np.array(down_left[p]["pcws1"]) - np.array(down_left[p]["pcws2"])
+	down_left_angle[p] = utils.fix_angles(down_left[p]["angle1"], down_left[p]["angle2"])
 print down_left_change.shape
 
 for q in range(0, len(down_right)):
-	down_right_change[q] = np.array(down_right[q]['pcws1']) - np.array(down_right[q]['pcws2'])
-	down_right_angle[q] = utils.fix_angles(down_right[q]['angle1'], down_right[q]['angle2'])
+	down_right_change[q] = np.array(down_right[q]["pcws1"]) - np.array(down_right[q]["pcws2"])
+	down_right_angle[q] = utils.fix_angles(down_right[q]["angle1"], down_right[q]["angle2"])
 print down_right_change.shape
 
 print up_left_change.transpose().shape
@@ -174,21 +174,21 @@ down_right_avg_ang = utils.column_mean(down_right_angle)
 print down_right_avg_ang
 
 # prepare the plot
-f, ((ax1, ax2), (ax3, ax4)) = plot.subplots(2, 2, sharex='col', sharey='row')
-f.text(0.5, 0.04, 'Principal Component Weight', ha='center', va='center')
-f.text(0.07, 0.5, "Change Value", ha='center', va='center', rotation='vertical')
+f, ((ax1, ax2), (ax3, ax4)) = plot.subplots(2, 2, sharex="col", sharey="row")
+f.text(0.5, 0.04, "Principal Component Weight", ha="center", va="center")
+f.text(0.07, 0.5, "Change Value", ha="center", va="center", rotation="vertical")
 # plot averages as dots
 ax1.axis([1, 10, -3, 3])
 ax2.axis([1, 10, -3, 3])
 ax3.axis([1, 10, -3, 3])
 ax4.axis([1, 10, -3, 3])
-ax1.plot(up_left_average, 'rs')
+ax1.plot(up_left_average, "rs")
 ax1.set_title("Up/Left: " + np.array_str(up_left_avg_ang, precision=2))
-ax2.plot(up_right_average, 'rs')
+ax2.plot(up_right_average, "rs")
 ax2.set_title("Up Right: " + np.array_str(up_right_avg_ang, precision=2))
-ax3.plot(down_left_average, 'rs')
+ax3.plot(down_left_average, "rs")
 ax3.set_title("Down Left: " + np.array_str(down_left_avg_ang, precision=2))
-ax4.plot(down_right_average, 'rs')
+ax4.plot(down_right_average, "rs")
 ax4.set_title("Down Right: " + np.array_str(down_right_avg_ang, precision=2))
 
 # plot on violin/boxplots
