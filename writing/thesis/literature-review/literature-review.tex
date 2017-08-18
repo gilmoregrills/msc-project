@@ -75,8 +75,13 @@ For my proposed implementation, hill climbing searches fit the simplicity requir
 
 \subsection{Genetic Algorithms}
 %Genetic Algorithms are a type of optimization search algorithm that incorporate operations inspired by evolutionary processes. Typically there are three main operations: Selection, mutation, and crossover. 
-Whitley1994
-realised i mentioned genetic algorithms, so I should probably talk about them
+Genetic algorithms (GAs) \citep{Whitley1994} is a broad categorisation of a family of algorithms, whose operations mimic evolutionary processes. They have a degree more complexity than the other two algorithms mentioned here, but were quickly ommitted from consideration as something I could base the individualisation process on purely because it would not be practical to modify the steps involved for this use case. The reason they are worth mentioning at all is because the final implementation borrows one of the three primary operations involved in a typical GA. Broadly speaking, GAs work on a pool of candidate states. These states are generated in a pseudorandom way at the beginnig of the process, and evaluated to determine their fitness. A set pool of the fittest candidates are then selected as the next generation, usually referred to as the selection stage. This generation is then subjected to the following operations: 
+\begin{itemize}
+\item During the crossover stage, candidates are selected pseudrandomly from the current pool. Then at a random point within each candidate, the candidates are split, and half of one will be switched with half of another to create two new states. 
+\item Then, during the mutation stage, elements of a subset of states may be changed. For example, if a given pool of states are represented as binary strings, the mutation may involve inverting a single bit somewhere in the string. Often the algorithm is steered toward mutating parts of the chosen states that would otherwise not be modified with crossover alone. 
+\end{itemize}
+Given that the evaluation function in this instance would have to be a user in a listening test, this would not be practical for this problem. I have however borrowed the basic functionality behind the mutation stage to inject some randomness into the makeup matrix that dictates whether the adjustment value is subtracted or added to a given PCW.
+
 
 \subsection{Simulated Annealing}
 Simulated Annealing \citep{vanLaarhoven1987} search is a simple iterative search method that requires a heuristic that measures how close a given state is to the goal state. The steps the algorithm takes are essentially as follows:
