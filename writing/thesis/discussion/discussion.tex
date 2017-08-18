@@ -8,18 +8,4 @@ It is possible that some small modifications could make this method more effecti
 
 It has already been covered heavily in previous chapters, but a better understanding of the relationship between the PCW adjustments being made and the effect that the adjustments will have on perception could be the greatest improvement while keeping the broader implementation details largely the same. Coupled with a better understanding of the change produced by a given adjustment value, this could help eliminate the early missteps in the search process and allow the algorithm to make more targeted adjustments sooner, lowering the total number of steps required for individualisation.
 
-Working from the assumption that enough data can be gathered, potentially through use of or research into a greatly improved version of the current algorithm, I think there is also scope to investigate the application of machine learning to this process. There are plenty of obstacles ahead of making this feasible, but assuming they could all be overcome with sufficient research the ideal implementation function as follows: Starting with a neutral/default HRTF, play the user a set of sounds from a predetermined set of positions, and ask them to locate where they believe they originated from. 
-
-
-
-\begin{itemize}
-
-\item Does the algorithm work? (noting flaws)
-\begin{itemize}
-\item If no, why not, what could have made it work? 
-\item If yes, how could it be improved? 
-\end{itemize}
-
-\item *elisa from hamilton voice* what would I have done if I'd only had time?
-\item what was out of scope for this project, but would be an interesting extension of this? collating more Error/PC data and using it to train an ANN or other more interesting ML model? how could anything, if anything, be applied to future stuff
-\end{itemize}
+Working from the assumption that enough data can be gathered, potentially through use of or research into a greatly improved version of the current algorithm, I think there is also scope to investigate the application of machine learning to this process. There are plenty of obstacles ahead of making this feasible, but assuming they could all be overcome with sufficient research the ideal implementation might function as follows: As with the current implementation, it should start with a neutral/default HRTF, play the user a set of sounds from a predetermined set of positions, and ask them to locate where they believe they originated from. This data should be enough (the exact number quantified with the design of the system) to feed into a pre-trained machine learning model that should then return a more individualised HRTF. Training such a model would take a great deal of data, and generating that data could be problematic. But if the ability to capture that data was built into a simpler system that was actively used, it could eventually be feasible. Such a system would fulfil all of the requirements that I initially defined, while hopefully offering improved an improved spatial audio experience for a wider range of people.

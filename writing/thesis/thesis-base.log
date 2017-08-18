@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  18 AUG 2017 11:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  18 AUG 2017 12:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -369,7 +369,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--9
 
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <17.28> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 13.
-<images/qmul_logo.jpg, id=116, 910.40125pt x 242.9075pt>
+<images/qmul_logo.jpg, id=120, 910.40125pt x 242.9075pt>
 File: images/qmul_logo.jpg Graphic file (type jpg)
 
 <use images/qmul_logo.jpg>
@@ -649,7 +649,7 @@ on. This means
  []
 
 [36] [37]
-<images/individualiser_system_diagram.png, id=411, 694.595pt x 574.145pt>
+<images/individualiser_system_diagram.png, id=416, 694.595pt x 574.145pt>
 File: images/individualiser_system_diagram.png Graphic file (type png)
 
 <use images/individualiser_system_diagram.png>
@@ -717,7 +717,7 @@ Overfull \hbox (0.69293pt too wide) in paragraph at lines 46--47
 (./analysis-and-results/analysis.tex [47
 
 ] [48]
-<images/average_error_each_direction.png, id=462, 763.8939pt x 502.9992pt>
+<images/average_error_each_direction.png, id=467, 763.8939pt x 502.9992pt>
 File: images/average_error_each_direction.png Graphic file (type png)
 
 <use images/average_error_each_direction.png>
@@ -730,7 +730,7 @@ Overfull \hbox (68.33987pt too wide) in paragraph at lines 11--13
  []
 
 [49] [50 <./images/average_error_each_direction.png>] [51] [52]
-<images/pcw_change_directions.png, id=482, 578.16pt x 433.62pt>
+<images/pcw_change_directions.png, id=487, 578.16pt x 433.62pt>
 File: images/pcw_change_directions.png Graphic file (type png)
 
 <use images/pcw_change_directions.png>
@@ -746,7 +746,7 @@ Overfull \hbox (43.61893pt too wide) in paragraph at lines 31--33
  5.
 (./discussion/discussion.tex [57
 
-] [58] [59]) (./thesis-base.bbl [60]
+] [58] [59]) [60] (./thesis-base.bbl [61]
 Underfull \hbox (badness 3735) in paragraph at lines 16--24
 \OT1/phv/m/n/12 to in-di-vid-u-al-ize HRTFs.  In \OT1/phv/m/sl/12 ICASSP, IEEE 
 Int. Conf. Acoust.
@@ -772,7 +772,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--30
 g von
  []
 
-[61
+[62
 
 ]
 Underfull \hbox (badness 1783) in paragraph at lines 39--44
@@ -786,46 +786,39 @@ Underfull \hbox (badness 1132) in paragraph at lines 39--44
 : / / github . com / jhoelzl /
  []
 
-[62] [63]
+[63] [64]
 Underfull \hbox (badness 1342) in paragraph at lines 118--125
 \OT1/phv/m/n/12 tions for for-ward and back-ward di-rec-tional sound: clus-ter 
 anal-y-
  []
 
-[64]
+[65]
 Underfull \hbox (badness 3364) in paragraph at lines 143--152
 []\OT1/phv/m/n/12 D N Zotkin, R. Du-raiswami, L S Davis, A. Mo-han, and V C
  []
 
-) [65]
+) [66]
  6.
 
 Package natbib Warning: There were undefined citations.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 68.
-[66
+[67
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 68.
  (./thesis-base.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 68.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 68.
-
-
-Package rerunfilecheck Warning: File `thesis-base.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `thesis-base.out':
-(rerunfilecheck)             Before: BC5999F029FF3411AB84FDAA0E1AFDA1;1812
-(rerunfilecheck)             After:  CB6264D6EC9441DC11D8D6E612C91476;1871.
+Package rerunfilecheck Info: File `thesis-base.out' has not changed.
+(rerunfilecheck)             Checksum: CB6264D6EC9441DC11D8D6E612C91476;1871.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 68.
  ) 
 Here is how much of TeX's memory you used:
- 6450 strings out of 494910
- 95381 string characters out of 6179836
+ 6452 strings out of 494910
+ 95401 string characters out of 6179836
  181734 words of memory out of 5000000
- 9520 multiletter control sequences out of 15000+600000
+ 9521 multiletter control sequences out of 15000+600000
  20849 words of font info for 41 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  30i,12n,35p,2225b,449s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -836,10 +829,10 @@ fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/he
 lvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro
 8a.pfb>
-Output written on thesis-base.pdf (71 pages, 295090 bytes).
+Output written on thesis-base.pdf (72 pages, 296326 bytes).
 PDF statistics:
- 621 PDF objects out of 1000 (max. 8388607)
- 528 compressed objects within 6 object streams
- 124 named destinations out of 1000 (max. 500000)
- 245 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 629 PDF objects out of 1000 (max. 8388607)
+ 535 compressed objects within 6 object streams
+ 125 named destinations out of 1000 (max. 500000)
+ 253 words of extra memory for PDF output out of 10000 (max. 10000000)
 
