@@ -1,9 +1,45 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{29}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[sad()]{sadiesite}
+{SADIE | Spatial Audio For Domestic Interactive Entertainment}.
+\newblock URL \url{https://www.york.ac.uk/sadie-project/binaural.html}.
+
+\bibitem[{Acoustics Research Institute}()]{AcousticsResearchInstitute}
+{Acoustics Research Institute}.
+\newblock {ARI HRTF Database}.
+\newblock URL
+  \url{https://www.kfs.oeaw.ac.at/index.php?view=article{\&}id=608{\&}lang=en}.
+
+\bibitem[Algazi and Duda(2011)]{Algazi2011}
+V.~Algazi and Richard Duda.
+\newblock {Headphone-Based Spatial Sound}.
+\newblock \emph{IEEE Signal Process. Mag.}, 28\penalty0 (1):\penalty0 33--42,
+  jan 2011.
+\newblock ISSN 1053-5888.
+\newblock \doi{10.1109/MSP.2010.938756}.
+\newblock URL \url{http://ieeexplore.ieee.org/document/5670436/}.
+
+\bibitem[Algazi et~al.(2001)Algazi, Duda, Thompson, and Avendano]{Algazi2001}
+V~Ralph Algazi, Richard~O Duda, Dennis~M Thompson, and C~Avendano.
+\newblock {THE CIPIC HRTF DATABASE}.
+\newblock In \emph{Proc. 2001 IEEE Work. Appl. Signal Process. to Audio
+  Acoust.}, number October, pages 99--102, New Platz, NY, 2001.
+\newblock \doi{10.1109}.
+\newblock URL
+  \url{http://ieeexplore.ieee.org/stamp/stamp.jsp?tp={\&}arnumber=969552{\&}isnumber=20913}.
+
+\bibitem[Bronkhorst et~al.(1996)Bronkhorst, Veltman, and Breda]{bronkhorst}
+Adelbert~W Bronkhorst, J~A~(Hans) Veltman, and Leo~Van Breda.
+\newblock {Application of a Three-Dimensional Auditory Display in a Flight
+  Task}.
+\newblock \emph{Hum. Factors}, 38\penalty0 (1):\penalty0 23--33, 1996.
+\newblock \doi{10.1518/001872096778940859}.
+\newblock URL \url{http://dx.doi.org/10.1518/001872096778940859}.
 
 \bibitem[Fahn and Lo(2003)]{Fahn2003}
 C.~S Fahn and Y.~C Lo.
@@ -22,11 +58,25 @@ Kimberly~J. Fink and Laura Ray.
 \newblock URL \url{http://ieeexplore.ieee.org/document/6287898/
   http://ieeexplore.ieee.org/stamp/stamp.jsp?tp={\&}arnumber=6287898{\&}isnumber=6287775}.
 
+\bibitem[Gardner and Martin(1995)]{gardner1995}
+William~G. Gardner and Keith~D. Martin.
+\newblock {HRTF measurements of a KEMAR}.
+\newblock \emph{J. Acoust. Soc. Am.}, 97\penalty0 (6):\penalty0 3907--3908, jun
+  1995.
+\newblock ISSN 0001-4966.
+\newblock \doi{10.1121/1.412407}.
+\newblock URL \url{http://asa.scitation.org/doi/10.1121/1.412407}.
+
 \bibitem[Genuit(1984)]{Genuit1984}
 Klaus Genuit.
 \newblock \emph{{Ein Modell zur Beschreibung von
   Au{\{}{\ss}{\}}enohr{\{}{\"{u}}{\}}bertragungseigenschaften}}.
 \newblock na, 1984.
+
+\bibitem[Hoene et~al.(2017)Hoene, {Patino Mejia}, and Cacerovschi]{hoene2017}
+Christian Hoene, Isabel~C. {Patino Mejia}, and Alexandru Cacerovschi.
+\newblock {MySofa—Design Your Personal HRTF}, may 2017.
+\newblock URL \url{http://www.aes.org/e-lib/browse.cfm?elib=18640}.
 
 \bibitem[H{\"{o}}lzl(2012)]{Holzl2012}
 Josef H{\"{o}}lzl.
@@ -97,6 +147,12 @@ John~C Middlebrooks and David~M Green.
   transfer functions}.
 \newblock \emph{J. Acoust. Soc. Am.}, 92\penalty0 (1):\penalty0 597--599, 1992.
 
+\bibitem[Mihocic()]{arisite}
+Michael Mihocic.
+\newblock {Acoustics Research Institute - ARI HRTF Database}.
+\newblock URL
+  \url{https://www.kfs.oeaw.ac.at/index.php?option=com{\_}content{\&}view=article{\&}id=608{\&}Itemid=606{\&}lang=en{\#}tools}.
+
 \bibitem[Pearson(1901)]{Pearson1901}
 Karl Pearson.
 \newblock {LIII. On lines and planes of closest fit to systems of points in
@@ -130,6 +186,17 @@ Peter J~M van Laarhoven and Emile H~L Aarts.
 \newblock ISBN 978-94-015-7744-1.
 \newblock \doi{10.1007/978-94-015-7744-1_2}.
 \newblock URL \url{http://dx.doi.org/10.1007/978-94-015-7744-1{\_}2}.
+
+\bibitem[Wenzel et~al.(1993)Wenzel, Arruda, Kistler, and Wightman]{wenzel1}
+Elizabeth~M. Wenzel, Marianne Arruda, Doris~J. Kistler, and Frederic~L.
+  Wightman.
+\newblock {Localization using nonindividualized head‐related transfer
+  functions}.
+\newblock \emph{J. Acoust. Soc. Am.}, 94\penalty0 (1):\penalty0 111--123, jul
+  1993.
+\newblock ISSN 0001-4966.
+\newblock \doi{10.1121/1.407089}.
+\newblock URL \url{http://asa.scitation.org/doi/10.1121/1.407089}.
 
 \bibitem[Xie et~al.(2013)Xie, Zhang, and Zhong]{xie2013a}
 Bosun Xie, Chengyun Zhang, and Xiaoli Zhong.

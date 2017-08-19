@@ -1,31 +1,11 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis-base.aux
-White space in argument---line 27 of file thesis-base.aux
- : \citation{who
- :               did this first?}
-I'm skipping whatever remains of this command
-White space in argument---line 28 of file thesis-base.aux
- : \citation{ari
- :               database}
-I'm skipping whatever remains of this command
-White space in argument---line 29 of file thesis-base.aux
- : \citation{sadie
- :                 db}
-I'm skipping whatever remains of this command
-White space in argument---line 33 of file thesis-base.aux
- : \citation{kemar
- :                 mannequin?}
-I'm skipping whatever remains of this command
-White space in argument---line 47 of file thesis-base.aux
- : \citation{ARI
- :               site docs}
-I'm skipping whatever remains of this command
-White space in argument---line 60 of file thesis-base.aux
+White space in argument---line 59 of file thesis-base.aux
  : \citation{seminal
  :                   paper}
 I'm skipping whatever remains of this command
-White space in argument---line 100 of file thesis-base.aux
+White space in argument---line 98 of file thesis-base.aux
  : \citation{random
  :                  restart}
 I'm skipping whatever remains of this command
@@ -51,23 +31,19 @@ White space in argument---line 126 of file thesis-base.aux
 I'm skipping whatever remains of this command
 The style file: plainnat.bst
 Database file #1: bibliography/library.bib
-Repeated entry---line 129 of file bibliography/library.bib
- : @article{Middlebrooks1999
- :                          ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 244 of file bibliography/library.bib
+Repeated entry---line 260 of file bibliography/library.bib
  : @phdthesis{Holzl2012
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 585 of file bibliography/library.bib
+Repeated entry---line 567 of file bibliography/library.bib
+ : @article{Middlebrooks1999
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 761 of file bibliography/library.bib
  : @phdthesis{Holzl2014a
  :                      ,
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "•"
-Warning--I didn't find a database entry for "?"
-Warning--I didn't find a database entry for "Kulkarni1995"
-Warning--I didn't find a database entry for "1998"
-Warning--I didn't find a database entry for "Hoene2017"
 Warning--I didn't find a database entry for "Middlebrooks1999a"
 Warning--I didn't find a database entry for "Tan1998"
 Warning--I didn't find a database entry for "Duraiswami2003"
@@ -84,46 +60,52 @@ Warning--I didn't find a database entry for "stochastic"
 Warning--I didn't find a database entry for "Whitley1994"
 Warning--I didn't find a database entry for "simplejson"
 Warning--I didn't find a database entry for "lmdb"
+Warning--I didn't find a database entry for "Holzl2014"
+Warning--to sort, need author or key in sadiesite
+Warning--empty year in sadiesite
+Warning--empty year in AcousticsResearchInstitute
+Warning--there's a number but no series in Algazi2001
+Warning--empty year in arisite
 Warning--there's a number but no volume in Zotkin2002
-You've used 20 entries,
+You've used 29 entries,
             2773 wiz_defined-function locations,
-            795 strings with 9688 characters,
-and the built_in function-call counts, 9353 in all, are:
-= -- 903
-> -- 442
-< -- 17
-+ -- 153
-- -- 132
-* -- 760
-:= -- 1452
-add.period$ -- 86
-call.type$ -- 20
-change.case$ -- 99
-chr.to.int$ -- 19
-cite$ -- 41
-duplicate$ -- 424
-empty$ -- 774
-format.name$ -- 166
-if$ -- 1960
+            855 strings with 11485 characters,
+and the built_in function-call counts, 13400 in all, are:
+= -- 1292
+> -- 642
+< -- 23
++ -- 222
+- -- 192
+* -- 1101
+:= -- 2051
+add.period$ -- 125
+call.type$ -- 29
+change.case$ -- 146
+chr.to.int$ -- 28
+cite$ -- 65
+duplicate$ -- 598
+empty$ -- 1116
+format.name$ -- 238
+if$ -- 2821
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 21
-newline$ -- 133
-num.names$ -- 80
-pop$ -- 178
+missing$ -- 26
+newline$ -- 190
+num.names$ -- 112
+pop$ -- 273
 preamble$ -- 1
-purify$ -- 84
+purify$ -- 122
 quote$ -- 0
-skip$ -- 306
+skip$ -- 447
 stack$ -- 0
-substring$ -- 434
-swap$ -- 46
-text.length$ -- 3
+substring$ -- 574
+swap$ -- 67
+text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 205
-warning$ -- 1
-while$ -- 93
+type$ -- 304
+warning$ -- 6
+while$ -- 128
 width$ -- 0
-write$ -- 317
-(There were 15 error messages)
+write$ -- 453
+(There were 10 error messages)
