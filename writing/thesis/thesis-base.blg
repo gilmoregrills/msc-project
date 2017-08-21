@@ -1,71 +1,60 @@
 This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis-base.aux
-White space in argument---line 98 of file thesis-base.aux
- : \citation{random
- :                  restart}
-I'm skipping whatever remains of this command
-White space in argument---line 125 of file thesis-base.aux
- : \citation{python
- :                  random}
-I'm skipping whatever remains of this command
 The style file: plainnat.bst
 Database file #1: bibliography/library.bib
 Warning--entry type for "openldap" isn't style-file defined
---line 199 of file bibliography/library.bib
-Repeated entry---line 665 of file bibliography/library.bib
+--line 213 of file bibliography/library.bib
+Repeated entry---line 715 of file bibliography/library.bib
  : @inproceedings{Hoene2017
  :                         ,
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "•"
-Warning--I didn't find a database entry for "Hugeng2010"
-Warning--I didn't find a database entry for "Li2013"
-Warning--I didn't find a database entry for "stochastic"
 Warning--there's a number but no series in Algazi2001
 Warning--empty journal in lmdbpython
+Warning--empty journal in Hugeng2010
 Warning--there's a number but no volume in Hwang2008
 Warning--can't use both volume and number fields in norvig1995
 Warning--empty journal in engine9unity
 Warning--there's a number but no volume in Zotkin2002
-You've used 48 entries,
+You've used 53 entries,
             2773 wiz_defined-function locations,
-            960 strings with 14608 characters,
-and the built_in function-call counts, 21920 in all, are:
-= -- 2075
-> -- 1103
-< -- 43
-+ -- 382
-- -- 333
-* -- 1735
-:= -- 3378
-add.period$ -- 206
-call.type$ -- 48
-change.case$ -- 249
-chr.to.int$ -- 47
-cite$ -- 102
-duplicate$ -- 979
-empty$ -- 1819
-format.name$ -- 409
-if$ -- 4622
+            987 strings with 15507 characters,
+and the built_in function-call counts, 24184 in all, are:
+= -- 2302
+> -- 1197
+< -- 49
++ -- 414
+- -- 360
+* -- 1901
+:= -- 3718
+add.period$ -- 227
+call.type$ -- 53
+change.case$ -- 274
+chr.to.int$ -- 52
+cite$ -- 113
+duplicate$ -- 1087
+empty$ -- 2009
+format.name$ -- 449
+if$ -- 5108
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 39
-newline$ -- 308
-num.names$ -- 192
-pop$ -- 492
+missing$ -- 43
+newline$ -- 339
+num.names$ -- 212
+pop$ -- 533
 preamble$ -- 1
-purify$ -- 207
+purify$ -- 226
 quote$ -- 0
-skip$ -- 763
+skip$ -- 850
 stack$ -- 0
-substring$ -- 800
-swap$ -- 119
-text.length$ -- 9
+substring$ -- 906
+swap$ -- 138
+text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 508
-warning$ -- 6
-while$ -- 205
+type$ -- 563
+warning$ -- 7
+while$ -- 227
 width$ -- 0
-write$ -- 738
-(There were 3 error messages)
+write$ -- 813
+(There was 1 error message)

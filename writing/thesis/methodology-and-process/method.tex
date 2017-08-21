@@ -45,7 +45,7 @@ This process is somewhat arbitrary, and mostly serves to generate a value betwee
 \item The input matrix minus the mean is transformed using the PCA model, to produce the [1250 x 10] [\textit{PCWs} x \textit{PCs}] matrix. 
 \item The database is then queried, to see if a modification has been made to this source position before, and the update value is used to adjust the PCWs according to the following conditions:
 \begin{itemize}
-\item If there is no data about previous adjustments, a set of ten boolean values are generated using Python's random module\citep{python random} to represent the adjustment direction for each principal component for that this weight (source position). 
+\item If there is no data about previous adjustments, a set of ten boolean values are generated using Python's random module to represent the adjustment direction for each principal component for that this weight (source position). 
 \item Otherwise, if the data exists and the difference between the perceived and actual source positions in the most recent localisation attempt is greater than the previous one, a randomly chosen subset of the previously-used set of booleans have their values reversed and each PC is adjusted according to those directions. Otherwise, if the difference is lower, make the adjustment in the same direction. 
 \end{itemize}
 \item Information on the details of the adjustment made are then stored in the database, overwriting any previous data for changes made to that direction.
