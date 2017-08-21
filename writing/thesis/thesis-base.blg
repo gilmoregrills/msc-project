@@ -12,76 +12,60 @@ I'm skipping whatever remains of this command
 The style file: plainnat.bst
 Database file #1: bibliography/library.bib
 Warning--entry type for "openldap" isn't style-file defined
---line 622 of file bibliography/library.bib
-Repeated entry---line 669 of file bibliography/library.bib
- : @article{openldap
- :                  ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 1068 of file bibliography/library.bib
- : @misc{hoene2017
- :                ,
+--line 199 of file bibliography/library.bib
+Repeated entry---line 665 of file bibliography/library.bib
+ : @inproceedings{Hoene2017
+ :                         ,
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "•"
-Warning--I didn't find a database entry for "Middlebrooks1999"
-Warning--I didn't find a database entry for "Tan1998"
-Warning--I didn't find a database entry for "PhillipBrown1998"
-Warning--I didn't find a database entry for "Algazi2001a"
-Warning--I didn't find a database entry for "Raykar2003"
-Warning--I didn't find a database entry for "Mohan2003"
 Warning--I didn't find a database entry for "Hugeng2010"
-Warning--I didn't find a database entry for "Tashev2014"
 Warning--I didn't find a database entry for "Li2013"
-Warning--I didn't find a database entry for "Gutierrez-Parera2017"
-Warning--I didn't find a database entry for "Hwang2008"
 Warning--I didn't find a database entry for "stochastic"
-Warning--I didn't find a database entry for "Whitley1994"
-Warning--I didn't find a database entry for "Jones"
-Warning--I didn't find a database entry for "Ippolito"
-Warning--I didn't find a database entry for "Holzl2014"
 Warning--there's a number but no series in Algazi2001
 Warning--empty journal in lmdbpython
+Warning--there's a number but no volume in Hwang2008
 Warning--can't use both volume and number fields in norvig1995
 Warning--empty journal in engine9unity
 Warning--there's a number but no volume in Zotkin2002
-You've used 40 entries,
+You've used 48 entries,
             2773 wiz_defined-function locations,
-            928 strings with 13381 characters,
-and the built_in function-call counts, 18486 in all, are:
-= -- 1745
-> -- 959
-< -- 36
-+ -- 332
-- -- 291
-* -- 1476
-:= -- 2868
-add.period$ -- 171
-call.type$ -- 40
-change.case$ -- 211
-chr.to.int$ -- 39
-cite$ -- 85
-duplicate$ -- 816
-empty$ -- 1508
-format.name$ -- 353
-if$ -- 3883
+            960 strings with 14608 characters,
+and the built_in function-call counts, 21920 in all, are:
+= -- 2075
+> -- 1103
+< -- 43
++ -- 382
+- -- 333
+* -- 1735
+:= -- 3378
+add.period$ -- 206
+call.type$ -- 48
+change.case$ -- 249
+chr.to.int$ -- 47
+cite$ -- 102
+duplicate$ -- 979
+empty$ -- 1819
+format.name$ -- 409
+if$ -- 4622
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 34
-newline$ -- 257
-num.names$ -- 160
-pop$ -- 414
+missing$ -- 39
+newline$ -- 308
+num.names$ -- 192
+pop$ -- 492
 preamble$ -- 1
-purify$ -- 177
+purify$ -- 207
 quote$ -- 0
-skip$ -- 633
+skip$ -- 763
 stack$ -- 0
-substring$ -- 682
-swap$ -- 90
-text.length$ -- 8
+substring$ -- 800
+swap$ -- 119
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 420
-warning$ -- 5
-while$ -- 172
+type$ -- 508
+warning$ -- 6
+while$ -- 205
 width$ -- 0
-write$ -- 617
-(There were 4 error messages)
+write$ -- 738
+(There were 3 error messages)

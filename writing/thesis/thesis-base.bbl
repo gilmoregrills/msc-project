@@ -1,4 +1,4 @@
-\begin{thebibliography}{40}
+\begin{thebibliography}{48}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -112,10 +112,17 @@ Google.
 \newblock {Python}, 2010.
 \newblock URL \url{https://www.python.org/}.
 
-\bibitem[Hoene et~al.(2017)Hoene, Mej{\'{i}}a, and Cacerovschi]{hoene2017}
-Christian Hoene, Isabel C~Pati{\~{n}}o Mej{\'{i}}a, and Alexandru Cacerovschi.
-\newblock {MySofa: Design Your Personal HRTF}.
-\newblock In \emph{Audio Eng. Soc. Conv.}, page~6, Berlin, 2017.
+\bibitem[Gutierrez-Parera and Lopez(2017)]{gutierrezparera2017}
+Pablo Gutierrez-Parera and Jose~J Lopez.
+\newblock {An Experiment to Evaluate the Performance of a Parametric Model for
+  the Individualization of the HRTF in the Median Plane}.
+\newblock In \emph{Audio Eng. Soc. Conv. 142}, may 2017.
+\newblock URL \url{http://www.aes.org/e-lib/browse.cfm?elib=18589}.
+
+\bibitem[Hoene et~al.(2017)Hoene, {Patino Mejia}, and Cacerovschi]{hoene2017}
+Christian Hoene, Isabel~C. {Patino Mejia}, and Alexandru Cacerovschi.
+\newblock {MySofa—Design Your Personal HRTF}, may 2017.
+\newblock URL \url{http://www.aes.org/e-lib/browse.cfm?elib=18640}.
 
 \bibitem[H{\"{o}}lzl(2012)]{Holzl2012}
 Josef H{\"{o}}lzl.
@@ -138,12 +145,31 @@ S~M Hwang and Youngjin Park.
 \newblock \emph{Proc. AES 31st Int. Conf.}, pages 1--9, 2007.
 \newblock URL \url{http://www.aes.org/e-lib/browse.cfm?elib=13974}.
 
+\bibitem[Hwang and Park(2008)]{Hwang2008}
+Sungmok Hwang and Youngjin~Sik Park.
+\newblock {HRTF personalization based on artificial neural network in
+  individual virtual auditory space}.
+\newblock \emph{J. Acoust. Soc. Am.}, \penalty0 (123), 2008.
+\newblock ISSN 10636676.
+\newblock \doi{10.1109}.
+
 \bibitem[Hwang et~al.(2010)Hwang, Park, and Park]{hwang2010customization}
 Sungmok Hwang, Youngjin Park, and Youn-sik Park.
 \newblock {Customization of spatially continuous head-related impulse responses
   in the median plane}.
 \newblock \emph{Acta Acust. united with Acust.}, 96\penalty0 (2):\penalty0
   351--363, 2010.
+
+\bibitem[Ippolito(2017)]{Ippolito2017}
+Bob Ippolito.
+\newblock {{\{}simplejson{\}}: Simple, fast, extensible JSON encoder/decoder
+  for {\{}Python{\}}}, 2017.
+\newblock URL \url{http://github.com/simplejson/simplejson}.
+
+\bibitem[Jones et~al.(2001)Jones, Oliphant, Peterson, and Others]{Jones2001}
+Eric Jones, Travis Oliphant, Pearu Peterson, and Others.
+\newblock {SciPy: Open source scientific tools for Python}, 2001.
+\newblock URL \url{http://www.scipy.org/}.
 
 \bibitem[Kearney(2017)]{sadiesite}
 Gavin Kearney.
@@ -184,7 +210,7 @@ J.{\~{}}C. Middlebrooks and D.{\~{}}M. Green.
 \newblock \emph{Acoust. Soc. Am. J.}, 87:\penalty0 2149--2162, may 1990.
 \newblock \doi{10.1121/1.399183}.
 
-\bibitem[Middlebrooks(1999)]{Middlebrooks1999a}
+\bibitem[Middlebrooks(1999)]{Middlebrooks1999}
 John~C. Middlebrooks.
 \newblock {Individual differences in external-ear transfer functions reduced by
   scaling in frequency}.
@@ -201,7 +227,7 @@ John~C Middlebrooks and David~M Green.
 \newblock \emph{J. Acoust. Soc. Am.}, 92\penalty0 (1):\penalty0 597--599, 1992.
 
 \bibitem[Mohan et~al.(2003)Mohan, Duraiswami, Zotkin, DeMenthon, and
-  Davis]{Duraiswami2003}
+  Davis]{Mohan2003}
 A.~Mohan, R.~Duraiswami, D.N. Zotkin, D.~DeMenthon, and L.S. Davis.
 \newblock {Using computer vision to generate customized spatial audio}.
 \newblock In \emph{2003 Int. Conf. Multimed. Expo. ICME '03. Proc. (Cat.
@@ -235,21 +261,37 @@ F~Pedregosa, G~Varoquaux, A~Gramfort, V~Michel, B~Thirion, O~Grisel, M~Blondel,
 \newblock URL \url{https://www.assetstore.unity3d.com/en/{\#}!/content/81663
   https://projectwilberforce.github.io/}.
 
+\bibitem[Raykar et~al.(2004)Raykar, Duraiswami, and Yegnanarayana]{Raykar2004}
+Vikas~C. Raykar, Ramani Duraiswami, and B.~Yegnanarayana.
+\newblock {Extracting the frequencies of the pinna spectral notches from
+  measured head‐related impulse responses}.
+\newblock \emph{J. Acoust. Soc. Am.}, 116\penalty0 (4):\penalty0 2625--2625,
+  oct 2004.
+\newblock ISSN 0001-4966.
+\newblock \doi{10.1121/1.4785467}.
+\newblock URL \url{http://asa.scitation.org/doi/10.1121/1.4785467}.
+
 \bibitem[Shimada et~al.(1994)Shimada, Hayashi, and Hayashi]{shimada1994a}
 Shoji Shimada, Nobuo Hayashi, and Shinji Hayashi.
 \newblock {A Clustering Method for Sound Localization Transfer Functions}.
 \newblock \emph{J. Audio Eng. Soc}, 42\penalty0 (7/8):\penalty0 577--584, 1994.
 \newblock URL \url{http://www.aes.org/e-lib/browse.cfm?elib=6935}.
 
-\bibitem[So et~al.(2010)So, Ngan, Horner, Braasch, Blauert, and
-  Leung]{doi:10.1080/00140131003675117}
-R~H~Y So, B~Ngan, A~Horner, J~Braasch, J~Blauert, and K~L Leung.
-\newblock {Toward orthogonal non-individualised head-related transfer functions
-  for forward and backward directional sound: cluster analysis and an
-  experimental study}.
-\newblock \emph{Ergonomics}, 53\penalty0 (6):\penalty0 767--781, 2010.
-\newblock \doi{10.1080/00140131003675117}.
-\newblock URL \url{http://dx.doi.org/10.1080/00140131003675117}.
+\bibitem[Tan and Gan(1998)]{Tan1998}
+Chong-Jin Tan and Woon-Seng Gan.
+\newblock {User-defined spectral manipulation of HRTF for improved localisation
+  in 3D sound systems}.
+\newblock \emph{Electron. Lett.}, 34\penalty0 (25):\penalty0 2387--2389, dec
+  1998.
+\newblock ISSN 0013-5194.
+\newblock \doi{10.1049/el:19981629}.
+
+\bibitem[Tashev(2014)]{Tashev2014}
+I~Tashev.
+\newblock {HRTF phase synthesis via sparse representation of anthropometric
+  features}.
+\newblock In \emph{2014 Inf. Theory Appl. Work.}, pages 1--5, feb 2014.
+\newblock \doi{10.1109/ITA.2014.6804239}.
 
 \bibitem[{Unity Technologies}(2017)]{engine9unity}
 {Unity Technologies}.
@@ -276,6 +318,14 @@ Elizabeth~M. Wenzel, Marianne Arruda, Doris~J. Kistler, and Frederic~L.
 \newblock \doi{10.1121/1.407089}.
 \newblock URL \url{http://asa.scitation.org/doi/10.1121/1.407089}.
 
+\bibitem[Whitley(1994)]{Whitley1994}
+Darrell Whitley.
+\newblock {A genetic algorithm tutorial}.
+\newblock \emph{Stat. Comput.}, 4\penalty0 (2):\penalty0 65--85, jun 1994.
+\newblock ISSN 0960-3174.
+\newblock \doi{10.1007/BF00175354}.
+\newblock URL \url{http://link.springer.com/10.1007/BF00175354}.
+
 \bibitem[Xie et~al.(2013)Xie, Zhang, and Zhong]{xie2013a}
 Bosun Xie, Chengyun Zhang, and Xiaoli Zhong.
 \newblock {A Cluster and Subjective Selection-Based HRTF Customization Scheme
@@ -294,6 +344,14 @@ D~N Zotkin, R.~Duraiswami, L~S Davis, A.~Mohan, and V~C Raykar.
 \newblock \doi{10.1109/ICPR.2002.1048207}.
 \newblock URL \url{http://ieeexplore.ieee.org/document/1048207/
   http://ieeexplore.ieee.org/xpls/abs{\_}all.jsp?arnumber=1048207}.
+
+\bibitem[Zotkin et~al.(2003)Zotkin, Hwang, Duraiswami, and
+  Davis]{Duraiswami2003}
+D~Y~N Zotkin, J~Hwang, R~Duraiswami, and L~S Davis.
+\newblock {HRTF personalization using anthropometric measurements}.
+\newblock In \emph{2003 IEEE Work. Appl. Signal Process. to Audio Acoust. (IEEE
+  Cat. No.03TH8684)}, pages 157--160, oct 2003.
+\newblock \doi{10.1109/ASPAA.2003.1285855}.
 
 \bibitem[Zotkin et~al.(2002{\natexlab{b}})Zotkin, Duraiswami, and
   Davis]{Zotkin2002}
