@@ -187,12 +187,12 @@ ax1.plot(xvals, up_left_average, "r<")
 ax1.set_title("Up/Left: " + np.array_str(up_left_avg_ang, precision=2))
 ax1.set_xticks(xvals)
 ax2.plot(xvals, up_right_average, "r<")
-ax2.set_title("Up Right: " + np.array_str(up_right_avg_ang, precision=2))
+ax2.set_title("Up/Right: " + np.array_str(up_right_avg_ang, precision=2))
 ax2.set_xticks(xvals)
 ax3.plot(xvals, down_left_average, "r<")
-ax3.set_title("Down Left: " + np.array_str(down_left_avg_ang, precision=2))
+ax3.set_title("Down/Left: " + np.array_str(down_left_avg_ang, precision=2))
 ax4.plot(xvals, down_right_average, "r<")
-ax4.set_title("Down Right: " + np.array_str(down_right_avg_ang, precision=2))
+ax4.set_title("Down/Right: " + np.array_str(down_right_avg_ang, precision=2))
 
 
 # plot on violin/boxplots
