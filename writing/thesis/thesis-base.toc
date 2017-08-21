@@ -9,9 +9,9 @@
 \contentsline {subsection}{\numberline {2.1.3}Frequency Scaling}{15}{subsection.2.1.3}
 \contentsline {subsection}{\numberline {2.1.4}Structural Models}{16}{subsection.2.1.4}
 \contentsline {subsection}{\numberline {2.1.5}Principal Components Analysis}{19}{subsection.2.1.5}
-\contentsline {subsubsection}{\numberline {2.1.5.1}Understanding PCA}{20}{subsubsection.2.1.5.1}
+\contentsline {subsubsection}{\numberline {2.1.5.1}Understanding PCA}{19}{subsubsection.2.1.5.1}
 \contentsline {subsubsection}{\numberline {2.1.5.2}Individualising HRTFs/HRIR with PCA}{21}{subsubsection.2.1.5.2}
-\contentsline {section}{\numberline {2.2}Search Methods}{24}{section.2.2}
+\contentsline {section}{\numberline {2.2}Search Methods}{23}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Hill-Climbing Search}{25}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Genetic Algorithms}{26}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Simulated Annealing}{28}{subsection.2.2.3}
