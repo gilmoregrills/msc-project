@@ -6,10 +6,10 @@ As mentioned in previous chapters, the primary metric for whether or not this im
 In order to properly analyse this metric I am looking at the average total error value for each of the eight source positions. This error value is the angular error that comes from subtracting the perceived source position from the actual source position. These two values are then made positive if either one is negative, so as to better represent the total error in degrees, and summed to produce a combined error value. This process is performed for every participant, and the mean error value for each measurement over the course of the test from each direction is then calculated based on that data. These mean error rates over time can then be plotted as in figure 4.1. 
 
 \begin{figure}
-	\caption{The average error rate over each direction.}
-	\centering{
-		\includegraphics[scale=0.6]{average_error_each_direction}
-	}
+	\caption{Average error rate over each source position.}
+	\centering
+		\includegraphics[scale=0.5]{average_error_each_direction}
+	
 \end{figure}
 
 On this chart each line represents a source position, and tracks how, on average, localisation errors for samples played from that source position changed over the course of the listening test. When displayed like this we can see something of a reduction in the overall errors for most source positions, but the short test length makes it unclear how close to zero these values would get or how long it would take. What we can see at play is the self-correcting quality afforded to the algorithm through knowledge of the history of previous changes. For almost all of the directions there are large spikes where the algorithm explores a sub-optimal child state and the participant's subsequent localisation attempt fares more poorly, in all cases but one (the black line representing the [-45.0, 135.0] source position) this mistake is quickly rectified as the algorithm makes adjustments in the opposite direction. Based on this and the slight overall trend down, it would not be unreasonable to expect that on a long enough timeline, the error rate would eventually get close to zero. If successive child states could be selected more intelligently, then it's quite possible that these kinds of mis-steps could be minimized further, reaching a more effectively individualised HRTF sooner.
@@ -26,10 +26,10 @@ Each of the four lists were then filtered, to eliminate any pairs where a sound 
 In order to generate the charts in figure 4.2, the average PCW adjustments were calculated for each change direction, and were then plotted according to how much each PCW was modified by, on average, to generate an apparent positional change in the given direction. In addition to this, the average amount of change for each direction is represented as a pair of values, in degrees, above each plot. The rationale behind this being that the average adjustment should result in something similar to the average perceptual change in position.
 
 \begin{figure}
-	\caption{The average error rate over each direction.}
-	\centering{
-		\includegraphics[scale=0.75]{pcw_change_directions}
-	}
+	\caption{Average PCW adjustment for each perceptual position change.}
+	\centering
+		\includegraphics[scale=0.70]{pcw_change_directions}
+	
 \end{figure}
 
 There is a slight disconnect in the results as they appear on the chart representing up-right perceptual changes, compared to the others. The average apparent change in that direction is similar to the other three, but the changes made to the PCWs appear much more sweeping. More pair objects were filtered out for this quadrant than any other, from a set that was already the smallest of the four, so it's likely that with more data this graph would be as smooth as the others. 

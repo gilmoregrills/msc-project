@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  21 AUG 2017 15:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  21 AUG 2017 15:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -518,21 +518,21 @@ ne 77.
 (./methodology-and-process/method.tex [31
 
 ] [32] [33] [34] [35] [36]
-<images/individualiser_system_diagram.png, id=457, 694.595pt x 574.145pt>
+<images/individualiser_system_diagram.png, id=458, 694.595pt x 574.145pt>
 File: images/individualiser_system_diagram.png Graphic file (type png)
 
 <use images/individualiser_system_diagram.png>
 Package pdftex.def Info: images/individualiser_system_diagram.png used on input
  line 24.
-(pdftex.def)             Requested size: 416.76022pt x 344.48965pt.
-
-Overfull \hbox (26.76022pt too wide) in paragraph at lines 24--26
- [][] 
- []
+(pdftex.def)             Requested size: 347.29665pt x 287.0718pt.
 
 
-Package natbib Warning: Citation `lmdbpython' on page 37 undefined on input lin
-e 29.
+Package natbib Warning: Citation `Jones' on page 37 undefined on input line 29.
+
+
+
+Package natbib Warning: Citation `Ippolito' on page 37 undefined on input line 
+29.
 
 [37] [38 <./images/individualiser_system_diagram.png>] [39] [40]
 
@@ -544,32 +544,27 @@ line 50.
 (./analysis-and-results/analysis.tex [45
 
 ] [46]
-<images/average_error_each_direction.png, id=526, 763.8939pt x 502.9992pt>
+<images/average_error_each_direction.png, id=528, 763.8939pt x 502.9992pt>
 File: images/average_error_each_direction.png Graphic file (type png)
 
 <use images/average_error_each_direction.png>
 Package pdftex.def Info: images/average_error_each_direction.png used on input 
 line 11.
-(pdftex.def)             Requested size: 458.33987pt x 301.80185pt.
-
-Overfull \hbox (68.33987pt too wide) in paragraph at lines 11--13
- [][] 
- []
-
-[47] [48 <./images/average_error_each_direction.png>] [49] [50]
-<images/pcw_change_directions.png, id=546, 578.16pt x 433.62pt>
+(pdftex.def)             Requested size: 381.94601pt x 251.49898pt.
+ [47] [48 <./images/average_error_each_direction.png>] [49] [50]
+<images/pcw_change_directions.png, id=548, 578.16pt x 433.62pt>
 File: images/pcw_change_directions.png Graphic file (type png)
 
 <use images/pcw_change_directions.png>
 Package pdftex.def Info: images/pcw_change_directions.png used on input line 31
 .
-(pdftex.def)             Requested size: 433.61893pt x 325.2142pt.
+(pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
 
-Overfull \hbox (43.61893pt too wide) in paragraph at lines 31--33
+Overfull \hbox (14.70924pt too wide) in paragraph at lines 31--32
  [][] 
  []
 
-[51] [52 <./images/pcw_change_directions.png>]) [53] [54]
+) [51] [52 <./images/pcw_change_directions.png>] [53] [54]
  5.
 (./discussion/discussion.tex [55
 
@@ -661,12 +656,7 @@ Package atveryend Info: Empty hook `BeforeClearDocument' on input line 68.
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 68.
- (./thesis-base.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+ (./thesis-base.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 68.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 68.
 Package rerunfilecheck Info: File `thesis-base.out' has not changed.
@@ -678,30 +668,24 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 68.
  ) 
 Here is how much of TeX's memory you used:
- 6440 strings out of 494910
- 95488 string characters out of 6179836
- 183507 words of memory out of 5000000
+ 6438 strings out of 494910
+ 95465 string characters out of 6179836
+ 183484 words of memory out of 5000000
  9501 multiletter control sequences out of 15000+600000
  9306 words of font info for 33 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 30i,12n,35p,2206b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{cite.Ippolito} has been referenced but does not e
-xist, replaced by a fixed one
-
-pdfTeX warning (dest): name{cite.Jones} has been referenced but does not exist,
- replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on thesis-base.pdf (73 pages, 332253 bytes).
+ 30i,12n,35p,2206b,487s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on thesis-base.pdf (73 pages, 332376 bytes).
 PDF statistics:
- 737 PDF objects out of 1000 (max. 8388607)
- 640 compressed objects within 7 object streams
- 148 named destinations out of 1000 (max. 500000)
+ 738 PDF objects out of 1000 (max. 8388607)
+ 641 compressed objects within 7 object streams
+ 146 named destinations out of 1000 (max. 500000)
  253 words of extra memory for PDF output out of 10000 (max. 10000000)
 
