@@ -12,12 +12,12 @@ I'm skipping whatever remains of this command
 The style file: plainnat.bst
 Database file #1: bibliography/library.bib
 Warning--entry type for "openldap" isn't style-file defined
---line 620 of file bibliography/library.bib
-Repeated entry---line 666 of file bibliography/library.bib
+--line 622 of file bibliography/library.bib
+Repeated entry---line 669 of file bibliography/library.bib
  : @article{openldap
  :                  ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1062 of file bibliography/library.bib
+Repeated entry---line 1068 of file bibliography/library.bib
  : @misc{hoene2017
  :                ,
 I'm skipping whatever remains of this entry
@@ -35,57 +35,53 @@ Warning--I didn't find a database entry for "Gutierrez-Parera2017"
 Warning--I didn't find a database entry for "Hwang2008"
 Warning--I didn't find a database entry for "stochastic"
 Warning--I didn't find a database entry for "Whitley1994"
-Warning--I didn't find a database entry for "lmdb"
+Warning--I didn't find a database entry for "Jones"
+Warning--I didn't find a database entry for "Ippolito"
 Warning--I didn't find a database entry for "Holzl2014"
 Warning--there's a number but no series in Algazi2001
-Warning--empty year in engine9unity
-Warning--empty year in engine9unity
-Warning--empty year in GuidovanRossum
-Warning--empty year in Ippolito
-Warning--empty year in Jones
+Warning--empty journal in lmdbpython
 Warning--can't use both volume and number fields in norvig1995
-Warning--empty year in arisite
-Warning--empty year in finalwireframe
+Warning--empty journal in engine9unity
 Warning--there's a number but no volume in Zotkin2002
-You've used 41 entries,
+You've used 40 entries,
             2773 wiz_defined-function locations,
-            930 strings with 13579 characters,
-and the built_in function-call counts, 19142 in all, are:
-= -- 1801
-> -- 998
-< -- 37
-+ -- 345
-- -- 303
-* -- 1528
-:= -- 2945
-add.period$ -- 172
-call.type$ -- 41
-change.case$ -- 218
-chr.to.int$ -- 40
-cite$ -- 92
-duplicate$ -- 840
-empty$ -- 1561
-format.name$ -- 366
-if$ -- 4029
+            928 strings with 13381 characters,
+and the built_in function-call counts, 18486 in all, are:
+= -- 1745
+> -- 959
+< -- 36
++ -- 332
+- -- 291
+* -- 1476
+:= -- 2868
+add.period$ -- 171
+call.type$ -- 40
+change.case$ -- 211
+chr.to.int$ -- 39
+cite$ -- 85
+duplicate$ -- 816
+empty$ -- 1508
+format.name$ -- 353
+if$ -- 3883
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 33
-newline$ -- 260
-num.names$ -- 164
-pop$ -- 442
+missing$ -- 34
+newline$ -- 257
+num.names$ -- 160
+pop$ -- 414
 preamble$ -- 1
-purify$ -- 183
+purify$ -- 177
 quote$ -- 0
-skip$ -- 662
+skip$ -- 633
 stack$ -- 0
-substring$ -- 724
-swap$ -- 104
-text.length$ -- 9
+substring$ -- 682
+swap$ -- 90
+text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 431
-warning$ -- 10
-while$ -- 178
+type$ -- 420
+warning$ -- 5
+while$ -- 172
 width$ -- 0
-write$ -- 622
+write$ -- 617
 (There were 4 error messages)
