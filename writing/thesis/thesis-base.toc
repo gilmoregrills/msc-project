@@ -28,4 +28,4 @@
 \contentsline {section}{\numberline {4.2}Relationships Between PCs and Localisation Errors}{48}{section.4.2}
 \contentsline {chapter}{\numberline {5}Discussion}{54}{chapter.5}
 \contentsline {section}{\numberline {5.1}Improvements}{56}{section.5.1}
-\contentsline {chapter}{\numberline {6}Appendix}{70}{chapter.6}
+\contentsline {chapter}{\numberline {6}Appendix}{68}{chapter.6}

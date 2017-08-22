@@ -1,4 +1,4 @@
-\begin{thebibliography}{53}
+\begin{thebibliography}{44}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -28,22 +28,6 @@ V~Ralph Algazi, Richard~O Duda, Dennis~M Thompson, and C~Avendano.
 \newblock \doi{10.1109}.
 \newblock URL
   \url{http://ieeexplore.ieee.org/stamp/stamp.jsp?tp={\&}arnumber=969552{\&}isnumber=20913}.
-
-\bibitem[Begault and Trejo(2000)]{Begault2000}
-Durand~R. Begault and Leonard~J. Trejo.
-\newblock {3-D Sound for Virtual Reality and Multimedia}.
-\newblock Technical report, Nasa Ames Research Center, Moffett Field,
-  California, aug 2000.
-\newblock URL \url{https://ntrs.nasa.gov/search.jsp?R=20010044352}.
-
-\bibitem[Bronkhorst(1995)]{Bronkhorst1995}
-Adelbert~W. Bronkhorst.
-\newblock {Localization of real and virtual sound sources}.
-\newblock \emph{J. Acoust. Soc. Am.}, 98\penalty0 (5):\penalty0 2542--2553, nov
-  1995.
-\newblock ISSN 0001-4966.
-\newblock \doi{10.1121/1.413219}.
-\newblock URL \url{http://asa.scitation.org/doi/10.1121/1.413219}.
 
 \bibitem[Bronkhorst et~al.(1996)Bronkhorst, Veltman, and Breda]{bronkhorst}
 Adelbert~W Bronkhorst, J~A~(Hans) Veltman, and Leo~Van Breda.
@@ -128,17 +112,10 @@ Google.
 \newblock {Python}, 2010.
 \newblock URL \url{https://www.python.org/}.
 
-\bibitem[Gutierrez-Parera and Lopez(2017)]{gutierrezparera2017}
-Pablo Gutierrez-Parera and Jose~J Lopez.
-\newblock {An Experiment to Evaluate the Performance of a Parametric Model for
-  the Individualization of the HRTF in the Median Plane}.
-\newblock In \emph{Audio Eng. Soc. Conv. 142}, may 2017.
-\newblock URL \url{http://www.aes.org/e-lib/browse.cfm?elib=18589}.
-
-\bibitem[Hoene et~al.(2017)Hoene, {Patino Mejia}, and Cacerovschi]{hoene2017}
-Christian Hoene, Isabel~C. {Patino Mejia}, and Alexandru Cacerovschi.
-\newblock {MySofa—Design Your Personal HRTF}, may 2017.
-\newblock URL \url{http://www.aes.org/e-lib/browse.cfm?elib=18640}.
+\bibitem[Hoene et~al.(2017)Hoene, Mej{\'{i}}a, and Cacerovschi]{hoene2017}
+Christian Hoene, Isabel C~Pati{\~{n}}o Mej{\'{i}}a, and Alexandru Cacerovschi.
+\newblock {MySofa: Design Your Personal HRTF}.
+\newblock In \emph{Audio Eng. Soc. Conv.}, page~6, Berlin, 2017.
 
 \bibitem[H{\"{o}}lzl(2012)]{Holzl2012}
 Josef H{\"{o}}lzl.
@@ -153,14 +130,6 @@ Josef H{\"{o}}lzl.
   Principal Component Weights}}.
 \newblock PhD thesis, Graz University of Technology, 2014.
 \newblock URL \url{https://github.com/jhoelzl/HRTF-Individualization}.
-
-\bibitem[Hugeng and Gunawan(2010)]{Hugeng2010}
-W.~Wahab Hugeng and D.~Gunawan.
-\newblock {Improved Method for Individualization of Head-Related Transfer
-  Functions on Horizontal Plane Using Reduced Number of Anthropometric
-  Measurements}.
-\newblock may 2010.
-\newblock URL \url{http://arxiv.org/abs/1005.5137}.
 
 \bibitem[Hwang and Park(2007)]{Hwang2007}
 S~M Hwang and Youngjin Park.
@@ -206,13 +175,6 @@ Frederic~L {Kistler, Doris J; Wightman}.
   components analysis and minimum-phase reconstruction.}
 \newblock \emph{J. Acoust. Soc. Am.}, Vol 91(3):\penalty0 1637--1647, 1992.
 
-\bibitem[Li and Huang(2013)]{Li2013}
-L~Li and Q~Huang.
-\newblock {HRTF personalization modeling based on RBF neural network}.
-\newblock In \emph{2013 IEEE Int. Conf. Acoust. Speech Signal Process.}, pages
-  3707--3710, may 2013.
-\newblock \doi{10.1109/ICASSP.2013.6638350}.
-
 \bibitem[Ligeza(1995)]{norvig1995}
 Antoni Ligeza.
 \newblock \emph{{Artificial Intelligence: A Modern Approach}}, volume~9.
@@ -256,12 +218,6 @@ John~C Middlebrooks and David~M Green.
 \newblock {Observations on a principal components analysis of head-related
   transfer functions}.
 \newblock \emph{J. Acoust. Soc. Am.}, 92\penalty0 (1):\penalty0 597--599, 1992.
-
-\bibitem[Mitchell and Forrest(1993)]{forrest1993}
-M~Mitchell and S~Forrest.
-\newblock {Relative building-block fitness and the building block hypothesis}.
-\newblock \emph{D. Whitley, Found. Genet. Algorithms}, 2:\penalty0 109--126,
-  1993.
 
 \bibitem[Mohan et~al.(2003)Mohan, Duraiswami, Zotkin, DeMenthon, and
   Davis]{Mohan2003}
@@ -323,13 +279,6 @@ Chong-Jin Tan and Woon-Seng Gan.
 \newblock ISSN 0013-5194.
 \newblock \doi{10.1049/el:19981629}.
 
-\bibitem[Tashev(2014)]{Tashev2014}
-I~Tashev.
-\newblock {HRTF phase synthesis via sparse representation of anthropometric
-  features}.
-\newblock In \emph{2014 Inf. Theory Appl. Work.}, pages 1--5, feb 2014.
-\newblock \doi{10.1109/ITA.2014.6804239}.
-
 \bibitem[{Unity Technologies}(2017)]{engine9unity}
 {Unity Technologies}.
 \newblock {Unity Game Engine}.
@@ -355,14 +304,6 @@ Elizabeth~M. Wenzel, Marianne Arruda, Doris~J. Kistler, and Frederic~L.
 \newblock \doi{10.1121/1.407089}.
 \newblock URL \url{http://asa.scitation.org/doi/10.1121/1.407089}.
 
-\bibitem[Whitley(1994)]{Whitley1994}
-Darrell Whitley.
-\newblock {A genetic algorithm tutorial}.
-\newblock \emph{Stat. Comput.}, 4\penalty0 (2):\penalty0 65--85, jun 1994.
-\newblock ISSN 0960-3174.
-\newblock \doi{10.1007/BF00175354}.
-\newblock URL \url{http://link.springer.com/10.1007/BF00175354}.
-
 \bibitem[Xie et~al.(2013)Xie, Zhang, and Zhong]{xie2013a}
 Bosun Xie, Chengyun Zhang, and Xiaoli Zhong.
 \newblock {A Cluster and Subjective Selection-Based HRTF Customization Scheme
@@ -381,14 +322,6 @@ D~N Zotkin, R.~Duraiswami, L~S Davis, A.~Mohan, and V~C Raykar.
 \newblock \doi{10.1109/ICPR.2002.1048207}.
 \newblock URL \url{http://ieeexplore.ieee.org/document/1048207/
   http://ieeexplore.ieee.org/xpls/abs{\_}all.jsp?arnumber=1048207}.
-
-\bibitem[Zotkin et~al.(2003)Zotkin, Hwang, Duraiswami, and
-  Davis]{Duraiswami2003}
-D~Y~N Zotkin, J~Hwang, R~Duraiswami, and L~S Davis.
-\newblock {HRTF personalization using anthropometric measurements}.
-\newblock In \emph{2003 IEEE Work. Appl. Signal Process. to Audio Acoust. (IEEE
-  Cat. No.03TH8684)}, pages 157--160, oct 2003.
-\newblock \doi{10.1109/ASPAA.2003.1285855}.
 
 \bibitem[Zotkin et~al.(2002{\natexlab{b}})Zotkin, Duraiswami, and
   Davis]{Zotkin2002}
