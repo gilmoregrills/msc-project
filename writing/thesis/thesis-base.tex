@@ -22,7 +22,7 @@
 %\usepackage{times}% other timesnewroman
 %\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
-
+\pagestyle{empty}
 \input{title}
 
 \begin{abstract}
@@ -36,8 +36,9 @@
 
 \tableofcontents
 
-
 \chapter{Introduction}
+\pagestyle{plain}
+\pagenumbering{arabic}
 \input{introduction/introduction.tex}
 
 \chapter{Literature Review}
