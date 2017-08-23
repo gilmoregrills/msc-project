@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  22 AUG 2017 21:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.4.11)  23 AUG 2017 13:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -372,6 +372,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--14
 \OT1/cmr/bx/n/17.28 y-sis and Sim-u-lated
  []
 
+
+Underfull \hbox (badness 5592) in paragraph at lines 13--14
+\OT1/cmr/bx/n/17.28 An-neal-ing based on
+ []
+
+
+Underfull \hbox (badness 1622) in paragraph at lines 13--14
+\OT1/cmr/bx/n/17.28 lo-cal-iza-tion er-rors in
+ []
+
 <images/qmul_logo.jpg, id=116, 910.40125pt x 242.9075pt>
 File: images/qmul_logo.jpg Graphic file (type jpg)
 
@@ -387,7 +397,7 @@ Overfull \hbox (44.49863pt too wide) in paragraph at lines 7--24
 
 
 ]
-Overfull \vbox (104.43813pt too high) has occurred while \output is active []
+Overfull \vbox (162.43813pt too high) has occurred while \output is active []
 
 
 [2{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/qmul_logo.jpg>]
@@ -489,20 +499,8 @@ File: images/individualiser_system_diagram.png Graphic file (type png)
 Package pdftex.def Info: images/individualiser_system_diagram.png used on input
  line 22.
 (pdftex.def)             Requested size: 347.29665pt x 287.0718pt.
-
-Overfull \hbox (1.36678pt too wide) in paragraph at lines 27--28
-\OT1/cmr/m/n/12 in-ter-fac-ing with the database was done us-ing the lmdb wrap-
-per mod-ule([]David
- []
-
-
-Overfull \hbox (5.71489pt too wide) in paragraph at lines 27--28
-\OT1/cmr/m/n/12 Wil-son[], []2017[]). Symas' Light-ning Memory-Mapped Database 
-([]Chu and Symas[],
- []
-
-[36] [37 <./images/individualiser_system_diagram.png>] [38] [39] [40] [41]
-[42]) [43]
+ [36] [37 <./images/individualiser_system_diagram.png>] [38] [39] [40] [41] [42
+]) [43]
  4.
 (./analysis-and-results/analysis.tex [44
 
@@ -652,18 +650,18 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 69.
 Here is how much of TeX's memory you used:
  6480 strings out of 494910
  96332 string characters out of 6179836
- 184990 words of memory out of 5000000
+ 183990 words of memory out of 5000000
  9526 multiletter control sequences out of 15000+600000
  9016 words of font info for 32 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 30i,12n,35p,2337b,519s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,12n,35p,2338b,519s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on thesis-base.pdf (77 pages, 344189 bytes).
+Output written on thesis-base.pdf (77 pages, 344436 bytes).
 PDF statistics:
  813 PDF objects out of 1000 (max. 8388607)
  712 compressed objects within 8 object streams
