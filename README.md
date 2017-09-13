@@ -4,6 +4,8 @@ MSC PROJECT AND THESIS
 Directory Structure: 
 --------------------
 
+(Irrelevant for the moment while I refactor and tidy up the project)
+
 - root
     - databases <_in gitignore_>
         - CIPIC
