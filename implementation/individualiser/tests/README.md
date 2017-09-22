@@ -1,1 +1,1 @@
-Tests to be re-made, current scripts are BAD and were just used for peace of mind during the initial development. 
+Tests to be re-made, current scripts are BAD and were just used for peace of mind during initial research/investigation.  
