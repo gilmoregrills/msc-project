@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// transmit vector and generate a new position from
+// a limited set of potential positions, declared in
+// Start() and contained in potentialPositions[] 
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Net.Sockets;
